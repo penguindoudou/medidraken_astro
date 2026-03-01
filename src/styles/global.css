@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+    /* Replace these with your actual TCM brand hex codes */
+    --color-tcm-green: #2d5a27;
+    --color-tcm-gold: #c5a059;
+    --color-tcm-stone: #f8f7f4;
+
+    --font-sans: "Instrument Sans", "Inter", ui-sans-serif, system-ui;
+}

@@ -1,11 +1,19 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories,
+// and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<Hero />
+
+	<!-- You can add more sections here -->
+	<section class="py-16 text-center">
+		<h2 class="text-3xl font-bold">Välkommen till Mediraken</h2>
+		<p class="mt-4">Specialister på akupunktur i Oxelösund, Nyköping och Gnesta.</p>
+	</section>
 </Layout>
