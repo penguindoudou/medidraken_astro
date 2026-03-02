@@ -1,10 +1,424 @@
 @import "tailwindcss";
 
 @theme {
-    /* Replace these with your actual TCM brand hex codes */
-    --color-tcm-green: #2d5a27;
-    --color-tcm-gold: #c5a059;
-    --color-tcm-stone: #f8f7f4;
+  --color-brand-earth-lightest: #F4EFE9;
+  --color-brand-earth-lighter: #DDD1C3;
+  --color-brand-earth-light: #C6B39C;
+  --color-brand-earth: #4A3F35;
+  --color-brand-earth-dark: #3C322A;
 
-    --font-sans: "Instrument Sans", "Inter", ui-sans-serif, system-ui;
+  --color-brand-sky-bright: #A4D2E7;
+  --color-brand-sky: #1B3D80;
+  --color-brand-sky-light: #2A52A2;
+  --color-brand-sky-dark: #132D5F;
+
+  --color-brand-accent-light: #FDCB82;
+  --color-brand-accent: #FCAE3E;
+  --color-brand-accent-dark: #E89215;
+
+  --color-neutral-900: #1F2937;
+  --color-neutral-700: #374151;
+  --color-neutral-500: #6B7280;
+  --color-neutral-350: #C4C4C4;
+  --color-neutral-300: #D1D5DB;
+  --color-neutral-100: #F7F5F2;
+  --color-neutral-50: #FFFFFF;
+
+  --font-heading: "Lora", serif;
+  --font-body: "Inter", sans-serif;
+
+  --text-base-sm: 0.9375rem;
+
+  --breakpoint-nav-md: 970px;
+  --breakpoint-nav-lg: 1350px;
+}
+
+@utility text-shadow-md {
+  text-shadow: 1px 1px 3px rgb(0 0 0 / 0.5);
+}
+
+@utility text-shadow-hero-glow {
+  text-shadow: -1px -1px 0 rgba(31, 41, 55, 0.7),
+    1px -1px 0 rgba(31, 41, 55, 0.7),
+    -1px 1px 0 rgba(31, 41, 55, 0.7),
+    1px 1px 0 rgba(31, 41, 55, 0.7),
+    0 0 12px rgba(252, 174, 62, 0.8),
+    0 0 20px rgba(252, 174, 62, 0.5);
+}
+
+@utility text-shadow-hero-shadow {
+  text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.5),
+    1px -1px 0 rgba(255, 255, 255, 0.5),
+    -1px 1px 0 rgba(255, 255, 255, 0.5),
+    1px 1px 0 rgba(255, 255, 255, 0.5),
+    2px 2px 4px rgba(31, 41, 55, 0.7),
+    0 0 20px rgba(31, 41, 55, 0.4);
+}
+
+/* 
+   ============================================
+   Base Styles (Defaults)
+   ============================================
+*/
+@layer base {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-bold text-neutral-900;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  p {
+    @apply font-body text-base text-neutral-700 leading-relaxed;
+  }
+
+  a {
+    @apply text-brand-sky transition-colors duration-200 hover:text-brand-sky;
+  }
+
+  [x-cloak] {
+    display: none !important;
+  }
+}
+
+/*
+============================================
+Custom Component Styles - Design System: "Jord & Himmel 2.0"
+============================================
+*/
+@layer components {
+  .container-base {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-standard {
+    @apply py-20 lg:py-28;
+  }
+
+  /* --- BUTTONS --- */
+  .btn {
+    @apply inline-block rounded-lg px-8 py-4 text-lg font-semibold shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-sm {
+    @apply px-6 py-3 text-base;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-xl;
+  }
+
+  .btn-primary-on-light {
+    @apply bg-brand-earth text-neutral-50 hover:bg-brand-earth-dark focus:ring-brand-earth;
+  }
+
+  .btn-primary-on-dark {
+    @apply bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark focus:ring-brand-accent;
+  }
+
+  .btn-secondary-on-light {
+    @apply bg-brand-sky text-neutral-50 hover:bg-brand-sky-dark focus:ring-brand-sky;
+  }
+
+  .btn-secondary-on-dark {
+    @apply bg-brand-sky-bright text-brand-sky hover:bg-sky-400 focus:ring-brand-sky-bright;
+  }
+
+  .btn-tertiary {
+    @apply font-semibold text-brand-sky hover:text-sky-500 transition-colors duration-200;
+  }
+
+  /* --- HERO SECTION --- */
+  .hero-section {
+    @apply relative text-center flex items-center justify-center py-32 lg:py-48 text-neutral-50;
+  }
+
+  .hero-background {
+    @apply absolute inset-0 bg-brand-accent;
+  }
+
+  .hero-background::after {
+    content: "";
+    @apply absolute inset-0;
+    background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), rgba(60, 50, 42, 0.3), transparent);
+  }
+
+  .hero-bg-image {
+    @apply w-full h-full object-cover object-center;
+  }
+
+  .hero-content {
+    @apply relative z-10 max-w-4xl mx-auto px-4;
+  }
+
+  .hero-title {
+    @apply font-heading font-bold text-5xl md:text-6xl tracking-tight text-neutral-50 text-shadow-md mb-6;
+  }
+
+  .hero-subtitle {
+    @apply font-body font-light text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto text-neutral-50 text-shadow-md;
+  }
+
+  .hero-text {
+    @apply text-lg md:text-xl text-neutral-100 max-w-2xl mx-auto mt-6 shadow-black/50 drop-shadow-md;
+  }
+
+  /* --- LAYOUT & CARDS --- */
+  .feature-grid {
+    @apply mt-16 grid grid-cols-1 md:grid-cols-3 gap-8;
+  }
+
+  .content-box {
+    @apply bg-neutral-50/50 p-8 rounded-lg text-center border border-neutral-300;
+  }
+
+  .content-box-title {
+    @apply mt-5;
+  }
+
+  .content-box-text {
+    @apply mt-2;
+  }
+
+  .callout-section {
+    @apply bg-brand-earth-lightest py-20 text-center border-y-4 border-brand-earth-light;
+  }
+
+  .service-card {
+    @apply bg-neutral-50/50 rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-2;
+  }
+
+  .card-image {
+    @apply h-56 w-full object-cover;
+  }
+
+  .card-content {
+    @apply p-6 flex-grow flex flex-col;
+  }
+
+  .card-title {
+    @apply text-neutral-900;
+  }
+
+  .card-text {
+    @apply mt-2 text-base text-neutral-700 flex-grow;
+  }
+
+  .card-link {
+    @apply mt-6;
+  }
+
+  .team-card {
+    @apply bg-white rounded-lg shadow-md overflow-hidden flex flex-col h-full border border-neutral-200 transition-shadow duration-300 hover:shadow-lg;
+  }
+
+  .team-image-container {
+    @apply relative w-full pt-[100%] md:pt-[75%];
+  }
+
+  .team-image {
+    @apply absolute top-0 left-0 w-full h-full object-cover object-top;
+  }
+
+  .team-content {
+    @apply p-6 flex flex-col flex-grow;
+  }
+
+  .team-name {
+    @apply font-heading text-2xl font-bold text-brand-earth-dark mb-1;
+  }
+
+  .team-role {
+    @apply text-sm font-semibold text-brand-accent-dark uppercase tracking-wider mb-4;
+  }
+
+  .team-bio {
+    @apply text-neutral-700 space-y-3 leading-relaxed text-base-sm flex-grow;
+  }
+
+  .link-hover-style {
+    @apply text-brand-sky hover:text-brand-earth-dark underline decoration-transparent hover:decoration-brand-earth-dark/30 underline-offset-2 transition-all duration-200;
+  }
+
+  .prose h2 {
+    @apply font-heading text-brand-earth;
+  }
+}
+
+@layer utilities {
+  .break-word-safe {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
+
+/* Header & Footer Components */
+#masthead {
+  background-color: color-mix(in srgb, var(--color-brand-accent) 80%, white);
+}
+
+.site-logo-text {
+  @apply text-lg sm:text-xl nav-md:text-lg nav-lg:text-2xl font-bold text-brand-earth-dark whitespace-nowrap;
+}
+
+.mobile-menu-toggle {
+  @apply inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-sky;
+}
+
+.header-nav-list {
+  @apply flex items-center space-x-1 list-none p-0 m-0;
+}
+
+.header-nav-item {
+  @apply relative;
+}
+
+.header-nav-link {
+  @apply flex items-center px-1 nav-lg:px-3 py-2 bg-inherit text-sm nav-lg:text-lg font-semibold text-brand-earth-dark hover:bg-brand-earth-lighter hover:text-brand-sky transition-colors duration-200 rounded-md whitespace-nowrap;
+}
+
+.header-nav-item:first-child .header-nav-link {
+  @apply text-base nav-lg:text-xl font-medium -translate-y-px;
+}
+
+.header-nav-item:last-child .header-nav-link {
+  @apply bg-brand-sky-light text-white hover:text-brand-sky-bright hover:bg-brand-sky-dark;
+}
+
+.header-nav-link:visited {
+  @apply text-brand-earth-dark hover:text-brand-sky;
+}
+
+.header-nav-link:focus {
+  @apply outline-none ring-2 ring-brand-sky;
+}
+
+.header-nav-link svg {
+  @apply transition-transform duration-300 ease-in-out;
+}
+
+.header-nav-item.group:hover .header-nav-link svg {
+  @apply rotate-12;
+}
+
+.submenu {
+  @apply absolute top-full left-0 mt-2 w-64 bg-white rounded-md shadow-lg ring-1 ring-black/5 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 list-none p-0 m-0;
+}
+
+.header-nav-item:nth-last-child(-n+3) .submenu {
+  @apply left-auto right-0;
+}
+
+.submenu-item {
+  @apply relative;
+}
+
+.submenu-overview-item {
+  @apply block px-1 py-1;
+}
+
+.submenu-overview-link {
+  @apply block px-3 py-2 text-sm font-semibold text-brand-sky hover:bg-neutral-100 rounded-md border-b border-neutral-200;
+}
+
+.submenu-link {
+  @apply flex items-center justify-between w-full px-4 py-2 text-sm text-neutral-900 hover:bg-neutral-100;
+}
+
+.submenu-level-3 {
+  @apply absolute top-0 left-full ml-2 w-64 bg-white rounded-md shadow-lg ring-1 ring-black/5 py-1 opacity-0 invisible transition-all duration-200 list-none p-0 m-0;
+}
+
+.header-nav-item:nth-last-child(-n+3) .submenu-level-3 {
+  @apply left-auto right-full ml-0 mr-2;
+}
+
+.submenu-item.group:hover>.submenu-level-3 {
+  @apply opacity-100 visible;
+}
+
+.submenu-link-level-3 {
+  @apply block w-full px-4 py-2 text-sm text-neutral-900 hover:bg-neutral-100;
+}
+
+.mobile-nav-link {
+  @apply block flex-grow px-3 py-3 text-base text-brand-earth-dark transition-colors duration-200 hover:text-brand-sky;
+}
+
+.mobile-sub-link {
+  @apply block flex-grow px-3 py-2 text-sm font-medium text-neutral-700 rounded-md transition-colors duration-200 hover:text-brand-sky hover:bg-neutral-100;
+}
+
+.mobile-sub-link-level-3 {
+  @apply block px-3 py-2 text-sm text-black rounded-md transition-colors duration-200 hover:text-brand-sky hover:bg-neutral-100;
+}
+
+.footer-menu-list {
+  @apply flex flex-wrap justify-center gap-x-6 gap-y-2 list-none p-0 m-0;
+}
+
+.footer-menu-link {
+  @apply text-neutral-300 hover:text-brand-sky-bright font-medium transition-colors duration-200;
+}
+
+@utility footer-title-base {
+  @apply font-heading text-2xl font-semibold uppercase tracking-wider text-brand-earth-lightest mb-4;
+}
+
+.footer-heading {
+  @apply footer-title-base;
+}
+
+.footer-grid-layout {
+  @apply grid gap-8 text-center md:text-left;
+}
+
+.footer-link-list {
+  @apply flex flex-col items-center md:items-start space-y-2 list-none p-0 m-0;
+}
+
+.footer-widget-area .widget_custom_html a,
+.social-link,
+.footer-link,
+.footer-disclaimer a {
+  @apply text-brand-earth-lightest transition-colors duration-200 hover:text-brand-sky-bright focus:text-brand-sky-bright;
+}
+
+.social-icon-list {
+  @apply flex justify-center md:justify-start gap-x-5 mt-8;
+}
+
+.social-link svg {
+  @apply h-10 w-10;
+}
+
+.footer-bottom {
+  @apply mt-12 border-t border-neutral-100/20 pt-8 text-center space-y-4 text-sm text-neutral-400;
+}
+
+.contact-disclaimer {
+  @apply text-base font-body text-brand-earth-lighter mt-4 italic;
+}
+
+.footer-disclaimer {
+  @apply text-neutral-300 max-w-3xl mx-auto;
+}
+
+.footer-copyright {
+  @apply text-base-sm font-light text-neutral-300;
 }

@@ -1,0 +1,27 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const { title } = Astro.props;
+---
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/assets/images/medidraken-logo_white_background.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Medidraken</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-neutral-100 text-neutral-700 font-body antialiased selection:bg-brand-accent selection:text-white">
+    <Header />
+    
+    <slot />
+
+    <Footer />
+  </body>
+</html>

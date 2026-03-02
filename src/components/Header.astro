@@ -1,0 +1,134 @@
+---
+import { primaryMenu } from '../data/menu.ts';
+---
+<header id="masthead" class="site-header sticky top-0 z-50 bg-brand-earth shadow-md" x-data="{ mobileMenuOpen: false }">
+    <div class="container-base">    
+        <div class="relative flex items-center justify-center nav-md:gap-x-1 nav-lg:gap-x-8 h-20">
+            
+            <div class="flex items-center flex-shrink-0 z-10">
+                <a href="/" rel="home" class="flex items-center space-x-2 nav-md:space-x-2 nav-lg:space-x-4">
+                    <img src="/assets/images/medidraken-logo_white_background.png" alt="Medidraken Logo" class="h-12 nav-md:h-10 nav-lg:h-16 w-auto rounded-full">
+                    <span class="site-logo-text">
+                        Medidraken
+                    </span>
+                </a>
+            </div>
+
+            <nav class="hidden nav-md:block">
+                <ul class="header-nav-list">
+                    {primaryMenu.items.map((item) => (
+                        <li class="header-nav-item group">
+                            <a href={item.link} class="header-nav-link">
+                                {item.title}
+                                {item.children?.length > 0 && (
+                                    <svg class="h-4 w-4 ml-1 inline-block text-neutral-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                )}
+                            </a>
+                            
+                            {item.children?.length > 0 && (
+                                <ul class="submenu">
+                                    {item.children.map((child) => (
+                                        <li class="submenu-item group">
+                                            <a href={child.link} class="submenu-link">
+                                                <span>{child.title}</span>
+                                                {child.children?.length > 0 && (
+                                                    <svg class="h-5 w-5 text-neutral-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                                    </svg>
+                                                )}
+                                            </a>
+                                            {child.children?.length > 0 && (
+                                                <ul class="submenu-level-3">
+                                                    {child.children.map((grandchild) => (
+                                                        <li class="submenu-item-level-3">
+                                                            <a href={grandchild.link} class="submenu-link-level-3">{grandchild.title}</a>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
+            {/* Mobile Menu Toggle (Requires AlpineJS on the page) */}
+            <div class="absolute right-0 nav-md:hidden flex items-center">
+                <button 
+                    @click="mobileMenuOpen = !mobileMenuOpen" 
+                    type="button" 
+                    class="mobile-menu-toggle">
+                    <span class="sr-only">Öppna huvudmenyn</span>
+                    <svg x-show="!mobileMenuOpen" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                    <svg x-cloak x-show="mobileMenuOpen" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    {/* Mobile Menu Container */}
+    <div id="mobile-menu" class="nav-md:hidden border-t border-neutral-200 bg-white" x-show="mobileMenuOpen" style="display: none;">
+        <nav class="px-4 pt-2 pb-6 space-y-1">
+            {primaryMenu.items.map((item) => (
+                <div x-data={item.children?.length > 0 ? "{ isExpanded: false }" : ""} class="border-b border-neutral-100 last:border-0 group">
+                    <div class="flex items-center justify-between pr-2">
+                        <a href={item.link} class={`mobile-nav-link ${item.children?.length > 0 ? 'font-bold' : 'font-medium'}`}>
+                            {item.title}
+                        </a>
+                        {item.children?.length > 0 && (
+                            <button @click="isExpanded = !isExpanded" 
+                                type="button" 
+                                class="p-2 rounded-md text-brand-earth-dark hover:text-brand-sky hover:bg-neutral-50 focus:outline-none focus:bg-brand-sky-bright focus:text-brand-earth"
+                            >
+                                <svg class="h-5 w-5 transition-transform duration-200" :class="{ 'rotate-180': isExpanded }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        )}
+                    </div>
+                    {item.children?.length > 0 && (
+                        <div x-show="isExpanded" x-transition class="pl-4 pb-2 space-y-1 bg-neutral-50 rounded-md mb-2">
+                            {item.children.map((child) => (
+                                <div x-data={child.children?.length > 0 ? "{ isSubExpanded: false }" : ""}>
+                                    <div class="flex items-center justify-between">
+                                        <a href={child.link} class="mobile-sub-link">
+                                            {child.title}
+                                        </a>
+                                        {child.children?.length > 0 && (
+                                            <button @click="isSubExpanded = !isSubExpanded" type="button" class="p-2 mr-2 rounded-md text-black hover:text-brand-sky hover:bg-neutral-200 focus:outline-none focus:bg-brand-sky-bright focus:text-brand-sky-light">
+                                                <svg class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': isSubExpanded }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        )}
+                                    </div>
+                                    {child.children?.length > 0 && (
+                                        <div x-show="isSubExpanded" x-transition class="pl-4 border-l-2 border-neutral-200 ml-3 my-1">
+                                            {child.children.map((grandchild) => (
+                                                <a href={grandchild.link} class="mobile-sub-link-level-3">
+                                                    {grandchild.title}
+                                                </a>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            ))}
+        </nav>
+    </div>
+</header>
+
+<script is:inline src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

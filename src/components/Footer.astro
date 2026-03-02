@@ -1,0 +1,127 @@
+---
+import { footerMenu } from '../data/menu.ts';
+
+const currentYear = new Date().getFullYear();
+---
+<footer class="site-footer bg-brand-earth-dark text-neutral-100 py-16">
+    <div class="container-base">
+
+        <div class="footer-grid-layout grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            
+            {/* COLUMN 1: Contact Info */}
+            <div class="footer-widget-area text-left">
+                <h3 class="footer-heading mb-6">KONTAKTA OSS</h3>
+                <div class="widget_custom_html">
+                    <ul class="contact-details-list space-y-6">
+                        <li class="flex items-start gap-4">
+                            <span class="mt-1 flex-shrink-0 text-brand-earth-lighter">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                </svg>
+                            </span>
+                            <a href="tel:0705814086" class="footer-link text-lg font-medium hover:text-white transition-colors">070-581 40 86</a>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="mt-1 flex-shrink-0 text-brand-earth-lighter">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                </svg>
+                            </span>
+                            <a href="mailto:info@medidraken.com" class="footer-link text-lg font-medium hover:text-white transition-colors">info@medidraken.com</a>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="mt-1 flex-shrink-0 text-brand-earth-lighter">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <div class="flex flex-col space-y-3">
+                                <a href="https://www.google.com/maps/place/Östra+Storgatan+2,+611+34+Nyköping" target="_blank" class="footer-link text-base hover:text-white transition-colors">Östra Storgatan 2, 611 34 Nyköping</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="mt-1 flex-shrink-0 text-brand-earth-lighter">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <div class="flex flex-col space-y-3">
+                                <a href="https://www.google.com/maps/place/Dalgatan+20,+646+32+Gnesta" target="_blank" class="footer-link text-base hover:text-white transition-colors">Dalgatan 20, 646 32 Gnesta</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="mt-1 flex-shrink-0 text-brand-earth-lighter">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <div class="flex flex-col space-y-3">
+                                <a href="https://www.google.com/maps/place/Föreningsgatan+30,+613+31+Oxelösund" target="_blank" class="footer-link text-base hover:text-white transition-colors">Föreningsgatan 30, 613 31 Oxelösund</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="contact-disclaimer mt-8 text-neutral-400 italic text-sm">
+                        Vi tar endast emot tidsbokade besök.
+                    </p>
+                </div>
+            </div>
+
+            {/* COLUMN 2: Footer Menu Links */}
+            <div class="text-left">
+                <h3 class="footer-heading mb-6">LÄNKAR</h3>
+                <nav class="footer-navigation">
+                    <ul class="footer-link-list space-y-3">
+                        {footerMenu.items.map((item) => (
+                            <li>
+                                <a href={item.link} class="footer-link text-lg hover:text-white transition-colors">{item.title}</a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </div>
+            
+            {/* COLUMN 3: Social Media Links */}
+            <div class="text-left">
+                <h3 class="footer-heading mb-6">FÖLJ OSS</h3>
+                
+                <ul class="footer-link-list space-y-3 mb-8">
+                    <li><a href="https://www.facebook.com/Medidraken/?locale=sv_SE" target="_blank" class="footer-link text-lg hover:text-white transition-colors">Facebook</a></li>
+                    <li><a href="https://instagram.com/shufflaz" target="_blank" class="footer-link text-lg hover:text-white transition-colors">Instagram</a></li>
+                </ul>
+
+                <ul class="social-icon-list flex gap-6">
+                    <li>
+                        <a href="https://www.facebook.com/Medidraken/?locale=sv_SE" target="_blank" class="social-link text-white hover:text-brand-accent transition-colors">
+                            <span class="sr-only">Facebook</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24">
+                              <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12Z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://instagram.com/shufflaz" target="_blank" class="social-link text-white hover:text-brand-accent transition-colors">
+                            <span class="sr-only">Instagram</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.917 3.917 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.916 3.916 0 0 0-.923-1.417A3.916 3.916 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.47 2.47 0 0 1-.92-.598 2.47 2.47 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+        </div> 
+
+        {/* FOOTER BOTTOM */}
+        <div class="footer-bottom border-t border-white/10 mt-12 pt-8">
+            <div class="footer-disclaimer mb-6 text-center">
+                <p class="text-neutral-300 text-sm">Våra tjänster är komplement till traditionell sjukvård. Resultaten är individuella och kan inte garanteras. Läs våra fullständiga <a href="/anvandarvillkor/" class="underline hover:text-white">användarvillkor</a>.</p>
+            </div>
+            
+            <p class="footer-copyright text-center text-neutral-300 text-sm">
+                &copy; {currentYear} Medidraken - Alla rättigheter förbehållna.
+            </p>
+        </div>
+
+    </div>
+</footer>

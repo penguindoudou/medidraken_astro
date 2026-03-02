@@ -1,19 +1,190 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories,
-// and start fresh.
+// Use Astro's standard image mapping from public
+const heroImage = '/dev-assets/images/taichi_people_in_a_circle_practicing_dark_silhuets_their_backs_towards_camera_clear_blue_sky.jpg';
+const qigongImage = '/dev-assets/images/qigong_johannes_instructing_group_all_facing_camera_on_green_grass_in_front_of_lake_murky_weather_white_sky_almost_white_looking_lake.jpg';
+const taichiImage = '/dev-assets/images/Tai-Chi kurs 2.jpg';
+const acuImage = '/dev-assets/images/acupuncture.png';
+const corpImage = '/dev-assets/images/festive_cermony_holding_red_cloth_just_cutt_by_people_in_suits_line_of_dressed_up_taichi_practioners_but_not_doing_any_taichi_or_qigong_here.jpg';
 ---
+<BaseLayout title="Startsida">
+    <!-- Sektion 1: Hero – Vi Börjar med Dig -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <img src={heroImage} alt="Harmoni och balans med Tai Chi i ett vackert naturlandskap." class="hero-bg-image opacity-80" />
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title text-brand-accent">Medidraken</h1>
 
-<Layout>
-	<Hero />
+            <div class="hero-text bg-brand-earth-dark/60 p-6 rounded-lg backdrop-blur-sm border border-white/10">
+                <h2 class="hero-subtitle text-xl font-semibold">Din Väg till Mindre Smärta, Mindre Stress och Mer Energi –
+                    Traditionell&nbsp;Kinesisk&nbsp;Medicin för en Modern Vardag</h2>
+                <br />
+                Välkommen att <a href="/kontakt/"
+                    class="text-brand-accent-dark hover:text-brand-sky-bright font-normal underline decoration-brand-accent-dark/30 underline-offset-4 transition-colors duration-200">kontakta</a>
+                oss direkt för att beskriva din sitation eller själv utforska hur våra metoder kan hjälpa just dig här.
+                <br />
+                Vad beskriver din situation bäst?
+            </div>
+            
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="/symtom/" class="btn btn-primary-on-dark">
+                    Jag har ett specifikt besvär
+                </a>
+                <a href="/na-dina-halsomal/" class="btn btn-secondary-on-dark">
+                    Jag vill förbättra min hälsa
+                </a>
+            </div>
+        </div>
+    </section>
 
-	<!-- You can add more sections here -->
-	<section class="py-16 text-center">
-		<h2 class="text-3xl font-bold">Välkommen till Mediraken</h2>
-		<p class="mt-4">Specialister på akupunktur i Oxelösund, Nyköping och Gnesta.</p>
-	</section>
-</Layout>
+    <!-- Sektion 2: Vår Filosofi i Praktiken -->
+    <section class="bg-brand-earth-lightest section-standard">
+        <div class="container-base">
+            <div class="text-center">
+                <h2 class="text-brand-earth">Vårt Sätt att Arbeta med Dig</h2>
+            </div>
+            <div class="feature-grid">
+
+                <!-- Kolumn 1: Helhetssyn -->
+                <div class="content-box">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto">
+                        <!-- Replaced SVG with a placeholder element for now -->
+                        <div class="h-10 w-10 bg-brand-accent-dark rounded-full"></div>
+                    </div>
+                    <h3 class="content-box-title">Vi Ser Hela Dig, Inte Bara Symtomet</h3>
+                    <p class="content-box-text">Vi behandlar inte bara ett knä eller en huvudvärk. Varje besvär är en del av
+                        en större helhet och genom att adressera underliggande obalanser skapar vi en lösning som fungerar
+                        för hela dig.</p>
+                </div>
+
+                <!-- Kolumn 2: Samspel -->
+                <div class="content-box">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto">
+                        <div class="h-10 w-10 bg-brand-accent-dark rounded-full"></div>
+                    </div>
+                    <h3 class="content-box-title">Fokus på Effektiva & Hållbara Resultat</h3>
+                    <p class="content-box-text">Vi erbjuder både behandlingar och skonsam träning anpassad för effektiv
+                        smärtlindring och långsiktig god hälsa & vitalitet. Vår erfarenhet visar att många börjar uppleva
+                        goda resultat efter 3 tillfällen.</p>
+                </div>
+
+                <!-- Kolumn 3: Expertis -->
+                <div class="content-box">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto">
+                        <div class="h-10 w-10 bg-brand-accent-dark rounded-full"></div>
+                    </div>
+                    <h3 class="content-box-title">Tusenårig Kunskap, Anpassad för Dig</h3>
+                    <p class="content-box-text">Våra kurser och behandlingar grundas i 30 års erfarenhet av att anpassa
+                        tidlös visdom för en modern svensk vardag. Vi ger dig skräddarsydda råd och metoder som är trygga,
+                        realistiska och har goda möjligheter att fungera för dig.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 3: Upptäck Våra Tjänster -->
+    <section class="bg-neutral-50 section-standard">
+        <div class="container-base">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-earth">Metoder för Hälsa och Livskvalitet</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Kort 1: Medicinsk Qigong -->
+                <div class="service-card bg-brand-accent/20">
+                    <img src={qigongImage} alt="Grupp som utövar Medicinsk Qigong i naturen" class="card-image" />
+                    <div class="card-content">
+                        <h3 class="card-title">Medicinsk Qigong</h3>
+                        <p class="card-text">En varsam men kraftfull metod för att minska stress, återfå energi och aktivera
+                            kroppens egen förmåga till återhämtning.</p>
+                        <div class="card-link">
+                            <a href="/medicinsk-qigong/" class="btn-tertiary">Läs mer om Qigong &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kort 2: Tai Chi -->
+                <div class="service-card bg-brand-accent/20">
+                    <img src={taichiImage} alt="Grupp som utövar Tai Chi för balans och styrka" class="card-image" />
+                    <div class="card-content">
+                        <h3 class="card-title">Tai Chi</h3>
+                        <p class="card-text">Hitta inre styrka, balans och ett djupt mentalt lugn genom en tidlös metod som
+                            förenar kropp och sinne i harmonisk rörelse.</p>
+                        <div class="card-link">
+                            <a href="/tai-chi/" class="btn-tertiary">Läs mer om Tai Chi &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kort 3: Behandlingar -->
+                <div class="service-card bg-brand-accent/20">
+                    <img src={acuImage} alt="Närbild på akupunkturbehandling" class="card-image" />
+                    <div class="card-content">
+                        <h3 class="card-title">Behandlingar med Akupunktur & TuiNa</h3>
+                        <p class="card-text">Få hjälp med specifika besvär som smärta, stress och sömnproblem genom våra
+                            individanpassade och effektiva behandlingar.</p>
+                        <div class="card-link">
+                            <a href="/behandling/" class="btn-tertiary">Läs Mer om Våra Behandlingar &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kort 4: Företag & Grupper -->
+                <div class="service-card bg-brand-accent/20">
+                    <img src={corpImage} alt="Företagsevent med fokus på hälsa" class="card-image" />
+                    <div class="card-content">
+                        <h3 class="card-title">Lösningar för Grupper & Företag</h3>
+                        <p class="card-text">Skräddarsydda workshops och friskvårdslösningar som bygger välmående och
+                            minskar stress.</p>
+                        <div class="card-link">
+                            <a href="/for-foretag/" class="btn-tertiary">Se Erbjudanden för Företag &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 4: Möt Oss (CTA) -->
+    <section class="bg-brand-earth-light section-standard">
+        <div class="container-base max-w-4xl text-center">
+            <h2 class="text-brand-earth">En Personlig Kontakt på Din Ort</h2>
+            <p class="mt-6 text-lg leading-relaxed text-brand-earth">
+                Oavsett vilken av våra mottagningar i
+                <a href="/kontakt/" class="text-brand-sky hover:text-brand-sky-bright font-bold">Nyköping</a>,
+                <a href="/kontakt/" class="text-brand-sky hover:text-brand-sky-bright font-bold">Gnesta</a>
+                eller
+                <a href="/kontakt/" class="text-brand-sky hover:text-brand-sky-bright font-bold">Oxelösund</a>
+                du besöker, möts du av ett personligt
+                engagemang för just din hälsa. Medidraken drivs av Johannes Mao och Linnea Mao, tillsammans med vårt team.
+                Vi ser fram emot att välkomna dig. Alla besök sker efter tidsbokning för att vi ska kunna ge dig vår fulla
+                uppmärksamhet.
+            </p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <a href="/om-oss/" class="btn btn-primary-on-dark">
+                    Möt Vårt Team
+                </a>
+                <a href="/kontakt/" class="btn btn-secondary-on-dark">
+                    Hitta Oss & Boka Tid
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 5: Presentkort -->
+    <section class="callout-section">
+        <div class="container-base max-w-4xl text-center py-16">
+            <h2 class="text-brand-earth">Letar du efter en meningsfull present?</h2>
+            <p class="mt-4 text-base text-neutral-700">Ett presentkort från Medidraken är en gåva av omtanke och
+                välbefinnande. Mottagaren kan fritt välja mellan alla&nbsp;våra&nbsp;tjänster.</p>
+            <div class="mt-6">
+                <a href="/presentkort/" class="btn-tertiary">Läs mer om våra presentkort &rarr;</a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
