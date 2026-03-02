@@ -269,7 +269,7 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
 
 /* Header & Footer Components */
 #masthead {
-  background-color: color-mix(in srgb, var(--color-brand-accent) 80%, white);
+  background-color: color-mix(in srgb, var(--color-brand-accent) 20%, white);
 }
 
 .site-logo-text {
