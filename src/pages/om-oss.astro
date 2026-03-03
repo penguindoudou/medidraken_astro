@@ -1,9 +1,354 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// Images
+import heroImage from '../assets/images/ancient_modern_bridge3.png';
+import johannesImage from '../assets/images/johannes_mao_profile.jpg';
+import linneaImage from '../assets/images/linnea_mao_profile.jpg';
+import mariaImage from '../assets/images/maria_morris_profile.jpg';
+import magnusImage from '../assets/images/magnus_rooth_profile.jpg';
 ---
-<BaseLayout title="Om Oss">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Om Oss</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-    </main>
+
+<BaseLayout title="Om oss">
+    <!-- Sektion 1: Hero & Intro -->
+    <section class="hero-section min-h-[60vh]">
+        <div class="hero-background">
+            <Image 
+                src={heroImage} 
+                alt="Medidraken Team - Balans och Hälsa" 
+                class="hero-bg-image object-top opacity-70" 
+            />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="hero-title text-brand-accent">En Bro Mellan Tusenårig Kunskap & Modern Hälsa</h1>
+
+            <div class="hero-text bg-brand-earth-dark/70 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-white/10 max-w-3xl">
+                <p class="text-lg md:text-xl text-neutral-100 mb-4 leading-relaxed">
+                    Medidraken grundades utifrån en djup övertygelse: att de kraftfulla och tidlösa metoderna från
+                    Traditionell Kinesisk Medicin (TCM) har en självklar plats för att hjälpa människor i det moderna
+                    svenska samhället att må bättre.
+                </p>
+                <p class="text-lg md:text-xl text-neutral-100 mb-4 leading-relaxed">
+                    Vi behandlar inte bara symtom – ofta finns det bakomliggande orsaker som förhindrar kroppens egna
+                    läkningsförmåga. Vårt jobb är att adressera dem och stärka kroppens naturliga återhämtningsförmåga.
+                </p>
+                <p class="text-lg md:text-xl text-neutral-100 leading-relaxed">
+                    Hos oss möter du ett dedikerat team där din unika situation alltid står i centrum. Vi strävar efter att
+                    ge dig verktygen och insikterna för att uppnå en hållbar hälsa, ökad livskraft och ett liv i bättre
+                    balans.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 2: Filosofi & Arbetssätt -->
+    <section class="bg-brand-earth-lightest section-standard">
+        <div class="container-base">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth mb-4">Vårt Arbetssätt: Tre Principer för Din Hälsa</h2>
+                <p class="text-lg text-neutral-700">
+                    Vi kombinerar djup kunskap med en praktisk syn på hälsa. Här är grunderna i hur vi arbetar för att
+                    hjälpa dig att må bättre – både nu och på lång sikt.
+                </p>
+            </div>
+
+            <div class="feature-grid mt-0">
+                <!-- Princip 1 -->
+                <div class="content-box h-full flex flex-col">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto mb-4">
+                        <Icon name="holistic_qi_human" class="h-12 w-12 text-brand-accent-dark" />
+                    </div>
+                    <h3 class="content-box-title text-brand-earth-dark">Vi Ser Hela Dig, Inte Bara Symtomet</h3>
+                    <p class="content-box-text text-neutral-700 text-left">
+                        Vi behandlar inte bara ett knä eller en huvudvärk. Varje besvär är en del av en större helhet och
+                        genom att adressera underliggande obalanser skapar vi en lösning som fungerar för hela dig – därför
+                        är samtalet om din vardag och dina mål en självklar möjlighet av den tid vi har tillsammans.
+                    </p>
+                </div>
+
+                <!-- Princip 2 -->
+                <div class="content-box h-full flex flex-col">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto mb-4">
+                        <Icon name="flower" class="h-10 w-10 text-brand-accent-dark" />
+                    </div>
+                    <h3 class="content-box-title text-brand-earth-dark">Fokus på Effektiva & Hållbara Resultat</h3>
+                    <p class="content-box-text text-neutral-700 text-left">
+                        Vi erbjuder både behandlingar och skonsam träning anpassad för effektiv smärtlindring och långsiktig
+                        god hälsa & vitalitet. Du lämnar oss inte bara med mindre besvär, utan med en stärkt förmåga att
+                        själv kunna upprätthålla en god hälsa på lång sikt. Vår erfarenhet visar att många börjar uppleva
+                        goda resultat efter 3 tillfällen.
+                    </p>
+                </div>
+
+                <!-- Princip 3 -->
+                <div class="content-box h-full flex flex-col">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto mb-4">
+                        <Icon name="tree_of_wisdom" class="h-10 w-10 text-brand-accent-dark" />
+                    </div>
+                    <h3 class="content-box-title text-brand-earth-dark">Tusenårig Kunskap, Anpassad för Dig</h3>
+                    <p class="content-box-text text-neutral-700 text-left">
+                        Våra kurser och behandlingar grundas i 30 års erfarenhet av att anpassa tidlös visdom för livet här
+                        i Sverige. Det betyder att vi har förståelse för hur våra metoder kan kombineras med den
+                        traditionella vården och kan ge dig skräddarsydda råd och metoder som är trygga, realistiska och har
+                        goda möjligheter att fungera för dig i din unika situation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 3: Teamet -->
+    <section class="bg-neutral-50 section-standard" id="team">
+        <div class="container-base">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-earth">Möt Teamet bakom Medidraken</h2>
+                <p class="mt-4 text-lg text-neutral-700 max-w-2xl mx-auto">
+                    Här möter du ett dedikerat team av erfarna terapeuter och instruktörer. Vi förenas av vår passion för
+                    att hjälpa människor hitta balans och välmående.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto items-start">
+                <!-- Johannes -->
+                <article
+                    class="team-card flex flex-row bg-brand-accent/5 border border-brand-accent/20 text-left overflow-hidden"
+                    x-data="{ open: false }">
+                    <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
+                        <Image 
+                            src={johannesImage} 
+                            alt="Johannes Mao"
+                            class="absolute inset-0 h-full w-full object-cover object-top"
+                        />
+                    </div>
+                    <div class="team-content justify-start py-4 pl-5 pr-4">
+                        <h3 class="team-name text-lg">Johannes Mao</h3>
+                        <p class="team-role text-xs font-bold uppercase tracking-wider text-brand-accent-dark mb-3">Grundare, Terapeut & Huvudinstruktör</p>
+                        <div class="team-bio">
+                            <p class="text-sm leading-relaxed text-neutral-700">Med över 30 års erfarenhet och tusentals behandlingar och
+                                kurser är Johannes Medidrakens grundare och drivkraft.</p>
+                            <div x-show="open" x-transition x-cloak class="mt-2 space-y-2">
+                                <p class="text-sm leading-relaxed text-neutral-700">Han är utbildad farmaceut inom både kinesisk och
+                                    västerländsk medicin, samt terapeut inom TuiNa (traditionell kinesisk medicinsk
+                                    massage).
+                                </p>
+                                <p class="text-sm leading-relaxed text-neutral-700">Johannes drivkraft har personliga rötter. Han föddes med
+                                    ett svagt immunförsvar och var ofta sjuk som barn. Tack vare sin disciplinerade och
+                                    kunniga mormor upptäckte han kraften i traditionell träning och läkekonst. Denna resa
+                                    från sjukdom till enastående hälsa tände en livslång passion för att hjälpa andra att
+                                    uppnå samma vitalitet.</p>
+                                <p class="text-sm leading-relaxed text-neutral-700">Efter att ha flyttat till Sverige 1991 har Johannes
+                                    dedikerat sitt liv åt att anpassa och förmedla denna kunskap. Hans mål är inte bara att
+                                    behandla, utan att ge dig verktygen att själv kunna upprätthålla en god hälsa på sikt.
+                                </p>
+                            </div>
+                        </div>
+                        <button @click="open = !open"
+                            class="mt-4 text-sm font-semibold text-brand-sky hover:text-brand-accent-dark hover:-translate-y-px transition-all flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-sky rounded-sm">
+                            <span x-text="open ? 'Visa mindre' : 'Läs mer'"></span>
+                            <svg class="h-4 w-4 transform transition-transform duration-300"
+                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Linnéa -->
+                <article
+                    class="team-card flex flex-row bg-brand-accent/5 border border-brand-accent/20 text-left overflow-hidden"
+                    x-data="{ open: false }">
+                    <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
+                        <Image 
+                            src={linneaImage} 
+                            alt="Linnéa Mao"
+                            class="absolute inset-0 h-full w-full object-cover object-top"
+                        />
+                    </div>
+                    <div class="team-content justify-start py-4 pl-5 pr-4">
+                        <h3 class="team-name text-lg">Linnéa Mao</h3>
+                        <p class="team-role text-xs font-bold uppercase tracking-wider text-brand-accent-dark mb-3">Läkare i TCM, Terapeut & Akupunktör</p>
+                        <div class="team-bio">
+                            <p class="text-sm leading-relaxed text-neutral-700">Linnéa är läkare inom TCM och akupunktör, utbildad i Kina,
+                                och har varit en central del av Medidraken sedan 2007.</p>
+                            <div x-show="open" x-transition x-cloak class="mt-2 space-y-2">
+                                <p class="text-sm leading-relaxed text-neutral-700">Med närmare 20 års erfarenhet har hon hjälpt otaliga
+                                    patienter att minska smärta, lindra sjukdomstillstånd och uppnå ett djupare välmående.
+                                </p>
+                                <p class="text-sm leading-relaxed text-neutral-700">Som terapeut är Linnéa känd för att vara mjuk,
+                                    inkännande och lätt att prata med. Denna personliga värme, kombinerad med hennes djupa
+                                    medicinska kompetens, skapar en trygg och avslappnad atmosfär där du som patient känner
+                                    dig sedd och hörd. Hon är specialiserad på att behandla allt från värk i nacke och rygg
+                                    till stress, sömnlöshet och migrän.</p>
+                                <p class="text-sm leading-relaxed text-neutral-700">Som engagerad mor till fyra barn lever Linnéa som hon
+                                    lär. Hennes passion för hälsa syns även i familjens kök. Linnéa brinner för att hjälpa
+                                    fler att stärka kroppens naturliga läkeförmåga och hitta en väg till en harmoni- och
+                                    energifylld vardag.</p>
+                            </div>
+                        </div>
+                        <button @click="open = !open"
+                            class="mt-4 text-sm font-semibold text-brand-sky hover:text-brand-accent-dark hover:-translate-y-px transition-all flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-sky rounded-sm">
+                            <span x-text="open ? 'Visa mindre' : 'Läs mer'"></span>
+                            <svg class="h-4 w-4 transform transition-transform duration-300"
+                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Maria -->
+                <article
+                    class="team-card flex flex-row bg-brand-accent/5 border border-brand-accent/20 text-left overflow-hidden"
+                    x-data="{ open: false }">
+                    <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
+                        <Image 
+                            src={mariaImage} 
+                            alt="Maria Morris"
+                            class="absolute inset-0 h-full w-full object-cover object-top"
+                        />
+                    </div>
+                    <div class="team-content justify-start py-4 pl-5 pr-4">
+                        <h3 class="team-name text-lg">Maria Morris</h3>
+                        <p class="team-role text-xs font-bold uppercase tracking-wider text-brand-accent-dark mb-3">Instruktör Medicinsk Qigong & Tai Chi</p>
+                        <div class="team-bio">
+                            <p class="text-sm leading-relaxed text-neutral-700">Maria har varit en del av Medidrakens instruktörsteam sedan
+                                hon utbildades av Johannes Mao 1999.</p>
+                            <div x-show="open" x-transition x-cloak class="mt-2 space-y-2">
+                                <p class="text-sm leading-relaxed text-neutral-700">Med över två decenniers erfarenhet av att leda kurser har
+                                    hon en djup förståelse för Medicinsk Qigong och Tai Chi.</p>
+                                <p class="text-sm leading-relaxed text-neutral-700">Maria brinner för att hjälpa sina deltagare att själva
+                                    uppleva de positiva effekterna av regelbunden träning i Oxelösundsregionen. Hennes
+                                    undervisning präglas av ett lugn och en smittande glädje, kombinerat med en pedagogisk
+                                    tydlighet som gör det enkelt för deltagarna att ta till sig rörelserna och hitta ett
+                                    inre fokus.</p>
+                            </div>
+                        </div>
+                        <button @click="open = !open"
+                            class="mt-4 text-sm font-semibold text-brand-sky hover:text-brand-accent-dark hover:-translate-y-px transition-all flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-sky rounded-sm">
+                            <span x-text="open ? 'Visa mindre' : 'Läs mer'"></span>
+                            <svg class="h-4 w-4 transform transition-transform duration-300"
+                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Magnus -->
+                <article
+                    class="team-card flex flex-row bg-brand-accent/5 border border-brand-accent/20 text-left overflow-hidden"
+                    x-data="{ open: false }">
+                    <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
+                        <Image 
+                            src={magnusImage} 
+                            alt="Magnus Rooth"
+                            class="absolute inset-0 h-full w-full object-cover object-top"
+                        />
+                    </div>
+                    <div class="team-content justify-start py-4 pl-5 pr-4">
+                        <h3 class="team-name text-lg">Magnus Rooth</h3>
+                        <p class="team-role text-xs font-bold uppercase tracking-wider text-brand-accent-dark mb-3">Instruktör Tai Chi (Samarbetspartner)</p>
+                        <div class="team-bio">
+                            <p class="text-sm leading-relaxed text-neutral-700">Magnus har tränat Tai Chi sedan 1996 och har samarbetat med
+                                Medidraken som instruktör sedan 2010.</p>
+                            <div x-show="open" x-transition x-cloak class="mt-2 space-y-2">
+                                <p class="text-sm leading-relaxed text-neutral-700">Han håller främst kurser i Västeråstrakten och delar
+                                    Medidrakens filosofi kring hälsa och välbefinnande.</p>
+                                <p class="text-sm leading-relaxed text-neutral-700">För Magnus är Tai Chi en kraftfull källa till ny energi,
+                                    inspiration och livsglädje. Denna passion förmedlar han tydligt i sin undervisning. Han
+                                    fokuserar på att hjälpa sina elever att inte bara lära sig formen, utan också att
+                                    upptäcka hur träningen kan bli ett starkt verktyg för personlig utveckling och ökad
+                                    livskvalitet i vardagen.</p>
+                            </div>
+                        </div>
+                        <button @click="open = !open"
+                            class="mt-4 text-sm font-semibold text-brand-sky hover:text-brand-accent-dark hover:-translate-y-px transition-all flex items-center gap-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-sky rounded-sm">
+                            <span x-text="open ? 'Visa mindre' : 'Läs mer'"></span>
+                            <svg class="h-4 w-4 transform transition-transform duration-300"
+                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 4: Avslutande CTA -->
+    <section class="section-standard bg-brand-earth-light text-center">
+        <div class="container-base max-w-4xl">
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Redo att påbörja din resa mot bättre hälsa?</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Vi hjälper dig hitta rätt väg framåt – oavsett om du söker behandling, vill börja träna eller är osäker på
+                    vad du behöver. Kontakta oss så hjälper vi dig vidare.
+                    <br />
+                    <span class="text-brand-earth-dark font-semibold">Helt kostnadsfritt och utan förpliktelser.</span>
+                </p>
+
+                <a href="/kontakt/" class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
+                    Kontakta oss för bokning & information
+                </a>
+            </div>
+
+            <!-- Praktisk Info Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 mt-0 border-t border-brand-earth-dark/10">
+                <!-- Platser -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
+                            <div class="relative flex h-3 w-3 items-center justify-center">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Våra Platser</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base">
+                        Välkommen till våra mottagningar i 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Nyköping</a>, 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Gnesta</a> och 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Oxelösund</a>.
+                    </div>
+                </div>
+
+                <!-- Friskvårdsbidrag -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="shield_health" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Friskvårdsbidrag</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base">
+                        Använd ditt friskvårdbidrag! Alla våra kurser och behandlingar är godkända.
+                        <br />
+                        <a href="/friskvardsbidrag/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-2 group-hover:translate-x-1 transition-transform">Läs mer &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Presentkort -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="flower" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base">
+                        Ge bort en upplevelse av hälsa och vitalitet med ett presentkort i Tai Chi, Medicinsk Qigong eller behandling.
+                        <br />
+                        <a href="/presentkort/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-2 group-hover:translate-x-1 transition-transform">Läs mer &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </BaseLayout>
