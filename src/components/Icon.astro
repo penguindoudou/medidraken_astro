@@ -1,0 +1,40 @@
+---
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+
+// Use Vite's glob import to get all SVGs as raw strings
+const icons = import.meta.glob('../icons/*.svg', { 
+  query: '?raw', 
+  import: 'default',
+  eager: true 
+});
+
+const iconKey = `../icons/${name}.svg`;
+let svgContent = icons[iconKey] as string;
+
+if (svgContent) {
+  // Clean up the SVG for inlining
+  // 1. Remove XML declaration and comments
+  svgContent = svgContent.replace(/<\?xml.*?\?>/i, '');
+  svgContent = svgContent.replace(/<!--.*?-->/gs, '');
+  
+  // 2. Inject the class into the <svg> tag
+  if (className) {
+    if (svgContent.includes('<svg')) {
+      svgContent = svgContent.replace('<svg', `<svg class="${className}"`);
+    }
+  }
+  
+  // 3. Remove any existing class placeholders from old WP system
+  svgContent = svgContent.replace(/class="{{.*?}}"/g, '');
+} else {
+  console.error(`Icon "${name}" not found at ${iconKey}`);
+  svgContent = `<span class="text-red-500 text-xs">Icon ${name} missing</span>`;
+}
+---
+
+<Fragment set:html={svgContent} />

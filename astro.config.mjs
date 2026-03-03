@@ -9,12 +9,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
     server: {
       watch: {
-        ignored: ['**/previous_wp_site/**']
+        ignored: ['**/legacy_wp_site/**']
       }
     },
     build: {
       rollupOptions: {
-        external: [/^\/previous_wp_site\/.*/]
+        external: [/^\/legacy_wp_site\/.*/]
       }
     }
   }

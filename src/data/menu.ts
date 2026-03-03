@@ -12,106 +12,106 @@ export const primaryMenu = {
       "children": [
         {
           "title": "Rygg & Ländrygg",
-          "link": "/rygg-landrygg/",
+          "link": "/symtom/rygg-landrygg/",
           "children": [
             {
               "title": "Akut Ryggont (Ryggskott)",
-              "link": "/akut-ryggont/",
+              "link": "/symtom/akut-ryggont/",
               "children": []
             },
             {
               "title": "Ischias & Smärta som strålar i benet",
-              "link": "/ischias/",
+              "link": "/symtom/ischias/",
               "children": []
             },
             {
               "title": "Långvarig värk & Stelhet i ländryggen",
-              "link": "/langvarig-vark-stelhet-landrygg/",
+              "link": "/symtom/langvarig-vark-stelhet-landrygg/",
               "children": []
             }
           ]
         },
         {
           "title": "Nacke, Axlar & Skuldror",
-          "link": "/nacke-axlar-skuldror/",
+          "link": "/symtom/nacke-axlar-skuldror/",
           "children": [
             {
               "title": "Nackspärr & Stel nacke",
-              "link": "/nacksparr-stel-nacke/",
+              "link": "/symtom/nacksparr-stel-nacke/",
               "children": []
             },
             {
               "title": "Ont i Axeln & Värk mellan skulderbladen",
-              "link": "/ont-i-axeln-vark-mellan-skulderbladen/",
+              "link": "/symtom/ont-i-axeln-vark-mellan-skulderbladen/",
               "children": []
             }
           ]
         },
         {
           "title": "Huvudvärk & Yrsel",
-          "link": "/huvudvark-yrsel/",
+          "link": "/symtom/huvudvark-yrsel/",
           "children": [
             {
               "title": "Spänningshuvudvärk & Stresshuvudvärk",
-              "link": "/spanningshuvudvark-stresshuvudvark/",
+              "link": "/symtom/spanningshuvudvark-stresshuvudvark/",
               "children": []
             },
             {
               "title": "Migrän",
-              "link": "/migran/",
+              "link": "/symtom/migran/",
               "children": []
             },
             {
               "title": "Yrsel & Balansproblem",
-              "link": "/yrsel-balansproblem/",
+              "link": "/symtom/yrsel-balansproblem/",
               "children": []
             }
           ]
         },
         {
           "title": "Ledvärk, Idrottsskador & Artros",
-          "link": "/ledvark-idrottsskador-artros/",
+          "link": "/symtom/ledvark-idrottsskador-artros/",
           "children": [
             {
               "title": "Ont i knän & knäbesvär",
-              "link": "/ont-i-knan-knabesvar/",
+              "link": "/symtom/ont-i-knan-knabesvar/",
               "children": []
             },
             {
               "title": "Ont i höfter & höftbesvär",
-              "link": "/ont-i-hofter-hoftbesvar/",
+              "link": "/symtom/ont-i-hofter-hoftbesvar/",
               "children": []
             },
             {
               "title": "Tennisarmbåge, Musarm & Värk i handleder",
-              "link": "/tennisarmbage-musarm-vark-i-handleder/",
+              "link": "/symtom/tennisarmbage-musarm-vark-i-handleder/",
               "children": []
             }
           ]
         },
         {
           "title": "Sömnproblem & Insomnia",
-          "link": "/somnproblem-insomnia/",
+          "link": "/symtom/somnproblem-insomnia/",
           "children": []
         },
         {
           "title": "Utbrändhet & Trötthetssyndrom",
-          "link": "/utbrandhet-trotthetssyndrom/",
+          "link": "/symtom/utbrandhet-trotthetssyndrom/",
           "children": []
         },
         {
           "title": "Mag- och Tarmbesvär (IBS)",
-          "link": "/magbesvar-ibs/",
+          "link": "/symtom/magbesvar-ibs/",
           "children": []
         },
         {
           "title": "Fibromyalgi: Lindra Smärta & Hantera Symtom",
-          "link": "/fibromyalgi-kronisk-smarta/",
+          "link": "/symtom/fibromyalgi-kronisk-smarta/",
           "children": []
         },
         {
           "title": "Nedstämdhet & depression",
-          "link": "/nedstamdhet-depression/",
+          "link": "/symtom/nedstamdhet-depression/",
           "children": []
         }
       ]
@@ -122,27 +122,27 @@ export const primaryMenu = {
       "children": [
         {
           "title": "Minska Stress & Hitta Inre Lugn",
-          "link": "/minska-stress-hitta-inre-lugn/",
+          "link": "/na-dina-halsomal/minska-stress-hitta-inre-lugn/",
           "children": []
         },
         {
           "title": "Öka Energi & Livskraft i Vardagen",
-          "link": "/oka-energi-livskraft/",
+          "link": "/na-dina-halsomal/oka-energi-livskraft/",
           "children": []
         },
         {
           "title": "Förbättra Balans, Rörlighet & Kroppskontroll",
-          "link": "/forbattra-balans-rorlighet-kroppskontroll/",
+          "link": "/na-dina-halsomal/forbattra-balans-rorlighet-kroppskontroll/",
           "children": []
         },
         {
           "title": "Stärka Fokus & Mental Styrka",
-          "link": "/starka-fokus-mental-styrka/",
+          "link": "/na-dina-halsomal/starka-fokus-mental-styrka/",
           "children": []
         },
         {
           "title": "Stärka Immunförsvaret & Bygga Motståndskraft",
-          "link": "/starka-immunforsvaret-bygga-motstandskraft/",
+          "link": "/na-dina-halsomal/starka-immunforsvaret-bygga-motstandskraft/",
           "children": []
         }
       ]
@@ -158,12 +158,12 @@ export const primaryMenu = {
 
             {
               "title": "Helgkurser Tai Chi",
-              "link": "/helgkurser-tai-chi/",
+              "link": "/tai-chi/helgkurser/",
               "children": []
             },
             {
               "title": "Privatundervisning Tai Chi",
-              "link": "/privatundervisning-tai-chi/",
+              "link": "/tai-chi/privatundervisning/",
               "children": []
             }
           ]
@@ -175,12 +175,12 @@ export const primaryMenu = {
 
             {
               "title": "Helgkurser Qigong",
-              "link": "/helgkurser-qigong/",
+              "link": "/medicinsk-qigong/helgkurser/",
               "children": []
             },
             {
               "title": "Privatundervisning Qigong",
-              "link": "/privatundervisning-qigong/",
+              "link": "/medicinsk-qigong/privatundervisning/",
               "children": []
             }
           ]
@@ -198,12 +198,12 @@ export const primaryMenu = {
       "children": [
         {
           "title": "Akupunktur",
-          "link": "/akupunktur/",
+          "link": "/behandling/akupunktur/",
           "children": []
         },
         {
           "title": "TuiNa-Massage",
-          "link": "/tuina-massage/",
+          "link": "/behandling/tuina-massage/",
           "children": []
         }
       ]
@@ -214,22 +214,22 @@ export const primaryMenu = {
       "children": [
         {
           "title": "Hälsa på Arbetsplatsen",
-          "link": "/halsa-pa-arbetsplatsen/",
+          "link": "/for-foretag/halsa-pa-arbetsplatsen/",
           "children": []
         },
         {
           "title": "Företagsevent & Aktiviteter",
-          "link": "/foretagsevent-aktiviteter/",
+          "link": "/for-foretag/foretagsevent-aktiviteter/",
           "children": []
         },
         {
           "title": "Samarbeten med Hälsoföretag",
-          "link": "/samarbeten-halsoforetag/",
+          "link": "/for-foretag/samarbeten-halsoforetag/",
           "children": []
         },
         {
           "title": "Kontakta oss för Offert",
-          "link": "/kontakt-offert/",
+          "link": "/for-foretag/kontakt-offert/",
           "children": []
         }
       ]
@@ -240,17 +240,17 @@ export const primaryMenu = {
       "children": [
         {
           "title": "Hälsoresor",
-          "link": "/halsoresor/",
+          "link": "/upplevelser/halsoresor/",
           "children": []
         },
         {
           "title": "Workshops & Gruppaktiviteter",
-          "link": "/workshops-gruppaktiviteter/",
+          "link": "/upplevelser/workshops-gruppaktiviteter/",
           "children": []
         },
         {
           "title": "Skräddarsydda Hälsodagar",
-          "link": "/skraddarsydda-halsodagar/",
+          "link": "/upplevelser/skraddarsydda-halsodagar/",
           "children": []
         }
       ]
@@ -286,17 +286,17 @@ export const footerMenu = {
     },
     {
       "title": "Integritetspolicy",
-      "link": "/integritetspolicy/",
+      "link": "/legal/integritetspolicy/",
       "children": []
     },
     {
       "title": "Användarvillkor",
-      "link": "/anvandarvillkor/",
+      "link": "/legal/anvandarvillkor/",
       "children": []
     },
     {
       "title": "Cookiepolicy",
-      "link": "/cookie-policy/",
+      "link": "/legal/cookie-policy/",
       "children": []
     }
   ]

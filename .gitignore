@@ -24,4 +24,4 @@ pnpm-debug.log*
 .idea/
 
 # previous wp site reference material
-previous_wp_site/
+legacy_wp_site/

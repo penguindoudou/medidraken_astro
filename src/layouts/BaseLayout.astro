@@ -3,7 +3,17 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
-const { title } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Medidraken - Din väg till mindre smärta, mindre stress och mer energi med Traditionell Kinesisk Medicin." 
+} = Astro.props;
+
+const displayTitle = title ? `${title} | Medidraken` : "Medidraken | Akupunktur & TCM i Nyköping, Gnesta & Oxelösund";
 ---
 <html lang="sv">
   <head>
@@ -11,7 +21,11 @@ const { title } = Astro.props;
     <link rel="icon" type="image/png" href="/assets/images/medidraken-logo_white_background.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | Medidraken</title>
+    
+    <!-- SEO Basics -->
+    <title>{displayTitle}</title>
+    <meta name="description" content={description} />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
