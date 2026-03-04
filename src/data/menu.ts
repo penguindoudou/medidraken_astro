@@ -158,12 +158,12 @@ export const primaryMenu = {
 
             {
               "title": "Helgkurser Tai Chi",
-              "link": "/tai-chi/helgkurser/",
+              "link": "/kurser/tai-chi/helgkurser/",
               "children": []
             },
             {
               "title": "Privatundervisning Tai Chi",
-              "link": "/tai-chi/privatundervisning/",
+              "link": "/kurser/tai-chi/privatundervisning/",
               "children": []
             }
           ]
@@ -175,19 +175,19 @@ export const primaryMenu = {
 
             {
               "title": "Helgkurser Qigong",
-              "link": "/medicinsk-qigong/helgkurser/",
+              "link": "/kurser/medicinsk-qigong/helgkurser/",
               "children": []
             },
             {
               "title": "Privatundervisning Qigong",
-              "link": "/medicinsk-qigong/privatundervisning/",
+              "link": "/kurser/medicinsk-qigong/privatundervisning/",
               "children": []
             }
           ]
         },
         {
           "title": "Instruktörsutbildning",
-          "link": "/instruktorsutbildning/",
+          "link": "/kurser/instruktorsutbildning/",
           "children": []
         }
       ]

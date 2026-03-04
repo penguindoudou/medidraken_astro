@@ -1,0 +1,400 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+// Images
+import hero_instruktor5Image from '../../assets/images/hero_instruktor5.png';
+import Tai_Chi_kurs_2Image from '../../assets/images/Tai-Chi kurs 2.jpg';
+---
+
+<BaseLayout title="Instruktorsutbildning">
+<!-- ======================================= -->
+<!-- Sektion 1: Hero                         -->
+<!-- ======================================= -->
+<section class="hero-section min-h-[70vh]">
+    <div class="hero-background hero-background-dark-center">
+        <!-- Bild som förmedlar expertis och lärande -->
+        <Image src={hero_instruktor5Image}
+            alt="Johannes Mao instruerar i Tai Chi och Qigong" class="hero-bg-image opacity-70" />
+    </div>
+    <div class="hero-content text-center">
+        <h1 class="hero-title text-brand-accent">Instruktörsutbildning i Tai&nbsp;Chi&nbsp;&&nbsp;Qigong</h1>
+        <h2 class="hero-subtitle font-bold mt-4">Fördjupa din Kunskap, Förmedla Hälsa</h2>
+
+        <p class="hero-text text-lg md:text-xl max-w-3xl mx-auto mt-6">
+            För dig som vill ta din praktik till nästa nivå och få verktygen att vägleda andra. Vår
+            instruktörsutbildning är en djupgående resa in i rörelsernas teknik, den bakomliggande filosofin och den
+            pedagogik som krävs för att bli en trygg, kunnig och inspirerande instruktör.
+        </p>
+
+        <div class="mt-10">
+            <a href="#anmalan" class="btn btn-primary-on-dark">
+                Kontakta oss för mer information
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ======================================= -->
+<!-- Sektion 2: Varför Välja Oss?            -->
+<!-- ======================================= -->
+<section class="bg-brand-earth-lightest section-standard">
+    <div class="container-base">
+        <div class="text-center mb-16">
+            <h2 class="text-brand-earth">En Utbildning Byggd på Erfarenhet & Djup Kunskap</h2>
+        </div>
+
+        <div class="feature-grid">
+
+            <!-- Box 1: Kunskapsöverföring -->
+            <div class="content-box h-full flex flex-col">
+                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto mb-6">
+                    <!-- Ikon: Träd/Rötter -->
+                    <Icon name="banyan_tree" class="h-10 w-10 text-brand-accent-dark" />
+                </div>
+                <h3 class="content-box-title text-xl">Direkt Kunskapsöverföring</h3>
+                <p class="content-box-text text-left mt-4 flex-grow">
+                    Lär dig direkt från vår huvudinstruktör med 30 års erfarenhet. Du får del av en djup, praktisk
+                    kunskap som har förfinats över decennier – en insikt och kvalitet som inte kan läsas i böcker.
+                </p>
+            </div>
+
+            <!-- Box 2: Pedagogik -->
+            <div class="content-box h-full flex flex-col">
+                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto mb-6">
+                    <!-- Ikon: Kompass/Karta -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-brand-accent-dark" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                    </svg>
+                </div>
+                <h3 class="content-box-title text-xl">Beprövad Pedagogik</h3>
+                <p class="content-box-text text-left mt-4 flex-grow">
+                    Du lär dig att bemästra principerna i den effektiva inlärningsmetod som Johannes Mao har utvecklat.
+                    Detta ger dig tryggheten att kunna förmedla kunskapen vidare på ett sätt som är både professionellt
+                    och personligt.
+                </p>
+            </div>
+
+            <!-- Box 3: Mentorskap -->
+            <div class="content-box h-full flex flex-col">
+                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto mb-6">
+                    <!-- Ikon: Dialog/Människor -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-brand-accent-dark" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                <h3 class="content-box-title text-xl">Personligt Mentorskap</h3>
+                <p class="content-box-text text-left mt-4 flex-grow">
+                    Våra utbildningar genomförs i små grupper eller individuellt för att säkerställa högsta kvalitet och
+                    ge dig personlig vägledning och feedback under hela din utvecklingsresa.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======================================= -->
+<!-- Sektion 3: Målgrupp                     -->
+<!-- ======================================= -->
+<section class="bg-white section-standard">
+    <div class="container-base max-w-5xl">
+        <div class="text-center mb-12">
+            <h2 class="text-brand-earth">En Utbildning för Din Personliga och Professionella Utveckling</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Målgrupp 1 -->
+            <div class="space-y-3">
+                <h3 class="text-xl text-brand-earth-dark font-bold border-b-2 border-brand-accent/50 pb-2 inline-block">
+                    För Egen Praktik</h3>
+                <p class="text-neutral-700 leading-relaxed">
+                    För dig som älskar Tai Chi eller Qigong och vill ta din förståelse till en helt ny nivå.
+                    Utbildningen ger dig en djupare insikt i varje rörelses syfte och hälsoeffekt.
+                </p>
+            </div>
+
+            <!-- Målgrupp 2 -->
+            <div class="space-y-3">
+                <h3 class="text-xl text-brand-earth-dark font-bold border-b-2 border-brand-accent/50 pb-2 inline-block">
+                    För Yrkesverksamma</h3>
+                <p class="text-neutral-700 leading-relaxed">
+                    Är du yogalärare, fysioterapeut, massör eller PT? Komplettera din verktygslåda med en efterfrågad
+                    kompetens och erbjud dina klienter effektiva metoder för stresshantering och rehabilitering.
+                </p>
+            </div>
+
+            <!-- Målgrupp 3 -->
+            <div class="space-y-3">
+                <h3 class="text-xl text-brand-earth-dark font-bold border-b-2 border-brand-accent/50 pb-2 inline-block">
+                    För Företag</h3>
+                <p class="text-neutral-700 leading-relaxed">
+                    Investera i er personal och utbilda egna friskvårdsinstruktörer. Vi skräddarsyr utbildningar för
+                    hälsoföretag, gym och spa-anläggningar som vill erbjuda klasser i Tai Chi och Qigong.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================================= -->
+<!-- Sektion 4: Innehåll & Filosofi          -->
+<!-- ======================================= -->
+<section class="bg-neutral-50 section-standard">
+    <div class="container-base max-w-5xl">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+
+            <div class="md:w-2/5">
+                <h2 class="text-brand-earth mb-6">Vad Du Lär Dig</h2>
+                <p class="text-neutral-700 mb-6">
+                    Vår utbildning vilar på två grundpelare för att säkerställa att du blir en kompetent och trygg
+                    instruktör:
+                </p>
+
+                <ul class="space-y-6">
+                    <li class="flex items-start">
+                        <span
+                            class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-sky text-white flex items-center justify-center text-sm font-bold mt-1 mr-3">1</span>
+                        <div>
+                            <h4 class="font-bold text-brand-earth-dark">Teknisk Färdighet</h4>
+                            <p class="text-sm text-neutral-600 mt-1">
+                                Djupgående genomgång av de relevanta Tai Chi- eller Qigong-formerna med fokus på
+                                kroppsmekanik, intention och andning.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span
+                            class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-sky text-white flex items-center justify-center text-sm font-bold mt-1 mr-3">2</span>
+                        <div>
+                            <h4 class="font-bold text-brand-earth-dark">Pedagogisk Förmåga</h4>
+                            <p class="text-sm text-neutral-600 mt-1">
+                                Praktisk träning i att instruera, korrigera och anpassa övningar för olika individer och
+                                grupper på ett säkert och inspirerande sätt.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Dekorativ bild eller illustration -->
+            <div class="md:w-[65%] relative md:-mr-8 lg:-mr-16">
+                <div class="absolute inset-0 bg-brand-accent transform translate-x-3 translate-y-3 rounded-lg"></div>
+                <Image src={Tai_Chi_kurs_2Image} alt="Instruktion i praktiken"
+                    class="relative rounded-lg shadow-lg z-10 w-full h-auto object-cover" />
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======================================= -->
+<!-- Sektion 5: Processen                    -->
+<!-- ======================================= -->
+<section class="bg-brand-earth-lightest section-standard">
+    <div class="container-base">
+        <div class="text-center mb-16">
+            <h2 class="text-brand-earth">Vägen till att bli Instruktör</h2>
+            <p class="text-neutral-600 mt-4 max-w-2xl mx-auto">
+                För att påbörja utbildningen behöver du ha tränat regelbundet hos Johannes i minst 2 år.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            <!-- Connecting Line (Desktop) -->
+            <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-brand-earth-light/30 -z-0">
+            </div>
+
+            <!-- Steg 1 -->
+            <div class="relative z-10 text-center bg-brand-earth-lightest p-4">
+                <div
+                    class="w-24 h-24 mx-auto bg-white border-4 border-brand-accent rounded-full flex items-center justify-center text-3xl font-heading font-bold text-brand-earth mb-6 shadow-sm">
+                    1
+                </div>
+                <h3 class="text-lg font-bold text-brand-earth-dark mb-2">Intresseanmälan & Kontakt</h3>
+                <p class="text-neutral-700 text-sm">
+                    Ta första steget genom att <a href="/kontakt/?subject=Intresse%20Instruktorsutbildning"
+                        class="text-brand-sky underline hover:text-brand-sky-bright">kontakta oss</a>. Vi ser fram emot
+                    att höra om dina ambitioner och vad du vill uppnå med din träning.
+                </p>
+            </div>
+
+            <!-- Steg 2 -->
+            <div class="relative z-10 text-center bg-brand-earth-lightest p-4">
+                <div
+                    class="w-24 h-24 mx-auto bg-white border-4 border-brand-earth rounded-full flex items-center justify-center text-3xl font-heading font-bold text-brand-earth mb-6 shadow-sm">
+                    2
+                </div>
+                <h3 class="text-lg font-bold text-brand-earth-dark mb-2">Personligt Samtal</h3>
+                <p class="text-neutral-700 text-sm">
+                    Om vi ser att vi kan hjälpa dig vidare på vägen bjuder vi in till ett samtal. Där pratar vi om dina
+                    visioner och gör en gemensam bedömning om utbildningen är rätt steg för dig.
+                </p>
+            </div>
+
+            <!-- Steg 3 -->
+            <div class="relative z-10 text-center bg-brand-earth-lightest p-4">
+                <div
+                    class="w-24 h-24 mx-auto bg-white border-4 border-brand-sky rounded-full flex items-center justify-center text-3xl font-heading font-bold text-brand-earth mb-6 shadow-sm">
+                    3
+                </div>
+                <h3 class="text-lg font-bold text-brand-earth-dark mb-2">Skräddarsytt Upplägg</h3>
+                <p class="text-neutral-700 text-sm">
+                    Baserat på vårt samtal skapar vi ett skräddarsytt utbildningsupplägg med en tydlig plan för
+                    innehåll, tidsåtgång och kostnad.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ======================================= -->
+<!-- Sektion 6: CTA / Anmälan                -->
+<!-- ======================================= -->
+<section id="anmalan" class="section-standard bg-brand-earth-light text-center">
+    <div class="container-base max-w-3xl">
+        <h2 class="text-brand-earth-dark mb-6">Redo att ta nästa steg på din resa?</h2>
+        <p class="text-lg text-brand-earth mb-10 leading-relaxed">
+            En instruktörsutbildning är en seriös investering i din egen utveckling. Kontakta oss för att anmäla ditt
+            intresse och få mer detaljerad information om våra utbildningsprogram.
+        </p>
+
+        <a href="/kontakt/?subject=Intresse%20Instruktorsutbildning"
+            class="btn btn-primary-on-dark text-xl px-10 py-5 shadow-lg shadow-black/20 mb-12">
+            Kontakta oss för information om utbildning
+        </a>
+
+        <div class="border-t border-brand-earth-dark/10 pt-8 text-brand-earth-dark text-sm md:text-base">
+            <p>
+                Utbildningen hålls primärt i våra lokaler i
+                <a href="/kontakt/#nykoping" class="text-brand-sky underline hover:text-brand-sky-bright">Nyköping</a>
+                och
+                <a href="/kontakt/#gnesta" class="text-brand-sky underline hover:text-brand-sky-bright">Gnesta</a>,
+                eller enligt överenskommelse för företagsgrupper.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- ======================================= -->
+<!-- Sektion 7: FAQ (Accordion)              -->
+<!-- ======================================= -->
+<section class="section-standard bg-white">
+    <div class="container-base max-w-3xl">
+        <h2 class="text-brand-earth text-center mb-12">Frågor och Svar om Instruktörsutbildningen</h2>
+
+        <div class="space-y-4" x-data="{ active: null }">
+
+            <!-- Fråga 1 -->
+            <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                <button @click="active === 1 ? active = null : active = 1"
+                    class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                    <span class="font-bold text-brand-earth text-left">Vilka förkunskaper krävs?</span>
+                    <span class="ml-4 text-brand-sky transform transition-transform"
+                        :class="active === 1 ? 'rotate-180' : ''">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </span>
+                </button>
+                <div x-show="active === 1" x-collapse x-cloak
+                    class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                    Huvudkravet är att du har tränat regelbundet hos Johannes i minst 2 år. Utöver det krävs en solid
+                    grund och en genuin vilja att lära och utvecklas. Vi bedömer lämplighet ytterligare under vårt
+                    personliga samtal.
+                </div>
+            </div>
+
+            <!-- Fråga 2 -->
+            <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                <button @click="active === 2 ? active = null : active = 2"
+                    class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                    <span class="font-bold text-brand-earth text-left">Kan jag utbilda mig i både Tai Chi och
+                        Qigong?</span>
+                    <span class="ml-4 text-brand-sky transform transition-transform"
+                        :class="active === 2 ? 'rotate-180' : ''">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </span>
+                </button>
+                <div x-show="active === 2" x-collapse x-cloak
+                    class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                    Ja, absolut. Vi kan skapa ett upplägg som kombinerar båda disciplinerna, eller så kan du välja att
+                    specialisera dig inom en av dem.
+                </div>
+            </div>
+
+            <!-- Fråga 3 -->
+            <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                <button @click="active === 3 ? active = null : active = 3"
+                    class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                    <span class="font-bold text-brand-earth text-left">Får jag ett diplom eller certifikat?</span>
+                    <span class="ml-4 text-brand-sky transform transition-transform"
+                        :class="active === 3 ? 'rotate-180' : ''">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </span>
+                </button>
+                <div x-show="active === 3" x-collapse x-cloak
+                    class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                    Vi erbjuder inte ett formellt, tryckt certifikat. Vår utbildning är en praktisk lärlingsutbildning
+                    där målet är verklig kunskap och färdighet, inte ett papper. Kvaliteten på din förmåga blir ditt
+                    främsta intyg.
+                </div>
+            </div>
+
+            <!-- Fråga 4 -->
+            <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                <button @click="active === 4 ? active = null : active = 4"
+                    class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                    <span class="font-bold text-brand-earth text-left">Vilka möjligheter finns efter avslutad
+                        utbildning?</span>
+                    <span class="ml-4 text-brand-sky transform transition-transform"
+                        :class="active === 4 ? 'rotate-180' : ''">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </span>
+                </button>
+                <div x-show="active === 4" x-collapse x-cloak
+                    class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                    Vårt mål är att bygga långsiktiga relationer. För instruktörer som slutför utbildningen hos oss,
+                    visar stort engagemang och uppnår en hög nivå av skicklighet, finns goda möjligheter till framtida
+                    samarbeten. Det kan till exempel innebära att leda kurser under Medidrakens flagg eller att bli
+                    omnämnd och rekommenderad på vår webbplats.
+                </div>
+            </div>
+
+            <!-- Fråga 5 -->
+            <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                <button @click="active === 5 ? active = null : active = 5"
+                    class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                    <span class="font-bold text-brand-earth text-left">Hur lång är utbildningen och vad kostar
+                        den?</span>
+                    <span class="ml-4 text-brand-sky transform transition-transform"
+                        :class="active === 5 ? 'rotate-180' : ''">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </span>
+                </button>
+                <div x-show="active === 5" x-collapse x-cloak
+                    class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                    Eftersom varje utbildning anpassas efter deltagarens eller gruppens förkunskaper och mål, varierar
+                    både längd och kostnad. Vi ger ett komplett förslag på upplägg och pris efter vårt inledande
+                    personliga samtal.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+</BaseLayout>
