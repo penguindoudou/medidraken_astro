@@ -33,9 +33,6 @@
   --breakpoint-nav-lg: 1350px;
 }
 
-@utility text-shadow-md {
-  text-shadow: 1px 1px 3px rgb(0 0 0 / 0.5);
-}
 
 @utility text-shadow-hero-glow {
   text-shadow: -1px -1px 0 rgba(31, 41, 55, 0.7),
@@ -155,7 +152,7 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
   .hero-background::after {
     content: "";
     @apply absolute inset-0;
-    background-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6), rgba(60, 50, 42, 0.3), transparent);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6) 0%, rgba(74, 63, 53, 0.3) 50%, transparent 100%);
   }
 
   .hero-bg-image {
@@ -167,11 +164,16 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
   }
 
   .hero-title {
-    @apply font-heading font-bold text-5xl md:text-6xl tracking-tight text-neutral-50 text-shadow-md mb-6;
+    @apply font-heading font-bold text-5xl md:text-6xl tracking-tight;
+    @apply text-neutral-50 mb-6;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
 
   .hero-subtitle {
-    @apply font-body font-light text-xl md:text-2xl leading-relaxed max-w-3xl mx-auto text-neutral-50 text-shadow-md;
+    @apply font-body font-light text-xl md:text-2xl;
+    @apply leading-relaxed max-w-3xl mx-auto;
+    @apply text-neutral-50;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
   .hero-text {
