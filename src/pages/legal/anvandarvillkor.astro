@@ -1,9 +1,128 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
 ---
+
 <BaseLayout title="Användarvillkor">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Användarvillkor</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-    </main>
+    <!-- Hero Section -->
+    <section class="bg-brand-earth-lightest py-16 md:py-24 border-b border-brand-earth-dark/10">
+        <div class="container-base">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-white mx-auto mb-6 shadow-sm border border-brand-earth-dark/5">
+                    <Icon name="holistic_qi_human" class="h-8 w-8 text-brand-sky" />
+                </div>
+                <h1 class="text-4xl md:text-5xl text-brand-earth-dark mb-4 drop-shadow-sm">Användarvillkor för Medidraken</h1>
+                <p class="text-neutral-500 mb-0 font-medium tracking-wide">Senast uppdaterad: 05/03/2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="section-standard bg-white">
+        <div class="container-base max-w-3xl mx-auto">
+            <div class="prose-like-content">
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-8 mb-4 border-b border-brand-earth-dark/10 pb-2">1. Allmänt</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Dessa användarvillkor ("Villkoren") gäller för användning av webbplatsen www.medidraken.com ("Webbplatsen") och de tjänster som erbjuds av Medidraken (Din Hälsa-Medidraken, organisationsnummer 680108-XXXX, Dalgatan 20, 646 32 Gnesta), nedan kallad "Medidraken", "vi", "oss" eller "vår". Genom att använda Webbplatsen och/eller anmäla intresse för eller boka våra tjänster accepterar du dessa Villkor.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">2. Tjänster</h2>
+                <p class="text-neutral-700 leading-relaxed mb-4">Medidraken erbjuder tjänster inom Traditionell Kinesisk Medicin (TCM), inklusive behandlingar (såsom Akupunktur, TuiNa-massage m.fl.), kurser i Tai Chi och Qigong (veckokurser, helgkurser, privatundervisning, instruktörsutbildning), samt anpassade lösningar för företag och grupper (föreläsningar, workshops, behandlingar på plats m.m.), hälsoresor och presentkort ("Tjänsterna").</p>
+                <p class="text-neutral-700 leading-relaxed mb-6">Informationen om Tjänsterna på Webbplatsen är avsedd som generell information. För detaljerad information om innehåll, upplägg, aktuella datum, priser och bokning, vänligen kontakta oss via de kontaktvägar som anges på Webbplatsen. Alla tjänster sker efter tidsbokning och överenskommelse.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">3. Bokning och Bekräftelse</h2>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
+                    <li>För att boka en behandling, kurs eller annan tjänst, eller för att få mer information och prisuppgifter, krävs att du kontaktar oss via kontaktformulär, e-post eller telefon.</li>
+                    <li>En bokning är bindande först när du har mottagit en skriftlig bekräftelse från Medidraken via e-post eller annat överenskommet sätt.</li>
+                    <li>Du ansvarar för att lämna korrekta kontaktuppgifter så att vi kan nå dig med bekräftelse och eventuell ytterligare information.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">4. Priser och Betalning</h2>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
+                    <li>Priser för Tjänsterna anges inte generellt på Webbplatsen (med undantag för eventuella specifika kampanjer). Priser erhålls vid förfrågan via kontakt med oss.</li>
+                    <li>För företagstjänster lämnas pris via offert efter förfrågan.</li>
+                    <li>Betalning sker enligt den information som ges i samband med bokningsbekräftelsen (t.ex. via faktura, Swish, eller annan överenskommen metod). Betalning ska ske inom angiven tid. Utebliven betalning kan leda till att bokningen avbokas.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">5. Ånger-, Avboknings- och Ombokningspolicy</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Vi förstår att oförutsedda händelser kan inträffa. Följande policy gäller för avbokning och ombokning av Tjänster bokade hos Medidraken:</p>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.1 Allmänt</h3>
+                <p class="text-neutral-700 leading-relaxed mb-6">All avbokning och begäran om ombokning ska meddelas oss så snart som möjligt via telefon till <a href="tel:+46705814086" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30 underline-offset-4">+46705814086</a>. En avbokning är giltig först när du mottagit en bekräftelse från oss.</p>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.2 Individuella Behandlingar & Privatundervisning</h3>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
+                    <li>Avbokning/ombokning kan ske kostnadsfritt om den görs senast 24 timmar före den bokade tiden.</li>
+                    <li>Vid avbokning/ombokning senare än 24 timmar före bokad tid, eller vid utebliven ankomst, har Medidraken rätt att debitera fullt pris.</li>
+                    <li><strong>Vid akut sjukdom som styrks med läkarintyg kan undantag från denna regel diskuteras.</strong></li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.3 Veckokurser (Tai Chi & Qigong)</h3>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
+                    <li>Anmälan är bindande efter bekräftelse från Medidraken.</li>
+                    <li>Vid avbokning senast 14 dagar före kursstart återbetalas eventuellt erlagd kursavgift med avdrag för en administrativ avgift på 300 kr.</li>
+                    <li>Vid avbokning senare än 14 dagar före kursstart sker ingen återbetalning av kursavgiften, om inte platsen kan fyllas av en reserv från eventuell kölista.</li>
+                    <li>Påbörjad kurs återbetalas ej. Vid längre sjukdom, styrkt med läkarintyg, kan möjlighet till att delta vid senare kurstillfälle diskuteras, i mån av plats.</li>
+                    <li><strong>Om du får förhinder kan du, efter överenskommelse med Medidraken, eventuellt överlåta din plats till en annan person. Kontakta oss för att diskutera detta.</strong></li>
+                    <li><strong>Missade enstaka kurstillfällen under en pågående veckokurs kan normalt inte tas igen vid ett senare tillfälle eller i en annan grupp, om inte annat specifikt överenskommits.</strong></li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.4 Helgkurser & Workshops</h3>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
+                    <li>Anmälan är bindande efter bekräftelse från Medidraken.</li>
+                    <li>Vid avbokning senast 21 dagar före kurs-/workshopstart återbetalas eventuellt erlagd avgift med avdrag för en administrativ avgift på 500 kr.</li>
+                    <li>Vid avbokning senare än 21 dagar före kurs-/workshopstart sker ingen återbetalning, om inte platsen kan fyllas av en reserv från eventuell kölista.</li>
+                    <li><strong>Om du får förhinder kan du, efter överenskommelse med Medidraken, eventuellt överlåta din plats till en annan person. Kontakta oss för att diskutera detta.</strong></li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.5 Hälsoresor & Instruktörsutbildning</h3>
+                <p class="text-neutral-700 leading-relaxed mb-6">Specifika avbokningsvillkor gäller för dessa och meddelas separat i samband med intresseanmälan och/eller bokningsbekräftelse.</p>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.6 Företagstjänster</h3>
+                <p class="text-neutral-700 leading-relaxed mb-6">Avbokningsvillkor specificeras i den offert och det avtal som upprättas mellan Medidraken och företaget.</p>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.7 Medidrakens rätt att ställa in</h3>
+                <p class="text-neutral-700 leading-relaxed mb-6">Vi förbehåller oss rätten att ställa in kurser, workshops eller andra aktiviteter vid för få anmälningar, sjukdom hos instruktör/terapeut eller annan oförutsedd händelse (force majeure). Vid inställd aktivitet från vår sida återbetalas hela den eventuellt erlagda avgiften till dig.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">6. Friskvårdsbidrag</h2>
+                <p class="text-neutral-700 leading-relaxed mb-4">Alla våra kurser och behandlingar är godkända för användning av friskvårdsbidrag. Du ansvarar själv för att kontrollera med din arbetsgivare vilka regler som gäller för ditt friskvårdsbidrag och hur du ska gå tillväga för att nyttja det.</p>
+                <p class="text-neutral-700 leading-relaxed mb-4">Många arbetsgivare använder digitala förmånsportaler (såsom exempelvis Epassi eller Benify) för hantering av friskvårdsbidrag. Om din arbetsgivare använder en sådan portal, kontrollera där vilka specifika krav som gäller för registrering av ditt utlägg för tjänster köpta hos oss.</p>
+                <p class="text-neutral-700 leading-relaxed mb-6">Vi tillhandahåller alltid ett kvitto med nödvändig information efter genomförd tjänst och erlagd betalning, som du kan använda för att ansöka om ersättning från din arbetsgivare eller via din eventuella friskvårdsportal. Läs mer med generella tips på vår sida om <a href="/friskvardsbidrag/" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30 underline-offset-4">Friskvårdsbidrag</a>.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">7. Presentkort</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Presentkort köpta hos Medidraken är giltiga i 12 månader från inköpsdatum, om inget annat anges. Presentkort kan användas som betalning för Tjänster men kan inte lösas in mot kontanter. Borttappat presentkort ersätts ej.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">8. Användarens Ansvar & Hälsoupplysning</h2>
+                <p class="text-neutral-700 leading-relaxed mb-4">Du ansvarar för att informationen du lämnar till oss är korrekt. Du ansvarar även för din egen hälsa. Informera alltid din terapeut eller instruktör om relevanta hälsotillstånd, skador, allergier, medicinering <strong>eller om du är gravid</strong>, då detta kan påverka behandlingen eller ditt deltagande och kräva anpassningar.</p>
+                <p class="text-neutral-700 leading-relaxed mb-6"><strong>Viktigt:</strong> Våra tjänster är avsedda som komplement och ersätter inte traditionell medicinsk vård. Rådgör alltid med legitimerad sjukvårdspersonal vid allvarliga eller akuta hälsoproblem.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">9. Immateriella Rättigheter</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Allt innehåll på Webbplatsen, inklusive texter, bilder, logotyper och design, tillhör Medidraken eller våra licensgivare och skyddas av upphovsrättslagen. Du får inte kopiera, modifiera, distribuera eller publicera innehåll från Webbplatsen utan vårt skriftliga medgivande.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">10. Ansvarsbegränsning</h2>
+                <p class="text-neutral-700 leading-relaxed mb-4"><strong>Informationen som tillhandahålls på Webbplatsen är avsedd för allmänt informationsändamål och ska inte betraktas som individuell medicinsk rådgivning.</strong> Våra tjänster baseras på metoder från Traditionell Kinesisk Medicin och syftar till att stödja kroppens egen balans och välbefinnande. <strong>Resultaten är alltid individuella och kan inte garanteras.</strong></p>
+                <p class="text-neutral-700 leading-relaxed mb-6">Medidraken ansvarar inte för direkta eller indirekta skador som kan uppstå till följd av användning av Webbplatsen eller Tjänsterna, utöver vad som följer av tvingande lagstiftning (t.ex. konsumenttjänstlagen). Vi strävar efter att hålla Webbplatsen tillgänglig och informationen korrekt, men kan inte garantera att den är fri från fel eller avbrott.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">11. Ändringar av Villkoren</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Vi förbehåller oss rätten att när som helst ändra dessa Villkor. Den senaste versionen publiceras alltid på Webbplatsen. Genom att fortsätta använda Webbplatsen eller Tjänsterna efter att ändringar publicerats accepterar du de nya Villkoren.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">12. Tillämplig Lag och Tvistlösning</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Svensk lag ska tillämpas på dessa Villkor. Tvist som uppstår i anledning av Villkoren ska i första hand lösas i samförstånd mellan parterna. Om samförstånd inte kan nås kan tvisten prövas av Allmänna Reklamationsnämnden (ARN) om nämnden är behörig, eller i allmän domstol.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">13. Kontaktuppgifter</h2>
+                <div class="bg-brand-earth-lightest/50 p-6 rounded-xl border border-brand-earth-dark/5 mt-6 mb-8">
+                    <p class="text-neutral-700 leading-relaxed mb-1 font-medium text-lg">Medidraken<br />Din Hälsa-Medidraken</p>
+                    <p class="text-neutral-700 leading-relaxed mb-4">Dalgatan 20, 646 32 Gnesta</p>
+                    <p class="flex flex-col sm:flex-row sm:gap-6 gap-2">
+                        <a href="mailto:info@medidraken.com" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center gap-2 group">
+                            <Icon name="email" class="h-5 w-5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                            <span class="underline decoration-brand-sky/30 underline-offset-4">info@medidraken.com</span>
+                        </a>
+                        <a href="tel:+46705814086" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center gap-2 group">
+                            <Icon name="phone" class="h-5 w-5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                            <span class="underline decoration-brand-sky/30 underline-offset-4">+46705814086</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 </BaseLayout>

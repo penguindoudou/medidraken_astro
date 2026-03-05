@@ -153,7 +153,7 @@ export const primaryMenu = {
       "children": [
         {
           "title": "Tai Chi",
-          "link": "/tai-chi/",
+          "link": "/kurser/tai-chi/",
           "children": [
 
             {
@@ -170,7 +170,7 @@ export const primaryMenu = {
         },
         {
           "title": "Medicinsk Qigong",
-          "link": "/medicinsk-qigong/",
+          "link": "/kurser/medicinsk-qigong/",
           "children": [
 
             {

@@ -1,9 +1,200 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
 ---
+
 <BaseLayout title="Cookiepolicy">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Cookiepolicy</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-    </main>
+    <!-- Hero Section -->
+    <section class="bg-brand-earth-lightest py-16 md:py-24 border-b border-brand-earth-dark/10">
+        <div class="container-base">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-white mx-auto mb-6 shadow-sm border border-brand-earth-dark/5">
+                    <Icon name="cookie" class="h-8 w-8 text-brand-sky" /> <!-- fallback if "cookie" doesn't exist, using generic or maybe just a text icon. Let's use shield_check or similar if cookie is missing. Actually, I can use an SVG directly or just standard Icon if it has it. Let's use shield_check or info. Let's stick to info or shield. In om-oss "shield_health" was used. Let's use shield_health. -->
+                    <Icon name="shield_health" class="h-8 w-8 text-brand-sky" />
+                </div>
+                <h1 class="text-4xl md:text-5xl text-brand-earth-dark mb-4 drop-shadow-sm">Cookiepolicy för Medidraken</h1>
+                <p class="text-neutral-500 mb-0 font-medium tracking-wide">Senast uppdaterad: 15/05/2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="section-standard bg-white">
+        <div class="container-base max-w-4xl mx-auto">
+            <div class="prose-like-content">
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-8 mb-4 border-b border-brand-earth-dark/10 pb-2">1. Vad är Cookies?</h2>
+                <p class="text-neutral-700 leading-relaxed mb-4">Cookies är små textfiler som placeras på din dator eller mobila enhet av webbplatser du besöker. De används i stor utsträckning för att få webbplatser att fungera, eller fungera mer effektivt, samt för att ge information till webbplatsens ägare. Cookies kan vara "förstapartscookies" (som sätts av webbplatsen du besöker) eller "tredjepartscookies" (som sätts av en annan domän än den du besöker, t.ex. av annonsnätverk eller analysleverantörer).</p>
+                <p class="text-neutral-700 leading-relaxed mb-6">"Liknande teknologier" inkluderar pixlar, web beacons, och lokal lagring som används på liknande sätt som cookies. I denna policy hänvisar vi till alla dessa teknologier som "cookies".</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">2. Hur Använder Vi Cookies?</h2>
+                <p class="text-neutral-700 leading-relaxed mb-4">Vi på Medidraken (www.medidraken.com) använder cookies för flera olika ändamål:</p>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
+                    <li>För att säkerställa Webbplatsens grundläggande funktionalitet.</li>
+                    <li>För att komma ihåg dina preferenser och inställningar (t.ex. språkval, cookie-samtycke).</li>
+                    <li>För att samla in anonymiserad statistik om hur Webbplatsen används, så att vi kan förbättra den.</li>
+                    <li>För att, när vi bedriver betalda annonskampanjer, leverera och mäta effektiviteten av våra marknadsföringskampanjer och visa dig relevanta annonser.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">3. Typer av Cookies Vi Använder</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Nedan följer en mer detaljerad beskrivning av de typer av cookies vi kan använda på vår Webbplats:</p>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">3.1 Absolut Nödvändiga Cookies</h3>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
+                    <li><strong>Syfte:</strong> Dessa cookies är nödvändiga för att Webbplatsen ska kunna fungera korrekt och kan inte stängas av i våra system. De ställs vanligtvis endast in som svar på åtgärder som du gör och som utgör en begäran om tjänster, såsom att ställa in dina personliga integritetsinställningar eller fylla i formulär. Du kan ställa in din webbläsare för att blockera eller varna dig om dessa cookies, men vissa delar av Webbplatsen kommer då inte att fungera. Dessa cookies lagrar ingen personligt identifierbar information.</li>
+                    <li><strong>Exempel:</strong> Sessionscookies, cookies för att spara ditt samtyckesstatus för andra cookies (t.ex. CookieYes)</li>
+                    <li><strong>Laglig grund:</strong> Berättigat intresse (att tillhandahålla en fungerande webbplats).</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">3.2 Prestanda- och Analyscookies</h3>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-4">
+                    <li><strong>Syfte:</strong> Dessa cookies tillåter oss att räkna besök och trafikkällor så att vi kan mäta och förbättra prestandan på vår Webbplats. De hjälper oss att veta vilka sidor som är mest och minst populära och se hur besökare rör sig på Webbplatsen. All information som dessa cookies samlar in är aggregerad och därför anonym (efter IP-anonymisering där det är tillämpligt). Om du inte tillåter dessa cookies vet vi inte när du har besökt vår Webbplats och kommer inte att kunna övervaka dess prestanda.</li>
+                    <li><strong>Exempel:</strong>
+                        <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
+                            <li><strong>Google Analytics:</strong> Vi använder Google Analytics för att samla in anonymiserad statistik om hur besökare, som du, använder vår Webbplats. Detta hjälper oss att förstå hur Webbplatsen används och hur vi kan förbättra den för att ge dig en bättre upplevelse. Google Analytics använder cookies (små textfiler på din dator) för att göra detta. Exempel på tekniska namn för dessa cookies kan vara <code>_ga</code> och <code>_gid</code>. För att skydda din integritet har vi aktiverat en funktion i Google Analytics som anonymiserar din IP-adress innan den behandlas av Google. Denna statistik kan överföras till och lagras av Google på servrar som kan finnas i USA. Leverantören av denna tjänst är Google LLC (USA). Om du vill veta mer om hur Google hanterar data, eller om du vill förhindra att din data används av Google Analytics, kan du besöka: <a href="https://tools.google.com/dlpage/gaoptout" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://tools.google.com/dlpage/gaoptout</a> och <a href="https://policies.google.com/privacy" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Laglig grund:</strong> Ditt uttryckliga samtycke.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">3.3 Funktionella Cookies</h3>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-4">
+                    <li><strong>Syfte:</strong> Dessa cookies gör det möjligt för Webbplatsen att tillhandahålla förbättrad funktionalitet och personlig anpassning. De kan ställas in av oss eller av tredjepartsleverantörer vars tjänster vi har lagt till på våra sidor. Om du inte tillåter dessa cookies kanske vissa eller alla av dessa tjänster inte fungerar korrekt.</li>
+                    <li><strong>Exempel:</strong>
+                        <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
+                            <li><strong>Polylang:</strong> Används för att komma ihåg ditt språkval. Cookien som används heter typiskt <code>pll_language</code> (ett tekniskt namn för cookien som sparar ditt språkval). (Leverantör/Utvecklare av plugin: WP SYNTEX).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Laglig grund:</strong> Ditt uttryckliga samtycke.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">3.4 Marknadsförings- och Annonscookies</h3>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-4">
+                    <li><strong>Syfte:</strong> Dessa cookies kan ställas in via vår Webbplats av oss eller våra annonseringspartners. De kommer endast att aktiveras och användas om och när vi bedriver betalda annonskampanjer på respektive plattform och efter att du har gett ditt samtycke till detta via vår cookie-banner. De kan då användas av dessa företag för att bygga en profil av dina intressen och visa dig relevanta annonser på andra webbplatser, samt för att mäta effektiviteten av våra annonskampanjer. De lagrar inte direkt personlig information, men är baserade på att unikt identifiera din webbläsare och internetenhet. Om du inte tillåter dessa cookies kommer du att uppleva mindre riktad annonsering. För närvarande fokuserar Medidraken primärt på organisk marknadsföring.</li>
+                    <li><strong>Potentiella plattformar och Exempel på Cookies/Pixlar (aktiveras endast vid betalda kampanjer och med ditt samtycke):</strong>
+                        <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
+                            <li><strong>Meta Pixel (Facebook & Instagram):</strong> Används för att mäta annonskonverteringar, optimera annonser, bygga riktade målgrupper och återmarknadsföra till personer som har interagerat med vår Webbplats. Cookies kan inkludera <code>_fbp</code> och <code>fr</code> (tekniska namn satta av Meta). (Leverantör: Meta Platforms, Inc., USA). För mer info och inställningar: <a href="https://www.facebook.com/policy/cookies/" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://www.facebook.com/policy/cookies/</a> och <a href="https://www.facebook.com/ads/preferences/" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://www.facebook.com/ads/preferences/</a>.</li>
+                            <li><strong>TikTok Pixel:</strong> Används för liknande ändamål som Meta Pixel, men för TikTok-plattformen. En vanlig cookie kan vara <code>_ttp</code> (tekniskt namn satt av TikTok). (Leverantör: TikTok Inc./TikTok Technology Limited). Mer info: <a href="https://www.tiktok.com/legal/page/global/cookie-policy/sv" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://www.tiktok.com/legal/page/global/cookie-policy/sv</a>.</li>
+                            <li><strong>X (Twitter) Pixel:</strong> Används för annonsmätning och anpassning på X-plattformen. Cookies kan inkludera <code>personalization_id</code> och <code>guest_id</code> (tekniska namn satta av X). (Leverantör: X Corp./Twitter International Company). Mer info: <a href="https://help.twitter.com/sv/rules-and-policies/twitter-cookies" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://help.twitter.com/sv/rules-and-policies/twitter-cookies</a>.</li>
+                            <li><strong>Google Ads:</strong> Används för att visa annonser i Googles nätverk, mäta konverteringar och för återmarknadsföring. Cookies kan inkludera <code>_gcl_au</code>, <code>IDE</code>. (Leverantör: Google LLC, USA). Mer info: <a href="https://policies.google.com/technologies/ads" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://policies.google.com/technologies/ads</a>.</li>
+                            <li><strong>YouTube (via Google Ads/Analytics):</strong> Används för att visa annonser på YouTube och mäta interaktion. Cookies kan inkludera <code>VISITOR_INFO1_LIVE</code>, <code>YSC</code>. (Leverantör: Google LLC, USA). Mer info: <a href="https://policies.google.com/privacy" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Laglig grund:</strong> Ditt uttryckliga samtycke.</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">4. Tredjepartscookies</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Observera att vissa cookies på vår Webbplats, särskilt inom kategorierna Prestanda/Analys och Marknadsföring, kan placeras och hanteras av tredjepartsleverantörer som nämnts ovan. Dessa tredje parter kan använda den information de samlar in i enlighet med sina egna integritets- och cookiepolicyer, som vi länkar till ovan där det är relevant. Vi har ingen direkt kontroll över hur dessa tredjepartscookies används utöver de inställningar vi gör via deras plattformar.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">5. Dina Val och Samtycke – Hantera Cookies</h2>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
+                    <li><strong>Samtyckesbanner:</strong> När du besöker vår Webbplats för första gången kommer du att presenteras med en cookie-banner som ber om ditt samtycke för användning av icke-nödvändiga cookies. Du kan ge ditt samtycke genom att klicka på "Acceptera alla" eller anpassa dina val.</li>
+                    <li><strong>Ändra samtycke:</strong> Du kan när som helst ändra eller dra tillbaka ditt samtycke genom att klicka på länken/ikonen för 'Cookie-inställningar' som du finner i sidfoten på vår webbplats. Detta kommer att återöppna inställningspanelen för cookies.</li>
+                    <li><strong>Webbläsarinställningar:</strong> De flesta webbläsare låter dig kontrollera cookies via deras inställningsmenyer. Du kan vanligtvis ställa in din webbläsare så att den meddelar dig när du tar emot en cookie, vilket ger dig möjlighet att bestämma om du vill acceptera den eller inte. Du kan också blockera eller radera befintliga cookies. Observera att om du blockerar alla cookies (inklusive absolut nödvändiga) kanske du inte kan komma åt alla delar av vår Webbplats.
+                        <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
+                            <li>Chrome: <a href="https://support.google.com/chrome/answer/95647" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://support.google.com/chrome/answer/95647</a></li>
+                            <li>Firefox: <a href="https://support.mozilla.org/sv/kb/aktivera-och-inaktivera-kakor-webbplatser-installningar" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://support.mozilla.org/sv/kb/aktivera-och-inaktivera-kakor-webbplatser-installningar</a></li>
+                            <li>Safari: <a href="https://support.apple.com/sv-se/guide/safari/sfri11471/mac" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://support.apple.com/sv-se/guide/safari/sfri11471/mac</a></li>
+                            <li>Edge: <a href="https://support.microsoft.com/sv-se/microsoft-edge/ta-bort-cookies-i-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://support.microsoft.com/sv-se/microsoft-edge/ta-bort-cookies-i-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">6. Lista över Specifika Cookies</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6"><strong>OBS: Detta är en preliminär lista över exempel på cookies som kan användas.</strong></p>
+                
+                <div class="overflow-x-auto mb-8">
+                    <table class="w-full text-left text-sm text-neutral-600 border border-brand-earth-dark/10 rounded-lg overflow-hidden">
+                        <thead class="bg-brand-earth-lightest text-brand-earth-dark">
+                            <tr>
+                                <th class="px-4 py-3 border-b border-brand-earth-dark/10 font-bold">Kategori</th>
+                                <th class="px-4 py-3 border-b border-brand-earth-dark/10 font-bold">Cookie-namn (Exempel)</th>
+                                <th class="px-4 py-3 border-b border-brand-earth-dark/10 font-bold">Leverantör/Utvecklare</th>
+                                <th class="px-4 py-3 border-b border-brand-earth-dark/10 font-bold">Syfte</th>
+                                <th class="px-4 py-3 border-b border-brand-earth-dark/10 font-bold">Varaktighet</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-brand-earth-dark/5">
+                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
+                                <td class="px-4 py-3 font-semibold text-brand-earth-dark">Absolut Nödvändig</td>
+                                <td class="px-4 py-3 font-mono text-xs"><code>PHPSESSID</code></td>
+                                <td class="px-4 py-3">Webbserver</td>
+                                <td class="px-4 py-3">Bibehålla användarsession under besöket.</td>
+                                <td class="px-4 py-3">Session</td>
+                            </tr>
+                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
+                                <td class="px-4 py-3"></td>
+                                <td class="px-4 py-3 font-mono text-xs"><code>cookie_consent_status</code></td>
+                                <td class="px-4 py-3">CMP-verktyg</td>
+                                <td class="px-4 py-3">Sparar användarens samtyckesval för cookies.</td>
+                                <td class="px-4 py-3">1 år</td>
+                            </tr>
+                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
+                                <td class="px-4 py-3"></td>
+                                <td class="px-4 py-3 font-mono text-xs"><code>wordpress_test_cookie</code></td>
+                                <td class="px-4 py-3">WordPress</td>
+                                <td class="px-4 py-3">Kontrollerar om webbläsaren accepterar cookies.</td>
+                                <td class="px-4 py-3">Session</td>
+                            </tr>
+                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
+                                <td class="px-4 py-3 text-brand-earth-dark font-semibold">Prestanda/Analys</td>
+                                <td class="px-4 py-3 font-mono text-xs"><code>_ga</code></td>
+                                <td class="px-4 py-3">Google Analytics</td>
+                                <td class="px-4 py-3">Används för att särskilja användare.</td>
+                                <td class="px-4 py-3">2 år</td>
+                            </tr>
+                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
+                                <td class="px-4 py-3"></td>
+                                <td class="px-4 py-3 font-mono text-xs"><code>_ga_&lt;container-id&gt;</code></td>
+                                <td class="px-4 py-3">Google Analytics</td>
+                                <td class="px-4 py-3">Används för att bibehålla sessionstillstånd.</td>
+                                <td class="px-4 py-3">2 år</td>
+                            </tr>
+                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
+                                <td class="px-4 py-3 text-brand-earth-dark font-semibold">Funktionell</td>
+                                <td class="px-4 py-3 font-mono text-xs"><code>pll_language</code></td>
+                                <td class="px-4 py-3">Polylang</td>
+                                <td class="px-4 py-3">Sparar användarens valda språk för webbplatsen.</td>
+                                <td class="px-4 py-3">1 år</td>
+                            </tr>
+                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
+                                <td class="px-4 py-3 text-brand-earth-dark font-semibold">Marknadsföring</td>
+                                <td class="px-4 py-3 font-mono text-xs"><code>_fbp</code> / <code>fr</code></td>
+                                <td class="px-4 py-3">Meta Platforms</td>
+                                <td class="px-4 py-3">Leverera, mäta och förbättra annonsrelevans.</td>
+                                <td class="px-4 py-3">3 mån</td>
+                            </tr>
+                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
+                                <td class="px-4 py-3 text-brand-earth-dark font-semibold">Marknadsföring</td>
+                                <td class="px-4 py-3 font-mono text-xs"><code>_gcl_au</code> / <code>IDE</code></td>
+                                <td class="px-4 py-3">Google Ads</td>
+                                <td class="px-4 py-3">Mäta konverteringar och registrera handlingar.</td>
+                                <td class="px-4 py-3">90 dagar / 1.5 år</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">7. Ändringar i Vår Cookie Policy</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Vi kan uppdatera denna Cookie Policy vid behov för att återspegla exempelvis ändringar i de cookies vi använder eller av andra operativa, juridiska eller regulatoriska skäl. Besök därför denna sida regelbundet för att hålla dig informerad om vår användning av cookies. Datumet högst upp i denna policy anger när den senast uppdaterades.</p>
+
+                <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">8. Mer Information och Kontakt</h2>
+                <p class="text-neutral-700 leading-relaxed mb-6">Om du har några frågor om vår användning av cookies eller denna policy, vänligen kontakta oss:</p>
+
+                <div class="bg-brand-earth-lightest/50 p-6 rounded-xl border border-brand-earth-dark/5 mt-6 mb-8">
+                    <p class="text-neutral-700 leading-relaxed mb-1 font-medium text-lg">Medidraken<br />Din Hälsa-Medidraken</p>
+                    <p class="text-neutral-700 leading-relaxed mb-4">Dalgatan 20, 646 32 Gnesta</p>
+                    <p class="flex flex-col sm:flex-row sm:gap-6 gap-2">
+                        <a href="mailto:info@medidraken.com" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center gap-2 group">
+                            <Icon name="email" class="h-5 w-5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                            <span class="underline decoration-brand-sky/30 underline-offset-4">info@medidraken.com</span>
+                        </a>
+                        <a href="tel:+46705814086" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center gap-2 group">
+                            <Icon name="phone" class="h-5 w-5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                            <span class="underline decoration-brand-sky/30 underline-offset-4">+46705814086</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 </BaseLayout>

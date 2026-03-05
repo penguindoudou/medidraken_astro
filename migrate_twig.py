@@ -105,7 +105,9 @@ import Icon from '{up}components/Icon.astro';
 
 if __name__ == "__main__":
     files_to_migrate = [
-        ("legacy_wp_site/templates/page-content/kontakt.twig", "src/pages/kontakt.astro"),
+        ("legacy_wp_site/templates/page-content/kurser/instruktorsutbildning.twig", "src/pages/kurser/instruktorsutbildning.astro"),
+        ("legacy_wp_site/templates/page-content/kurser/medicinsk-qigong.twig", "src/pages/kurser/medicinsk-qigong.astro"),
+        ("legacy_wp_site/templates/page-content/kurser/tai-chi.twig", "src/pages/kurser/tai-chi.astro"),
     ]
     for twig, astro in files_to_migrate:
         if os.path.exists(twig):
