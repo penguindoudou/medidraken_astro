@@ -12,496 +12,518 @@ import linnea_mao_profileImage from '../../assets/images/linnea_mao_profile.jpg'
 ---
 
 <BaseLayout title="Behandling">
-<!-- 
+    <!-- 
    SEO-Anvisning: 
    Meta-titel: "Behandlingar i Nyköping & Gnesta | Akupunktur & TuiNa | Medidraken"
 -->
 
-<!-- ======================================= -->
-<!-- Sektion 1: Hero – Toppsektion           -->
-<!-- ======================================= -->
-<section class="hero-section min-h-[60vh]">
-    <div class="hero-background">
-        <!-- Bildförslag: En lugn bild som visar en konsultation eller en hand som håller en akupunkturnål/pulstagning -->
-        <Image src={tuina_acupuncture2Image}
-            alt="Traditionell Kinesisk Medicin konsultation" class="hero-bg-image opacity-80" />
-    </div>
-    <div class="hero-content text-center">
-        <h1 class="hero-title text-brand-earth-lighter">Behandlingar som ser hela dig</h1>
+    <!-- ======================================= -->
+    <!-- Sektion 1: Hero – Toppsektion           -->
+    <!-- ======================================= -->
+    <section class="hero-section min-h-[60vh]">
+        <div class="hero-background">
+            <!-- Bildförslag: En lugn bild som visar en konsultation eller en hand som håller en akupunkturnål/pulstagning -->
+            <Image src={tuina_acupuncture2Image} alt="Traditionell Kinesisk Medicin konsultation"
+                class="hero-bg-image opacity-80" />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="hero-title text-brand-earth-lighter">Behandlingar som ser hela dig</h1>
 
-        <p class="hero-text text-brand-earth-lightest">
-            Har du besvär som inte blir bättre, eller en känsla av att du bara behandlar symtomen utan att komma åt det
-            verkliga problemet? Hos oss är målet alltid att förstå hela din situation. Vi använder Traditionell Kinesisk
-            Medicin, anpassad för den moderna vardagen, för att skapa en trygg och effektiv behandlingsplan för
-            dig.
-        </p>
-    </div>
-</section>
+            <p class="hero-text text-brand-earth-lightest">
+                Har du besvär som inte blir bättre, eller en känsla av att du bara behandlar symtomen utan att komma åt
+                det
+                verkliga problemet? Hos oss är målet alltid att förstå hela din situation. Vi använder Traditionell
+                Kinesisk
+                Medicin, anpassad för den moderna vardagen, för att skapa en trygg och effektiv behandlingsplan för
+                dig.
+            </p>
+        </div>
+    </section>
 
-<!-- ======================================= -->
-<!-- Sektion 2: Symtom & Hälsomål            -->
-<!-- ======================================= -->
-<section class="bg-white border-t border-neutral-100">
-    <div class="section-standard">
+    <!-- ======================================= -->
+    <!-- Sektion 2: Symtom & Hälsomål            -->
+    <!-- ======================================= -->
+    <section class="bg-white border-t border-neutral-100">
+        <div class="section-standard">
+            <div class="container-base">
+                <!-- Unified Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16 px-4">
+                    <h2 class="text-brand-earth mb-4 uppercase tracking-wide">Från Smärta till Välmående</h2>
+                    <p class="text-lg text-neutral-700">
+                        Oavsett om du söker hjälp för ett specifikt problem eller vill stärka din hälsa på ett
+                        djupare plan, har vi effektiva metoder för dig.
+                    </p>
+                </div>
+
+                <!-- Content Grid: Side-by-Side on Desktop -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start max-w-5xl mx-auto">
+
+                    <!-- Left: Symtom & Besvär (Accent path) -->
+                    <div class="bg-brand-accent/10 rounded-3xl p-8 border border-brand-accent/25 shadow-sm">
+                        <div class="flex items-center mb-10 pb-6 border-b border-brand-accent/30">
+                            <div
+                                class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-6">
+                                <Icon name="flower" class="h-10 w-10 text-brand-accent-dark" />
+                            </div>
+                            <h3 class="text-brand-earth-dark font-bold text-3xl m-0">Symtom vi behandlar</h3>
+                        </div>
+
+                        <ul class="space-y-6">
+                            <li>
+                                <a href="/symtom/rygg-landrygg/"
+                                    class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                                    <div
+                                        class="h-20 w-20 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                        <Icon name="ryggont" class="h-14 w-14 text-brand-accent-dark" />
+                                    </div>
+                                    <span
+                                        class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Rygg-
+                                        & Ländryggssmärta</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/symtom/nacke-axlar-skuldror/"
+                                    class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                                    <div
+                                        class="h-16 w-16 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                        <Icon name="nackont" class="h-11 w-11 text-brand-accent-dark" />
+                                    </div>
+                                    <span
+                                        class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Värk
+                                        i Nacke, Axlar & Skuldror</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/symtom/huvudvark-yrsel/"
+                                    class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                                    <div
+                                        class="h-16 w-16 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                        <Icon name="huvudvark" class="h-11 w-11 text-brand-accent-dark" />
+                                    </div>
+                                    <span
+                                        class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Huvudvärk,
+                                        Migrän & Yrsel</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/symtom/ledvark-idrottsskador-artros/"
+                                    class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                                    <div
+                                        class="h-16 w-16 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                        <Icon name="ledvark" class="h-15 w-15 text-brand-accent-dark" />
+                                    </div>
+                                    <span
+                                        class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Ledvärk,
+                                        Artros & Idrottsskador</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="mt-8">
+                            <a href="/symtom/"
+                                class="btn-tertiary inline-flex items-center group text-sm font-bold uppercase tracking-wider text-brand-accent-dark hover:text-brand-accent hover:translate-x-1 focus:text-brand-earth-dark active:scale-95 transition-all outline-none">
+                                <span class="pb-1">Visa alla symtom & besvär</span>
+                                <span
+                                    class="ml-2 transform transition-transform group-hover:translate-x-1">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Hälsomål (Sky path) -->
+                    <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/10 shadow-sm">
+                        <div class="flex items-center mb-10 pb-6 border-b border-brand-sky/20">
+                            <div class="h-14 w-14 rounded-full bg-brand-sky/10 flex items-center justify-center mr-6">
+                                <Icon name="holistic_qi_human" class="h-10 w-10 text-brand-sky" />
+                            </div>
+                            <h3 class="text-brand-sky font-bold text-3xl m-0">Förbättra din Hälsa</h3>
+                        </div>
+
+                        <ul class="space-y-6">
+                            <li>
+                                <a href="/na-dina-halsomal/"
+                                    class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div
+                                        class="h-12 w-12 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="lightening" class="h-9 w-9 text-brand-sky" />
+                                    </div>
+                                    <span
+                                        class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Ökad
+                                        Energi & Livskraft</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/na-dina-halsomal/"
+                                    class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div
+                                        class="h-12 w-12 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="Yin_yang" class="h-7 w-7 text-brand-sky" />
+                                    </div>
+                                    <span
+                                        class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Inre
+                                        Lugn & Balans</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/na-dina-halsomal/"
+                                    class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div
+                                        class="h-12 w-12 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="shield_health" class="h-8 w-8 text-brand-sky" />
+                                    </div>
+                                    <span
+                                        class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Stärkt
+                                        Immunförsvar</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div class="mt-8">
+                            <a href="/na-dina-halsomal/"
+                                class="btn-tertiary inline-flex items-center group text-sm font-bold uppercase tracking-wider text-brand-sky hover:text-brand-sky-light hover:translate-x-1 focus:text-brand-sky-dark active:scale-95 transition-all outline-none">
+                                <span class="pb-1">Utforska hur vi når dina hälsomål</span>
+                                <span
+                                    class="ml-2 transform transition-transform group-hover:translate-x-1">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 3: Våra Behandlingsmetoder      -->
+    <!-- ======================================= -->
+    <section class="bg-brand-earth-lightest section-standard">
         <div class="container-base">
-            <!-- Unified Header -->
-            <div class="text-center max-w-3xl mx-auto mb-16 px-4">
-                <h2 class="text-brand-earth mb-4 uppercase tracking-wide">Från Smärta till Välmående</h2>
-                <p class="text-lg text-neutral-700">
-                    Oavsett om du söker hjälp för ett specifikt problem eller vill stärka din hälsa på ett
-                    djupare plan, har vi effektiva metoder för dig.
-                </p>
+            <div class="text-center mb-16">
+                <h2 class="text-brand-earth">Våra Behandlingsmetoder</h2>
             </div>
 
-            <!-- Content Grid: Side-by-Side on Desktop -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 
-                <!-- Left: Symtom & Besvär (Accent path) -->
-                <div class="bg-brand-accent/10 rounded-3xl p-8 border border-brand-accent/25 shadow-sm">
-                    <div class="flex items-center mb-10 pb-6 border-b border-brand-accent/30">
-                        <div class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-6">
-                            <Icon name="flower" class="h-10 w-10 text-brand-accent-dark" />
+                <!-- Kort 1: Akupunktur -->
+                <div class="service-card h-full bg-brand-accent/10 border border-brand-accent/20">
+                    <div class="relative overflow-hidden group">
+                        <Image src={acupunctureImage} alt="Akupunkturbehandling"
+                            class="card-image transition-transform duration-500 group-hover:scale-105" />
+                        <div
+                            class="absolute inset-0 bg-brand-earth/10 group-hover:bg-transparent transition-colors duration-300">
                         </div>
-                        <h3 class="text-brand-earth-dark font-bold text-3xl m-0">Symtom vi behandlar</h3>
                     </div>
-
-                    <ul class="space-y-6">
-                        <li>
-                            <a href="/symtom/rygg-landrygg/"
-                                class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
-                                <div
-                                    class="h-20 w-20 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
-                                    <Icon name="ryggont" class="h-14 w-14 text-brand-accent-dark" />
-                                </div>
+                    <div class="card-content">
+                        <h3 class="card-title text-2xl font-bold text-brand-earth-dark">Akupunktur</h3>
+                        <p class="card-text mt-4 text-neutral-700 leading-relaxed">
+                            En precis och kraftfull metod för att lösa upp blockeringar, lindra smärta och återställa
+                            kroppens energiflöde. Särskilt effektiv för att reglera kroppens inre system och minska
+                            smärta
+                            med en tydlig nerv- eller energikoppling. Omfattar även tekniker som öronakupressur,
+                            koppning
+                            och moxa.
+                        </p>
+                        <div class="card-link mt-auto pt-8">
+                            <a href="/behandling/akupunktur/" class="btn-tertiary text-lg flex items-center group/link">
+                                Läs mer om Akupunktur
                                 <span
-                                    class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Rygg-
-                                    & Ländryggssmärta</span>
+                                    class="ml-2 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="/symtom/nacke-axlar-skuldror/"
-                                class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
-                                <div
-                                    class="h-16 w-16 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
-                                    <Icon name="nackont" class="h-11 w-11 text-brand-accent-dark" />
-                                </div>
-                                <span
-                                    class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Värk
-                                    i Nacke, Axlar & Skuldror</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/symtom/huvudvark-yrsel/"
-                                class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
-                                <div
-                                    class="h-16 w-16 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
-                                    <Icon name="huvudvark" class="h-11 w-11 text-brand-accent-dark" />
-                                </div>
-                                <span
-                                    class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Huvudvärk,
-                                    Migrän & Yrsel</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/symtom/ledvark-idrottsskador-artros/"
-                                class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
-                                <div
-                                    class="h-16 w-16 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
-                                    <Icon name="ledvark" class="h-15 w-15 text-brand-accent-dark" />
-                                </div>
-                                <span
-                                    class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Ledvärk,
-                                    Artros & Idrottsskador</span>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="mt-8">
-                        <a href="/symtom/"
-                            class="btn-tertiary inline-flex items-center group text-sm font-bold uppercase tracking-wider text-brand-accent-dark hover:text-brand-accent hover:translate-x-1 focus:text-brand-earth-dark active:scale-95 transition-all outline-none">
-                            <span class="pb-1">Visa alla symtom & besvär</span>
-                            <span class="ml-2 transform transition-transform group-hover:translate-x-1">&rarr;</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Right: Hälsomål (Sky path) -->
-                <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/10 shadow-sm">
-                    <div class="flex items-center mb-10 pb-6 border-b border-brand-sky/20">
-                        <div class="h-14 w-14 rounded-full bg-brand-sky/10 flex items-center justify-center mr-6">
-                            <Icon name="holistic_qi_human" class="h-10 w-10 text-brand-sky" />
                         </div>
-                        <h3 class="text-brand-sky font-bold text-3xl m-0">Förbättra din Hälsa</h3>
                     </div>
+                </div>
 
-                    <ul class="space-y-6">
-                        <li>
-                            <a href="/na-dina-halsomal/"
-                                class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
-                                <div
-                                    class="h-12 w-12 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
-                                    <Icon name="holistic_qi_human" class="h-9 w-9 text-brand-sky" />
-                                </div>
+                <!-- Kort 2: TuiNa -->
+                <div class="service-card h-full bg-brand-accent/10 border border-brand-accent/20">
+                    <div class="relative overflow-hidden group">
+                        <Image src={tuina_manImage} alt="TuiNa Massage"
+                            class="card-image transition-transform duration-500 group-hover:scale-105" />
+                        <div
+                            class="absolute inset-0 bg-brand-earth/10 group-hover:bg-transparent transition-colors duration-300">
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title text-2xl font-bold text-brand-earth-dark">TuiNa – Kinesisk Medicinsk
+                            Massage
+                        </h3>
+                        <p class="card-text mt-4 text-neutral-700 leading-relaxed">
+                            En djupgående och dynamisk massageform som arbetar med kroppens muskler, leder och
+                            meridianer
+                            för att lösa upp spänningar, öka cirkulationen och lindra värk. Vårt förstahandsval när
+                            problemet är kopplat till muskler, leder och rörelseapparaten. Vi erbjuder även en
+                            variant med olja för en mer avslappnande och cirkulationsfrämjande behandling.
+                        </p>
+                        <div class="card-link mt-auto pt-8">
+                            <a href="/behandling/tuina-massage/"
+                                class="btn-tertiary text-lg flex items-center group/link">
+                                Läs mer om TuiNa-Massage
                                 <span
-                                    class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Ökad
-                                    Energi & Livskraft</span>
+                                    class="ml-2 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="/na-dina-halsomal/"
-                                class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
-                                <div
-                                    class="h-12 w-12 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
-                                    <Icon name="Yin_yang" class="h-7 w-7 text-brand-sky" />
-                                </div>
-                                <span
-                                    class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Inre
-                                    Lugn & Balans</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/na-dina-halsomal/"
-                                class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
-                                <div
-                                    class="h-12 w-12 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
-                                    <Icon name="shield_health" class="h-8 w-8 text-brand-sky" />
-                                </div>
-                                <span
-                                    class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Stärkt
-                                    Immunförsvar</span>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="mt-8">
-                        <a href="/na-dina-halsomal/"
-                            class="btn-tertiary inline-flex items-center group text-sm font-bold uppercase tracking-wider text-brand-sky hover:text-brand-sky-light hover:translate-x-1 focus:text-brand-sky-dark active:scale-95 transition-all outline-none">
-                            <span class="pb-1">Utforska hur vi når dina hälsomål</span>
-                            <span class="ml-2 transform transition-transform group-hover:translate-x-1">&rarr;</span>
-                        </a>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
-    </div>
+    </section>
 
-</section>
-
-<!-- ======================================= -->
-<!-- Sektion 3: Våra Behandlingsmetoder      -->
-<!-- ======================================= -->
-<section class="bg-brand-earth-lightest section-standard">
-    <div class="container-base">
-        <div class="text-center mb-16">
-            <h2 class="text-brand-earth">Våra Behandlingsmetoder</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-
-            <!-- Kort 1: Akupunktur -->
-            <div class="service-card h-full bg-brand-accent/10 border border-brand-accent/20">
-                <div class="relative overflow-hidden group">
-                    <Image src={acupunctureImage} alt="Akupunkturbehandling"
-                        class="card-image transition-transform duration-500 group-hover:scale-105" />
-                    <div
-                        class="absolute inset-0 bg-brand-earth/10 group-hover:bg-transparent transition-colors duration-300">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title text-2xl font-bold text-brand-earth-dark">Akupunktur</h3>
-                    <p class="card-text mt-4 text-neutral-700 leading-relaxed">
-                        En precis och kraftfull metod för att lösa upp blockeringar, lindra smärta och återställa
-                        kroppens energiflöde. Särskilt effektiv för att reglera kroppens inre system och minska smärta
-                        med en tydlig nerv- eller energikoppling. Omfattar även tekniker som öronakupressur, koppning
-                        och moxa.
-                    </p>
-                    <div class="card-link mt-auto pt-8">
-                        <a href="/behandling/akupunktur/" class="btn-tertiary text-lg flex items-center group/link">
-                            Läs mer om Akupunktur
-                            <span
-                                class="ml-2 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kort 2: TuiNa -->
-            <div class="service-card h-full bg-brand-accent/10 border border-brand-accent/20">
-                <div class="relative overflow-hidden group">
-                    <Image src={tuina_manImage} alt="TuiNa Massage"
-                        class="card-image transition-transform duration-500 group-hover:scale-105" />
-                    <div
-                        class="absolute inset-0 bg-brand-earth/10 group-hover:bg-transparent transition-colors duration-300">
-                    </div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title text-2xl font-bold text-brand-earth-dark">TuiNa – Kinesisk Medicinsk Massage
-                    </h3>
-                    <p class="card-text mt-4 text-neutral-700 leading-relaxed">
-                        En djupgående och dynamisk massageform som arbetar med kroppens muskler, leder och meridianer
-                        för att lösa upp spänningar, öka cirkulationen och lindra värk. Vårt förstahandsval när
-                        problemet är kopplat till muskler, leder och rörelseapparaten. Vi erbjuder även en
-                        variant med olja för en mer avslappnande och cirkulationsfrämjande behandling.
-                    </p>
-                    <div class="card-link mt-auto pt-8">
-                        <a href="/behandling/tuina-massage/" class="btn-tertiary text-lg flex items-center group/link">
-                            Läs mer om TuiNa-Massage
-                            <span
-                                class="ml-2 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ======================================= -->
-<!-- Sektion 4: Expertis (Teamet)            -->
-<!-- ======================================= -->
-<section class="section-standard bg-white pt-16 pb-8">
-    <div class="container-base max-w-4xl text-center">
-        <h2 class="text-brand-earth mb-4">Ett Team för Din Hälsoresa</h2>
-        <p class="text-lg text-neutral-700 max-w-2xl mx-auto mb-12">
-            Din hälsoresa hos oss guidas av den samlade expertisen hos Linnéa och Johannes.
-            Vi samarbetar för att säkerställa att du alltid får den mest effektiva vägen framåt mot en bättre hälsa.
-        </p>
-
-        <div class="max-w-4xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Johannes -->
-            <article
-                class="team-card flex-row bg-brand-accent/5 border border-brand-accent/20 text-left overflow-hidden min-h-[11rem]">
-                <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
-                    <Image src={johannes_mao_profileImage} alt="Johannes Mao"
-                        class="absolute inset-0 h-full w-full object-cover object-top" />
-                </div>
-                <div class="team-content justify-center py-4 pl-5">
-                    <h3 class="team-name text-lg">Johannes Mao</h3>
-                    <p class="team-role text-xs">Grundare, Terapeut & Huvudinstruktör</p>
-                    <div class="team-bio">
-                        <p class="text-sm leading-relaxed">Med över 30 års erfarenhet och en bakgrund som farmaceut
-                            anpassar Johannes tidlös visdom för att hjälpa dig uppnå optimal hälsa och vitalitet.</p>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Linnéa -->
-            <article
-                class="team-card flex-row bg-brand-accent/5 border border-brand-accent/20 text-left overflow-hidden min-h-[11rem]">
-                <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
-                    <Image src={linnea_mao_profileImage} alt="Linnéa Mao"
-                        class="absolute inset-0 h-full w-full object-cover object-top" />
-                </div>
-                <div class="team-content justify-center py-4 pl-5">
-                    <h3 class="team-name text-lg">Linnéa Mao</h3>
-                    <p class="team-role text-xs">Läkare i TCM, Terapeut & Akupunktör</p>
-                    <div class="team-bio">
-                        <p class="text-sm leading-relaxed">Som TCM-läkare och akupunktör kombinerar Linnéa djup
-                            kompetens inom kinesisk medicin med ett mjukt och inkännande bemötande i sina
-                            behandlingar.</p>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <div class="flex justify-center mt-10 pb-4">
-            <a href="/om-oss/" class="btn-tertiary text-lg flex items-center group/link">
-                Läs mer om Johannes & Linnéa
-                <span class="ml-2 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-
-
-<!-- ======================================= -->
-<!-- Sektion 5: Praktisk Info & Bokning      -->
-<!-- ======================================= -->
-<section class="bg-brand-earth-light section-standard text-center">
-    <div class="container-base max-w-4xl">
-
-        <!-- Huvud CTA -->
-        <div class="max-w-3xl mx-auto mb-16">
-            <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Redo att ta första steget?</h2>
-            <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
-                Vi hjälper dig att hitta rätt behandling för just dig. Många av våra klienter upplever tydlig skillnad i
-                smärta och funktion efter cirka 3 behandlingar.
+    <!-- ======================================= -->
+    <!-- Sektion 4: Expertis (Teamet)            -->
+    <!-- ======================================= -->
+    <section class="section-standard bg-white pt-16 pb-8">
+        <div class="container-base max-w-4xl text-center">
+            <h2 class="text-brand-earth mb-4">Ett Team för Din Hälsoresa</h2>
+            <p class="text-lg text-neutral-700 max-w-2xl mx-auto mb-12">
+                Din hälsoresa hos oss guidas av den samlade expertisen hos Linnéa och Johannes.
+                Vi samarbetar för att säkerställa att du alltid får den mest effektiva vägen framåt mot en bättre hälsa.
             </p>
 
-            <a href="/kontakt/" class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
-                Boka behandling
-            </a>
-        </div>
-
-        <!-- Trust & Info Row (Discrete boxes with icon containers) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 mt-0 border-t border-brand-earth-dark/10">
-
-            <!-- Column 1: Platser (With Availability Ping) -->
-            <div
-                class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
-                <div class="flex items-center mb-4">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
-                        <div class="relative flex h-3 w-3 items-center justify-center">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+            <div class="max-w-4xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Johannes -->
+                <article
+                    class="team-card flex-row bg-brand-accent/5 border border-brand-accent/20 text-left overflow-hidden min-h-[11rem]">
+                    <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
+                        <Image src={johannes_mao_profileImage} alt="Johannes Mao"
+                            class="absolute inset-0 h-full w-full object-cover object-top" />
+                    </div>
+                    <div class="team-content justify-center py-4 pl-5">
+                        <h3 class="team-name text-lg">Johannes Mao</h3>
+                        <p class="team-role text-xs">Grundare, Terapeut & Huvudinstruktör</p>
+                        <div class="team-bio">
+                            <p class="text-sm leading-relaxed">Med över 30 års erfarenhet och en bakgrund som farmaceut
+                                anpassar Johannes tidlös visdom för att hjälpa dig uppnå optimal hälsa och vitalitet.
+                            </p>
                         </div>
                     </div>
-                    <span class="font-bold text-brand-earth-dark text-xl">Mottagningar</span>
-                </div>
-                <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
-                    Vi erbjuder behandlingar i <a href="/kontakt/#mottagningar"
-                        class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>,
+                </article>
+
+                <!-- Linnéa -->
+                <article
+                    class="team-card flex-row bg-brand-accent/5 border border-brand-accent/20 text-left overflow-hidden min-h-[11rem]">
+                    <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
+                        <Image src={linnea_mao_profileImage} alt="Linnéa Mao"
+                            class="absolute inset-0 h-full w-full object-cover object-top" />
+                    </div>
+                    <div class="team-content justify-center py-4 pl-5">
+                        <h3 class="team-name text-lg">Linnéa Mao</h3>
+                        <p class="team-role text-xs">Läkare i TCM, Terapeut & Akupunktör</p>
+                        <div class="team-bio">
+                            <p class="text-sm leading-relaxed">Som TCM-läkare och akupunktör kombinerar Linnéa djup
+                                kompetens inom kinesisk medicin med ett mjukt och inkännande bemötande i sina
+                                behandlingar.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="flex justify-center mt-10 pb-4">
+                <a href="/om-oss/" class="btn-tertiary text-lg flex items-center group/link">
+                    Läs mer om Johannes & Linnéa
+                    <span class="ml-2 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ======================================= -->
+    <!-- Sektion 5: Praktisk Info & Bokning      -->
+    <!-- ======================================= -->
+    <section class="bg-brand-earth-light section-standard text-center">
+        <div class="container-base max-w-4xl">
+
+            <!-- Huvud CTA -->
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Redo att ta första steget?</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Vi hjälper dig att hitta rätt behandling för just dig. Många av våra klienter upplever tydlig
+                    skillnad i
+                    smärta och funktion efter cirka 3 behandlingar.
+                </p>
+
+                <a href="/kontakt/" class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
+                    Boka behandling
+                </a>
+            </div>
+
+            <!-- Trust & Info Row (Discrete boxes with icon containers) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 mt-0 border-t border-brand-earth-dark/10">
+
+                <!-- Column 1: Platser (With Availability Ping) -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
+                            <div class="relative flex h-3 w-3 items-center justify-center">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Mottagningar</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Vi erbjuder behandlingar i <a href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>,
+                        <a href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a>
+                        och <a href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>.
+                        Alla besök sker efter tidsbokning.
+                    </div>
                     <a href="/kontakt/#mottagningar"
-                        class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a>
-                    och <a href="/kontakt/#mottagningar"
-                        class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>.
-                    Alla besök sker efter tidsbokning.
+                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Se
+                        alla mottagningar &rarr;</a>
                 </div>
-                <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Se alla mottagningar &rarr;</a>
-            </div>
 
-            <!-- Column 2: Friskvård -->
-            <div
-                class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
-                <div class="flex items-center mb-4">
-                    <div
-                        class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
-                        <Icon name="shield_health" class="h-6 w-6" />
+                <!-- Column 2: Friskvård -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="shield_health" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Friskvårdsbidrag</span>
                     </div>
-                    <span class="font-bold text-brand-earth-dark text-xl">Friskvårdsbidrag</span>
-                </div>
-                <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
-                    Använd ditt bidrag! Alla våra behandlingar är godkända.<br />
-                </div>
-                <a href="/friskvardsbidrag/"
-                    class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs
-                    mer &rarr;</a>
-            </div>
-
-            <!-- Column 3: Presentkort -->
-            <div
-                class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
-                <div class="flex items-center mb-4">
-                    <div
-                        class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
-                        <Icon name="present" class="h-6 w-6" />
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Använd ditt bidrag! Alla våra behandlingar är godkända.<br />
                     </div>
-                    <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
+                    <a href="/friskvardsbidrag/"
+                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs
+                        mer &rarr;</a>
                 </div>
-                <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
-                    Ge bort en behandling med presentkort.<br />
-                </div>
-                <a href="/presentkort/"
-                    class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs
-                    mer &rarr;</a>
-            </div>
 
+                <!-- Column 3: Presentkort -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="present" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Ge bort en behandling med presentkort.<br />
+                    </div>
+                    <a href="/presentkort/"
+                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs
+                        mer &rarr;</a>
+                </div>
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ======================================= -->
-<!-- Sektion 6: FAQ                          -->
-<!-- ======================================= -->
-<section class="section-standard bg-white">
-    <div class="container-base max-w-3xl">
-        <h2 class="text-brand-earth text-center mb-12">Vanliga Frågor om Våra Behandlingar</h2>
+    <!-- ======================================= -->
+    <!-- Sektion 6: FAQ                          -->
+    <!-- ======================================= -->
+    <section class="section-standard bg-white">
+        <div class="container-base max-w-3xl">
+            <h2 class="text-brand-earth text-center mb-12">Vanliga Frågor om Våra Behandlingar</h2>
 
-        <div class="space-y-4" x-data="{ active: null }">
+            <div class="space-y-4" x-data="{ active: null }">
 
-            <!-- Fråga 1 -->
-            <div class="border border-neutral-200 rounded-lg overflow-hidden">
-                <button @click="active === 1 ? active = null : active = 1"
-                    class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
-                    <span class="font-bold text-brand-earth text-left">Hur vet jag vilken
-                        behandling som är bäst för mig?</span>
-                    <span class="ml-4 text-brand-sky transform transition-transform"
-                        :class="active === 1 ? 'rotate-180' : ''">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </span>
-                </button>
-                <div x-show="active === 1" x-collapse x-cloak
-                    class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
-                    Det behöver du inte veta på förhand. Under vår första kontakt diskuterar vi dina besvär, och
-                    utifrån det rekommenderar vi den metod eller kombination av metoder som vi bedömer kommer att
-                    hjälpa dig bäst.
+                <!-- Fråga 1 -->
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click="active === 1 ? active = null : active = 1"
+                        class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth text-left">Hur vet jag vilken
+                            behandling som är bäst för mig?</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform"
+                            :class="active === 1 ? 'rotate-180' : ''">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show="active === 1" x-collapse x-cloak
+                        class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        Det behöver du inte veta på förhand. Under vår första kontakt diskuterar vi dina besvär, och
+                        utifrån det rekommenderar vi den metod eller kombination av metoder som vi bedömer kommer att
+                        hjälpa dig bäst.
+                    </div>
                 </div>
-            </div>
 
-            <!-- Fråga 2 -->
-            <div class="border border-neutral-200 rounded-lg overflow-hidden">
-                <button @click="active === 2 ? active = null : active = 2"
-                    class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
-                    <span class="font-bold text-brand-earth text-left">Hur snabbt kan jag
-                        förvänta mig resultat?</span>
-                    <span class="ml-4 text-brand-sky transform transition-transform"
-                        :class="active === 2 ? 'rotate-180' : ''">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </span>
-                </button>
-                <div x-show="active === 2" x-collapse x-cloak
-                    class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
-                    Det är individuellt, men vår erfarenhet är att många känner en tydlig skillnad redan efter 1-3
-                    behandlings-tillfällen. För mer långvariga eller komplexa besvär kan en längre behandlingsserie
-                    behövas.
+                <!-- Fråga 2 -->
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click="active === 2 ? active = null : active = 2"
+                        class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth text-left">Hur snabbt kan jag
+                            förvänta mig resultat?</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform"
+                            :class="active === 2 ? 'rotate-180' : ''">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show="active === 2" x-collapse x-cloak
+                        class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        Det är individuellt, men vår erfarenhet är att många känner en tydlig skillnad redan efter 1-3
+                        behandlings-tillfällen. För mer långvariga eller komplexa besvär kan en längre behandlingsserie
+                        behövas.
+                    </div>
                 </div>
-            </div>
 
-            <!-- Fråga 3 (Utökad) -->
-            <div class="border border-neutral-200 rounded-lg overflow-hidden">
-                <button @click="active === 3 ? active = null : active = 3"
-                    class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
-                    <span class="font-bold text-brand-earth text-left">Vad kan jag göra själv
-                        för att förbättra resultatet?</span>
-                    <span class="ml-4 text-brand-sky transform transition-transform"
-                        :class="active === 3 ? 'rotate-180' : ''">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </span>
-                </button>
-                <div x-show="active === 3" x-collapse x-cloak
-                    class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
-                    <p class="mb-6">
-                        Din delaktighet är avgörande för ett hållbart resultat. Ett framgångsrikt upplägg bygger ofta på
-                        tre delar som samverkar:
-                    </p>
-                    <ol class="space-y-6 list-decimal list-outside ml-5">
-                        <li class="pl-2">
-                            <strong class="text-brand-earth-dark block mb-2">Effektiva Verktyg för Hälsa &
-                                Läkning:</strong>
-                            För att skapa en varaktig förändring använder vi flera metoder. Våra djupgående behandlingar
-                            fokuserar på att effektivt uppnå specifika resultat som minskad smärta eller förbättrad
-                            funktionell rörlighet, medan Medicinsk Qigong och Tai Chi ger dig verktyg att bygga och
-                            upprätthålla en stark och stabil hälsa på sikt.
-                        </li>
-                        <li class="pl-2">
-                            <strong class="text-brand-earth-dark block mb-2">Skapa Hållbara Vanor för Långsiktigt
-                                Välmående:</strong>
-                            Nyckeln till ett hållbart resultat är att skapa och upprätthålla goda vanor. Här ser vi
-                            regelbunden praktik av Medicinsk Qigong & Tai Chi som en viktig del för att hantera stress
-                            och bygga och upprätthålla stärkande rutiner.
-                        </li>
-                        <li class="pl-2">
-                            <strong class="text-brand-earth-dark block mb-2">Använd oss som ditt stöd och
-                                bollplank:</strong>
-                            Vi ser din hälsoresa som ett samspel. En öppen dialog är en naturlig del av vår process -
-                            oavsett om det handlar om din vardag eller hur våra metoder kan samverka med annan vård.
-                            <span class="text-brand-sky font-bold">Vi är här för att stödja dig på vägen.</span>
-                        </li>
-                    </ol>
+                <!-- Fråga 3 (Utökad) -->
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click="active === 3 ? active = null : active = 3"
+                        class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth text-left">Vad kan jag göra själv
+                            för att förbättra resultatet?</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform"
+                            :class="active === 3 ? 'rotate-180' : ''">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show="active === 3" x-collapse x-cloak
+                        class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        <p class="mb-6">
+                            Din delaktighet är avgörande för ett hållbart resultat. Ett framgångsrikt upplägg bygger
+                            ofta på
+                            tre delar som samverkar:
+                        </p>
+                        <ol class="space-y-6 list-decimal list-outside ml-5">
+                            <li class="pl-2">
+                                <strong class="text-brand-earth-dark block mb-2">Effektiva Verktyg för Hälsa &
+                                    Läkning:</strong>
+                                För att skapa en varaktig förändring använder vi flera metoder. Våra djupgående
+                                behandlingar
+                                fokuserar på att effektivt uppnå specifika resultat som minskad smärta eller förbättrad
+                                funktionell rörlighet, medan Medicinsk Qigong och Tai Chi ger dig verktyg att bygga och
+                                upprätthålla en stark och stabil hälsa på sikt.
+                            </li>
+                            <li class="pl-2">
+                                <strong class="text-brand-earth-dark block mb-2">Skapa Hållbara Vanor för Långsiktigt
+                                    Välmående:</strong>
+                                Nyckeln till ett hållbart resultat är att skapa och upprätthålla goda vanor. Här ser vi
+                                regelbunden praktik av Medicinsk Qigong & Tai Chi som en viktig del för att hantera
+                                stress
+                                och bygga och upprätthålla stärkande rutiner.
+                            </li>
+                            <li class="pl-2">
+                                <strong class="text-brand-earth-dark block mb-2">Använd oss som ditt stöd och
+                                    bollplank:</strong>
+                                Vi ser din hälsoresa som ett samspel. En öppen dialog är en naturlig del av vår process
+                                -
+                                oavsett om det handlar om din vardag eller hur våra metoder kan samverka med annan vård.
+                                <span class="text-brand-sky font-bold">Vi är här för att stödja dig på vägen.</span>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 </BaseLayout>
