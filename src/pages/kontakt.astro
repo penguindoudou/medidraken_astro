@@ -10,12 +10,12 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
 
 <BaseLayout title="Kontakt">
     <section class="section-standard bg-brand-earth-lightest relative overflow-hidden">
-        <div class="container-base space-y-16 lg:space-y-24">
+        <div class="container-base space-y-6 lg:space-y-12">
 
             <!-- Rad 1: Intro & Dekorativ Icon -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-[1.0fr_0.8fr] gap-12 lg:gap-4 items-center">
                 <!-- Vänster: Intro -->
-                <div class="max-w-xl">
+                <div class="max-w-xl lg:ml-auto">
                     <h1 class="text-brand-earth-dark mb-6">Kontakta Oss</h1>
                     <div class="space-y-4 text-lg text-neutral-800 leading-relaxed">
                         <p>Vi ser fram emot att höra från dig!</p>
@@ -30,14 +30,61 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                         </p>
                     </div>
                 </div>
-
                 <!-- Höger: Dekorativ Grafik -->
-                <div class="hidden lg:flex justify-center pr-4 opacity-40 text-brand-earth-light">
+                <div class="hidden lg:flex justify-center pr-4 opacity-40 text-brand-accent-dark">
                     <Icon name="taichi_qigong_flow" class="w-full max-w-[250px] h-auto" />
                 </div>
             </div>
 
-            <!-- Rad 2: Formulär & Kontaktinfo -->
+            <!-- Rad 2: Tillgänglighet och Tidsbokning (Flyttad upp) -->
+            <div class="text-center max-w-5xl mx-auto py-8 lg:py-10 border-y border-brand-earth-light/20">
+                <h2 class="text-3xl text-brand-earth-dark font-semibold mb-10">Tillgänglighet och Tidsbokning</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Tidsbokning -->
+                    <div
+                        class="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm border border-brand-earth-light/20">
+                        <div
+                            class="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mb-4 text-brand-accent-dark">
+                            <Icon name="calendar" class="w-10 h-10" />
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-earth-dark mb-3">Endast tidsbokning</h4>
+                        <p class="text-neutral-700 leading-relaxed">
+                            Alla behandlingar, kurser och privatlektioner hos Medidraken sker endast efter
+                            tidsbokning.
+                        </p>
+                    </div>
+
+                    <!-- Vanliga tider -->
+                    <div
+                        class="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm border border-brand-earth-light/20">
+                        <div
+                            class="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mb-4 text-brand-accent-dark">
+                            <Icon name="clock" class="w-10 h-10" />
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-earth-dark mb-3">Vanliga tider</h4>
+                        <p class="text-neutral-700 leading-relaxed">
+                            Vi erbjuder vanligtvis tider alla dagar i veckan mellan kl. 09:00 och 20:00, men vi är
+                            flexibla och kan ofta anpassa oss efter ditt schema.
+                        </p>
+                    </div>
+
+                    <!-- Kontakta oss -->
+                    <div
+                        class="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm border border-brand-earth-light/20">
+                        <div
+                            class="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mb-4 text-brand-accent-dark">
+                            <Icon name="phone_outline" class="w-10 h-10" />
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-earth-dark mb-3">Hitta en tid</h4>
+                        <p class="text-neutral-700 leading-relaxed">
+                            Kontakta oss så hjälper vi dig att hitta en tid som passar dig.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rad 3: Formulär & Kontaktinfo -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
                 <!-- Vänster: Formulär -->
                 <div
@@ -57,14 +104,14 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div>
-                                <label for="email" class="block text-sm font-medium text-neutral-700 mb-1">E-post <span
-                                        class="text-red-500">*</span></label>
+                                <label for="email" class="block text-sm font-medium text-neutral-700 mb-1">E-post
+                                    <span class="text-red-500">*</span></label>
                                 <input type="email" id="email" name="email" required
                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
                             </div>
                             <div>
-                                <label for="phone" class="block text-sm font-medium text-neutral-700 mb-1">Telefon <span
-                                        class="text-red-500">*</span></label>
+                                <label for="phone" class="block text-sm font-medium text-neutral-700 mb-1">Telefon
+                                    <span class="text-red-500">*</span></label>
                                 <input type="tel" id="phone" name="phone" required
                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
                             </div>
@@ -87,10 +134,12 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                         </div>
 
                         <div>
-                            <label for="message" class="block text-sm font-medium text-neutral-700 mb-1">Ditt Meddelande
+                            <label for="message" class="block text-sm font-medium text-neutral-700 mb-1">Ditt
+                                Meddelande
                                 <span class="text-red-500">*</span></label>
                             <p class="text-xs text-neutral-500 mb-2">Beskriv ditt ärende, dina frågor eller vad du
-                                behöver hjälp med. Om det gäller en kurs, ange gärna önskad ort och eventuella önskemål
+                                behöver hjälp med. Om det gäller en kurs, ange gärna önskad ort och eventuella
+                                önskemål
                                 om dagar/tider. Gäller det en privat grupp, beskriv gärna era önskemål.</p>
                             <textarea id="message" name="message" rows="5" required
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"></textarea>
@@ -143,7 +192,8 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                         </div>
                         <div class="pt-4 border-t border-brand-accent/20 mt-6">
                             <p class="text-sm text-neutral-600 italic leading-relaxed">
-                                "Vi svarar när vi är tillgängliga. Lämna gärna ett meddelande eller skicka ett SMS, så
+                                "Vi svarar när vi är tillgängliga. Lämna gärna ett meddelande eller skicka ett SMS,
+                                så
                                 återkommer vi så snart vi kan."
                             </p>
                         </div>
@@ -164,12 +214,15 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                                 <p class="text-[10px] font-bold uppercase tracking-wider text-brand-accent-dark mb-2">
                                     Grundare & Terapeut</p>
                                 <div class="team-bio">
-                                    <p class="text-xs leading-relaxed text-neutral-700">Med över 30 års erfarenhet och
+                                    <p class="text-xs leading-relaxed text-neutral-700">Med över 30 års erfarenhet
+                                        och
                                         tusentals behandlingar är Johannes Medidrakens drivkraft.</p>
                                     <div x-show="open" x-transition x-cloak class="mt-2 space-y-2">
-                                        <p class="text-xs leading-relaxed text-neutral-700">Han är utbildad farmaceut
+                                        <p class="text-xs leading-relaxed text-neutral-700">Han är utbildad
+                                            farmaceut
                                             inom
-                                            både kinesisk och västerländsk medicin, samt terapeut inom TuiNa massage.
+                                            både kinesisk och västerländsk medicin, samt terapeut inom TuiNa
+                                            massage.
                                         </p>
                                     </div>
                                 </div>
@@ -200,12 +253,15 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                                     Läkare
                                     i TCM & Akupunktör</p>
                                 <div class="team-bio">
-                                    <p class="text-xs leading-relaxed text-neutral-700">Linnéa är läkare inom TCM och
+                                    <p class="text-xs leading-relaxed text-neutral-700">Linnéa är läkare inom TCM
+                                        och
                                         akupunktör, utbildad i Kina, med närmare 20 års erfarenhet.</p>
                                     <div x-show="open" x-transition x-cloak class="mt-2 space-y-2">
-                                        <p class="text-xs leading-relaxed text-neutral-700">Som terapeut är hon känd för
+                                        <p class="text-xs leading-relaxed text-neutral-700">Som terapeut är hon känd
+                                            för
                                             att
-                                            vara mjuk, inkännande och specialiserad på smärta, stress och migrän.</p>
+                                            vara mjuk, inkännande och specialiserad på smärta, stress och migrän.
+                                        </p>
                                     </div>
                                 </div>
                                 <button @click="open = !open"
@@ -226,59 +282,11 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
         </div>
     </section>
 
-    <section class="section-standard bg-neutral-50" id="mottagningar">
+    <section class="section-standard bg-neutral-50 scroll-mt-20" id="mottagningar">
         <div class="container-base">
 
-            <div class="text-center max-w-5xl mx-auto mb-16">
-                <h2 class="text-brand-earth mb-10">Våra Mottagningar & Tidsbokning</h2>
-
-                <h3 class="text-3xl text-brand-earth-dark font-semibold mb-10">Tillgänglighet och Tider</h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Tidsbokning -->
-                    <div
-                        class="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm border border-brand-earth-light/20">
-                        <div
-                            class="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mb-4 text-brand-accent-dark">
-                            <Icon name="calendar" class="w-10 h-10" />
-                        </div>
-                        <h4 class="text-xl font-bold text-brand-earth-dark mb-3">Endast tidsbokning</h4>
-                        <p class="text-neutral-700 leading-relaxed">
-                            Alla behandlingar, kurser och privatlektioner hos Medidraken sker endast efter tidsbokning.
-                        </p>
-                    </div>
-
-                    <!-- Vanliga tider -->
-                    <div
-                        class="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm border border-brand-earth-light/20">
-                        <div
-                            class="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mb-4 text-brand-accent-dark">
-                            <Icon name="clock" class="w-10 h-10" />
-                        </div>
-                        <h4 class="text-xl font-bold text-brand-earth-dark mb-3">Vanliga tider</h4>
-                        <p class="text-neutral-700 leading-relaxed">
-                            Vi erbjuder vanligtvis tider alla dagar i veckan mellan kl. 09:00 och 20:00, men vi är
-                            flexibla och kan ofta anpassa oss efter ditt schema.
-                        </p>
-                    </div>
-
-                    <!-- Kontakta oss -->
-                    <div
-                        class="flex flex-col items-center p-6 bg-white rounded-xl shadow-sm border border-brand-earth-light/20">
-                        <div
-                            class="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center mb-4 text-brand-accent-dark">
-                            <Icon name="phone_outline" class="w-10 h-10" />
-                        </div>
-                        <h4 class="text-xl font-bold text-brand-earth-dark mb-3">Hitta en tid</h4>
-                        <p class="text-neutral-700 leading-relaxed">
-                            Kontakta oss så hjälper vi dig att hitta en tid som passar dig.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
             <div class="text-center max-w-3xl mx-auto mb-10">
-                <h3 class="text-3xl text-brand-earth-dark font-semibold mb-4">Hitta till Oss</h3>
+                <h2 class="text-3xl text-brand-earth-dark font-semibold mb-4">Hitta till Oss</h2>
                 <p class="text-lg text-neutral-700 leading-relaxed">
                     Vi har vår primära bas och mottagning i Nyköping. Vi erbjuder även bokade tider på våra mottagningar
                     i Gnesta och Oxelösund enligt överenskommelse och tillgänglighet.
