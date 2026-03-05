@@ -4,17 +4,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 
 // Images
+import johannesImage from '../assets/images/johannes_mao_profile.jpg';
+import linneaImage from '../assets/images/linnea_mao_profile.jpg';
 ---
 
 <BaseLayout title="Kontakt">
     <section class="section-standard bg-brand-earth-lightest relative overflow-hidden">
-        <div class="container-base">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div class="container-base space-y-16 lg:space-y-24">
 
-                <!-- Vänster: Information -->
-                <div class="contact-info">
+            <!-- Rad 1: Intro & Dekorativ Icon -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Vänster: Intro -->
+                <div class="max-w-xl">
                     <h1 class="text-brand-earth-dark mb-6">Kontakta Oss</h1>
-                    <div class="space-y-4 text-lg text-neutral-800 leading-relaxed mb-8">
+                    <div class="space-y-4 text-lg text-neutral-800 leading-relaxed">
                         <p>Vi ser fram emot att höra från dig!</p>
 
                         <p>
@@ -26,49 +29,23 @@ import Icon from '../components/Icon.astro';
                             För snabbast svar rekommenderar vi att du ringer eller använder formuläret nedan.
                         </p>
                     </div>
-
-                    <div class="bg-brand-accent/10 border border-brand-accent/20 p-8 rounded-xl space-y-6">
-                        <div>
-                            <div class="flex items-center text-brand-earth-dark font-semibold text-lg mb-2">
-                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                    </path>
-                                </svg>
-                                Telefon
-                            </div>
-                            <a href="tel:+46705814086"
-                                class="text-brand-sky-dark hover:text-brand-sky-bright font-medium text-lg ml-9 transition-colors">+467
-                                058 140 86</a>
-                        </div>
-                        <div>
-                            <div class="flex items-center text-brand-earth-dark font-semibold text-lg mb-2">
-                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                    </path>
-                                </svg>
-                                E-post
-                            </div>
-                            <a href="mailto:info@medidraken.com"
-                                class="text-brand-sky-dark hover:text-brand-sky-bright font-medium text-lg ml-9 transition-colors">info@medidraken.com</a>
-                        </div>
-                        <div class="pt-4 border-t border-brand-accent/20 mt-6">
-                            <p class="text-sm text-neutral-600 italic leading-relaxed">
-                                "Vi svarar när vi är tillgängliga. Lämna gärna ett meddelande eller skicka ett SMS, så
-                                återkommer vi så snart vi kan."
-                            </p>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Höger: Formulär -->
+                <!-- Höger: Dekorativ Grafik -->
+                <div class="hidden lg:flex justify-center pr-4 opacity-40 text-brand-earth-light">
+                    <Icon name="taichi_qigong_flow" class="w-full max-w-[250px] h-auto" />
+                </div>
+            </div>
+
+            <!-- Rad 2: Formulär & Kontaktinfo -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+                <!-- Vänster: Formulär -->
                 <div
                     class="contact-form-wrapper bg-white shadow-xl shadow-brand-earth/5 p-8 sm:p-10 rounded-2xl border border-brand-earth-light/30">
                     <h3 class="text-2xl text-brand-earth mb-6 font-semibold">Skicka ett Meddelande</h3>
 
                     <!-- NOTERA TILL UTVECKLARE: Här kan du klistra in din Fluent Forms shortcode typ [fluentform id="1"].
-                     Nedan är en välbyggd mockup på hur formuläret ska se ut enligt instruktionerna. -->
+                    Nedan är en välbyggd mockup på hur formuläret ska se ut enligt instruktionerna. -->
                     <form action="#" method="POST" class="space-y-5">
 
                         <div>
@@ -133,12 +110,121 @@ import Icon from '../components/Icon.astro';
                                 vårt separata formulär för offertförfrågan här &rarr;</a>
                         </p>
                     </div>
+                </div>
 
+                <!-- Höger: Kontaktbox & Team -->
+                <div class="space-y-8">
+                    <!-- Kontaktinformation Box -->
+                    <div class="bg-brand-accent/10 border border-brand-accent/20 p-8 rounded-xl space-y-6">
+                        <div>
+                            <div class="flex items-center text-brand-earth-dark font-semibold text-lg mb-2">
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                    </path>
+                                </svg>
+                                Telefon
+                            </div>
+                            <a href="tel:+46705814086"
+                                class="text-brand-sky-dark hover:text-brand-sky-bright font-medium text-lg ml-9 transition-colors">+467
+                                058 140 86</a>
+                        </div>
+                        <div>
+                            <div class="flex items-center text-brand-earth-dark font-semibold text-lg mb-2">
+                                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                E-post
+                            </div>
+                            <a href="mailto:info@medidraken.com"
+                                class="text-brand-sky-dark hover:text-brand-sky-bright font-medium text-lg ml-9 transition-colors">info@medidraken.com</a>
+                        </div>
+                        <div class="pt-4 border-t border-brand-accent/20 mt-6">
+                            <p class="text-sm text-neutral-600 italic leading-relaxed">
+                                "Vi svarar när vi är tillgängliga. Lämna gärna ett meddelande eller skicka ett SMS, så
+                                återkommer vi så snart vi kan."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Team Profiler -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+                        <!-- Johannes -->
+                        <article
+                            class="team-card h-auto flex flex-row bg-white/50 border border-brand-earth-light/20 text-left overflow-hidden items-start rounded-xl shadow-sm"
+                            x-data="{ open: false }">
+                            <div class="relative w-24 md:w-32 shrink-0 aspect-[3/4] overflow-hidden">
+                                <Image src={johannesImage} alt="Johannes Mao"
+                                    class="absolute inset-0 h-full w-full object-cover object-top" />
+                            </div>
+                            <div class="team-content justify-start py-3 pl-4 pr-3 flex-grow">
+                                <h3 class="text-brand-earth-dark text-base font-bold mb-1">Johannes Mao</h3>
+                                <p class="text-[10px] font-bold uppercase tracking-wider text-brand-accent-dark mb-2">
+                                    Grundare & Terapeut</p>
+                                <div class="team-bio">
+                                    <p class="text-xs leading-relaxed text-neutral-700">Med över 30 års erfarenhet och
+                                        tusentals behandlingar är Johannes Medidrakens drivkraft.</p>
+                                    <div x-show="open" x-transition x-cloak class="mt-2 space-y-2">
+                                        <p class="text-xs leading-relaxed text-neutral-700">Han är utbildad farmaceut
+                                            inom
+                                            både kinesisk och västerländsk medicin, samt terapeut inom TuiNa massage.
+                                        </p>
+                                    </div>
+                                </div>
+                                <button @click="open = !open"
+                                    class="mt-2 text-xs font-semibold text-brand-sky hover:text-brand-accent-dark transition-all flex items-center gap-1">
+                                    <span x-text="open ? 'Visa mindre' : 'Läs mer'"></span>
+                                    <svg class="h-3 w-3 transform transition-transform duration-300"
+                                        :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- Linnéa -->
+                        <article
+                            class="team-card h-auto flex flex-row bg-white/50 border border-brand-earth-light/20 text-left overflow-hidden items-start rounded-xl shadow-sm"
+                            x-data="{ open: false }">
+                            <div class="relative w-24 md:w-32 shrink-0 aspect-[3/4] overflow-hidden">
+                                <Image src={linneaImage} alt="Linnéa Mao"
+                                    class="absolute inset-0 h-full w-full object-cover object-top" />
+                            </div>
+                            <div class="team-content justify-start py-3 pl-4 pr-3 flex-grow">
+                                <h3 class="text-brand-earth-dark text-base font-bold mb-1">Linnéa Mao</h3>
+                                <p class="text-[10px] font-bold uppercase tracking-wider text-brand-accent-dark mb-2">
+                                    Läkare
+                                    i TCM & Akupunktör</p>
+                                <div class="team-bio">
+                                    <p class="text-xs leading-relaxed text-neutral-700">Linnéa är läkare inom TCM och
+                                        akupunktör, utbildad i Kina, med närmare 20 års erfarenhet.</p>
+                                    <div x-show="open" x-transition x-cloak class="mt-2 space-y-2">
+                                        <p class="text-xs leading-relaxed text-neutral-700">Som terapeut är hon känd för
+                                            att
+                                            vara mjuk, inkännande och specialiserad på smärta, stress och migrän.</p>
+                                    </div>
+                                </div>
+                                <button @click="open = !open"
+                                    class="mt-2 text-xs font-semibold text-brand-sky hover:text-brand-accent-dark transition-all flex items-center gap-1">
+                                    <span x-text="open ? 'Visa mindre' : 'Läs mer'"></span>
+                                    <svg class="h-3 w-3 transform transition-transform duration-300"
+                                        :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </article>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <section class="section-standard bg-neutral-50" id="mottagningar">
         <div class="container-base">
