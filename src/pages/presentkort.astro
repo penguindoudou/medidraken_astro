@@ -1,12 +1,148 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// Placeholder bild, byt ut vid tillfälle. Använder en befintlig som stödjande bakgrund så länge.
+import heroImage from '../assets/images/ancient_modern_bridge3.png'; 
 ---
-<BaseLayout title="Presentkort">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Presentkort</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Presentkort på Massage, Akupunktur, Tai Chi & Qigong i Nyköping | Medidraken">
+    <!-- Sektion 1: Toppsektion (Hero) -->
+    <section class="hero-section min-h-[50vh]">
+        <div class="hero-background">
+            <Image 
+                src={heroImage} 
+                alt="Ge bort en gåva av hälsa" 
+                class="hero-bg-image opacity-70 object-top" 
+            />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="hero-title text-brand-earth-lighter">Ge Bort en Gåva av Hälsa &amp; Välbefinnande</h1>
+            
+            <p class="hero-text text-brand-earth-lightest">
+                Ett presentkort från Medidraken är mer än bara en present \u2013 det är en omtänksam gest som ger någon du bryr dig om en möjlighet att investera i sin egen hälsa. Perfekt som födelsedagspresent, julklapp, eller bara för att visa din uppskattning.
+            </p>
+        </div>
+    </section>
+
+    <!-- Sektion 2: Hur Fungerar Det? -->
+    <section class="bg-brand-earth-lightest section-standard">
+        <div class="container-base">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth mb-4">Flexibelt, Enkelt &amp; Uppskattat</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Box 1: Välj ett Belopp -->
+                <div class="content-box flex flex-col items-center hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mb-4 mx-auto">
+                        <Icon name="heart_handshake" class="h-10 w-10 text-brand-accent-dark" />
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Du Väljer Värdet</h3>
+                    <p class="text-neutral-700 text-center flex-grow">
+                        Du bestämmer själv vilket belopp du vill ladda presentkortet med. Vi hjälper dig gärna att uppskatta ett passande värde baserat på vilken typ av tjänst du har i åtanke.
+                    </p>
+                </div>
+
+                <!-- Box 2: Välj en Tjänst -->
+                <div class="content-box flex flex-col items-center hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mb-4 mx-auto">
+                        <Icon name="flower" class="h-10 w-10 text-brand-accent-dark" />
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Full Valfrihet för Mottagaren</h3>
+                    <p class="text-neutral-700 text-center flex-grow">
+                        Presentkortet kan användas som betalning eller delbetalning för alla våra tjänster \u2013 från en avslappnande TuiNa- eller Oljemassage och stärkande Akupunkturbehandlingar till en hel kurs i Medicinsk Qigong eller Tai Chi.
+                    </p>
+                </div>
+
+                <!-- Box 3: Lång Giltighetstid -->
+                <div class="content-box flex flex-col items-center hover:-translate-y-1 transition-transform duration-300">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mb-4 mx-auto">
+                        <svg class="h-10 w-10 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Gott om Tid att Använda</h3>
+                    <p class="text-neutral-700 text-center flex-grow">
+                        Våra presentkort är giltiga i 12 månader från inköpsdatum, så att mottagaren i lugn och ro kan hitta en tid eller kursstart som passar dem.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 3: Så Här Köper Du (Huvud-CTA) -->
+    <section class="section-standard bg-brand-earth-light text-center">
+        <div class="container-base max-w-4xl">
+            <div class="max-w-3xl mx-auto mb-8">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Kontakta Oss för att Köpa Ditt Presentkort</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Det enklaste sättet att köpa ett presentkort är att kontakta oss direkt. Vi förbereder då ett fint, fysiskt presentkort som du kan hämta upp hos oss i Nyköping, eller så kan vi komma överens om en annan lösning.
+                </p>
+
+                <a href="/kontakt/" class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-4 inline-block">
+                    Kontakta oss via Telefon eller E-post
+                </a>
+                
+                <p class="text-brand-earth-dark/80 text-sm italic mt-2">
+                    Berätta gärna vilket belopp du önskar och om du har några frågor.
+                </p>
+            </div>
+            
+            <!-- Praktisk Info Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-10 mt-6 border-t border-brand-earth-dark/10">
+                <!-- Platser -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
+                            <div class="relative flex h-3 w-3 items-center justify-center">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Våra Platser</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Välkommen till våra mottagningar i 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Nyköping</a>, 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Gnesta</a> och 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Oxelösund</a>.
+                    </div>
+                    <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Se alla mottagningar &rarr;</a>
+                </div>
+
+                <!-- Friskvårdsbidrag -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="shield_health" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Friskvårdsbidrag</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Använd ditt friskvårdbidrag! Alla våra kurser och behandlingar är godkända.
+                    </div>
+                    <a href="/friskvardsbidrag/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs mer &rarr;</a>
+                </div>
+
+                <!-- Kontakt -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="phone" class="h-5 w-5" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Kontakta oss</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow space-y-2 flex flex-col justify-center">
+                        <a href="tel:0701234567" class="text-brand-earth-dark hover:text-brand-sky transition-colors">070-123 45 67</a>
+                        <a href="mailto:info@medidraken.se" class="text-brand-earth-dark hover:text-brand-sky transition-colors">info@medidraken.se</a>
+                    </div>
+                    <a href="/kontakt/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Visa öppettider &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </BaseLayout>

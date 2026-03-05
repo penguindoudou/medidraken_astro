@@ -1,12 +1,278 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+// Placeholder bild, byt ut vid tillfälle
+import heroImage from '../assets/images/taichi_hero6.png'; 
 ---
-<BaseLayout title="Friskvårdsbidrag">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Friskvårdsbidrag</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Använd Ditt Friskvårdsbidrag för Massage & Qigong i Nyköping | Medidraken">
+    <!-- Sektion 1: Toppsektion (Hero) -->
+    <section class="hero-section min-h-[50vh]">
+        <div class="hero-background">
+            <Image 
+                src={heroImage} 
+                alt="Friskvårdsbidrag för hälsan" 
+                class="hero-bg-image opacity-70 object-top" 
+            />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="hero-title text-brand-earth-lighter">Använd Ditt Friskvårdsbidrag hos Oss!</h1>
+            
+            <p class="hero-text text-brand-earth-lightest">
+                På Medidraken är din hälsa i fokus! Alla våra kurser och de flesta av våra behandlingar är godkända för friskvårdsbidrag \u2013 en fin förmån som många arbetsgivare erbjuder. Investera i dig själv och upplev fördelarna med TCM, Tai Chi och Qigong för mer energi och mindre stress.
+            </p>
+        </div>
+    </section>
+
+    <!-- Sektion 2: Vad Gäller? -->
+    <section class="bg-brand-earth-lightest section-standard">
+        <div class="container-base max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-brand-earth">Godkända Tjänster för Friskvårdsbidrag</h2>
+                <p class="mt-4 text-neutral-700 text-lg">
+                    I princip hela vårt utbud av proaktiva och hälsofrämjande aktiviteter är godkänt.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <!-- Kurser & Träning -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-brand-earth-lighter/30">
+                    <div class="flex items-center mb-6">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-brand-sky/10 text-brand-sky mr-4">
+                            <Icon name="holistic_qi_human" class="h-6 w-6" />
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-earth-dark">Kurser &amp; Träning</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <Icon name="check-circle" class="h-5 w-5 text-brand-sky mr-2 flex-shrink-0 mt-0.5" />
+                            <span class="text-neutral-700">Veckokurser &amp; Helgkurser i Medicinsk Qigong &amp; Tai Chi</span>
+                        </li>
+                        <li class="flex items-start">
+                            <Icon name="check-circle" class="h-5 w-5 text-brand-sky mr-2 flex-shrink-0 mt-0.5" />
+                            <span class="text-neutral-700">Privatundervisning</span>
+                        </li>
+                        <li class="flex items-start">
+                            <Icon name="check-circle" class="h-5 w-5 text-brand-sky mr-2 flex-shrink-0 mt-0.5" />
+                            <span class="text-neutral-700">Workshops</span>
+                        </li>
+                        <li class="flex items-start">
+                            <Icon name="check-circle" class="h-5 w-5 text-brand-sky mr-2 flex-shrink-0 mt-0.5" />
+                            <span class="text-neutral-700">Skräddarsydda Hälsodagar <em class="text-sm">(kontakta oss för upplägg)</em></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Behandlingar -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-brand-earth-lighter/30">
+                    <div class="flex items-center mb-6">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-brand-accent/10 text-brand-accent-dark mr-4">
+                            <Icon name="flower" class="h-6 w-6" />
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-earth-dark">Behandlingar</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <Icon name="check-circle" class="h-5 w-5 text-brand-accent-dark mr-2 flex-shrink-0 mt-0.5" />
+                            <span class="text-neutral-700">TuiNa-Massage &amp; Oljemassage</span>
+                        </li>
+                        <li class="flex items-start">
+                            <Icon name="check-circle" class="h-5 w-5 text-brand-accent-dark mr-2 flex-shrink-0 mt-0.5" />
+                            <span class="text-neutral-700">Akupunktur <em class="text-sm block mt-1">(som friskvård för att förebygga och motverka stress och lindra spänningar)</em></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Notering -->
+            <div class="bg-brand-earth/5 border border-brand-earth/20 rounded-xl p-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-brand-earth-light flex items-center justify-center text-brand-earth-dark">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <div>
+                    <strong class="text-brand-earth-dark block mb-1">Notera</strong>
+                    <p class="text-neutral-700 text-sm">För instruktörsutbildningar och hälsoresor, kontakta oss för att diskutera möjligheterna till att använda friskvårdsbidrag.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 3: Steg för steg -->
+    <section class="bg-white section-standard">
+        <div class="container-base max-w-4xl">
+            <h2 class="text-brand-earth text-center mb-12">Så Använder Du Ditt Bidrag &ndash; 4 Enkla Steg</h2>
+
+            <div class="relative">
+                <!-- Vertical timeline line on desktop -->
+                <div class="hidden md:block absolute left-8 top-8 bottom-8 w-0.5 bg-brand-earth-lighter/50"></div>
+
+                <div class="space-y-8">
+                    <!-- Steg 1 -->
+                    <div class="relative flex flex-col md:flex-row items-start gap-4 md:gap-8 group">
+                        <div class="flex-shrink-0 h-16 w-16 rounded-full bg-brand-earth text-white flex items-center justify-center font-bold text-xl shadow-lg relative z-10 group-hover:scale-110 transition-transform">
+                            1
+                        </div>
+                        <div class="bg-neutral-50 rounded-2xl p-6 md:p-8 flex-grow border border-neutral-100 shadow-sm group-hover:shadow-md transition-shadow">
+                            <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Kolla med Din Arbetsgivare</h3>
+                            <p class="text-neutral-700">Ta reda på ditt bidrags storlek och vilka specifika rutiner din arbetsgivare har. Många använder portaler som Epassi eller Benify \u2013 logga in där för information.</p>
+                        </div>
+                    </div>
+
+                    <!-- Steg 2 -->
+                    <div class="relative flex flex-col md:flex-row items-start gap-4 md:gap-8 group">
+                        <div class="flex-shrink-0 h-16 w-16 rounded-full bg-brand-earth text-white flex items-center justify-center font-bold text-xl shadow-lg relative z-10 group-hover:scale-110 transition-transform">
+                            2
+                        </div>
+                        <div class="bg-neutral-50 rounded-2xl p-6 md:p-8 flex-grow border border-neutral-100 shadow-sm group-hover:shadow-md transition-shadow">
+                            <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Boka hos Oss</h3>
+                            <p class="text-neutral-700">Välj den kurs eller behandling du är intresserad av och <a href="/kontakt/" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30 underline-offset-4 font-medium transition-colors">kontakta oss</a> för att boka din tid eller plats.</p>
+                        </div>
+                    </div>
+
+                    <!-- Steg 3 -->
+                    <div class="relative flex flex-col md:flex-row items-start gap-4 md:gap-8 group">
+                        <div class="flex-shrink-0 h-16 w-16 rounded-full bg-brand-earth text-white flex items-center justify-center font-bold text-xl shadow-lg relative z-10 group-hover:scale-110 transition-transform">
+                            3
+                        </div>
+                        <div class="bg-neutral-50 rounded-2xl p-6 md:p-8 flex-grow border border-neutral-100 shadow-sm group-hover:shadow-md transition-shadow">
+                            <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Betala &amp; Få Kvitto</h3>
+                            <p class="text-neutral-700">Du betalar direkt till oss (t.ex. med Swish eller via faktura). Vi ser till att du får ett tydligt, specificerat kvitto som innehåller all information som Skatteverket och de flesta arbetsgivare kräver.</p>
+                        </div>
+                    </div>
+
+                    <!-- Steg 4 -->
+                    <div class="relative flex flex-col md:flex-row items-start gap-4 md:gap-8 group">
+                        <div class="flex-shrink-0 h-16 w-16 rounded-full bg-brand-earth text-white flex items-center justify-center font-bold text-xl shadow-lg relative z-10 group-hover:scale-110 transition-transform">
+                            4
+                        </div>
+                        <div class="bg-neutral-50 rounded-2xl p-6 md:p-8 flex-grow border border-neutral-100 shadow-sm group-hover:shadow-md transition-shadow">
+                            <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Få Ersättning</h3>
+                            <p class="text-neutral-700">Lämna in kvittot till din arbetsgivare eller ladda upp det i din friskvårdsportal för att få tillbaka pengarna.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 4: FAQ -->
+    <section class="section-standard bg-brand-earth-lightest">
+        <div class="container-base max-w-3xl">
+            <h2 class="text-brand-earth text-center mb-12">Vanliga Frågor om Friskvårdsbidrag</h2>
+
+            <div class="space-y-4" x-data="{ active: null }">
+                
+                <!-- Fråga 1 -->
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click="active === 1 ? active = null : active = 1"
+                        class="w-full flex justify-between items-center p-5 bg-white hover:bg-neutral-50 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth-dark text-left text-lg">Är ni anslutna till Epassi, Benify eller Wellnet?</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform"
+                            :class="active === 1 ? 'rotate-180' : ''">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show="active === 1" x-collapse x-cloak
+                        class="p-5 bg-neutral-50 text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        För närvarande är vi inte direktanslutna till någon portal. Processen är därför att du betalar direkt till oss och sedan använder det detaljerade kvittot du får för att själv registrera ditt utlägg i din portal och få ersättning.
+                    </div>
+                </div>
+
+                <!-- Fråga 2 -->
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click="active === 2 ? active = null : active = 2"
+                        class="w-full flex justify-between items-center p-5 bg-white hover:bg-neutral-50 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth-dark text-left text-lg">Viktigt att tänka på gällande Skatteverket &amp; Kvitton</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform"
+                            :class="active === 2 ? 'rotate-180' : ''">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show="active === 2" x-collapse x-cloak
+                        class="p-5 bg-neutral-50 text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        <ul class="space-y-4">
+                            <li><strong>Ditt Ansvar:</strong> Det är alltid ditt eget ansvar att säkerställa att din valda aktivitet godkänns av just din arbetsgivare.</li>
+                            <li><strong>Spara Kvittot:</strong> Se till att du sparar det specifika kvitto vi ger dig! Vanliga kortkvitton eller handskrivna lappar räcker oftast inte som bevis hos Skatteverket eller portalerna. Vårt kvitto innehåller all rätt information.</li>
+                            <li><strong>Skatteverkets Regler:</strong> För den allra senaste officiella informationen kring friskvård, besök gärna <a href="https://www.skatteverket.se/privat/skatter/arbeteochinkomst/formaner/personalvardmotionochfriskvard.4.7459477810df5bccdd4800014540.html" target="_blank" rel="noopener noreferrer" class="text-brand-sky hover:underline">Skatteverkets webbplats</a>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 5: Avslutande CTA -->
+    <section class="section-standard bg-brand-earth-light text-center">
+        <div class="container-base max-w-4xl">
+            <div class="max-w-3xl mx-auto mb-8">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Gör Något Bra för Dig Själv Idag!</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Välkommen att investera i dig själv med ditt friskvårdsbidrag \u2013 en hälsosammare och stressfriare vardag väntar!
+                </p>
+
+                <a href="/kontakt/" class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-4 inline-block">
+                    Har du fler frågor? Kontakta oss gärna!
+                </a>
+            </div>
+            
+            <!-- Praktisk Info Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-10 mt-6 border-t border-brand-earth-dark/10">
+                <!-- Platser -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
+                            <div class="relative flex h-3 w-3 items-center justify-center">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Våra Platser</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Välkommen till våra mottagningar i 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Nyköping</a>, 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Gnesta</a> och 
+                        <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4 transition-all">Oxelösund</a>.
+                    </div>
+                    <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Se alla mottagningar &rarr;</a>
+                </div>
+
+                <!-- Presentkort -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="flower" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Ge bort en upplevelse av hälsa och vitalitet med ett presentkort i Tai Chi, Medicinsk Qigong eller behandling.
+                    </div>
+                    <a href="/presentkort/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs mer &rarr;</a>
+                </div>
+
+                <!-- Kontakt -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="phone" class="h-5 w-5" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Kontakta oss</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow space-y-2 flex flex-col justify-center">
+                        <a href="tel:0701234567" class="text-brand-earth-dark hover:text-brand-sky transition-colors">070-123 45 67</a>
+                        <a href="mailto:info@medidraken.se" class="text-brand-earth-dark hover:text-brand-sky transition-colors">info@medidraken.se</a>
+                    </div>
+                    <a href="/kontakt/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Visa öppettider &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </BaseLayout>
