@@ -4,29 +4,40 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 
 // Images
-import acupuncture_zoomImage from '../../assets/images/acupuncture_zoom.png';
+import acupuncture_zoomImage from '../../assets/images/hero_aku2.png';
 import linnea_mao_profileImage from '../../assets/images/linnea_mao_profile.jpg';
 ---
+
+<style>
+    .hero-background-white {
+        background-color: white !important;
+    }
+    .hero-background-white::after {
+        display: none !important;
+    }
+</style>
 
 <BaseLayout title="Akupunktur i Nyköping & Gnesta mot Smärta & Stress">
 <!-- ======================================= -->
 <!-- Sektion 1: Toppsektion (Hero)           -->
 <!-- ======================================= -->
 <section class="hero-section min-h-[60vh]">
-    <div class="hero-background">
+    <div class="hero-background hero-background-white">
         <Image src={acupuncture_zoomImage} alt="Akupunktur behandling av Linnéa Mao"
-            class="hero-bg-image opacity-80" />
+            class="hero-bg-image bg-brand-earth-light opacity-100" />
     </div>
     <div class="hero-content text-center">
-        <h1 class="hero-title text-brand-earth-lighter">Akupunktur</h1>
-        <h2 class="hero-subtitle font-bold">Minska Smärta, Stress & Återfå Balans</h2>
+        <div class="bg-brand-earth/80 p-8 md:p-12 rounded-3xl max-w-3xl mx-auto backdrop-blur-sm border border-brand-earth-light/20 shadow-2xl">
+            <h1 class="hero-title text-brand-accent mb-4">Akupunktur</h1>
+            <h2 class="hero-subtitle font-bold mb-8">Minska Smärta, Stress & Återfå Balans</h2>
 
-        <p class="hero-text text-brand-earth-lightest">
-            Vill du hitta tillbaka till kroppens naturliga balans och potential? Oavsett om det handlar om att minska
-            smärta och stress, eller att proaktivt stärka din energi och motståndskraft, så är akupunktur en tusenårig
-            läkekonst där väldigt tunna, sterila nålar placeras på specifika punkter för att återställa kroppens
-            naturliga energiflöde (Qi) och läkningsförmåga.
-        </p>
+            <p class="hero-text text-brand-earth-lightest mt-0">
+                Vill du hitta tillbaka till kroppens naturliga balans och potential? Oavsett om det handlar om att minska
+                smärta och stress, eller att proaktivt stärka din energi och motståndskraft, så är akupunktur en tusenårig
+                läkekonst där väldigt tunna, sterila nålar placeras på specifika punkter för att återställa kroppens
+                naturliga energiflöde (Qi) och läkningsförmåga.
+            </p>
+        </div>
     </div>
 </section>
 
