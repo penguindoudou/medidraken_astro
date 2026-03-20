@@ -149,12 +149,6 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
     @apply absolute inset-0 bg-brand-accent;
   }
 
-  .hero-background::after {
-    content: "";
-    @apply absolute inset-0;
-    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.6) 0%, rgba(74, 63, 53, 0.3) 50%, transparent 100%);
-  }
-
   .hero-bg-image {
     @apply w-full h-full object-cover object-center;
   }
