@@ -205,6 +205,11 @@ export const primaryMenu = {
           "title": "TuiNa-Massage",
           "link": "/behandling/tuina-massage/",
           "children": []
+        },
+        {
+          "title": "Oljemassage",
+          "link": "/behandling/oljemassage/",
+          "children": []
         }
       ]
     },

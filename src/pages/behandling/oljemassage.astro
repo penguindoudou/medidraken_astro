@@ -1,0 +1,317 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+// Images (reusing the tuina image for now, as it fits massage in general)
+import tuina_girlImage from '../../assets/images/tuina_girl_wide2.png';
+import johannes_mao_profileImage from '../../assets/images/johannes_mao_profile.jpg';
+import linnea_mao_profileImage from '../../assets/images/linnea_mao_profile.jpg';
+---
+
+<BaseLayout title="Oljemassage i Nyköping & Gnesta för Djup Avslappning">
+    <!-- ======================================= -->
+    <!-- Sektion 1: Toppsektion (Hero)           -->
+    <!-- ======================================= -->
+    <section class="hero-section min-h-[60vh]">
+        <div class="hero-background">
+            <Image src={tuina_girlImage} alt="Avslappnande Oljemassage"
+                class="hero-bg-image object-[30%_60%] opacity-80" />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="hero-title text-brand-earth-lighter">Avslappnande Oljemassage</h1>
+            <div class="hero-text bg-brand-earth-dark/60 p-6 rounded-lg backdrop-blur-sm border border-white/10">
+                <h2 class="hero-subtitle font-bold">Mjuk, Flödande & Djupt Avkopplande</h2>
+
+                <p class="hero-text text-brand-earth-lightest mt-3">
+                    Längtar du efter en stunds ro och återhämtning? Vår oljemassage är en mjukare och mer flödande variant av TuiNa. Den mjukar upp spänningar och lugnar nervsystemet – ett utmärkt val för dig som primärt önskar en riktigt skön och avkopplande stund.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 2: Symtom & Tillstånd           -->
+    <!-- ======================================= -->
+    <section class="bg-white border-t border-neutral-100">
+        <div class="section-standard">
+            <div class="container-base">
+                <div class="text-center max-w-3xl mx-auto mb-16 px-4">
+                    <h2 class="text-brand-earth mb-4 uppercase tracking-wide">För Stress, Spänningar & Återhämtning</h2>
+                    <p class="text-lg text-neutral-700">
+                        Oljemassage är perfekt för att varva ner, minska vardagsstressen och ge kroppen en chans till djup återhämtning. Det är en behandling helt anpassad för avkoppling.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto items-stretch">
+
+                    <!-- Left: Fysisk avslappning -->
+                    <div class="bg-brand-accent/5 rounded-3xl p-8 border border-brand-accent/20 shadow-sm flex flex-col h-full">
+                        <div class="flex items-center mb-8 pb-6 border-b border-brand-accent/20">
+                            <div class="h-14 w-14 rounded-full bg-brand-accent/10 flex items-center justify-center mr-5 shrink-0">
+                                <Icon name="flower" class="h-8 w-8 text-brand-accent-dark" />
+                            </div>
+                            <h3 class="text-brand-earth-dark font-bold text-2xl m-0">Fysisk avslappning</h3>
+                        </div>
+                        <ul class="space-y-5 flex-grow">
+                            <li class="flex items-start">
+                                <Icon name="flower" class="h-6 w-6 text-brand-accent mt-0.5 mr-3 shrink-0" />
+                                <span class="text-neutral-700 font-medium">Fysiskt avslappnande</span>
+                            </li>
+                            <li class="flex items-start">
+                                <Icon name="flower" class="h-6 w-6 text-brand-accent mt-0.5 mr-3 shrink-0" />
+                                <span class="text-neutral-700 font-medium">Ökar blodcirkulationen och ger en varm känsla</span>
+                            </li>
+                            <li class="flex items-start">
+                                <Icon name="flower" class="h-6 w-6 text-brand-accent mt-0.5 mr-3 shrink-0" />
+                                <span class="text-neutral-700 font-medium">Mjukar upp och återfuktar huden</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right: Mental ro -->
+                    <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/20 shadow-sm flex flex-col h-full">
+                        <div class="flex items-center mb-8 pb-6 border-b border-brand-sky/20">
+                            <div class="h-14 w-14 rounded-full bg-brand-sky/10 flex items-center justify-center mr-5 shrink-0">
+                                <Icon name="holistic_qi_human" class="h-8 w-8 text-brand-sky-dark" />
+                            </div>
+                            <h3 class="text-brand-earth-dark font-bold text-2xl m-0">Mental ro</h3>
+                        </div>
+                        <ul class="space-y-5 flex-grow">
+                            <li class="flex items-start">
+                                <Icon name="holistic_qi_human" class="h-6 w-6 text-brand-sky mt-0.5 mr-3 shrink-0" />
+                                <span class="text-neutral-700 font-medium">Lugnar ett överaktivt och stressat nervsystem</span>
+                            </li>
+                            <li class="flex items-start">
+                                <Icon name="holistic_qi_human" class="h-6 w-6 text-brand-sky mt-0.5 mr-3 shrink-0" />
+                                <span class="text-neutral-700 font-medium">Hjälper dig att komma ner i varv och hitta inre lugn</span>
+                            </li>
+                            <li class="flex items-start">
+                                <Icon name="holistic_qi_human" class="h-6 w-6 text-brand-sky mt-0.5 mr-3 shrink-0" />
+                                <span class="text-neutral-700 font-medium">Förbättrar förutsättningarna för god sömn och återhämtning</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 3: Hur Fungerar Det?            -->
+    <!-- ======================================= -->
+    <section class="section-standard bg-brand-earth-lightest border-t border-neutral-100">
+        <div class="container-base max-w-5xl">
+            <div class="text-center mb-10 md:mb-14">
+                <h2 class="text-brand-earth mb-4">Så går en behandling till</h2>
+                <p class="text-lg text-neutral-700 max-w-2xl mx-auto">
+                    Behandlingen fokuserar helt på avkoppling. Genom att använda värmande olja skapar vi mjuka och svepande rörelser som låter kroppen andas ut.
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+
+                    <!-- Step 1 -->
+                    <div class="relative z-10 flex flex-col items-center text-center p-6 md:p-8 bg-brand-accent/5 rounded-3xl border border-brand-accent/20 shadow-sm transition-transform hover:-translate-y-1">
+                        <div class="h-16 w-16 rounded-full bg-brand-earth/10 flex items-center justify-center mb-6 ring-4 ring-brand-earth/5">
+                            <Icon name="holistic_qi_human" class="h-14 w-14 text-brand-earth" />
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-brand-earth-dark mb-3">1. Nedvarvning</h3>
+                        <p class="text-neutral-600 text-sm">
+                            Du bäddas ner bekvämt på bänken i en lugn och trygg miljö, vilket signalerar till kroppen att det är dags att sakta ner.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative z-10 flex flex-col items-center text-center p-6 md:p-8 bg-brand-accent/5 rounded-3xl border border-brand-accent/20 shadow-md transform md:-translate-y-6 transition-transform hover:-translate-y-1 md:hover:-translate-y-7">
+                        <div class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mb-6 ring-4 ring-brand-earth/5">
+                            <Icon name="flower" class="h-12 w-12 text-brand-accent-dark" />
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-brand-earth-dark mb-3">2. Mjuk & Flödande Massage</h3>
+                        <p class="text-neutral-700 text-sm">
+                            Med hjälp av olja utför terapeuten långa, sammanhängande strykningar och mjuk knådning över musklerna för att släppa på stress.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative z-10 flex flex-col items-center text-center p-6 md:p-8 bg-brand-accent/5 rounded-3xl border border-brand-sky/20 shadow-sm transition-transform hover:-translate-y-1">
+                        <div class="h-16 w-16 rounded-full bg-brand-sky/10 flex items-center justify-center mb-6 ring-4 ring-brand-earth/5">
+                            <Icon name="Yin_yang" class="h-12 w-12 text-brand-sky-dark" />
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold text-brand-earth-dark mb-3">3. Djup Ro</h3>
+                        <p class="text-neutral-600 text-sm">
+                            Efteråt stannar en känsla av lugn och grundning kvar i kroppen – du känner dig mjukare, avslappnad och fylld av stillsam energi.
+                        </p>
+                    </div>
+
+                </div>
+                
+                <p class="italic text-center text-neutral-600 mt-12 mb-2 relative z-10">
+                    Söker du en mer behandlande form mot smärta eller stelhet? <a href="/behandling/tuina-massage/" class="text-brand-sky hover:text-brand-sky-dark hover:underline font-medium">Läs mer om Terapeutisk TuiNa.</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 5: Möt Terapeuten               -->
+    <!-- ======================================= -->
+    <section class="section-standard bg-white pb-8 border-t border-neutral-100">
+        <div class="container-base max-w-4xl text-center">
+            <h2 class="text-brand-earth mb-4">Din Terapeuter</h2>
+            <p class="text-lg text-neutral-700 max-w-2xl mx-auto mb-12">
+                Oljemassagen utförs med mjuk hand och en trygg och inkännande närvaro av Linnéa och Johannes.
+            </p>
+
+            <div class="max-w-4xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Johannes -->
+                <article class="team-card flex-row bg-brand-accent/5 border border-brand-earth/10 text-left overflow-hidden min-h-[11rem] shadow-sm">
+                    <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
+                        <Image src={johannes_mao_profileImage} alt="Johannes Mao"
+                            class="absolute inset-0 h-full w-full object-cover object-top" />
+                    </div>
+                    <div class="team-content justify-center py-4 pl-5">
+                        <h3 class="team-name text-lg group-hover/link:text-brand-accent transition-colors">Johannes Mao</h3>
+                        <p class="team-role text-xs">Grundare, Terapeut & Huvudinstruktör</p>
+                        <div class="team-bio">
+                            <p class="text-sm leading-relaxed">Med över 30 års erfarenhet och en bakgrund som farmaceut anpassar Johannes tidlös visdom för att hjälpa dig uppnå optimal hälsa.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Linnéa -->
+                <article class="team-card flex-row bg-brand-accent/5 border border-brand-earth/10 text-left overflow-hidden min-h-[11rem] shadow-sm">
+                    <div class="relative w-28 md:w-36 shrink-0 self-stretch overflow-hidden">
+                        <Image src={linnea_mao_profileImage} alt="Linnéa Mao"
+                            class="absolute inset-0 h-full w-full object-cover object-top" />
+                    </div>
+                    <div class="team-content justify-center py-4 pl-5">
+                        <h3 class="team-name text-lg group-hover/link:text-brand-accent transition-colors">Linnéa Mao</h3>
+                        <p class="team-role text-xs">Läkare i TCM, Terapeut & Akupunktör</p>
+                        <div class="team-bio">
+                            <p class="text-sm leading-relaxed">Som TCM-läkare och akupunktör kombinerar Linnéa djup kompetens inom kinesisk medicin med ett mjukt och inkännande bemötande.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 6: Praktisk Info & Bokning      -->
+    <!-- ======================================= -->
+    <section class="bg-brand-earth-light section-standard text-center">
+        <div class="container-base max-w-4xl">
+
+            <!-- Huvud CTA -->
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Redo för återhämtande avslappning?</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Boka in din avkopplande oljemassage och låt oss ta hand om dig. En stund där du bara kan vara.
+                </p>
+
+                <a href="/kontakt/" class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
+                    Boka behandling
+                </a>
+            </div>
+
+            <!-- Trust Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 mt-0 border-t border-brand-earth-dark/10">
+
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
+                            <div class="relative flex h-3 w-3 items-center justify-center">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Mottagningar</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Vi erbjuder behandlingar i <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>, <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a> och <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>.
+                    </div>
+                    <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Se alla &rarr;</a>
+                </div>
+
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="shield_health" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Friskvårdsbidrag</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Använd ditt bidrag! Alla våra massagebehandlingar är godkända.<br />
+                    </div>
+                    <a href="/friskvardsbidrag/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs mer &rarr;</a>
+                </div>
+
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="present" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Ge bort en avkopplande oljemassage som present.<br />
+                    </div>
+                    <a href="/presentkort/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs mer &rarr;</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 7: Vanliga Frågor               -->
+    <!-- ======================================= -->
+    <section class="section-standard bg-white">
+        <div class="container-base max-w-3xl">
+            <h2 class="text-brand-earth text-center mb-12">Vanliga Frågor om Oljemassage</h2>
+
+            <div class="space-y-4" x-data="{ active: null }">
+
+                <!-- Fråga 1 -->
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click="active === 1 ? active = null : active = 1"
+                        class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth text-left">Vad är skillnaden mellan TuiNa och er Oljemassage?</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform"
+                            :class="active === 1 ? 'rotate-180' : ''">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show="active === 1" x-collapse x-cloak
+                        class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        Den klassiska TuiNa-massagen är ofta mer dynamisk, djupgående och fokuserar kliniskt på att bearbeta specifika blockeringar och smärtor. Vår oljemassage är däremot mjukare och lämpar sig primärt för stresslindring och avkoppling, vi använder flödande drag över huden för att varva ner nervsystemet.
+                    </div>
+                </div>
+
+                <!-- Fråga 2 -->
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click="active === 2 ? active = null : active = 2"
+                        class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth text-left">Behöver jag klä av mig?</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform" :class="active === 2 ? 'rotate-180' : ''">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show="active === 2" x-collapse x-cloak
+                        class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        Ja, för att vi ska kunna använda oljan ligger du enbart i dina underkläder på bänken. Du är dock hela tiden tryggt tilltäckt av stora mjuka handdukar under behandlingen – vi frilägger bara den del av din kropp vi för tillfället behandlar.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</BaseLayout>
