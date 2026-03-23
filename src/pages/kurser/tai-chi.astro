@@ -47,8 +47,8 @@ import taichi_in_a_circle_several_students_parting_the_wild_horses_mane_on_green
 <!-- Sektion 2: För Vem? (Expanderbar)       -->
 <!-- ======================================= -->
 <section class="section-standard bg-white">
-    <div class="container-base" x-data="{ showAllBenefits: false }">
-        <div class="max-w-4xl mx-auto text-center mb-12">
+    <div class="container-base">
+        <div class="max-w-4xl mx-auto text-center mb-16">
             <h2 class="text-brand-earth">En Väg till Styrka, Balans & Inre Fokus</h2>
             <p class="mt-6 text-lg text-neutral-700">
                 Inom Traditionell Kinesisk Medicin ses hälsa som ett resultat av fritt flödande livsenergi (Qi). Genom
@@ -58,111 +58,162 @@ import taichi_in_a_circle_several_students_parting_the_wild_horses_mane_on_green
             </p>
         </div>
 
-        <!-- Huvudlista (Synlig) -->
-        <div class="max-w-3xl mx-auto bg-brand-accent/30 rounded-xl p-8 border border-brand-earth-lighter">
-            <h3 class="font-heading text-xl text-brand-earth mb-6 text-center">En metod för dig som vill – eller har
-                besvär med:</h3>
+        <!-- Content Grid: Side-by-Side on Desktop -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start max-w-7xl mx-auto">
 
-            <ul class="space-y-3 md:grid md:grid-cols-2 md:gap-x-8 md:space-y-0 md:gap-y-4">
-                <li class="flex items-start">
-                    <Icon name="check-circle" class="h-6 w-6 text-brand-accent mr-3 flex-shrink-0" />
-                    <a href="/forbattra-balans-rorlighet-kroppskontroll/"
-                        class="text-brand-earth-dark hover:text-brand-accent-dark font-medium transition-colors">Förbättra
-                        Balans & Rörlighet</a>
-                </li>
-                <li class="flex items-start">
-                    <Icon name="check-circle" class="h-6 w-6 text-brand-accent mr-3 flex-shrink-0" />
-                    <a href="/ledvark-idrottsskador-artros/"
-                        class="text-brand-earth-dark hover:text-brand-accent-dark font-medium transition-colors">Ledvärk
-                        & Artros</a>
-                </li>
-                <li class="flex items-start">
-                    <Icon name="check-circle" class="h-6 w-6 text-brand-accent mr-3 flex-shrink-0" />
-                    <a href="/rygg-landrygg/"
-                        class="text-brand-earth-dark hover:text-brand-accent-dark font-medium transition-colors">Långvarig
-                        Ryggvärk (Stärkt Core)</a>
-                </li>
-                <li class="flex items-start">
-                    <Icon name="check-circle" class="h-6 w-6 text-brand-accent mr-3 flex-shrink-0" />
-                    <a href="/huvudvark-yrsel/yrsel-balansproblem/"
-                        class="text-brand-earth-dark hover:text-brand-accent-dark font-medium transition-colors">Yrsel &
-                        Balansproblem</a>
-                </li>
-                <li class="flex items-start">
-                    <Icon name="check-circle" class="h-6 w-6 text-brand-accent mr-3 flex-shrink-0" />
-                    <a href="/starka-fokus-mental-styrka/"
-                        class="text-brand-earth-dark hover:text-brand-accent-dark font-medium transition-colors">Stärka
-                        Fokus & Mental Styrka</a>
-                </li>
-                <li class="flex items-start">
-                    <Icon name="check-circle" class="h-6 w-6 text-brand-accent mr-3 flex-shrink-0" />
-                    <a href="/minska-stress-hitta-inre-lugn/"
-                        class="text-brand-earth-dark hover:text-brand-accent-dark font-medium transition-colors">Minska
-                        Stress & Hitta Inre Lugn</a>
-                </li>
-            </ul>
+            <!-- Left: Fysiska tillstånd (Accent path) -->
+            <div class="bg-brand-accent/10 rounded-3xl p-8 border border-brand-accent/25 shadow-sm">
+                <div class="flex items-center mb-10 pb-6 border-b border-brand-accent/30">
+                    <div
+                        class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-6">
+                        <Icon name="ryggont" class="h-13 w-13 text-brand-accent-dark" />
+                    </div>
+                    <h3 class="text-brand-earth-dark font-bold text-3xl m-0">Specifika Besvär & Tillstånd</h3>
+                </div>
 
-            <!-- Expanderknapp -->
-            <div class="text-center mt-8">
-                <button @click="showAllBenefits = !showAllBenefits" type="button"
-                    class="inline-flex items-center text-brand-sky font-semibold hover:text-sky-500 hover:bg-inherit transition-colors focus:bg-inherit focus:text-brand-sky  focus:hover:text-sky-500">
-                    <span x-text="showAllBenefits ? 'Visa mindre' : 'Visa alla hälsofördelar'"></span>
-                    <svg class="w-4 h-4 ml-2 transform transition-transform duration-300"
-                        :class="{'rotate-180': showAllBenefits}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
+                <ul class="space-y-6">
+                    <li>
+                        <a href="/symtom/rygg-landrygg/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                <Icon name="ryggont" class="h-13 w-13 text-brand-accent-dark" />
+                            </div>
+                            <span
+                                class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Långvarig Ryggvärk</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/symtom/ledvark-idrottsskador-artros/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                <Icon name="ledvark" class="h-15 w-15 text-brand-accent-dark" />
+                            </div>
+                            <span
+                                class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Ledvärk & Artros</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/symtom/yrsel-balansproblem/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                <Icon name="dizzy" class="h-11 w-11 text-brand-accent-dark" />
+                            </div>
+                            <span
+                                class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Yrsel & Balansproblem</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/symtom/utbrandhet-trotthetssyndrom/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                <Icon name="tired_plant" class="h-12 w-12 text-brand-accent-dark" />
+                            </div>
+                            <span
+                                class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Trötthet</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/symtom/somnproblem-insomnia/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                <Icon name="broken_moon_with_stars" class="h-11 w-11 text-brand-accent-dark" />
+                            </div>
+                            <span
+                                class="text-brand-accent-dark font-medium text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Sömnproblem</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="mt-8">
+                    <a href="/symtom/"
+                        class="btn-tertiary inline-flex items-center group text-sm font-bold uppercase tracking-wider text-brand-accent-dark hover:text-brand-accent hover:translate-x-1 focus:text-brand-earth-dark active:scale-95 transition-all outline-none">
+                        <span class="pb-1">Visa alla besvär vi kan hjälpa dig med</span>
+                        <span class="ml-2 transform transition-transform group-hover:translate-x-1">&rarr;</span>
+                    </a>
+                </div>
             </div>
 
-            <!-- Dold Del (Expanderbar) -->
-            <div x-show="showAllBenefits" x-collapse class="mt-8 pt-8 border-t border-brand-earth-lighter/30">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Hållning & Smärta -->
-                    <div>
-                        <h4 class="font-bold text-brand-earth-dark mb-4 uppercase text-base tracking-wide">För Hållning
-                            & Smärta</h4>
-                        <ul class="space-y-3">
-                            <li><a href="/ont-i-knan-knabesvar/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Ont
-                                    i knän & höfter</a></li>
-                            <li><a href="/rygg-landrygg/ischias/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Ischias
-                                    & Utstrålande Smärta</a></li>
-                            <li><a href="/nacke-axlar-skuldror/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Värk
-                                    i nacke & axlar</a></li>
-                            <li><a href="/fibromyalgi-kronisk-smarta/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Fibromyalgi
-                                    & kronisk smärta</a></li>
-                            <li><a href="/huvudvark-yrsel/spanningshuvudvark-stresshuvudvark/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Spänningshuvudvärk</a>
-                            </li>
-                        </ul>
+            <!-- Right: Energi- & Stressrelaterade tillstånd (Sky path) -->
+            <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/10 shadow-sm">
+                <div class="flex items-center mb-10 pb-6 border-b border-brand-sky/20">
+                    <div
+                        class="h-16 w-16 shrink-0 rounded-full bg-brand-sky/10 flex items-center justify-center mr-6">
+                        <Icon name="taichi_qigong_flow_min" class="h-17 w-17 text-brand-sky" />
                     </div>
-
-                    <!-- Vitalitet & Hälsa -->
-                    <div>
-                        <h4 class="font-bold text-brand-earth-dark mb-4 uppercase text-base tracking-wide">För Vitalitet
-                            & Hälsa</h4>
-                        <ul class="space-y-3">
-                            <li><a href="/oka-energi-livskraft/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Öka
-                                    Energi & Livskraft</a></li>
-                            <li><a href="/starka-immunforsvaret-bygga-motstandskraft/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Stärka
-                                    Immunförsvaret</a></li>
-                            <li><a href="/utbrandhet-trotthetssyndrom/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Utbrändhet
-                                    & Trötthetssyndrom</a></li>
-                            <li><a href="/somnproblem-insomnia/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Sömnproblem
-                                    & Insomnia</a></li>
-                            <li><a href="/magbesvar-ibs/"
-                                    class="text-brand-earth hover:text-brand-accent-dark font-medium transition-colors">Mag-
-                                    och Tarmbesvär (IBS)</a></li>
-                        </ul>
-                    </div>
+                    <h3 class="text-brand-sky font-bold text-3xl m-0 leading-tight">Hälsofördelar & Vitalitet</h3>
                 </div>
+
+                <ul class="space-y-6">
+                    <li>
+                        <a href="/na-dina-halsomal/forbattra-balans-rorlighet-kroppskontroll/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                <Icon name="taichi_qigong_flow_min" class="h-17 w-17 text-brand-sky" />
+                            </div>
+                            <span
+                                class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Förbättra Balans & Rörlighet</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/na-dina-halsomal/starka-fokus-mental-styrka/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                <Icon name="Yin_yang" class="h-12 w-12 text-brand-sky" />
+                            </div>
+                            <span
+                                class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Stärka Fokus & Mental Styrka</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/na-dina-halsomal/minska-stress-hitta-inre-lugn/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                <Icon name="flower" class="h-12 w-12 text-brand-sky" />
+                            </div>
+                            <span
+                                class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Minska Stress & Hitta Inre Lugn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/na-dina-halsomal/oka-energi-livskraft/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                <Icon name="lightening" class="h-13 w-13 text-brand-sky" />
+                            </div>
+                            <span
+                                class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Öka Energi & Livskraft</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/na-dina-halsomal/starka-immunforsvaret-bygga-motstandskraft/"
+                            class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                            <div
+                                class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                <Icon name="wind_shield" class="h-12 w-12 text-brand-sky" />
+                            </div>
+                            <span
+                                class="text-neutral-700 font-medium text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Stärka Immunförsvaret</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="mt-8">
+                    <a href="/na-dina-halsomal/"
+                        class="btn-tertiary inline-flex items-center group text-sm font-bold uppercase tracking-wider text-brand-sky hover:text-brand-sky-light hover:translate-x-1 focus:text-brand-sky-dark active:scale-95 transition-all outline-none">
+                        <span class="pb-1">Visa alla hälsofördelar vi kan hjälpa dig med</span>
+                        <span class="ml-2 transform transition-transform group-hover:translate-x-1">&rarr;</span>
+                    </a>
+                </div>
+            </div>
             </div>
         </div>
     </div>
