@@ -39,56 +39,74 @@ import linnea_mao_profileImage from '../../assets/images/linnea_mao_profile.jpg'
                 <div class="text-center max-w-3xl mx-auto mb-16 px-4">
                     <h2 class="text-brand-earth mb-4 uppercase tracking-wide">För Stress, Spänningar & Återhämtning</h2>
                     <p class="text-lg text-neutral-700">
-                        Oljemassage är perfekt för att varva ner, minska vardagsstressen och ge kroppen en chans till djup återhämtning. Det är en behandling helt anpassad för avkoppling.
+                        Oljemassage är perfekt för att varva ner, minska vardagsstressen och ge kroppen en chans till djup återhämtning. Det är en behandling anpassad för avkoppling.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto items-stretch">
+                <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 lg:gap-12 items-start max-w-5xl mx-auto">
 
-                    <!-- Left: Fysisk avslappning -->
-                    <div class="bg-brand-accent/5 rounded-3xl p-8 border border-brand-accent/20 shadow-sm flex flex-col h-full">
-                        <div class="flex items-center mb-8 pb-6 border-b border-brand-accent/20">
-                            <div class="h-14 w-14 rounded-full bg-brand-accent/10 flex items-center justify-center mr-5 shrink-0">
-                                <Icon name="flower" class="h-8 w-8 text-brand-accent-dark" />
+                    <!-- Left: Nuvarande Tillstånd (Sky path) -->
+                    <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/10 shadow-sm h-full flex flex-col">
+                        <div class="flex items-center mb-8 pb-6 border-b border-brand-sky/20">
+                            <div class="h-16 w-16 shrink-0 rounded-full bg-brand-sky/10 flex items-center justify-center mr-6">
+                                <Icon name="stress3" class="h-14 w-14 text-brand-sky" />
                             </div>
-                            <h3 class="text-brand-earth-dark font-bold text-2xl m-0">Fysisk avslappning</h3>
+                            <h3 class="text-brand-sky font-bold text-3xl m-0 leading-tight">Vi kan hjälpa dig med</h3>
                         </div>
-                        <ul class="space-y-5 flex-grow">
-                            <li class="flex items-start">
-                                <Icon name="flower" class="h-6 w-6 text-brand-accent mt-0.5 mr-3 shrink-0" />
-                                <span class="text-neutral-700 font-medium">Fysiskt avslappnande</span>
+
+                        <ul class="space-y-6 mt-2 flex-grow">
+                            <li>
+                                <a href="/symtom/nacke-axlar-skuldror/" class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="stress3" class="h-14 w-14 text-brand-sky" />
+                                    </div>
+                                    <span class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Stressrelaterade muskelspänningar</span>
+                                </a>
                             </li>
-                            <li class="flex items-start">
-                                <Icon name="flower" class="h-6 w-6 text-brand-accent mt-0.5 mr-3 shrink-0" />
-                                <span class="text-neutral-700 font-medium">Ökar blodcirkulationen och ger en varm känsla</span>
+                            <li>
+                                <a href="/symtom/somnproblem-insomnia/" class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="broken_moon_with_stars" class="h-10 w-10 text-brand-sky" />
+                                    </div>
+                                    <span class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Sömnproblem</span>
+                                </a>
                             </li>
-                            <li class="flex items-start">
-                                <Icon name="flower" class="h-6 w-6 text-brand-accent mt-0.5 mr-3 shrink-0" />
-                                <span class="text-neutral-700 font-medium">Mjukar upp och återfuktar huden</span>
+                            <li>
+                                <a href="/symtom/utbrandhet-trotthetssyndrom/" class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="outlined_wilted_leaf" class="h-10 w-10 text-brand-sky" />
+                                    </div>
+                                    <span class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Trötthet</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
 
-                    <!-- Right: Mental ro -->
-                    <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/20 shadow-sm flex flex-col h-full">
-                        <div class="flex items-center mb-8 pb-6 border-b border-brand-sky/20">
-                            <div class="h-14 w-14 rounded-full bg-brand-sky/10 flex items-center justify-center mr-5 shrink-0">
-                                <Icon name="holistic_qi_human" class="h-8 w-8 text-brand-sky-dark" />
+                    <!-- Right: Fördelar & Resultat (Accent path) -->
+                    <div class="bg-brand-accent/10 rounded-3xl p-8 border border-brand-accent/25 shadow-sm h-full flex flex-col">
+                        <div class="flex items-center mb-8 pb-6 border-b border-brand-accent/30">
+                            <div class="h-16 w-16 shrink-0 rounded-full bg-brand-accent/10 flex items-center justify-center mr-6">
+                                <Icon name="flower" class="h-11 w-11 text-brand-accent-dark" />
                             </div>
-                            <h3 class="text-brand-earth-dark font-bold text-2xl m-0">Mental ro</h3>
+                            <h3 class="text-brand-earth-dark font-bold text-3xl m-0 leading-tight">Fördelar</h3>
                         </div>
-                        <ul class="space-y-5 flex-grow">
-                            <li class="flex items-start">
-                                <Icon name="holistic_qi_human" class="h-6 w-6 text-brand-sky mt-0.5 mr-3 shrink-0" />
-                                <span class="text-neutral-700 font-medium">Lugnar ett överaktivt och stressat nervsystem</span>
+
+                        <ul class="space-y-6 mt-2 flex-grow">
+                            <li>
+                                <a href="/na-dina-halsomal/minska-stress-hitta-inre-lugn/" class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                                    <div class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                        <Icon name="Yin_yang" class="h-11 w-11 text-brand-accent-dark" />
+                                    </div>
+                                    <span class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Minska Stress & Hitta Inre Lugn</span>
+                                </a>
                             </li>
-                            <li class="flex items-start">
-                                <Icon name="holistic_qi_human" class="h-6 w-6 text-brand-sky mt-0.5 mr-3 shrink-0" />
-                                <span class="text-neutral-700 font-medium">Hjälper dig att komma ner i varv och hitta inre lugn</span>
-                            </li>
-                            <li class="flex items-start">
-                                <Icon name="holistic_qi_human" class="h-6 w-6 text-brand-sky mt-0.5 mr-3 shrink-0" />
-                                <span class="text-neutral-700 font-medium">Förbättrar förutsättningarna för god sömn och återhämtning</span>
+                            <li>
+                                <div class="flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl transition-all">
+                                    <div class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-5">
+                                        <Icon name="flower" class="h-11 w-11 text-brand-accent-dark" />
+                                    </div>
+                                    <span class="text-brand-accent-dark font-medium text-lg lg:text-xl">Mjukar upp & Återfuktar huden</span>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -160,11 +178,11 @@ import linnea_mao_profileImage from '../../assets/images/linnea_mao_profile.jpg'
     <!-- ======================================= -->
     <section class="section-standard bg-white pb-8 border-t border-neutral-100">
         <div class="container-base max-w-4xl text-center">
-            <h2 class="text-brand-earth mb-4">Din Terapeuter</h2>
+            <h2 class="text-brand-earth mb-4">Dina Terapeuter</h2>
             <p class="text-lg text-neutral-700 max-w-2xl mx-auto mb-12">
                 Oljemassagen utförs med mjuk hand och en trygg och inkännande närvaro av Linnéa och Johannes.
             </p>
-
+            
             <div class="max-w-4xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Johannes -->
                 <article class="team-card flex-row bg-brand-accent/5 border border-brand-earth/10 text-left overflow-hidden min-h-[11rem] shadow-sm">
@@ -195,6 +213,13 @@ import linnea_mao_profileImage from '../../assets/images/linnea_mao_profile.jpg'
                         </div>
                     </div>
                 </article>
+            </div>
+
+            <div class="flex justify-center mt-10 pb-4">
+                <a href="/om-oss/#team" class="btn-tertiary text-lg flex items-center group/link">
+                    Läs mer om Johannes & Linnéa
+                    <span class="ml-2 transform transition-transform group-hover/link:translate-x-1">&rarr;</span>
+                </a>
             </div>
         </div>
     </section>
