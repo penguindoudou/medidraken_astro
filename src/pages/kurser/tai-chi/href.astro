@@ -398,97 +398,88 @@ import taichi_hero6Image from '../../../assets/images/taichi_hero6.png';
 <!-- ======================================= -->
 <!-- Sektion 6: Anmälan & Info (CTA)   -->
 <!-- ======================================= -->
-<section id="anmalan" class="bg-brand-earth-light section-standard text-center">
-    <div class="container-base max-w-4xl">
+<section class="section-standard bg-brand-earth-light text-neutral-100 text-center" id="anmalan">
+    <div class="container-base max-w-3xl">
+        <h2 class="text-brand-earth-dark mb-6">Redo för en djupdykning i Tai Chi?</h2>
+        <p class="text-lg text-brand-earth mb-10 leading-relaxed">
+            Nya helgkurser planeras löpande. Det enklaste sättet att få all information du behöver är att anmäla ditt
+            intresse. Då kontaktar vi dig personligen med information om kommande starter och upplägg.
+            <br /><span class="text-brand-earth-dark font-semibold">Din anmälan är helt kostnadsfri och inte
+                bindande.</span>
+        </p>
 
-        <!-- Huvud CTA -->
-        <div class="max-w-3xl mx-auto mb-16">
-            <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Redo för en djupdykning i Tai Chi?</h2>
-            <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
-                Nya helgkurser planeras löpande. Det enklaste sättet att få all information du behöver är att anmäla ditt
-                intresse. Då kontaktar vi dig personligen med information om kommande starter och upplägg.
-                <br /><span class="text-brand-earth-dark font-semibold">Din anmälan är helt kostnadsfri och inte
-                    bindande.</span>
-            </p>
+        <a href="/kontakt/?subject=Kursintresse%3A%20Helgkurs%20Tai%20Chi"
+            class="btn btn-primary-on-dark text-xl px-10 py-5 shadow-lg shadow-black/20 mb-8">
+            Anmäl intresse & få mer information
+        </a>
 
-            <a href="/kontakt/?subject=Kursintresse%3A%20Helgkurs%20Tai%20Chi"
-                class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-8">
-                Anmäl intresse & få mer information
-            </a>
+        <p class="text-brand-earth-dark mb-12 italic">
+            {/* {%set tel = get_contact_detail('tel')%} */}
+            Har du frågor om upplägget? Ring oss gärna på <a href="tel:[tel|clean_tel]"
+                class="text-brand-sky underline hover:text-brand-sky-bright">[tel]</a>.
+        </p>
 
-            <p class="text-brand-earth-dark mb-0 italic">
-                {/* {%set tel = get_contact_detail('tel')%} */}
-                Har du frågor om upplägget? Ring oss gärna på <a href="tel:[tel|clean_tel]"
-                    class="text-brand-sky underline hover:text-brand-sky-dark">[tel]</a>.
-            </p>
-        </div>
-
-        <!-- Trust & Info Row (Discrete boxes with icon containers) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 mt-0 border-t border-brand-earth-dark/10">
-
-            <!-- Column 1: Platser -->
-            <div
-                class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
-                <div class="flex items-center mb-4">
-                    <div
-                        class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
-                        <div class="relative flex h-3 w-3 items-center justify-center">
-                            <span
-                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
-                        </div>
-                    </div>
+        <!-- Praktisk Info List -->
+        <div
+            class="flex flex-col md:flex-row justify-center gap-6 md:gap-12 text-sm md:text-base border-t border-brand-earth-dark/10 pt-8 text-brand-earth-dark">
+            <div class="flex flex-col items-start text-left">
+                <div class="flex items-center">
+                    <svg class="h-10 w-10 text-brand-earth-dark mr-2" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
                     <span class="font-bold text-brand-earth-dark text-xl">Platser</span>
                 </div>
-                <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
-                    Våra kurser hålls i <a href="/kontakt/#mottagningar"
-                        class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>,
-                    <a href="/kontakt/#mottagningar"
-                        class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a>
-                    och <a href="/kontakt/#mottagningar"
-                        class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>.
+                <div class="mt-1">
+                    <span>Våra kurser hålls i <a href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-bright font-medium">Nyköping</a>, <a
+                            href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-bright font-medium">Gnesta</a> och <a
+                            href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-bright font-medium">Oxelösund</a>.</span>
                 </div>
-                <a href="/kontakt/#mottagningar"
-                    class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Se
-                    alla adresser &rarr;</a>
             </div>
-
-            <!-- Column 2: Friskvård -->
-            <div
-                class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
-                <div class="flex items-center mb-4">
-                    <div
-                        class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
-                        <Icon name="shield_health" class="h-6 w-6" />
-                    </div>
+            <div class="flex flex-col items-start text-left">
+                <div class="flex items-center">
+                    <svg class="h-10 w-10 text-brand-earth-dark mr-2" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
                     <span class="font-bold text-brand-earth-dark text-xl">Friskvårdsbidrag</span>
                 </div>
-                <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
-                    Använd ditt Friskvårdsbidrag! Alla våra kurser är godkända.<br />
+                <div class="mt-1">
+                    <span>
+                        Använd ditt Friskvårdsbidrag! Alla våra kurser är godkända.
+                        <br />
+                        <a href="/friskvardsbidrag/" class="text-brand-sky hover:text-brand-sky-bright font-medium">
+                            Läs mer här
+                            &rarr;</a></span>
                 </div>
-                <a href="/friskvardsbidrag/"
-                    class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs
-                    mer här &rarr;</a>
             </div>
-
-            <!-- Column 3: Presentkort -->
-            <div
-                class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
-                <div class="flex items-center mb-4">
-                    <div
-                        class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
-                        <Icon name="present" class="h-6 w-6" />
-                    </div>
+            <div class="flex flex-col items-start text-left">
+                <div class="flex items-center">
+                    <svg class="h-10 w-10 text-brand-earth-dark mr-2" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
+                        </path>
+                    </svg>
                     <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
                 </div>
-                <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
-                    Ge bort en upplevelse av hälsa och vitalitet med ett presentkort i Tai Chi.<br />
+                <div class="mt-1">
+                    <span>
+                        Ge bort en upplevelse! En helgkurs i Tai Chi är en fantastisk gåva till någon du
+                        bryr dig om.
+                        <br />
+                        <a href="/presentkort/" class="text-brand-sky hover:text-brand-sky-bright font-medium">
+                            Läs mer om våra presentkort &rarr;</a></span>
                 </div>
-                <a href="/presentkort/"
-                    class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs
-                    mer om våra presentkort &rarr;</a>
             </div>
-
         </div>
     </div>
 </section>
