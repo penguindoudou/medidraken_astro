@@ -54,7 +54,7 @@ import Tai_Chi_kurs_2Image from '../../assets/images/Tai-Chi kurs 2.jpg';
             <div class="content-box h-full flex flex-col">
                 <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mx-auto mb-6">
                     <!-- Ikon: Träd/Rötter -->
-                    <Icon name="banyan_tree" class="h-10 w-10 text-brand-accent-dark" />
+                    <Icon name="tree_of_wisdom" class="h-10 w-10 text-brand-accent-dark" />
                 </div>
                 <h3 class="content-box-title text-xl">Direkt Kunskapsöverföring</h3>
                 <p class="content-box-text text-left mt-4 flex-grow">
@@ -187,9 +187,14 @@ import Tai_Chi_kurs_2Image from '../../assets/images/Tai-Chi kurs 2.jpg';
 
             <!-- Dekorativ bild eller illustration -->
             <div class="md:w-[65%] relative md:-mr-8 lg:-mr-16">
-                <div class="absolute inset-0 bg-brand-accent transform translate-x-3 translate-y-3 rounded-lg"></div>
-                <Image src={Tai_Chi_kurs_2Image} alt="Instruktion i praktiken"
-                    class="relative rounded-lg shadow-lg z-10 w-full h-auto object-cover" />
+                <!-- Dekorativ ram/skugga -->
+                <div
+                    class="absolute inset-0 bg-brand-accent transform translate-x-3 translate-y-3 rounded-lg opacity-20">
+                </div>
+                <div class="relative rounded-lg overflow-hidden bg-brand-accent shadow-xl">
+                    <Image src={Tai_Chi_kurs_2Image} alt="Instruktion i praktiken"
+                        class="w-full object-cover h-auto opacity-85" />
+                </div>
             </div>
 
         </div>
