@@ -6,6 +6,7 @@ import Icon from '../components/Icon.astro';
 // Images
 import johannesImage from '../assets/images/johannes_mao_profile.jpg';
 import linneaImage from '../assets/images/linnea_mao_profile.jpg';
+import { siteConfig } from '../data/site.ts';
 ---
 
 <BaseLayout title="Kontakt">
@@ -26,7 +27,9 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                         </p>
 
                         <p>
-                            För snabbast svar rekommenderar vi att du ringer +46705814086 eller använder formuläret
+                            För snabbast svar rekommenderar vi att du ringer <a href={`tel:${siteConfig.phone.clean}`}
+                                class="text-brand-sky-dark hover:text-brand-accent-dark font-bold transition-colors">{siteConfig.phone.display}</a>
+                            eller använder formuläret
                             nedan.
                         </p>
                     </div>
@@ -156,7 +159,7 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                         <p class="text-sm text-neutral-600">
                             Gäller din förfrågan ett Företag? <br class="hidden sm:block">
                             <a href="/for-foretag/kontakt-offert/"
-                                class="text-brand-sky-dark hover:text-brand-sky-bright font-semibold underline decoration-brand-sky-dark/30 underline-offset-4 mt-1 inline-block">Använd
+                                class="text-brand-sky-dark hover:text-brand-accent-dark font-semibold underline decoration-brand-sky-dark/30 underline-offset-4 mt-1 inline-block">Använd
                                 vårt separata formulär för offertförfrågan här &rarr;</a>
                         </p>
                     </div>
@@ -175,9 +178,8 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                                 </svg>
                                 Telefon
                             </div>
-                            <a href="tel:+46705814086"
-                                class="text-brand-sky-dark hover:text-brand-sky-bright font-medium text-lg ml-9 transition-colors">+467
-                                058 140 86</a>
+                            <a href={`tel:${siteConfig.phone.clean}`}
+                                class="text-brand-sky-dark hover:text-brand-accent-dark font-medium text-lg ml-9 transition-colors">{siteConfig.phone.display}</a>
                         </div>
                         <div>
                             <div class="flex items-center text-brand-earth-dark font-semibold text-lg mb-2">
@@ -189,7 +191,7 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
                                 E-post
                             </div>
                             <a href="mailto:info@medidraken.com"
-                                class="text-brand-sky-dark hover:text-brand-sky-bright font-medium text-lg ml-9 transition-colors">info@medidraken.com</a>
+                                class="text-brand-sky-dark hover:text-brand-accent-dark font-medium text-lg ml-9 transition-colors">info@medidraken.com</a>
                         </div>
                         <div class="pt-4 border-t border-brand-accent/20 mt-6">
                             <p class="text-sm text-neutral-600 italic leading-relaxed">
@@ -289,8 +291,11 @@ import linneaImage from '../assets/images/linnea_mao_profile.jpg';
             <div class="text-center max-w-3xl mx-auto mb-10">
                 <h2 class="text-3xl text-brand-earth-dark font-semibold mb-4">Hitta till Oss</h2>
                 <p class="text-lg text-neutral-700 leading-relaxed">
-                    Vi har vår primära bas och mottagning i Nyköping. Vi erbjuder även bokade tider på våra mottagningar
-                    i Gnesta och Oxelösund enligt överenskommelse och tillgänglighet.
+                    Vi har mottagningar i Gnesta, Nyköping och Oxelösund.
+                </p>
+                <p class="text-lg text-neutral-700 leading-relaxed mt-4">
+                    Vi tar emot besök endast efter tidsbokning. Välkommen att kontakta oss för att boka en tid via
+                    kontaktuppgifterna eller formuläret ovan.
                 </p>
             </div>
 

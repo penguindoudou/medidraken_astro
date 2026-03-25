@@ -5,6 +5,7 @@ import Icon from '../../../components/Icon.astro';
 
 // Images
 import taichi_hero6Image from '../../../assets/images/taichi_hero6.png';
+import { siteConfig } from '../../../data/site.ts';
 ---
 
 <BaseLayout title="Helgkurser i Tai Chi">
@@ -418,8 +419,8 @@ import taichi_hero6Image from '../../../assets/images/taichi_hero6.png';
 
             <p class="text-brand-earth-dark mb-0 italic">
                 {/* {%set tel = get_contact_detail('tel')%} */}
-                Har du frågor om upplägget? Ring oss gärna på <a href="tel:[tel|clean_tel]"
-                    class="text-brand-sky underline hover:text-brand-sky-dark">[tel]</a>.
+                Har du frågor om upplägget? Ring oss gärna på <a href={`tel:${siteConfig.phone.clean}`}
+                    class="text-brand-sky underline hover:text-brand-sky-dark">{siteConfig.phone.display}</a>.
             </p>
         </div>
 

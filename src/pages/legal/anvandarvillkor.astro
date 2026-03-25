@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import { siteConfig } from '../../data/site.ts';
 ---
 
 <BaseLayout title="Användarvillkor">
@@ -46,7 +47,7 @@ import Icon from '../../components/Icon.astro';
                 <p class="text-neutral-700 leading-relaxed mb-6">Vi förstår att oförutsedda händelser kan inträffa. Följande policy gäller för avbokning och ombokning av Tjänster bokade hos Medidraken:</p>
 
                 <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.1 Allmänt</h3>
-                <p class="text-neutral-700 leading-relaxed mb-6">All avbokning och begäran om ombokning ska meddelas oss så snart som möjligt via telefon till <a href="tel:+46705814086" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30 underline-offset-4">+46705814086</a>. En avbokning är giltig först när du mottagit en bekräftelse från oss.</p>
+                <p class="text-neutral-700 leading-relaxed mb-6">All avbokning och begäran om ombokning ska meddelas oss så snart som möjligt via telefon till <a href={`tel:${siteConfig.phone.clean}`} class="text-brand-sky hover:text-brand-accent-dark underline decoration-brand-sky/30 underline-offset-4">{siteConfig.phone.display}</a>. En avbokning är giltig först när du mottagit en bekräftelse från oss.</p>
 
                 <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">5.2 Individuella Behandlingar & Privatundervisning</h3>
                 <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
@@ -85,7 +86,7 @@ import Icon from '../../components/Icon.astro';
                 <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">6. Friskvårdsbidrag</h2>
                 <p class="text-neutral-700 leading-relaxed mb-4">Alla våra kurser och behandlingar är godkända för användning av friskvårdsbidrag. Du ansvarar själv för att kontrollera med din arbetsgivare vilka regler som gäller för ditt friskvårdsbidrag och hur du ska gå tillväga för att nyttja det.</p>
                 <p class="text-neutral-700 leading-relaxed mb-4">Många arbetsgivare använder digitala förmånsportaler (såsom exempelvis Epassi eller Benify) för hantering av friskvårdsbidrag. Om din arbetsgivare använder en sådan portal, kontrollera där vilka specifika krav som gäller för registrering av ditt utlägg för tjänster köpta hos oss.</p>
-                <p class="text-neutral-700 leading-relaxed mb-6">Vi tillhandahåller alltid ett kvitto med nödvändig information efter genomförd tjänst och erlagd betalning, som du kan använda för att ansöka om ersättning från din arbetsgivare eller via din eventuella friskvårdsportal. Läs mer med generella tips på vår sida om <a href="/friskvardsbidrag/" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30 underline-offset-4">Friskvårdsbidrag</a>.</p>
+                <p class="text-neutral-700 leading-relaxed mb-6">Vi tillhandahåller alltid ett kvitto med nödvändig information efter genomförd tjänst och erlagd betalning, som du kan använda för att ansöka om ersättning från din arbetsgivare eller via din eventuella friskvårdsportal. Läs mer med generella tips på vår sida om <a href="/friskvardsbidrag/" class="hover:text-brand-accent-dark underline decoration-brand-sky/30 underline-offset-4">Friskvårdsbidrag</a>.</p>
 
                 <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">7. Presentkort</h2>
                 <p class="text-neutral-700 leading-relaxed mb-6">Presentkort köpta hos Medidraken är giltiga i 12 månader från inköpsdatum, om inget annat anges. Presentkort kan användas som betalning för Tjänster men kan inte lösas in mot kontanter. Borttappat presentkort ersätts ej.</p>
@@ -112,13 +113,13 @@ import Icon from '../../components/Icon.astro';
                     <p class="text-neutral-700 leading-relaxed mb-1 font-medium text-lg">Medidraken<br />Din Hälsa-Medidraken</p>
                     <p class="text-neutral-700 leading-relaxed mb-4">Dalgatan 20, 646 32 Gnesta</p>
                     <p class="flex flex-col sm:flex-row sm:gap-6 gap-2">
-                        <a href="mailto:info@medidraken.com" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center gap-2 group">
+                        <a href="mailto:info@medidraken.com" class="text-brand-sky hover:text-brand-accent-dark font-medium flex items-center gap-2 group">
                             <Icon name="email" class="h-5 w-5 opacity-70 group-hover:opacity-100 transition-opacity" />
                             <span class="underline decoration-brand-sky/30 underline-offset-4">info@medidraken.com</span>
                         </a>
-                        <a href="tel:+46705814086" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center gap-2 group">
+                        <a href={`tel:${siteConfig.phone.clean}`} class="text-brand-sky hover:text-brand-accent-dark font-medium flex items-center gap-2 group">
                             <Icon name="phone" class="h-5 w-5 opacity-70 group-hover:opacity-100 transition-opacity" />
-                            <span class="underline decoration-brand-sky/30 underline-offset-4">+46705814086</span>
+                            <span class="underline decoration-brand-sky/30 underline-offset-4">{siteConfig.phone.display}</span>
                         </a>
                     </p>
                 </div>

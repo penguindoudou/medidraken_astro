@@ -5,6 +5,7 @@ import Icon from '../components/Icon.astro';
 
 // Placeholder bild, byt ut vid tillfälle. Använder en befintlig som stödjande bakgrund så länge.
 import heroImage from '../assets/images/ancient_modern_bridge3.png';
+import { siteConfig } from '../data/site.ts';
 ---
 
 <BaseLayout title="Presentkort på Massage, Akupunktur, Tai Chi & Qigong i Nyköping | Medidraken">
@@ -166,8 +167,8 @@ import heroImage from '../assets/images/ancient_modern_bridge3.png';
                     </div>
                     <div
                         class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow space-y-2 flex flex-col justify-center">
-                        <a href="tel:0701234567"
-                            class="text-brand-earth-dark hover:text-brand-sky transition-colors">070-123 45 67</a>
+                        <a href={`tel:${siteConfig.phone.clean}`}
+                            class="text-brand-earth-dark hover:text-brand-sky transition-colors">{siteConfig.phone.display}</a>
                         <a href="mailto:info@medidraken.se"
                             class="text-brand-earth-dark hover:text-brand-sky transition-colors">info@medidraken.se</a>
                     </div>

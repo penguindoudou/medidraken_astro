@@ -5,6 +5,7 @@ import Icon from '../components/Icon.astro';
 
 // Placeholder bild, byt ut vid tillfälle
 import heroImage from '../assets/images/taichi_hero6.png'; 
+import { siteConfig } from '../data/site.ts';
 ---
 
 <BaseLayout title="Använd Ditt Friskvårdsbidrag för Massage & Qigong i Nyköping | Medidraken">
@@ -116,7 +117,7 @@ import heroImage from '../assets/images/taichi_hero6.png';
                         </div>
                         <div class="bg-neutral-50 rounded-2xl p-6 md:p-8 flex-grow border border-neutral-100 shadow-sm group-hover:shadow-md transition-shadow">
                             <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Boka hos Oss</h3>
-                            <p class="text-neutral-700">Välj den kurs eller behandling du är intresserad av och <a href="/kontakt/" class="text-brand-sky hover:text-brand-sky-dark underline decoration-brand-sky/30 underline-offset-4 font-medium transition-colors">kontakta oss</a> för att boka din tid eller plats.</p>
+                            <p class="text-neutral-700">Välj den kurs eller behandling du är intresserad av och <a href="/kontakt/" class="text-brand-sky hover:text-brand-accent-dark underline decoration-brand-sky/30 underline-offset-4 font-medium transition-colors">kontakta oss</a> för att boka din tid eller plats.</p>
                         </div>
                     </div>
 
@@ -256,7 +257,7 @@ import heroImage from '../assets/images/taichi_hero6.png';
                         <span class="font-bold text-brand-earth-dark text-xl">Kontakta oss</span>
                     </div>
                     <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow space-y-2 flex flex-col justify-center">
-                        <a href="tel:0701234567" class="text-brand-earth-dark hover:text-brand-sky transition-colors">070-123 45 67</a>
+                        <a href={`tel:${siteConfig.phone.clean}`} class="text-brand-earth-dark hover:text-brand-sky transition-colors">{siteConfig.phone.display}</a>
                         <a href="mailto:info@medidraken.se" class="text-brand-earth-dark hover:text-brand-sky transition-colors">info@medidraken.se</a>
                     </div>
                     <a href="/kontakt/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Visa öppettider &rarr;</a>
