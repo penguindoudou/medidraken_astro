@@ -6,6 +6,12 @@ import Icon from '../../../components/Icon.astro';
 // Images
 import qigong_bamboo15Image from '../../../assets/images/qigong_bamboo15.png';
 import { siteConfig } from '../../../data/site.ts';
+import { coursesQigong } from '../../../data/courses.ts';
+
+// Filtrera framtida kurser eller de som pågår
+const activeCourses = coursesQigong.filter(course => new Date(course.lastDate) >= new Date(new
+Date().setHours(0,0,0,0)));
+
 ---
 
 <BaseLayout title="Helgkurser i Medicinsk Qigong">
@@ -55,7 +61,7 @@ import { siteConfig } from '../../../data/site.ts';
                 <!-- Feature Box 1: En Snabb & Effektiv Start -->
                 <div class="content-box flex flex-col items-center text-center">
                     <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mb-4">
-                        <Icon name="lightening" class="h-12 w-12 text-brand-accent-dark" />
+                        <Icon name="lightening" class="h-12 w-12 text-brand-accent-dark" stroke-width="1.2" />
                     </div>
 
                     <h3 class="text-xl font-bold text-neutral-900 mb-3">En Snabb & Effektiv Start</h3>
@@ -205,13 +211,10 @@ import { siteConfig } from '../../../data/site.ts';
                             <div
                                 class="bg-gradient-to-br from-brand-accent/5 to-brand-earth/5 rounded-xl p-8 border-2 border-brand-accent/20 shadow-sm">
                                 <div class="flex flex-col items-center text-center h-full">
+
                                     <div
                                         class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-accent/20 mb-6">
-                                        <svg class="h-12 w-12 text-brand-accent-dark" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
+                                        <Icon name="shield_health" class="h-12 w-12 text-brand-accent-dark" />
                                     </div>
                                     <h4 class="font-bold text-brand-earth-dark text-xl mb-4">Långsiktig Hälsa</h4>
                                     <p class="text-neutral-700 text-base leading-relaxed">
@@ -266,8 +269,7 @@ import { siteConfig } from '../../../data/site.ts';
             <h2 class="text-brand-earth text-center mb-10">Kommande Helgkurser i Medicinsk Qigong</h2>
 
 
-            {/* {%if courses_qigong_weekend is defined and courses_qigong_weekend is not empty%} */}
-
+            {activeCourses.length > 0 ? (
             <!-- Active Courses Table -->
             <div class="overflow-x-auto shadow-md rounded-lg max-w-5xl mx-auto border border-neutral-200">
                 <table class="min-w-full leading-normal">
@@ -289,32 +291,30 @@ import { siteConfig } from '../../../data/site.ts';
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {%for course in courses_qigong_weekend%} */}
+                        {activeCourses.map(course => (
                         <tr>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap font-semibold">[course.title]</p>
+                                <p class="text-gray-900 whitespace-no-wrap font-semibold">{course.title}</p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">[course.location]</p>
+                                <p class="text-gray-900 whitespace-no-wrap">{course.location}</p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">[course.date]</p>
+                                <p class="text-gray-900 whitespace-no-wrap">{course.date}</p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">[course.times]</p>
+                                <p class="text-gray-900 whitespace-no-wrap">{course.times}</p>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                <a href="[course.link]" class="text-brand-sky hover:text-brand-earth font-medium">Boka
+                                <a href={course.link} class="text-brand-sky hover:text-brand-accent-dark font-bold">Boka
                                     &rarr;</a>
                             </td>
                         </tr>
-                        {/* {%endfor%} */}
+                        ))}
                     </tbody>
                 </table>
             </div>
-
-            {/* {%else%} */}
-
+            ) : (
             <!-- Fallback Block -->
             <div
                 class="max-w-4xl mx-auto border-2 border-dashed border-neutral-300 rounded-xl p-8 md:p-12 bg-neutral-50">
@@ -402,8 +402,7 @@ import { siteConfig } from '../../../data/site.ts';
 
                 </div>
             </div>
-
-            {/* {%endif%} */}
+            )}
         </div>
     </section>
 

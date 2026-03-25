@@ -2,9 +2,10 @@
 interface Props {
   name: string;
   class?: string;
+  'stroke-width'?: string | number;
 }
 
-const { name, class: className } = Astro.props;
+const { name, class: className, 'stroke-width': strokeWidth } = Astro.props;
 
 // Use Vite's glob import to get all SVGs as raw strings
 const icons = import.meta.glob('../icons/*.svg', { 
@@ -28,8 +29,19 @@ if (svgContent) {
       svgContent = svgContent.replace('<svg', `<svg class="${className}"`);
     }
   }
+
+  // 3. Handle stroke-width if provided
+  if (strokeWidth !== undefined) {
+    // If the SVG already has stroke-width attributes (on <svg> or <path>), replace them all
+    if (svgContent.includes('stroke-width=')) {
+      svgContent = svgContent.replace(/stroke-width="[^"]*"/g, `stroke-width="${strokeWidth}"`);
+    } else if (svgContent.includes('<svg')) {
+      // Otherwise, inject it into the root <svg> tag
+      svgContent = svgContent.replace('<svg', `<svg stroke-width="${strokeWidth}"`);
+    }
+  }
   
-  // 3. Remove any existing class placeholders from old WP system
+  // 4. Remove any existing class placeholders from old WP system
   svgContent = svgContent.replace(/class="{{.*?}}"/g, '');
 } else {
   console.error(`Icon "${name}" not found at ${iconKey}`);
