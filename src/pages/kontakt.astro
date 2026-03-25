@@ -28,7 +28,7 @@ import { siteConfig } from '../data/site.ts';
 
                         <p>
                             För snabbast svar rekommenderar vi att du ringer <a href={`tel:${siteConfig.phone.clean}`}
-                                class="text-brand-sky-dark hover:text-brand-accent-dark font-bold transition-colors">{siteConfig.phone.display}</a>
+                                class="text-brand-sky-dark hover:text-brand-accent-dark font-bold transition-colors underline decoration-brand-sky/30 underline-offset-4">{siteConfig.phone.display}</a>
                             eller använder formuläret
                             nedan.
                         </p>
@@ -41,7 +41,7 @@ import { siteConfig } from '../data/site.ts';
             </div>
 
             <!-- Rad 2: Tillgänglighet och Tidsbokning (Flyttad upp) -->
-            <div class="text-center max-w-5xl mx-auto py-8 lg:py-10 border-y border-brand-earth-light/20">
+            <div id="tidsbokning" class="scroll-mt-20 text-center max-w-5xl mx-auto py-8 lg:py-10 border-y border-brand-earth-light/20">
                 <h2 class="text-3xl text-brand-earth-dark font-semibold mb-10">Tillgänglighet och Tidsbokning</h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -97,7 +97,15 @@ import { siteConfig } from '../data/site.ts';
 
                     <!-- NOTERA TILL UTVECKLARE: Här kan du klistra in din Fluent Forms shortcode typ [fluentform id="1"].
                     Nedan är en välbyggd mockup på hur formuläret ska se ut enligt instruktionerna. -->
-                    <form action="#" method="POST" class="space-y-5">
+                    <form action="#" method="POST" class="space-y-5"
+                        x-data="{ subject: '', subSubject: '', location: '' }"
+                        x-init="
+                            const params = new URLSearchParams(window.location.search);
+                            if (params.has('subject')) subject = params.get('subject');
+                            if (params.has('sub')) subSubject = params.get('sub');
+                            if (params.has('location')) location = params.get('location');
+                            $watch('subject', value => { subSubject = '' });
+                        ">
 
                         <div>
                             <label for="name" class="block text-sm font-medium text-neutral-700 mb-1">Namn <span
@@ -121,36 +129,158 @@ import { siteConfig } from '../data/site.ts';
                             </div>
                         </div>
 
+                        <!-- Önskad Ort (Valfritt) -->
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-neutral-700 mb-1">Önskad
+                                ort (valfri)</label>
+                            <select id="location" name="location" x-model="location"
+                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
+                                <option value="">-- Välj ort --</option>
+                                <option value="gnesta">Gnesta</option>
+                                <option value="nykoping">Nyköping</option>
+                                <option value="oxelosund">Oxelösund</option>
+                            </select>
+
+                            <!-- Dynamisk adressvisning -->
+                            <div x-show="location === 'gnesta'" x-cloak
+                                class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
+                                x-transition>
+                                <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span><strong>Gnesta:</strong> {siteConfig.addresses.gnesta.full}</span>
+                            </div>
+                            <div x-show="location === 'nykoping'" x-cloak
+                                class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
+                                x-transition>
+                                <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span><strong>Nyköping:</strong> {siteConfig.addresses.nykoping.full}</span>
+                            </div>
+                            <div x-show="location === 'oxelosund'" x-cloak
+                                class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
+                                x-transition>
+                                <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span><strong>Oxelösund:</strong> {siteConfig.addresses.oxelosund.full}</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Category -->
                         <div>
                             <label for="subject" class="block text-sm font-medium text-neutral-700 mb-1">Ditt Ärende
                                 <span class="text-red-500">*</span></label>
-                            <select id="subject" name="subject" required
+                            <select id="subject" name="subject" required x-model="subject"
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
                                 <option value="">-- Välj ett ärende --</option>
-                                <option value="behandling">Fråga om Behandling / Tidsbokning</option>
-                                <option value="qigong">Intresseanmälan: Kurs i Medicinsk Qigong</option>
-                                <option value="taichi">Intresseanmälan: Kurs i Tai Chi</option>
-                                <option value="helsoresan">Intresseanmälan: Hälsoresa till Kina</option>
-                                <option value="privat">Privat gruppförfrågan</option>
-                                <option value="presentkort">Fråga om Presentkort</option>
+                                <option value="taichi">Tai Chi</option>
+                                <option value="qigong">Medicinsk Qigong</option>
+                                <option value="instruktorskurs">Instruktörskurs</option>
+                                <option value="behandling">Behandling</option>
+                                <option value="halsoresa">Hälsoresa till Kina</option>
+                                <option value="presentkort">Presentkort</option>
+                                <option value="friskvardsbidrag">Friskvårdsbidrag</option>
                                 <option value="ovrigt">Övrigt</option>
                             </select>
                         </div>
 
+                        <!-- Sub-Category: Tai Chi & Qigong -->
+                        <div x-show="['taichi', 'qigong'].includes(subject)" x-cloak class="mt-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                            <label for="course_type" class="block text-sm font-medium text-neutral-700 mb-1">Typ av kurs <span class="text-red-500">*</span></label>
+                            <select id="course_type" name="course_type" :required="['taichi', 'qigong'].includes(subject)" x-model="subSubject"
+                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
+                                <option value="">-- Välj typ av kurs --</option>
+                                <option value="helgkurs">Helgkurs</option>
+                                <option value="privatkurs">Privatkurs</option>
+                                <option value="specifik_forfragan">Specifik förfrågan</option>
+                                <option value="vet_ej">Vet ej / Behöver rådgivning</option>
+                            </select>
+                        </div>
+
+                        <!-- Specifik förfrågan (Text area) -->
+                        <div x-show="['taichi', 'qigong'].includes(subject) && subSubject === 'specifik_forfragan'" x-cloak class="mt-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                            <label for="specific_request" class="block text-sm font-medium text-neutral-700 mb-1">Beskriv din förfrågan kort <span class="text-red-500">*</span></label>
+                            <input type="text" id="specific_request" name="specific_request" :required="['taichi', 'qigong'].includes(subject) && subSubject === 'specifik_forfragan'"
+                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
+                        </div>
+
+                        <!-- Sub-Category: Behandling Helper -->
+                        <div x-show="subject === 'behandling'" x-cloak class="mt-4 bg-brand-sky-light/20 p-4 rounded-md border border-brand-sky/30"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 scale-95"
+                             x-transition:enter-end="opacity-100 scale-100">
+                            <p class="text-sm text-brand-earth-dark font-medium flex items-start">
+                                <svg class="w-5 h-5 mr-2 shrink-0 text-brand-sky-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span>Vi anpassar behandlingsform (TuiNa, Akupunktur, Oljemassage etc.) efter din situation och symtom.</span>
+                            </p>
+                        </div>
+
+                        <!-- Sub-Category: Presentkort -->
+                        <div x-show="subject === 'presentkort'" x-cloak class="mt-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                            <label for="giftcard_type" class="block text-sm font-medium text-neutral-700 mb-1">Vad för typ av presentkort? <span class="text-red-500">*</span></label>
+                            <select id="giftcard_type" name="giftcard_type" :required="subject === 'presentkort'" x-model="subSubject"
+                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
+                                <option value="">-- Välj typ --</option>
+                                <option value="valfritt_belopp">Valfritt belopp</option>
+                                <option value="specifik_behandling">Specifik Behandling</option>
+                                <option value="specifik_kurs">Specifik Kurs</option>
+                                <option value="vet_ej">Vet ej / Behöver rådgivning</option>
+                            </select>
+                        </div>
+
+                        <!-- Sub-Category: Friskvårdsbidrag -->
+                        <div x-show="subject === 'friskvardsbidrag'" x-cloak class="mt-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                            <label for="friskvard_type" class="block text-sm font-medium text-neutral-700 mb-1">Vad vill du använda friskvårdsbidraget till? <span class="text-red-500">*</span></label>
+                            <select id="friskvard_type" name="friskvard_type" :required="subject === 'friskvardsbidrag'" x-model="subSubject"
+                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
+                                <option value="">-- Välj alternativ --</option>
+                                <option value="taichi">Tai Chi</option>
+                                <option value="qigong">Medicinsk Qigong</option>
+                                <option value="behandling">Behandling</option>
+                                <option value="vet_ej">Vet ej / Behöver rådgivning</option>
+                            </select>
+                        </div>
+
+                        <!-- Övrigt Text Input -->
+                        <div x-show="subject === 'ovrigt'" x-cloak class="mt-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                            <label for="other_request" class="block text-sm font-medium text-neutral-700 mb-1">Vad gäller ditt ärende? <span class="text-red-500">*</span></label>
+                            <input type="text" id="other_request" name="other_request" :required="subject === 'ovrigt'"
+                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
+                        </div>
+
                         <div>
-                            <label for="message" class="block text-sm font-medium text-neutral-700 mb-1">Ditt
+                            <label for="message" class="block text-sm font-medium text-neutral-700 mb-1 mt-4">Ditt
                                 Meddelande
-                                <span class="text-red-500">*</span></label>
-                            <p class="text-xs text-neutral-500 mb-2">Beskriv ditt ärende, dina frågor eller vad du
-                                behöver hjälp med. Om det gäller en kurs, ange gärna önskad ort och eventuella
-                                önskemål
-                                om dagar/tider. Gäller det en privat grupp, beskriv gärna era önskemål.</p>
-                            <textarea id="message" name="message" rows="5" required
+                                <span class="text-red-500" x-show="subject !== 'ovrigt'">*</span></label>
+                            <p class="text-xs text-neutral-500 mb-2" x-show="!['ovrigt'].includes(subject)">Beskriv ditt ärende, dina frågor eller vad du behöver hjälp med.</p>
+                            <textarea id="message" name="message" rows="5" :required="subject !== 'ovrigt'"
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"></textarea>
                         </div>
 
                         <button type="submit"
-                            class="w-full btn btn-primary-on-dark mt-4 text-center justify-center py-4 text-lg">
+                            class="w-full btn btn-primary-on-dark mt-6 text-center justify-center py-4 text-lg">
                             Skicka Meddelande
                         </button>
                     </form>
