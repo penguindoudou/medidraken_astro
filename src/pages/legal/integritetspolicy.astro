@@ -24,7 +24,7 @@ import { siteConfig } from '../../data/site.ts';
             <div class="prose-like-content">
                 <h2 class="text-2xl font-bold text-brand-earth-dark mt-8 mb-4 border-b border-brand-earth-dark/10 pb-2">1. Introduktion och Personuppgiftsansvarig</h2>
                 <p class="text-neutral-700 leading-relaxed mb-4">Din integritet är viktig för oss på Medidraken. I denna policy förklarar vi på ett så tydligt sätt som möjligt hur vi hanterar den information vi samlar in när du besöker vår webbplats eller kontaktar oss. Vårt mål är att du alltid ska känna dig trygg med hur dina uppgifter behandlas.</p>
-                <p class="text-neutral-700 leading-relaxed mb-4">Välkommen till Medidraken! Vi värnar om din personliga integritet. Denna integritetspolicy beskriver hur Medidraken (Din Hälsa-Medidraken, organisationsnummer 680108-XXXX, Dalgatan 20, 646 32 Gnesta), nedan kallad "vi", "oss" eller "vår", samlar in, använder, lagrar och skyddar dina personuppgifter när du använder vår webbplats (www.medidraken.com, nedan kallad "Webbplatsen") och våra tjänster.</p>
+                <p class="text-neutral-700 leading-relaxed mb-4">Välkommen till Medidraken! Vi värnar om din personliga integritet. Denna integritetspolicy beskriver hur Medidraken (Din Hälsa-Medidraken, organisationsnummer 680108-XXXX, {siteConfig.addresses.gnesta.full}), nedan kallad "vi", "oss" eller "vår", samlar in, använder, lagrar och skyddar dina personuppgifter när du använder vår webbplats (<a href={siteConfig.url}>{siteConfig.domain}</a>, nedan kallad "Webbplatsen") och våra tjänster.</p>
                 <p class="text-neutral-700 leading-relaxed mb-6">Vi är personuppgiftsansvariga för behandlingen av dina personuppgifter som beskrivs i denna policy.</p>
 
                 <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">2. Vilka Personuppgifter Samlar Vi In?</h2>
@@ -125,11 +125,11 @@ import { siteConfig } from '../../data/site.ts';
                 <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">11. Kontaktuppgifter</h2>
                 <div class="bg-brand-earth-lightest/50 p-6 rounded-xl border border-brand-earth-dark/5 mt-6 mb-8">
                     <p class="text-neutral-700 leading-relaxed mb-1 font-medium text-lg">Medidraken<br />Din Hälsa-Medidraken</p>
-                    <p class="text-neutral-700 leading-relaxed mb-4">Dalgatan 20, 646 32 Gnesta</p>
+                    <p class="text-neutral-700 leading-relaxed mb-4">{siteConfig.addresses.gnesta.full}</p>
                     <p class="flex flex-col sm:flex-row sm:gap-6 gap-2">
-                        <a href="mailto:info@medidraken.com" class="text-brand-sky hover:text-brand-accent-dark font-medium flex items-center gap-2 group">
+                        <a href={`mailto:${siteConfig.email}`} class="text-brand-sky hover:text-brand-accent-dark font-medium flex items-center gap-2 group">
                             <Icon name="email" class="h-5 w-5 opacity-70 group-hover:opacity-100 transition-opacity" />
-                            <span class="underline decoration-brand-sky/30 underline-offset-4">info@medidraken.com</span>
+                            <span class="underline decoration-brand-sky/30 underline-offset-4">{siteConfig.email}</span>
                         </a>
                         <a href={`tel:${siteConfig.phone.clean}`} class="text-brand-sky hover:text-brand-accent-dark font-medium flex items-center gap-2 group">
                             <Icon name="phone" class="h-5 w-5 opacity-70 group-hover:opacity-100 transition-opacity" />

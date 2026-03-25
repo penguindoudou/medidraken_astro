@@ -29,7 +29,7 @@ const currentYear = new Date().getFullYear();
                                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                 </svg>
                             </span>
-                            <a href="mailto:info@medidraken.com" class="footer-link text-lg font-medium hover:text-white transition-colors">info@medidraken.com</a>
+                            <a href={`mailto:${siteConfig.email}`} class="footer-link text-lg font-medium hover:text-white transition-colors">{siteConfig.email}</a>
                         </li>
                         <li class="flex items-start gap-4">
                             <span class="mt-1 flex-shrink-0 text-brand-earth-lighter">
@@ -38,7 +38,7 @@ const currentYear = new Date().getFullYear();
                                 </svg>
                             </span>
                             <div class="flex flex-col space-y-3">
-                                <a href="https://www.google.com/maps/place/Östra+Storgatan+2,+611+34+Nyköping" target="_blank" class="footer-link text-base hover:text-white transition-colors">Östra Storgatan 2, 611 34 Nyköping</a>
+                                <a href={siteConfig.addresses.nykoping.mapUrl} target="_blank" class="footer-link text-base hover:text-white transition-colors">{siteConfig.addresses.nykoping.full}</a>
                             </div>
                         </li>
                         <li class="flex items-start gap-4">
@@ -48,7 +48,7 @@ const currentYear = new Date().getFullYear();
                                 </svg>
                             </span>
                             <div class="flex flex-col space-y-3">
-                                <a href="https://www.google.com/maps/place/Dalgatan+20,+646+32+Gnesta" target="_blank" class="footer-link text-base hover:text-white transition-colors">Dalgatan 20, 646 32 Gnesta</a>
+                                <a href={siteConfig.addresses.gnesta.mapUrl} target="_blank" class="footer-link text-base hover:text-white transition-colors">{siteConfig.addresses.gnesta.full}</a>
                             </div>
                         </li>
                         <li class="flex items-start gap-4">
@@ -58,7 +58,7 @@ const currentYear = new Date().getFullYear();
                                 </svg>
                             </span>
                             <div class="flex flex-col space-y-3">
-                                <a href="https://www.google.com/maps/place/Föreningsgatan+30,+613+31+Oxelösund" target="_blank" class="footer-link text-base hover:text-white transition-colors">Föreningsgatan 30, 613 31 Oxelösund</a>
+                                <a href={siteConfig.addresses.oxelosund.mapUrl} target="_blank" class="footer-link text-base hover:text-white transition-colors">{siteConfig.addresses.oxelosund.full}</a>
                             </div>
                         </li>
                     </ul>
