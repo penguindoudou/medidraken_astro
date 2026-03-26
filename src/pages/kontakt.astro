@@ -10,8 +10,9 @@ import { siteConfig } from '../data/site.ts';
 ---
 
 <BaseLayout title="Kontakt">
-    <section class="section-standard bg-brand-earth-lightest relative overflow-hidden">
-        <div class="container-base space-y-6 lg:space-y-12">
+    <!-- Introduktion: Kontakta Oss (Vit Bakgrund) -->
+    <section class="pt-20 lg:pt-28 pb-6 lg:pb-12 bg-white relative overflow-hidden">
+        <div class="container-base">
 
             <!-- Rad 1: Intro & Dekorativ Icon -->
             <div class="grid grid-cols-1 lg:grid-cols-[1.0fr_0.8fr] gap-12 lg:gap-4 items-center">
@@ -39,6 +40,12 @@ import { siteConfig } from '../data/site.ts';
                     <Icon name="taichi_qigong_flow" class="w-full max-w-[250px] h-auto" />
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Huvudinnehåll: Tidsbokning & Formulär (Ljus Jord-bakgrund) -->
+    <section class="pb-20 lg:pb-28 bg-brand-earth-lightest relative overflow-hidden">
+        <div class="container-base space-y-6 lg:space-y-12">
 
             <!-- Rad 2: Tillgänglighet och Tidsbokning (Flyttad upp) -->
             <div id="tidsbokning"
