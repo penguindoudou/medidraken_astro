@@ -1,20 +1,30 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { siteConfig } from '../../data/site.ts';
+
+// Images
+import heroImage from '../../assets/images/ancient_modern_bridge.png';
 ---
 
 <BaseLayout title="Cookiepolicy">
     <!-- Hero Section -->
-    <section class="bg-brand-earth-lightest py-16 md:py-24 border-b border-brand-earth-dark/10">
-        <div class="container-base">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-white mx-auto mb-6 shadow-sm border border-brand-earth-dark/5">
-                    <Icon name="cookie" class="h-8 w-8 text-brand-sky" /> <!-- fallback if "cookie" doesn't exist, using generic or maybe just a text icon. Let's use shield_check or similar if cookie is missing. Actually, I can use an SVG directly or just standard Icon if it has it. Let's use shield_check or info. Let's stick to info or shield. In om-oss "shield_health" was used. Let's use shield_health. -->
-                    <Icon name="shield_health" class="h-8 w-8 text-brand-sky" />
-                </div>
-                <h1 class="text-4xl md:text-5xl text-brand-earth-dark mb-4 drop-shadow-sm">Cookiepolicy för Medidraken</h1>
-                <p class="text-neutral-500 mb-0 font-medium tracking-wide">Senast uppdaterad: 15/05/2025</p>
+    <section class="hero-section !py-16 !md:py-24 !min-h-0">
+        <div class="hero-background bg-brand-earth">
+            <Image 
+                src={heroImage} 
+                alt="Medidraken - Cookiepolicy" 
+                class="hero-bg-image opacity-50" 
+            />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-accent mb-6 drop-shadow-md">Cookiepolicy för Medidraken</h1>
+            
+            <div class="bg-brand-earth-dark/85 p-4 rounded-lg border border-white/10 max-w-lg mx-auto backdrop-blur-sm">
+                <p class="text-base text-neutral-200 font-medium tracking-wide">
+                    Senast uppdaterad: 15/05/2025
+                </p>
             </div>
         </div>
     </section>
@@ -58,13 +68,8 @@ import { siteConfig } from '../../data/site.ts';
                 </ul>
 
                 <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">3.3 Funktionella Cookies</h3>
-                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-4">
-                    <li><strong>Syfte:</strong> Dessa cookies gör det möjligt för Webbplatsen att tillhandahålla förbättrad funktionalitet och personlig anpassning. De kan ställas in av oss eller av tredjepartsleverantörer vars tjänster vi har lagt till på våra sidor. Om du inte tillåter dessa cookies kanske vissa eller alla av dessa tjänster inte fungerar korrekt.</li>
-                    <li><strong>Exempel:</strong>
-                        <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
-                            <li><strong>Polylang:</strong> Används för att komma ihåg ditt språkval. Cookien som används heter typiskt <code>pll_language</code> (ett tekniskt namn för cookien som sparar ditt språkval). (Leverantör/Utvecklare av plugin: WP SYNTEX).</li>
-                        </ul>
-                    </li>
+                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-2">
+                    <li><strong>Syfte:</strong> Dessa cookies gör det möjligt för Webbplatsen att komma ihåg val du gör och erbjuda förbättrade funktioner. För närvarande använder vi inga specifika funktionella cookies permanent, men de kan användas om vi lägger till funktioner som t.ex. ett språksval.</li>
                     <li><strong>Laglig grund:</strong> Ditt uttryckliga samtycke.</li>
                 </ul>
 
@@ -117,59 +122,24 @@ import { siteConfig } from '../../data/site.ts';
                         <tbody class="divide-y divide-brand-earth-dark/5">
                             <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
                                 <td class="px-4 py-3 font-semibold text-brand-earth-dark">Absolut Nödvändig</td>
-                                <td class="px-4 py-3 font-mono text-xs"><code>PHPSESSID</code></td>
-                                <td class="px-4 py-3">Webbserver</td>
-                                <td class="px-4 py-3">Bibehålla användarsession under besöket.</td>
-                                <td class="px-4 py-3">Session</td>
-                            </tr>
-                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
-                                <td class="px-4 py-3"></td>
                                 <td class="px-4 py-3 font-mono text-xs"><code>cookie_consent_status</code></td>
                                 <td class="px-4 py-3">CMP-verktyg</td>
                                 <td class="px-4 py-3">Sparar användarens samtyckesval för cookies.</td>
                                 <td class="px-4 py-3">1 år</td>
                             </tr>
                             <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
-                                <td class="px-4 py-3"></td>
-                                <td class="px-4 py-3 font-mono text-xs"><code>wordpress_test_cookie</code></td>
-                                <td class="px-4 py-3">WordPress</td>
-                                <td class="px-4 py-3">Kontrollerar om webbläsaren accepterar cookies.</td>
-                                <td class="px-4 py-3">Session</td>
-                            </tr>
-                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
                                 <td class="px-4 py-3 text-brand-earth-dark font-semibold">Prestanda/Analys</td>
                                 <td class="px-4 py-3 font-mono text-xs"><code>_ga</code></td>
-                                <td class="px-4 py-3">Google Analytics</td>
+                                <td class="px-4 py-3">Google Analytics 4</td>
                                 <td class="px-4 py-3">Används för att särskilja användare.</td>
                                 <td class="px-4 py-3">2 år</td>
                             </tr>
                             <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
                                 <td class="px-4 py-3"></td>
                                 <td class="px-4 py-3 font-mono text-xs"><code>_ga_&lt;container-id&gt;</code></td>
-                                <td class="px-4 py-3">Google Analytics</td>
+                                <td class="px-4 py-3">Google Analytics 4</td>
                                 <td class="px-4 py-3">Används för att bibehålla sessionstillstånd.</td>
                                 <td class="px-4 py-3">2 år</td>
-                            </tr>
-                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
-                                <td class="px-4 py-3 text-brand-earth-dark font-semibold">Funktionell</td>
-                                <td class="px-4 py-3 font-mono text-xs"><code>pll_language</code></td>
-                                <td class="px-4 py-3">Polylang</td>
-                                <td class="px-4 py-3">Sparar användarens valda språk för webbplatsen.</td>
-                                <td class="px-4 py-3">1 år</td>
-                            </tr>
-                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
-                                <td class="px-4 py-3 text-brand-earth-dark font-semibold">Marknadsföring</td>
-                                <td class="px-4 py-3 font-mono text-xs"><code>_fbp</code> / <code>fr</code></td>
-                                <td class="px-4 py-3">Meta Platforms</td>
-                                <td class="px-4 py-3">Leverera, mäta och förbättra annonsrelevans.</td>
-                                <td class="px-4 py-3">3 mån</td>
-                            </tr>
-                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
-                                <td class="px-4 py-3 text-brand-earth-dark font-semibold">Marknadsföring</td>
-                                <td class="px-4 py-3 font-mono text-xs"><code>_gcl_au</code> / <code>IDE</code></td>
-                                <td class="px-4 py-3">Google Ads</td>
-                                <td class="px-4 py-3">Mäta konverteringar och registrera handlingar.</td>
-                                <td class="px-4 py-3">90 dagar / 1.5 år</td>
                             </tr>
                         </tbody>
                     </table>

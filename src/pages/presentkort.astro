@@ -10,18 +10,22 @@ import { siteConfig } from '../data/site.ts';
 
 <BaseLayout title="Presentkort på Massage, Akupunktur, Tai Chi & Qigong i Nyköping | Medidraken">
     <!-- Sektion 1: Toppsektion (Hero) -->
-    <section class="hero-section min-h-[50vh]">
+    <section class="hero-section min-h-[60vh]">
         <div class="hero-background">
             <Image src={heroImage} alt="Ge bort en gåva av hälsa" class="hero-bg-image opacity-70 object-top" />
         </div>
         <div class="hero-content text-center">
             <h1 class="hero-title text-brand-accent">Ge Bort en Gåva av Hälsa &amp; Välbefinnande</h1>
-
-            <p class="hero-text text-brand-earth-lightest">
-                Ett presentkort från Medidraken är mer än bara en present - det är en omtänksam gest som ger någon
-                du bryr dig om en möjlighet att investera i sin egen hälsa. Perfekt som födelsedagspresent, julklapp,
-                eller bara för att visa din uppskattning.
-            </p>
+            <div
+                class="hero-text bg-brand-earth-dark/70 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-white/10 max-w-3xl">
+                <h2 class="hero-subtitle font-bold mb-3">En Hälsosam Gåva</h2>
+                <p class="text-lg md:text-xl text-neutral-100 leading-relaxed">
+                    Ett presentkort från Medidraken är mer än bara en present - det är en omtänksam gest som ger någon
+                    du bryr dig om en möjlighet att investera i sin egen hälsa. Perfekt som födelsedagspresent,
+                    julklapp,
+                    eller bara för att visa din uppskattning.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -38,7 +42,7 @@ import { siteConfig } from '../data/site.ts';
                     class="content-box flex flex-col items-center hover:-translate-y-1 transition-transform duration-300">
                     <div
                         class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mb-4 mx-auto">
-                        <Icon name="heart_handshake" class="h-10 w-10 text-brand-accent-dark" />
+                        <Icon name="heart_handshake-bold" class="h-10 w-10 text-brand-accent-dark" />
                     </div>
                     <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Du Väljer Värdet</h3>
                     <p class="text-neutral-700 text-center flex-grow">
@@ -57,7 +61,7 @@ import { siteConfig } from '../data/site.ts';
                     <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Full Valfrihet för Mottagaren</h3>
                     <p class="text-neutral-700 text-center flex-grow">
                         Presentkortet kan användas som betalning eller delbetalning för alla våra tjänster - från
-                        en avslappnande TuiNa- eller Oljemassage och stärkande Akupunkturbehandlingar till en hel kurs i
+                        en avslappnande TuiNa- eller Oljemassage till en kurs i
                         Medicinsk Qigong eller Tai Chi.
                     </p>
                 </div>
@@ -91,14 +95,12 @@ import { siteConfig } from '../data/site.ts';
                 <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Kontakta Oss för att Köpa Ditt Presentkort
                 </h2>
                 <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
-                    Det enklaste sättet att köpa ett presentkort är att kontakta oss direkt. Vi förbereder då ett fint,
-                    fysiskt presentkort som du kan hämta upp hos oss i Nyköping, eller så kan vi komma överens om en
-                    annan lösning.
+                    Kontakta oss direkt via telefon eller formuläret på vår kontaktsida så hjälper vi dig vidare.
                 </p>
 
                 <a href="/kontakt/?subject=presentkort#tidsbokning"
                     class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-4 inline-block">
-                    Kontakta oss via Telefon eller E-post
+                    Kontakta oss
                 </a>
 
                 <p class="text-brand-earth-dark/80 text-sm italic mt-2">
@@ -167,14 +169,13 @@ import { siteConfig } from '../data/site.ts';
                     </div>
                     <div
                         class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow space-y-2 flex flex-col justify-center">
+                        Välkommen att höra av dig via telefon eller kontaktformulär.
                         <a href={`tel:${siteConfig.phone.clean}`}
-                            class="text-brand-earth-dark hover:text-brand-sky transition-colors">{siteConfig.phone.display}</a>
-                        <a href="mailto:info@medidraken.se"
-                            class="text-brand-earth-dark hover:text-brand-sky transition-colors">info@medidraken.se</a>
+                            class="text-brand-sky hover:text-brand-sky-dark font-bold transition-colors underline decoration-brand-sky/20 underline-offset-4 transition-all">{siteConfig.phone.display}</a>
                     </div>
                     <a href="/kontakt/?subject=presentkort#tidsbokning"
-                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Visa
-                        öppettider &rarr;</a>
+                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Kontaktformulär
+                        &rarr;</a>
                 </div>
             </div>
         </div>

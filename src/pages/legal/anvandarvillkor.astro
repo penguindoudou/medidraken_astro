@@ -1,19 +1,30 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { siteConfig } from '../../data/site.ts';
+
+// Images
+import heroImage from '../../assets/images/ancient_modern_bridge.png';
 ---
 
 <BaseLayout title="Användarvillkor">
     <!-- Hero Section -->
-    <section class="bg-brand-earth-lightest py-16 md:py-24 border-b border-brand-earth-dark/10">
-        <div class="container-base">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-white mx-auto mb-6 shadow-sm border border-brand-earth-dark/5">
-                    <Icon name="holistic_qi_human" class="h-8 w-8 text-brand-sky" />
-                </div>
-                <h1 class="text-4xl md:text-5xl text-brand-earth-dark mb-4 drop-shadow-sm">Användarvillkor för Medidraken</h1>
-                <p class="text-neutral-500 mb-0 font-medium tracking-wide">Senast uppdaterad: 05/03/2026</p>
+    <section class="hero-section !py-16 !md:py-24 !min-h-0">
+        <div class="hero-background bg-brand-earth">
+            <Image 
+                src={heroImage} 
+                alt="Medidraken - Användarvillkor" 
+                class="hero-bg-image opacity-50" 
+            />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-accent mb-6 drop-shadow-md">Användarvillkor för Medidraken</h1>
+            
+            <div class="bg-brand-earth-dark/85 p-4 rounded-lg border border-white/10 max-w-lg mx-auto backdrop-blur-sm">
+                <p class="text-base text-neutral-200 font-medium tracking-wide">
+                    Senast uppdaterad: 05/03/2026
+                </p>
             </div>
         </div>
     </section>

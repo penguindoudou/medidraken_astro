@@ -10,20 +10,29 @@ import { siteConfig } from '../data/site.ts';
 
 <BaseLayout title="Använd Ditt Friskvårdsbidrag för Massage & Qigong i Nyköping | Medidraken">
     <!-- Sektion 1: Toppsektion (Hero) -->
-    <section class="hero-section min-h-[50vh]">
+    <section class="hero-section">
         <div class="hero-background">
             <Image 
                 src={heroImage} 
                 alt="Friskvårdsbidrag för hälsan" 
-                class="hero-bg-image opacity-70 object-top" 
+                class="hero-bg-image" 
             />
         </div>
-        <div class="hero-content text-center">
-            <h1 class="hero-title text-brand-accent">Använd Ditt Friskvårdsbidrag hos Oss!</h1>
+        <div class="hero-content">
+            <h1 class="hero-title text-brand-accent">Friskvårdsbidrag</h1>
             
-            <p class="hero-text text-brand-earth-lightest">
-                På Medidraken är din hälsa i fokus! Alla våra kurser och de flesta av våra behandlingar är godkända för friskvårdsbidrag - en fin förmån som många arbetsgivare erbjuder. Investera i dig själv och upplev fördelarna med TCM, Tai Chi och Qigong för mer energi och mindre stress.
-            </p>
+            <div class="hero-text bg-brand-earth-dark/40 p-6 rounded-lg backdrop-blur-sm border border-white/10">
+                <h2 class="hero-subtitle font-bold mb-3">Investera i din Hälsa & Sänk din Stressnivå</h2>
+                <p class="hero-text mt-0">
+                    På Medidraken är din hälsa i fokus! Alla våra kurser och de flesta av våra behandlingar är godkända för friskvårdsbidrag - en fin förmån som många arbetsgivare erbjuder. Investera i dig själv och upplev fördelarna med TCM, Tai Chi och Qigong för mer energi och mindre stress.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <a href="/kontakt/?subject=friskvardsbidrag#tidsbokning" class="btn btn-primary-on-dark">
+                    Boka & Använd ditt Friskvårdsbidrag
+                </a>
+            </div>
         </div>
     </section>
 
@@ -238,7 +247,7 @@ import { siteConfig } from '../data/site.ts';
                 <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
                     <div class="flex items-center mb-4">
                         <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
-                            <Icon name="flower" class="h-6 w-6" />
+                            <Icon name="present" class="h-6 w-6" />
                         </div>
                         <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
                     </div>
@@ -249,18 +258,24 @@ import { siteConfig } from '../data/site.ts';
                 </div>
 
                 <!-- Kontakt -->
-                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
                     <div class="flex items-center mb-4">
-                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
                             <Icon name="phone" class="h-5 w-5" />
                         </div>
                         <span class="font-bold text-brand-earth-dark text-xl">Kontakta oss</span>
                     </div>
-                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow space-y-2 flex flex-col justify-center">
-                        <a href={`tel:${siteConfig.phone.clean}`} class="text-brand-earth-dark hover:text-brand-sky transition-colors">{siteConfig.phone.display}</a>
-                        <a href="mailto:info@medidraken.se" class="text-brand-earth-dark hover:text-brand-sky transition-colors">info@medidraken.se</a>
+                    <div
+                        class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow space-y-2 flex flex-col justify-center">
+                        Välkommen att höra av dig via telefon eller kontaktformulär.
+                        <a href={`tel:${siteConfig.phone.clean}`}
+                            class="text-brand-sky hover:text-brand-sky-dark font-bold transition-colors underline decoration-brand-sky/20 underline-offset-4 transition-all">{siteConfig.phone.display}</a>
                     </div>
-                    <a href="/kontakt/?subject=friskvardsbidrag#tidsbokning" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Visa öppettider &rarr;</a>
+                    <a href="/kontakt/?subject=friskvardsbidrag#tidsbokning"
+                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Kontaktformulär
+                        &rarr;</a>
                 </div>
             </div>
         </div>

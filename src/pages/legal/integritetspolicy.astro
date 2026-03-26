@@ -1,19 +1,30 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { siteConfig } from '../../data/site.ts';
+
+// Images
+import heroImage from '../../assets/images/ancient_modern_bridge.png';
 ---
 
 <BaseLayout title="Integritetspolicy">
     <!-- Hero Section -->
-    <section class="bg-brand-earth-lightest py-16 md:py-24 border-b border-brand-earth-dark/10">
-        <div class="container-base">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-white mx-auto mb-6 shadow-sm border border-brand-earth-dark/5">
-                    <Icon name="shield_health" class="h-8 w-8 text-brand-sky" />
-                </div>
-                <h1 class="text-4xl md:text-5xl text-brand-earth-dark mb-4 drop-shadow-sm">Integritetspolicy för Medidraken</h1>
-                <p class="text-neutral-500 mb-0 font-medium tracking-wide">Senast uppdaterad: 15/05/2025</p>
+    <section class="hero-section !py-16 !md:py-24 !min-h-0">
+        <div class="hero-background bg-brand-earth">
+            <Image 
+                src={heroImage} 
+                alt="Medidraken - Integritetspolicy" 
+                class="hero-bg-image opacity-50" 
+            />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-accent mb-6 drop-shadow-md">Integritetspolicy för Medidraken</h1>
+            
+            <div class="bg-brand-earth-dark/85 p-4 rounded-lg border border-white/10 max-w-lg mx-auto backdrop-blur-sm">
+                <p class="text-base text-neutral-200 font-medium tracking-wide">
+                    Senast uppdaterad: 15/05/2025
+                </p>
             </div>
         </div>
     </section>
@@ -69,35 +80,31 @@ import { siteConfig } from '../../data/site.ts';
                 <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-4">
                     <li><strong>Leverantörer av IT-tjänster och infrastruktur (Personuppgiftsbiträden):</strong>
                         <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
-                            <li>För webbhotell och e-posttjänster, där dina personuppgifter (inklusive data insamlad via formulär) lagras: <strong>Loopia AB</strong> (org. nr 556633-9304, som tillhandahåller tjänster under namnet Websupport).</li>
-                        </ul>
-                    </li>
-                    <li><strong>Leverantörer av specifik mjukvara (som används på vår server):</strong>
-                        <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
-                            <li>För formulärhantering på webbplatsen använder vi WordPress-tillägget Fluent Forms, utvecklat av <strong>WPManageNinja LLC</strong> (USA). <strong>Viktigt att notera:</strong> Insamlade formulärdata lagras på vår egen server i Sverige hos vår leverantör Loopia. Ingen data du fyller i skickas till eller lagras av WPManageNinja.</li>
+                            <li>För webbhotell och infrastruktur där webbplatsen lagras och levereras: <strong>Cloudflare, Inc.</strong> Uppgifterna lagras och levereras via Cloudflares globala nätverk. Vi förlitar oss på Cloudflares åtaganden kring datasäkerhet och lagliga mekanismer för dataöverföring utanför EU/EES där så krävs.</li>
+                            <li>För e-posttjänster, där dina personuppgifter (inklusive data insamlad via e-post) lagras: <strong>Loopia AB</strong> (org. nr 556633-9304, som tillhandahåller tjänster under namnet Websupport).</li>
                         </ul>
                     </li>
                     <li><strong>För webbplatsanalys (Personuppgiftsbiträde):</strong>
                         <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
-                            <li>Vi använder <strong>Google Analytics</strong>, en webbanalystjänst som tillhandahålls av <strong>Google LLC</strong> (1600 Amphitheatre Parkway, Mountain View, CA 94043, USA) och dess dotterbolag (t.ex. Google Ireland Limited), för att samla in statistik och förstå hur besökare använder vår Webbplats. Detta hjälper oss att förbättra användarupplevelsen och innehållet.</li>
-                            <li>Google Analytics använder cookies för att samla in information, såsom din IP-adress (som vi har konfigurerat för <strong>IP-anonymisering</strong> inom Google Analytics, vilket innebär att de sista siffrorna i din IP-adress maskeras innan lagring och behandling), vilka sidor du besöker, tidpunkt för besök, och om du har besökt oss tidigare.</li>
+                            <li>Vi använder <strong>Google Analytics 4 (GA4)</strong>, en webbanalystjänst som tillhandahålls av <strong>Google LLC</strong>, för att samla in statistik och förstå hur besökare använder vår Webbplats. Detta hjälper oss att förbättra användarupplevelsen och innehållet.</li>
+                            <li>GA4 använder cookies för att samla in information, såsom din enhet/webbläsare och webbplatsanvändning. Vi har konfigurerat tjänsten för <strong>IP-anonymisering/maskering</strong>, vilket innebär att din fullständiga IP-adress aldrig registreras.</li>
                             <li>Denna information överförs till och lagras av Google på servrar som kan finnas i USA. Vi förlitar oss på standardavtalsklausuler (SCC) eller andra godkända överföringsmekanismer som Google tillhandahåller för överföring av data till USA, samt Googles åtaganden kring datasäkerhet.</li>
                             <li>Användningen av Google Analytics förutsätter ditt <strong>samtycke</strong>, vilket du kan ge eller neka via vår cookie-banner. Du kan också förhindra insamling av data genererad av cookien genom att ladda ner och installera ett webbläsartillägg för att välja bort Google Analytics: <a href="https://tools.google.com/dlpage/gaoptout" class="text-brand-sky hover:text-brand-accent-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://tools.google.com/dlpage/gaoptout</a>.</li>
                         </ul>
                     </li>
                     <li><strong>Myndigheter:</strong> Om vi är skyldiga att göra det enligt lag.</li>
                 </ul>
-                <p class="text-neutral-700 leading-relaxed mb-6">Vi säkerställer att vi har nödvändiga avtal (t.ex. personuppgiftsbiträdesavtal med Loopia AB och relevanta databehandlingsvillkor med Google) på plats för att skydda dina personuppgifter. När det gäller mjukvara från leverantörer utanför EU/EES, som WPManageNinja LLC, förlitar vi oss på att mjukvaran är utformad för att möjliggöra säker och GDPR-kompatibel databehandling på vår egen infrastruktur.</p>
+                <p class="text-neutral-700 leading-relaxed mb-6">Vi säkerställer att vi har nödvändiga avtal (t.ex. personuppgiftsbiträdesavtal med Loopia AB och relevanta databehandlingsvillkor med Cloudflare och Google) på plats för att skydda dina personuppgifter. Vid överföring av data till leverantörer utanför EU/EES förlitar vi oss på godkända överföringsmekanismer såsom standardavtalsklausuler (SCC) för att säkerställa en adekvat skyddsnivå.</p>
 
                 <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">7. Cookies och Liknande Teknologier</h2>
                 <p class="text-neutral-700 leading-relaxed mb-4">Webbplatsen använder cookies (små textfiler som lagras på din enhet) och liknande teknologier (t.ex. pixlar) för att fungera korrekt, förbättra din användarupplevelse, analysera webbplatstrafik och, när vi bedriver betalda annonskampanjer, för marknadsföringsändamål.</p>
                 <p class="text-neutral-700 leading-relaxed mb-4">I praktiken innebär detta att när du besöker oss första gången, frågar vi dig via en banner om lov att använda cookies. Du kan då välja att endast acceptera de som är absolut nödvändiga för att sidan ska fungera, eller även godkänna de som hjälper oss att förstå hur sidan används och (i framtiden) visa relevanta annonser.</p>
                 <p class="text-neutral-700 leading-relaxed mb-4">Vi använder följande huvudkategorier av cookies:</p>
                 <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-4">
-                    <li><strong>Absolut Nödvändiga Cookies:</strong> Krävs för Webbplatsens grundläggande funktioner, såsom sidnavigering och hantering av ditt samtycke för andra cookies. Dessa kan inte stängas av i våra system.</li>
-                    <li><strong>Prestanda- och Analyscookies:</strong> Hjälper oss att förstå hur besökare interagerar med Webbplatsen genom att samla in och rapportera information anonymt (efter IP-anonymisering där så är tillämpligt, t.ex. med Google Analytics). Detta gör att vi kan mäta och förbättra Webbplatsens prestanda.</li>
-                    <li><strong>Funktionella Cookies:</strong> Gör det möjligt för Webbplatsen att komma ihåg val du gör (som språkpreferenser via Polylang) och erbjuda förbättrade, mer personliga funktioner.</li>
-                    <li><strong>Marknadsförings- och Annonscookies:</strong> Används potentiellt av oss och våra annonspartners som Meta (Facebook/Instagram), TikTok, X (Twitter), Google Ads och YouTube för att bygga en profil av dina intressen och visa dig relevanta annonser på andra webbplatser, samt för att mäta effektiviteten av våra annonskampanjer. Dessa kommer endast att aktiveras och användas om och när vi bedriver betalda annonskampanjer på respektive plattform och efter att du har gett ditt uttryckliga samtycke till detta.</li>
+                    <li><strong>Absolut Nödvändiga Cookies:</strong> Krävs för Webbplatsens grundläggande funktioner, såsom sidnavigering och hantering av ditt samtycke för andra cookies.</li>
+                    <li><strong>Prestanda- och Analyscookies:</strong> Hjälper oss att förstå hur besökare interagerar med Webbplatsen genom att samla in information anonymt via Google Analytics 4. Detta gör att vi kan mäta och förbättra Webbplatsens prestanda.</li>
+                    <li><strong>Funktionella Cookies:</strong> Kan användas för att komma ihåg val du gör (som framtida språkpreferenser) och erbjuda förbättrade funktioner.</li>
+                    <li><strong>Marknadsförings- och Annonscookies:</strong> Vi använder för närvarande inga marknadsföringscookies eller pixlar för riktad annonsering. Vid framtida kampanjer (t.ex. via Meta eller Google Ads) kommer sådana cookies endast att aktiveras efter ditt uttryckliga samtycke.</li>
                 </ul>
                 <p class="text-neutral-700 leading-relaxed mb-4">För icke-nödvändiga cookies (Prestanda/Analys, Funktionella, Marknadsföring) inhämtar vi ditt <strong>uttryckliga samtycke</strong> via en cookie-banner som visas vid ditt första besök på Webbplatsen. Du kan när som helst ändra eller dra tillbaka ditt samtycke via inställningarna i vår cookie-banner eller genom att justera inställningarna i din webbläsare.</p>
                 <p class="text-neutral-700 leading-relaxed mb-6 font-medium">För en fullständig och detaljerad lista över de cookies vi använder (eller kan komma att använda vid aktivering av marknadsföringskampanjer), deras syfte, varaktighet och hur du hanterar dem, vänligen se vår separata <a href="/legal/cookie-policy/" class="text-brand-sky hover:text-brand-accent-dark underline decoration-brand-sky/30 underline-offset-4">Cookie Policy</a>.</p>
