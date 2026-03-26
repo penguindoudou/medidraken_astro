@@ -38,12 +38,10 @@ import heroImage from '../../assets/images/ancient_modern_bridge.png';
                 <p class="text-neutral-700 leading-relaxed mb-6">"Liknande teknologier" inkluderar pixlar, web beacons, och lokal lagring som används på liknande sätt som cookies. I denna policy hänvisar vi till alla dessa teknologier som "cookies".</p>
 
                 <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">2. Hur Använder Vi Cookies?</h2>
-                <p class="text-neutral-700 leading-relaxed mb-4">Vi på Medidraken (<a href={siteConfig.url}>{siteConfig.domain}</a>) använder cookies för flera olika ändamål:</p>
+                <p class="text-neutral-700 leading-relaxed mb-4">Vi på Medidraken (<a href={siteConfig.url}>{siteConfig.domain}</a>) strävar efter att vara en helt <strong>kakfri webbplats</strong> för att värna om din integritet. Vi använder cookies endast för absolut nödvändiga funktioner om det skulle krävas tekniskt i framtiden.</p>
                 <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-6 ml-2 md:ml-4">
                     <li>För att säkerställa Webbplatsens grundläggande funktionalitet.</li>
-                    <li>För att komma ihåg dina preferenser och inställningar (t.ex. språkval, cookie-samtycke).</li>
-                    <li>För att samla in anonymiserad statistik om hur Webbplatsen används, så att vi kan förbättra den.</li>
-                    <li>För att, när vi bedriver betalda annonskampanjer, leverera och mäta effektiviteten av våra marknadsföringskampanjer och visa dig relevanta annonser.</li>
+                    <li>För att samla in <strong>helt anonym statistik via Cloudflare Web Analytics</strong>, som inte använder några cookies och inte spårar dig som individ.</li>
                 </ul>
 
                 <h2 class="text-2xl font-bold text-brand-earth-dark mt-10 mb-4 border-b border-brand-earth-dark/10 pb-2">3. Typer av Cookies Vi Använder</h2>
@@ -57,15 +55,7 @@ import heroImage from '../../assets/images/ancient_modern_bridge.png';
                 </ul>
 
                 <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">3.2 Prestanda- och Analyscookies</h3>
-                <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-4">
-                    <li><strong>Syfte:</strong> Dessa cookies tillåter oss att räkna besök och trafikkällor så att vi kan mäta och förbättra prestandan på vår Webbplats. De hjälper oss att veta vilka sidor som är mest och minst populära och se hur besökare rör sig på Webbplatsen. All information som dessa cookies samlar in är aggregerad och därför anonym (efter IP-anonymisering där det är tillämpligt). Om du inte tillåter dessa cookies vet vi inte när du har besökt vår Webbplats och kommer inte att kunna övervaka dess prestanda.</li>
-                    <li><strong>Exempel:</strong>
-                        <ul class="list-[circle] list-inside ml-4 mt-2 space-y-2 text-neutral-600">
-                            <li><strong>Google Analytics:</strong> Vi använder Google Analytics för att samla in anonymiserad statistik om hur besökare, som du, använder vår Webbplats. Detta hjälper oss att förstå hur Webbplatsen används och hur vi kan förbättra den för att ge dig en bättre upplevelse. Google Analytics använder cookies (små textfiler på din dator) för att göra detta. Exempel på tekniska namn för dessa cookies kan vara <code>_ga</code> och <code>_gid</code>. För att skydda din integritet har vi aktiverat en funktion i Google Analytics som anonymiserar din IP-adress innan den behandlas av Google. Denna statistik kan överföras till och lagras av Google på servrar som kan finnas i USA. Leverantören av denna tjänst är Google LLC (USA). Om du vill veta mer om hur Google hanterar data, eller om du vill förhindra att din data används av Google Analytics, kan du besöka: <a href="https://tools.google.com/dlpage/gaoptout" class="text-brand-sky hover:text-brand-accent-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://tools.google.com/dlpage/gaoptout</a> och <a href="https://policies.google.com/privacy" class="text-brand-sky hover:text-brand-accent-dark underline decoration-brand-sky/30" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</li>
-                        </ul>
-                    </li>
-                    <li><strong>Laglig grund:</strong> Ditt uttryckliga samtycke.</li>
-                </ul>
+                <p class="text-neutral-700 leading-relaxed mb-4">Vi använder <strong>Cloudflare Web Analytics</strong> för att förstå hur vår webbplats används. Denna tjänst är utformad för att vara helt integritetsvänlig och använder <strong>inga cookies</strong>. Vi får statistik om antal besökare och populära sidor utan att behöva spåra dig eller lagra information på din enhet.</p>
 
                 <h3 class="text-xl font-bold text-brand-earth-dark mt-8 mb-3">3.3 Funktionella Cookies</h3>
                 <ul class="list-disc list-inside text-neutral-700 leading-relaxed space-y-3 mb-4 ml-2 md:ml-2">
@@ -121,25 +111,9 @@ import heroImage from '../../assets/images/ancient_modern_bridge.png';
                         </thead>
                         <tbody class="divide-y divide-brand-earth-dark/5">
                             <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
-                                <td class="px-4 py-3 font-semibold text-brand-earth-dark">Absolut Nödvändig</td>
-                                <td class="px-4 py-3 font-mono text-xs"><code>cookie_consent_status</code></td>
-                                <td class="px-4 py-3">CMP-verktyg</td>
-                                <td class="px-4 py-3">Sparar användarens samtyckesval för cookies.</td>
-                                <td class="px-4 py-3">1 år</td>
-                            </tr>
-                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
-                                <td class="px-4 py-3 text-brand-earth-dark font-semibold">Prestanda/Analys</td>
-                                <td class="px-4 py-3 font-mono text-xs"><code>_ga</code></td>
-                                <td class="px-4 py-3">Google Analytics 4</td>
-                                <td class="px-4 py-3">Används för att särskilja användare.</td>
-                                <td class="px-4 py-3">2 år</td>
-                            </tr>
-                            <tr class="hover:bg-brand-earth-lightest/50 transition-colors">
-                                <td class="px-4 py-3"></td>
-                                <td class="px-4 py-3 font-mono text-xs"><code>_ga_&lt;container-id&gt;</code></td>
-                                <td class="px-4 py-3">Google Analytics 4</td>
-                                <td class="px-4 py-3">Används för att bibehålla sessionstillstånd.</td>
-                                <td class="px-4 py-3">2 år</td>
+                                <td class="px-4 py-3 colspan-5 text-center text-neutral-500 italic py-8">
+                                    För närvarande använder Medidraken inga cookies för varken statistik eller marknadsföring.
+                                </td>
                             </tr>
                         </tbody>
                     </table>
