@@ -17,7 +17,7 @@ import { siteConfig } from '../data/site.ts';
         <div class="hero-content text-center">
             <h1 class="hero-title text-brand-accent">Ge Bort en Gåva av Hälsa &amp; Välbefinnande</h1>
             <div
-                class="hero-text bg-brand-earth-dark/70 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-white/10 max-w-3xl">
+                class="hero-text bg-brand-earth-dark/70 p-6 md:p-8 rounded-lg backdrop-blur-sm border border-white/10 max-w-3xl mx-auto">
                 <h2 class="hero-subtitle font-bold mb-3">En Hälsosam Gåva</h2>
                 <p class="text-lg md:text-xl text-neutral-100 leading-relaxed">
                     Ett presentkort från Medidraken är mer än bara en present - det är en omtänksam gest som ger någon
@@ -26,11 +26,261 @@ import { siteConfig } from '../data/site.ts';
                     eller bara för att visa din uppskattning.
                 </p>
             </div>
+
+            <div class="mt-10">
+                <a href="/kontakt/?subject=presentkort#tidsbokning"
+                    class="btn btn-primary-on-dark hover:scale-105 transition-transform shadow-lg shadow-black/20">
+                    Beställ Presentkort
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Sektion 2: Hur Fungerar Det? -->
+    <!-- ======================================= -->
+    <!-- Sektion 2: Känner du någon som...       -->
+    <!-- ======================================= -->
+    <section class="bg-white border-t border-neutral-100 section-standard">
+        <div class="container-base">
+            <div class="text-center max-w-3xl mx-auto mb-16 px-4">
+                <h2 class="text-brand-earth mb-4 uppercase tracking-wide">En omtänksam gåva</h2>
+                <p class="text-lg text-neutral-700">
+                    Känner du någon som kämpar med något specifikt besvär nämnt nedan, eller som skulle må bra av att
+                    bli stärkt med inre lugn och energi? Våra behandlingar och kurser är en mycket uppskattad gåva.
+                </p>
+            </div>
+
+            <!-- Content Grid: Side-by-Side on Desktop -->
+            <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-12 items-start max-w-6xl mx-auto mb-12">
+
+                <!-- Left: Besvär (Fysiska & Stressrelaterade) (Accent path) -->
+                <div class="bg-brand-accent/10 rounded-3xl p-8 border border-brand-accent/25 shadow-sm">
+                    <div class="flex items-center mb-8 pb-6 border-b border-brand-accent/30">
+                        <div
+                            class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-6 shrink-0">
+                            <Icon name="ryggont" class="h-13 w-13 text-brand-accent-dark" />
+                        </div>
+                        <h3 class="text-brand-earth-dark font-bold text-3xl m-0">Känner du någon som kämpar med:</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
+                        <!-- Column 1: Fysiska -->
+                        <div>
+                            <h4 class="text-brand-earth-dark italic font-bold text-xl mb-4 px-2">Fysiska besvär</h4>
+                            <ul class="flex flex-col gap-y-4">
+                                <li>
+                                    <div
+                                        class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 transition-all">
+                                        <div
+                                            class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent transition-all">
+                                            <Icon name="ryggont" class="h-14 w-14 text-brand-accent-dark" />
+                                        </div>
+                                        <span
+                                            class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent transition-all">Rygg
+                                            &amp; Ländrygg</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div
+                                        class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 transition-all">
+                                        <div
+                                            class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent transition-all">
+                                            <Icon name="nackont" class="h-12 w-12 text-brand-accent-dark" />
+                                        </div>
+                                        <span
+                                            class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent transition-all">Nacke
+                                            &amp; Axlar</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div
+                                        class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 transition-all">
+                                        <div
+                                            class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent transition-all">
+                                            <Icon name="huvudvark" class="h-12 w-12 text-brand-accent-dark" />
+                                        </div>
+                                        <span
+                                            class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent transition-all">Huvudvärk
+                                            &amp; Yrsel</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div
+                                        class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 transition-all">
+                                        <div
+                                            class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent transition-all">
+                                            <Icon name="ledvark" class="h-15 w-15 text-brand-accent-dark" />
+                                        </div>
+                                        <span
+                                            class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent transition-all">Ledvärk,
+                                            Artros &amp; Idrottsskador</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Column 2: Stressrelaterade -->
+                        <div>
+                            <h4 class="text-brand-earth-dark italic font-bold text-xl mb-4 px-2">Stressrelaterade besvär
+                            </h4>
+                            <ul class="flex flex-col gap-y-4">
+                                <li>
+                                    <div
+                                        class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 transition-all">
+                                        <div
+                                            class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent transition-all">
+                                            <Icon name="broken_moon_with_stars"
+                                                class="h-10 w-10 text-brand-accent-dark" />
+                                        </div>
+                                        <span
+                                            class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent transition-all">Sömnproblem</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div
+                                        class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 transition-all">
+                                        <div
+                                            class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent transition-all">
+                                            <Icon name="outlined_wilted_leaf"
+                                                class="h-10 w-10 text-brand-accent-dark" />
+                                        </div>
+                                        <span
+                                            class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent transition-all">Utbrändhet
+                                            &amp; Trötthet</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div
+                                        class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 transition-all">
+                                        <div
+                                            class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent transition-all">
+                                            <Icon name="broken_shield" class="h-12 w-12 text-brand-accent-dark" />
+                                        </div>
+                                        <span
+                                            class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent transition-all">Ofta
+                                            förkyld</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Hälsofördelar (Sky path) -->
+                <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/10 shadow-sm h-full">
+                    <div class="flex items-center mb-10 pb-6 border-b border-brand-sky/20">
+                        <div
+                            class="h-16 w-16 shrink-0 rounded-full bg-brand-sky/10 flex items-center justify-center mr-6">
+                            <Icon name="holistic_qi_human" class="h-14 w-14 text-brand-sky" />
+                        </div>
+                        <h3 class="text-brand-sky font-bold text-3xl m-0 leading-tight">En gåva som ger:</h3>
+                    </div>
+
+                    <ul class="space-y-6 mt-5">
+                        <li>
+                            <div class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 transition-all">
+                                <div
+                                    class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent transition-all">
+                                    <Icon name="Yin_yang" class="h-10 w-10 text-brand-sky" />
+                                </div>
+                                <span
+                                    class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky transition-all">Inre
+                                    Lugn &amp; Balans</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 transition-all">
+                                <div
+                                    class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent transition-all">
+                                    <Icon name="lightening" class="h-12 w-12 text-brand-sky" />
+                                </div>
+                                <span
+                                    class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky transition-all">Ökad
+                                    Energi &amp; Livskraft</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 transition-all">
+                                <div
+                                    class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent transition-all">
+                                    <Icon name="taichi_qigong_flow_min" class="h-18 w-18 text-brand-sky" />
+                                </div>
+                                <span
+                                    class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky transition-all">Förbättrad
+                                    Rörlighet &amp; Kroppskontroll</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 3: Godkända Metoder (Ge bort hälsa) -->
+    <!-- ======================================= -->
     <section class="bg-brand-earth-lightest section-standard">
+        <div class="container-base max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-brand-earth px-4">Ge bort hälsa i önskad form</h2>
+                <p class="mt-4 text-neutral-700 text-lg">
+                    Presentkortet är giltigt för alla våra hälsometoder – låt mottagaren välja.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Tai Chi -->
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-sm border border-brand-earth-lighter/30 flex flex-col items-center text-center">
+                    <div
+                        class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-earth/10 text-brand-earth mb-4">
+                        <Icon name="taichi_yinyang_gongbu" class="h-11 w-11" />
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Tai Chi Chuan</h3>
+                    <p class="text-neutral-600 mb-6 flex-grow">Flödande rörelser som bygger inre styrka och fysisk
+                        balans.
+                    </p>
+                    <a href="/kurser/tai-chi/"
+                        class="text-brand-sky hover:text-brand-accent-dark font-medium underline decoration-brand-sky/30 underline-offset-4">Läs
+                        mer</a>
+                </div>
+
+                <!-- Qigong -->
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-sm border border-brand-earth-lighter/30 flex flex-col items-center text-center">
+                    <div
+                        class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-sky/10 text-brand-sky mb-4">
+                        <Icon name="holistic_qi_human" class="h-13 w-13" />
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Medicinsk Qigong</h3>
+                    <p class="text-neutral-600 mb-6 flex-grow">Mjuka och energigivande rörelser för stresshantering och
+                        hälsa.</p>
+                    <a href="/kurser/medicinsk-qigong/"
+                        class="text-brand-sky hover:text-brand-accent-dark font-medium underline decoration-brand-sky/30 underline-offset-4">Läs
+                        mer</a>
+                </div>
+
+                <!-- Behandlingar -->
+                <div
+                    class="bg-white rounded-2xl p-8 shadow-sm border border-brand-earth-lighter/30 flex flex-col items-center text-center">
+                    <div
+                        class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/10 text-brand-accent-dark mb-4">
+                        <Icon name="flower" class="h-11 w-11" />
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Behandling</h3>
+                    <p class="text-neutral-600 mb-6 flex-grow">Akupunktur, TuiNa &amp; Oljemassage för djupgående
+                        avslappning
+                        och återhämtning.</p>
+                    <a href="/behandling/"
+                        class="text-brand-sky hover:text-brand-accent-dark font-medium underline decoration-brand-sky/30 underline-offset-4">Läs
+                        mer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sektion 4: Hur Fungerar Det? -->
+    <section class="bg-white section-standard">
         <div class="container-base">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="text-brand-earth mb-4">Flexibelt, Enkelt &amp; Uppskattat</h2>
@@ -51,18 +301,17 @@ import { siteConfig } from '../data/site.ts';
                     </p>
                 </div>
 
-                <!-- Box 2: Välj en Tjänst -->
+                <!-- Box 2: Enkelt att lösa in -->
                 <div
                     class="content-box flex flex-col items-center hover:-translate-y-1 transition-transform duration-300">
                     <div
                         class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/20 mb-4 mx-auto">
                         <Icon name="flower" class="h-10 w-10 text-brand-accent-dark" />
                     </div>
-                    <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Full Valfrihet för Mottagaren</h3>
+                    <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Enkelt att lösa in</h3>
                     <p class="text-neutral-700 text-center flex-grow">
-                        Presentkortet kan användas som betalning eller delbetalning för alla våra tjänster - från
-                        en avslappnande TuiNa- eller Oljemassage till en kurs i
-                        Medicinsk Qigong eller Tai Chi.
+                        När det är dags hör mottagaren enkelt av sig till oss för att boka tid. Presentkortet kan också
+                        nyttjas som delbetalning om de önskar boka en längre kurs.
                     </p>
                 </div>
 
@@ -88,7 +337,7 @@ import { siteConfig } from '../data/site.ts';
         </div>
     </section>
 
-    <!-- Sektion 3: Så Här Köper Du (Huvud-CTA) -->
+    <!-- Sektion 5: Så Här Köper Du (Huvud-CTA) -->
     <section class="section-standard bg-brand-earth-light text-center">
         <div class="container-base max-w-4xl">
             <div class="max-w-3xl mx-auto mb-8">
