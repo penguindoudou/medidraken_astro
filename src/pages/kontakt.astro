@@ -160,15 +160,27 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                                         useSpecificDate = true;
                                     } else {
                                         let course = null;
-                                        if (subject === 'taichi') course = JSON.parse(document.getElementById('nextTaiChiData').textContent);
-                                        if (subject === 'qigong') course = JSON.parse(document.getElementById('nextQigongData').textContent);
+                                        try {
+                                            const elId = subject === 'taichi' ? 'nextTaiChiData' : (subject === 'qigong' ? 'nextQigongData' : null);
+                                            if (elId) {
+                                                const el = document.getElementById(elId);
+                                                if (el && el.textContent) course = JSON.parse(el.textContent);
+                                            }
+                                        } catch (e) {
+                                            console.warn('Could not parse course data', e);
+                                        }
                                         
                                         if (course) {
-                                            specificDate = course.date;
-                                            specificTime = course.times;
+                                            specificDate = course.date || '';
+                                            specificTime = course.times || '';
                                             isPrefilled = true;
                                             prefillSource = 'auto';
                                             useSpecificDate = true;
+                                        } else {
+                                            specificDate = '';
+                                            specificTime = '';
+                                            isPrefilled = false;
+                                            prefillSource = '';
                                         }
                                     }
                                 } else {
@@ -379,7 +391,7 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                                 <label for="amount" class="block text-sm font-medium text-neutral-700 mb-1">Önskat belopp (kr) <span class="text-red-500">*</span></label>
                                 <input type="number" id="amount" name="amount" x-model="amount" :required="subject === 'presentkort' && subSubject === 'valfritt_belopp'"
                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"
-                                    placeholder="T.ex. 500">
+                                    placeholder="T.ex. 500" min="1">
                                 <p class="text-xs text-neutral-500 mt-2">Fyll i det belopp du vill ladda presentkortet med.</p>
                             </div>
 

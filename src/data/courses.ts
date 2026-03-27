@@ -5,7 +5,6 @@ export type Course = {
   location: string;
   date: string;
   times: string;
-  link: string;
   /** Denna datumsträng används för att avgöra om kursen är i framtiden (format: YYYY-MM-DD). */
   lastDate: string;
 };
@@ -21,7 +20,6 @@ export const coursesQigong: Course[] = [
     location: 'Nyköping',
     date: '14-15 Okt',
     times: '10:00 - 15:00',
-    link: '/boka',
     lastDate: '2026-10-15',
   },
 ];
@@ -36,7 +34,6 @@ export const coursesTaiChi: Course[] = [
     location: 'Nyköping',
     date: '20-21 Juni',
     times: '10:00 - 15:00',
-    link: '/boka',
     lastDate: '2026-10-15',
   },
 
