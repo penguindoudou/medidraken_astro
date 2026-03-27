@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+import taichiBg from '../../assets/images/taichi_hero6.png';
+import qigongBg from '../../assets/images/qigong_bamboo15.png';
+import instruktorBg from '../../assets/images/hero_instruktor5.png';
+---
+
+<BaseLayout title="Våra Kurser - Tai Chi, Medicinsk Qigong & Instruktörskurs">
+    <!-- Split Screen Design för Tai Chi & Qigong (50/50 på desktop) -->
+    <div class="flex flex-col md:flex-row min-h-[60vh] md:min-h-[65vh] w-full">
+        <!-- Kolumn 1: Tai Chi -->
+        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-8 group min-h-[45vh] md:min-h-full overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <Image src={taichiBg} alt="Tai Chi" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
+            </div>
+
+            <a href="/kurser/tai-chi/" class="absolute inset-0 z-10" aria-label="Gå till Tai Chi startsida"></a>
+
+            <div class="relative z-20 pointer-events-none flex flex-col items-center">
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg">Tai Chi</h2>
+                <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Hitta styrka, balans & inre lugn genom mjuka rörelser.</p>
+                
+                <div class="pointer-events-auto flex flex-col sm:flex-row gap-4 mt-2">
+                    <a href="/kurser/tai-chi/helgkurser/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Helgkurser
+                    </a>
+                    <a href="/kurser/tai-chi/privatundervisning/" class="btn btn-secondary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Privatundervisning
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kolumn 2: Qigong -->
+        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-8 group min-h-[45vh] md:min-h-full overflow-hidden border-t-2 md:border-t-0 md:border-l-2 border-brand-earth-dark/40">
+            <div class="absolute inset-0 z-0">
+                <Image src={qigongBg} alt="Medicinsk Qigong" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
+            </div>
+
+            <a href="/kurser/medicinsk-qigong/" class="absolute inset-0 z-10" aria-label="Gå till Medicinsk Qigong startsida"></a>
+
+            <div class="relative z-20 pointer-events-none flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl lg:text-7xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight">Medicinsk<br/>Qigong</h2>
+                <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Återfå energi, minska stress & stärk din hälsa inifrån.</p>
+                
+                <div class="pointer-events-auto flex flex-col sm:flex-row gap-4 mt-2">
+                    <a href="/kurser/medicinsk-qigong/helgkurser/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Helgkurser
+                    </a>
+                    <a href="/kurser/medicinsk-qigong/privatundervisning/" class="btn btn-secondary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Privatundervisning
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hela Bredd Sektion: Instruktörsutbildning -->
+    <div class="relative w-full flex flex-col justify-center items-center text-center p-8 group min-h-[40vh] md:min-h-[45vh] overflow-hidden border-t-2 border-brand-earth-dark/40">
+        <div class="absolute inset-0 z-0">
+            <Image src={instruktorBg} alt="Instruktörsutbildning" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-brand-earth-dark/70 group-hover:bg-brand-earth-dark/60 transition-colors duration-500"></div>
+        </div>
+
+        <a href="/kurser/instruktorsutbildning/" class="absolute inset-0 z-10" aria-label="Gå till Instruktörsutbildning startsida"></a>
+
+        <div class="relative z-20 pointer-events-none flex flex-col items-center max-w-3xl">
+            <h2 class="text-5xl md:text-6xl lg:text-7xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg">Instruktörsutbildning</h2>
+            <p class="text-xl md:text-2xl text-white/95 mb-8 drop-shadow-md font-medium">Fördjupa din kunskap och få verktygen att vägleda andra.</p>
+            
+            <div class="pointer-events-auto flex justify-center mt-2 w-full">
+                <a href="/kurser/instruktorsutbildning/" class="btn btn-primary-on-dark px-10 py-4 text-lg shadow-lg hover:-translate-y-1 transition-transform">
+                    Läs mer om instruktörsutbildningen
+                </a>
+            </div>
+        </div>
+    </div>
+</BaseLayout>
