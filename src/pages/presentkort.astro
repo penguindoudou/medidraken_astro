@@ -163,10 +163,17 @@ import { siteConfig } from '../data/site.ts';
                             </ul>
                         </div>
                     </div>
+
+                    <!-- Länk till alla besvär -->
+                    <div class="mt-10 pt-6 border-t border-brand-accent/30">
+                        <a href="/symtom/" class="text-brand-accent-dark hover:text-brand-accent font-bold flex items-center group/link transition-colors text-lg">
+                            Visa alla besvär vi kan hjälpa dig med <span class="ml-2 group-hover/link:translate-x-1 transition-transform">&rarr;</span>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Right: Hälsofördelar (Sky path) -->
-                <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/10 shadow-sm h-full">
+                <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/10 shadow-sm h-full flex flex-col">
                     <div class="flex items-center mb-10 pb-6 border-b border-brand-sky/20">
                         <div
                             class="h-16 w-16 shrink-0 rounded-full bg-brand-sky/10 flex items-center justify-center mr-6">
@@ -175,7 +182,7 @@ import { siteConfig } from '../data/site.ts';
                         <h3 class="text-brand-sky font-bold text-3xl m-0 leading-tight">En gåva som ger:</h3>
                     </div>
 
-                    <ul class="space-y-6 mt-5">
+                    <ul class="space-y-6 mt-5 flex-grow">
                         <li>
                             <div class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 transition-all">
                                 <div
@@ -210,6 +217,13 @@ import { siteConfig } from '../data/site.ts';
                             </div>
                         </li>
                     </ul>
+
+                    <!-- Länk till alla hälsofördelar -->
+                    <div class="mt-10 pt-6 border-t border-brand-sky/20">
+                        <a href="/na-dina-halsomal/" class="text-brand-sky hover:text-brand-sky-dark font-bold flex items-center group/link transition-colors text-lg">
+                            Visa alla hälsofördelar vi kan hjälpa dig med <span class="ml-2 group-hover/link:translate-x-1 transition-transform">&rarr;</span>
+                        </a>
+                    </div>
                 </div>
 
             </div>
@@ -233,7 +247,7 @@ import { siteConfig } from '../data/site.ts';
                 <div
                     class="bg-white rounded-2xl p-8 shadow-sm border border-brand-earth-lighter/30 flex flex-col items-center text-center">
                     <div
-                        class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-earth/10 text-brand-earth mb-4">
+                        class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/10 text-brand-accent-dark mb-4">
                         <Icon name="taichi_yinyang_gongbu" class="h-11 w-11" />
                     </div>
                     <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Tai Chi Chuan</h3>
@@ -249,7 +263,7 @@ import { siteConfig } from '../data/site.ts';
                 <div
                     class="bg-white rounded-2xl p-8 shadow-sm border border-brand-earth-lighter/30 flex flex-col items-center text-center">
                     <div
-                        class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-sky/10 text-brand-sky mb-4">
+                        class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent/10 text-brand-accent-dark mb-4">
                         <Icon name="holistic_qi_human" class="h-13 w-13" />
                     </div>
                     <h3 class="text-xl font-bold text-brand-earth-dark mb-3">Medicinsk Qigong</h3>
@@ -351,10 +365,6 @@ import { siteConfig } from '../data/site.ts';
                     class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-4 inline-block">
                     Kontakta oss
                 </a>
-
-                <p class="text-brand-earth-dark/80 text-sm italic mt-2">
-                    Berätta gärna vilket belopp du önskar och om du har några frågor.
-                </p>
             </div>
 
             <!-- Praktisk Info Row -->
