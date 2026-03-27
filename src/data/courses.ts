@@ -15,15 +15,15 @@ export type Course = {
 // ==========================================
 export const coursesQigong: Course[] = [
   // Exempel på en framtida kurs (Helgkurs-format används nu överallt):
-  //{
-  //  title: 'Grundkurs',
-  //  format: 'Helgkurs',
-  //  location: 'Nyköping',
-  //  date: '14-15 Okt',
-  //  times: '10:00 - 15:00',
-  //  link: '/boka',
-  //  lastDate: '2026-10-15',
-  //},
+  {
+    title: 'Grundkurs',
+    format: 'Helgkurs',
+    location: 'Nyköping',
+    date: '14-15 Okt',
+    times: '10:00 - 15:00',
+    link: '/boka',
+    lastDate: '2026-10-15',
+  },
 ];
 
 // ==========================================
@@ -34,10 +34,10 @@ export const coursesTaiChi: Course[] = [
     title: 'Grundkurs',
     format: 'Helgkurs',
     location: 'Nyköping',
-    date: '14-15 Okt',
+    date: '20-21 Juni',
     times: '10:00 - 15:00',
     link: '/boka',
-    lastDate: '2026-03-24',
+    lastDate: '2026-10-15',
   },
 
 ];

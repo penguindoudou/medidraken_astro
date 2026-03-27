@@ -125,56 +125,74 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                             specificDate: '',
                             specificTime: '',
                             useSpecificDate: false,
-                            isPrefilled: false
+                            isPrefilled: false,
+                            prefillSource: ''
                         }" x-init="
                             const params = new URLSearchParams(window.location.search);
                             if (params.has('subject')) subject = params.get('subject');
                             if (params.has('sub')) subSubject = params.get('sub');
                             if (params.has('location')) location = params.get('location');
+                            let urlDate = params.has('date') ? params.get('date') : null;
+                            let urlTime = params.has('time') ? params.get('time') : null;
                             
                             $watch('subject', value => { 
+                                if (params.has('subject') && value !== params.get('subject')) {
+                                    urlDate = null;
+                                    urlTime = null;
+                                }
                                 subSubject = '';
                                 selectedDays = [];
                                 selectedTimes = [];
                                 selectedTravelPeriods = [];
                                 customTravelPeriod = '';
-                                specificDate = '';
-                                specificTime = '';
+                                specificDate = urlDate || '';
+                                specificTime = urlTime || '';
                                 isPrefilled = false;
                             });
 
-                            $watch('subSubject', value => {
-                                // Prefill logic for Helgkurser
-                                if (value === 'helgkurs') {
-                                    let course = null;
-                                    if (subject === 'taichi') course = JSON.parse(document.getElementById('nextTaiChiData').textContent);
-                                    if (subject === 'qigong') course = JSON.parse(document.getElementById('nextQigongData').textContent);
-                                    
-                                    if (course) {
-                                        specificDate = course.date;
-                                        specificTime = course.times;
+                            const applyPrefill = () => {
+                                if (subSubject === 'helgkurs') {
+                                    if (urlDate || urlTime) {
+                                        specificDate = urlDate || '';
+                                        specificTime = urlTime || '';
                                         isPrefilled = true;
+                                        prefillSource = 'url';
                                         useSpecificDate = true;
+                                    } else {
+                                        let course = null;
+                                        if (subject === 'taichi') course = JSON.parse(document.getElementById('nextTaiChiData').textContent);
+                                        if (subject === 'qigong') course = JSON.parse(document.getElementById('nextQigongData').textContent);
+                                        
+                                        if (course) {
+                                            specificDate = course.date;
+                                            specificTime = course.times;
+                                            isPrefilled = true;
+                                            prefillSource = 'auto';
+                                            useSpecificDate = true;
+                                        }
                                     }
                                 } else {
                                     isPrefilled = false;
+                                    prefillSource = '';
                                     useSpecificDate = false;
                                 }
+                            };
+
+                            $watch('subSubject', value => {
+                                if (params.has('sub') && value !== '' && value !== params.get('sub')) {
+                                    urlDate = null;
+                                    urlTime = null;
+                                }
+                                applyPrefill();
                             });
 
                             // Run prefill on init if params already set
                             if (subSubject === 'helgkurs') {
-                                setTimeout(() => {
-                                    let course = null;
-                                    if (subject === 'taichi') course = JSON.parse(document.getElementById('nextTaiChiData').textContent);
-                                    if (subject === 'qigong') course = JSON.parse(document.getElementById('nextQigongData').textContent);
-                                    if (course) {
-                                        specificDate = course.date;
-                                        specificTime = course.times;
-                                        isPrefilled = true;
-                                        useSpecificDate = true;
-                                    }
-                                }, 100);
+                                setTimeout(applyPrefill, 100);
+                            } else if (urlDate || urlTime) {
+                                specificDate = urlDate || '';
+                                specificTime = urlTime || '';
+                                useSpecificDate = true;
                             }
                         ">
 
@@ -432,7 +450,7 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                                     <template x-if="isPrefilled">
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-sky-light/30 text-brand-sky-dark border border-brand-sky/20 transition-all">
                                             <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                            Förifyllt för nästa kurs
+                                            <span x-text="prefillSource === 'url' ? 'Förifyllt för vald kurs' : 'Förifyllt för nästa kurs'"></span>
                                         </span>
                                     </template>
                                 </div>

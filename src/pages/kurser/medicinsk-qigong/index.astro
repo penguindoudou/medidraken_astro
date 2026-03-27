@@ -375,7 +375,7 @@ const activeCourses = coursesQigong.filter(course => new Date(course.lastDate) >
                                 </span>
                             </td>
                             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                <a href={course.link} class="text-brand-sky hover:text-brand-accent-dark font-bold">Boka
+                                <a href={`/kontakt/?subject=qigong&sub=helgkurs&date=${encodeURIComponent(course.date)}&time=${encodeURIComponent(course.times)}#tidsbokning`} class="text-brand-sky hover:text-brand-accent-dark font-bold">Boka
                                     &rarr;</a>
                             </td>
                         </tr>
