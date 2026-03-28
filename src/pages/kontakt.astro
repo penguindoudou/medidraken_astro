@@ -208,6 +208,19 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                                 applyPrefill();
                             });
 
+                            $watch('selectedTravelPeriods', (value, oldValue) => {
+                                const unsure = 'Vet ej / Behöver rådgivning';
+                                if (value.includes(unsure) && value.length > 1) {
+                                    // If 'Vet ej' was already selected and a new option is added, remove 'Vet ej'
+                                    if (oldValue.includes(unsure)) {
+                                        selectedTravelPeriods = value.filter(p => p !== unsure);
+                                    } else {
+                                        // If 'Vet ej' was just selected, clear all other options
+                                        selectedTravelPeriods = [unsure];
+                                    }
+                                }
+                            });
+
                             // Run prefill on init if params already set
                             if (subSubject === 'helgkurs') {
                                 setTimeout(applyPrefill, 100);
@@ -534,10 +547,23 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                                 Reseperiod <span class="text-sm font-normal text-neutral-500 ml-2">(valfritt)</span>
                             </h4>
 
+                            <div x-show="subject === 'halsoresa'" x-cloak
+                                class="mt-4 bg-brand-sky-light/10 p-4 rounded-lg border border-brand-sky/20 transition-all duration-300"
+                                x-transition>
+                                <p class="text-sm text-brand-earth-dark font-medium flex items-start">
+                                    <svg class="w-5 h-5 mr-3 shrink-0 text-brand-sky-dark" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span>Hälsoresorna planeras i samråd med dig som deltagare och kan anpassas efter dina önskemål. I detta tidiga skede kanske du har många frågor och inte vet när du vill resa, vilket är helt naturligt.</span>
+                                </p>
+                            </div>
+
                             <div class="space-y-3 mt-4">
                                 <label class="block text-sm font-medium text-neutral-700">Vilken tid på året passar dig bäst? <span class="text-xs font-normal text-neutral-500 ml-1">(Välj en eller flera)</span></label>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <template x-for="period in ['Vår (Maj-Juni)', 'Höst (Oktober-November)', 'Annat datum / Flexibel']">
+                                    <template x-for="period in ['Vår (Maj-Juni)', 'Höst (Oktober-November)', 'Annat datum / Månad', 'Vet ej / Behöver rådgivning']">
                                         <label class="relative flex items-center p-3 rounded-lg border cursor-pointer transition-all duration-200 hover:bg-neutral-50"
                                             :class="selectedTravelPeriods.includes(period) ? 'bg-brand-sky-light/10 border-brand-sky ring-1 ring-brand-sky' : 'bg-white border-neutral-200'">
                                             <input type="checkbox" :value="period" x-model="selectedTravelPeriods" class="sr-only">
@@ -549,11 +575,11 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                                     </template>
                                 </div>
 
-                                <div x-show="selectedTravelPeriods.includes('Annat datum / Flexibel')" x-cloak class="mt-3 p-4 bg-brand-accent/5 rounded-lg border border-brand-accent/20" x-transition>
-                                    <label for="custom_travel_period" class="block text-sm font-medium text-brand-earth-dark mb-1">Ange önskade datum eller period</label>
-                                    <input type="text" id="custom_travel_period" name="custom_travel_period" x-model="customTravelPeriod" :required="selectedTravelPeriods.includes('Annat datum / Flexibel')"
+                                <div x-show="selectedTravelPeriods.includes('Annat datum / Månad')" x-cloak class="mt-3 p-4 bg-brand-accent/5 rounded-lg border border-brand-accent/20" x-transition>
+                                    <label for="custom_travel_period" class="block text-sm font-medium text-brand-earth-dark mb-1">Ange önskat datum eller period (valfritt)</label>
+                                    <input type="text" id="custom_travel_period" name="custom_travel_period" x-model="customTravelPeriod" :required="selectedTravelPeriods.includes('Annat datum / Månad')"
                                         class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-white"
-                                        placeholder="T.ex. September 2027 eller 'när som helst under hösten'">
+                                        placeholder="T.ex. September 2027 eller Våren 2028">
                                 </div>
 
                                 <input type="hidden" name="preferred_travel_periods" :value="selectedTravelPeriods.join(', ')">
