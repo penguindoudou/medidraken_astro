@@ -95,23 +95,8 @@ export const primaryMenu = {
           "children": []
         },
         {
-          "title": "Utbrändhet & Trötthetssyndrom",
-          "link": "/symtom/utbrandhet-trotthetssyndrom/",
-          "children": []
-        },
-        {
-          "title": "Mag- och Tarmbesvär (IBS)",
-          "link": "/symtom/magbesvar-ibs/",
-          "children": []
-        },
-        {
-          "title": "Fibromyalgi: Lindra Smärta & Hantera Symtom",
-          "link": "/symtom/fibromyalgi-kronisk-smarta/",
-          "children": []
-        },
-        {
-          "title": "Nedstämdhet & depression",
-          "link": "/symtom/nedstamdhet-depression/",
+          "title": "Utbrändhet & Trötthet",
+          "link": "/symtom/utbrandhet-trotthet/",
           "children": []
         }
       ]
