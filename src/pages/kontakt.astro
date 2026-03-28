@@ -6,6 +6,7 @@ import Icon from '../components/Icon.astro';
 // Images
 import johannesImage from '../assets/images/johannes_mao_profile.jpg';
 import linneaImage from '../assets/images/linnea_mao_profile.jpg';
+import heroImage from '../assets/images/Tai-Chi kurs 2.jpg';
 import { siteConfig } from '../data/site.ts';
 import { coursesTaiChi, coursesQigong } from '../data/courses.ts';
 
@@ -16,34 +17,29 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
 ---
 
 <BaseLayout title="Kontakt">
-    <!-- Introduktion: Kontakta Oss (Vit Bakgrund) -->
-    <section class="pt-20 lg:pt-28 pb-6 lg:pb-12 bg-white relative overflow-hidden">
-        <div class="container-base">
+    <!-- Sektion 1: Hero – Kontakta Oss -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <Image src={heroImage} alt="Tai Chi kurs för harmoni och hälsa" class="hero-bg-image opacity-70" />
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Kontakta Oss</h1>
 
-            <!-- Rad 1: Intro & Dekorativ Icon -->
-            <div class="grid grid-cols-1 lg:grid-cols-[1.0fr_0.8fr] gap-12 lg:gap-4 items-center">
-                <!-- Vänster: Intro -->
-                <div class="max-w-xl lg:ml-auto">
-                    <h1 class="text-brand-earth-dark mb-6">Kontakta Oss</h1>
-                    <div class="space-y-4 text-lg text-neutral-800 leading-relaxed">
-                        <p>Vi ser fram emot att höra från dig!</p>
+            <div class="hero-text bg-brand-earth-dark/60 p-8 rounded-xl backdrop-blur-sm border border-white/10 max-w-2xl mx-auto">
+                <div class="space-y-4 text-lg text-neutral-50 leading-relaxed text-center">
+                    <p>Vi ser fram emot att höra från dig!</p>
 
-                        <p>
-                            Oavsett om du har en fråga, vill anmäla ditt intresse för en kurs eller boka en behandling,
-                            är du varmt välkommen att höra av dig.
-                        </p>
+                    <p>
+                        Oavsett om du har en fråga, vill anmäla ditt intresse för en kurs eller boka en behandling,
+                        är du varmt välkommen att höra av dig.
+                    </p>
 
-                        <p>
-                            För snabbast svar rekommenderar vi att du ringer <a href={`tel:${siteConfig.phone.clean}`}
-                                class="text-brand-sky-dark hover:text-brand-accent-dark font-bold transition-colors underline decoration-brand-sky/30 underline-offset-4">{siteConfig.phone.display}</a>
-                            eller använder formuläret
-                            nedan.
-                        </p>
-                    </div>
-                </div>
-                <!-- Höger: Dekorativ Grafik -->
-                <div class="hidden lg:flex justify-center pr-4 opacity-40 text-brand-accent-dark">
-                    <Icon name="taichi_qigong_flow" class="w-full max-w-[250px] h-auto" />
+                    <p>
+                        För snabbast svar rekommenderar vi att du ringer <a href={`tel:${siteConfig.phone.clean}`}
+                            class="text-brand-accent-light hover:text-brand-sky-bright font-normal underline decoration-brand-accent-light/30 underline-offset-4 transition-colors duration-200">{siteConfig.phone.display}</a>
+                        eller använder formuläret
+                        nedan.
+                    </p>
                 </div>
             </div>
         </div>
