@@ -1,0 +1,220 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import HumanBodyChart from '../../components/HumanBodyChart.astro';
+
+// Images
+import heroImg from '../../assets/images/hero_symptoms.png';
+
+const symtomCardClass = "block bg-white p-4 rounded-xl border border-brand-accent/10 shadow-sm text-neutral-700 font-medium md:text-lg hover:bg-brand-earth-lightest hover:text-brand-accent hover:border-brand-accent/30 focus:ring-2 focus:ring-brand-accent/50 focus:outline-none active:scale-[0.98] transition-all";
+---
+
+<BaseLayout title="Behandla Symtom & Besvär - Medidraken">
+    <!-- ======================================= -->
+    <!-- Sektion 1: Toppsektion (Hero)           -->
+    <!-- ======================================= -->
+    <section class="hero-section min-h-[60vh]">
+        <div class="hero-background">
+            <Image src={heroImg} alt="Klinikrum för holistisk behandling"
+                class="hero-bg-image object-[50%_60%] opacity-80" />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="hero-title text-brand-earth-lighter">Symtom & Besvär</h1>
+            <div class="hero-text bg-brand-earth-dark/60 p-6 rounded-lg backdrop-blur-sm border border-white/10 max-w-3xl mx-auto">
+                <h2 class="hero-subtitle font-bold text-white mb-2">Hitta Orsaken Till Din Smärta</h2>
+
+                <p class="hero-text text-brand-earth-lightest mt-3">
+                    Vi förstår hur smärta och stress kan begränsa din vardag. Utforska de vanliga fysiska och stressrelaterade symtomen vi framgångsrikt behandlar med rötter i den kinesiska medicinen.
+                </p>
+                <p class="hero-text text-brand-earth-lightest mt-3">
+                    Lokalisera din smärta nedan för att läsa mer och hitta din väg framåt till ett rörligare liv.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 2: Fysiska Symtom (Interaktiv)  -->
+    <!-- ======================================= -->
+    <section class="bg-white border-t border-neutral-100 pb-16 pt-12 md:pt-20">
+        <div class="container-base max-w-6xl">
+            <!-- AlpineJS Scope -->
+            <div x-data="{ activeRegion: 'none', isMobile: window.innerWidth < 1024 }" @resize.window="isMobile = window.innerWidth < 1024" class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                
+                <!-- Left: Interaktiv Karta -->
+                <div class="bg-brand-earth-lightest/50 rounded-3xl p-6 border border-brand-earth-dark/10 shadow-sm relative">
+                    <div class="text-center mb-6">
+                        <h3 class="text-brand-earth-dark font-bold text-2xl lg:text-3xl m-0">Interaktiv Kroppskarta</h3>
+                        <p class="text-neutral-500 text-sm mt-2">Hovra eller klicka på markörerna för att utforska symtom</p>
+                    </div>
+                    
+                    <HumanBodyChart />
+                </div>
+
+                <!-- Right: Information & Länkar -->
+                <div class="bg-brand-accent/5 rounded-3xl p-6 md:p-10 border border-brand-accent/20 shadow-sm h-full flex flex-col transition-all relative overflow-hidden">
+                    
+                    <!-- Decorative Background Icon -->
+                    <div class="absolute -right-8 -bottom-8 opacity-[0.03] pointer-events-none">
+                        <Icon name="holistic_qi_human" class="w-64 h-64 text-brand-earth-dark" />
+                    </div>
+
+                    <!-- Default State -->
+                    <div x-show="activeRegion === 'none'" x-transition.opacity class="flex-grow flex flex-col items-center justify-center text-center">
+                        <div class="h-24 w-24 rounded-full bg-brand-accent/10 flex items-center justify-center mb-6 ring-4 ring-brand-earth/5">
+                            <Icon name="huvudvark" class="h-14 w-14 text-brand-accent-dark/50" />
+                        </div>
+                        <h4 class="text-brand-earth-dark font-bold text-2xl mb-4">Välj ett område på kroppen</h4>
+                        <p class="text-neutral-600 text-lg max-w-sm mx-auto">
+                            För att se specifika smärttillstånd vi kan hjälpa dig med genom våra behandlingar.
+                        </p>
+                    </div>
+
+                    <!-- Head State -->
+                    <div x-show="activeRegion === 'head'" x-cloak x-transition.opacity class="flex-grow flex flex-col relative z-10 w-full">
+                        <div class="flex items-center mb-6 pb-4 border-b border-brand-accent/20">
+                            <div class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-4 shrink-0">
+                                <Icon name="huvudvark" class="h-10 w-10 text-brand-accent-dark" />
+                            </div>
+                            <h3 class="text-brand-earth-dark font-bold text-2xl md:text-3xl m-0">Huvudvärk & Yrsel</h3>
+                        </div>
+                        <ul class="flex flex-col gap-y-3">
+                            <li><a href="/symtom/huvudvark-yrsel/spanningshuvudvark-stresshuvudvark/" class={symtomCardClass}>&bull; Spänningshuvudvärk</a></li>
+                            <li><a href="/symtom/huvudvark-yrsel/migran/" class={symtomCardClass}>&bull; Migrän</a></li>
+                            <li><a href="/symtom/huvudvark-yrsel/yrsel-balansproblem/" class={symtomCardClass}>&bull; Yrsel & Balansproblem</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Neck State -->
+                    <div x-show="activeRegion === 'neck'" x-cloak x-transition.opacity class="flex-grow flex flex-col relative z-10 w-full">
+                        <div class="flex items-center mb-6 pb-4 border-b border-brand-accent/20">
+                            <div class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-4 shrink-0">
+                                <Icon name="nackont" class="h-10 w-10 text-brand-accent-dark" />
+                            </div>
+                            <h3 class="text-brand-earth-dark font-bold text-2xl md:text-3xl m-0 leading-tight">Nacke & Skuldror</h3>
+                        </div>
+                        <ul class="flex flex-col gap-y-3">
+                            <li><a href="/symtom/nacke-axlar-skuldror/nacksparr-stel-nacke/" class={symtomCardClass}>&bull; Nackspärr & Stel Nacke</a></li>
+                            <li><a href="/symtom/nacke-axlar-skuldror/vark-i-axlar-skuldror/" class={symtomCardClass}>&bull; Värk i Axlar & Skulderblad</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Back State -->
+                    <div x-show="activeRegion === 'back'" x-cloak x-transition.opacity class="flex-grow flex flex-col relative z-10 w-full">
+                        <div class="flex items-center mb-6 pb-4 border-b border-brand-accent/20">
+                            <div class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-4 shrink-0">
+                                <Icon name="ryggont" class="h-10 w-10 text-brand-accent-dark" />
+                            </div>
+                            <h3 class="text-brand-earth-dark font-bold text-2xl md:text-3xl m-0">Rygg & Ländrygg</h3>
+                        </div>
+                        <ul class="flex flex-col gap-y-3">
+                            <li><a href="/symtom/rygg-landrygg/akut-ryggont/" class={symtomCardClass}>&bull; Akut Ryggont (Ryggskott)</a></li>
+                            <li><a href="/symtom/rygg-landrygg/ischias/" class={symtomCardClass}>&bull; Ischias & Strålande Smärta</a></li>
+                            <li><a href="/symtom/rygg-landrygg/langvarig-vark-stelhet-landrygg/" class={symtomCardClass}>&bull; Långvarig Värk & Stelhet</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Joints/Arms State -->
+                    <div x-show="activeRegion === 'joints'" x-cloak x-transition.opacity class="flex-grow flex flex-col relative z-10 w-full">
+                        <div class="flex items-center mb-6 pb-4 border-b border-brand-accent/20">
+                            <div class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-4 shrink-0">
+                                <Icon name="tennisarmbage" class="h-10 w-10 text-brand-accent-dark" />
+                            </div>
+                            <h3 class="text-brand-earth-dark font-bold text-2xl md:text-3xl m-0 leading-tight">Leder & Armar</h3>
+                        </div>
+                        <ul class="flex flex-col gap-y-3">
+                            <li><a href="/symtom/ledvark-idrottsskador-artros/tennisarmbage-musarm-vark-i-handleder/" class={symtomCardClass}>&bull; Tennisarmbåge & Musarm</a></li>
+                            <li><a href="/symtom/ledvark-idrottsskador-artros/tennisarmbage-musarm-vark-i-handleder/" class={symtomCardClass}>&bull; Värk i Handleder</a></li>
+                            <li><a href="/symtom/ledvark-idrottsskador-artros/" class={symtomCardClass}>&bull; Idrottsskador & Överbelastning</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Legs/Knees State -->
+                    <div x-show="activeRegion === 'legs'" x-cloak x-transition.opacity class="flex-grow flex flex-col relative z-10 w-full">
+                        <div class="flex items-center mb-6 pb-4 border-b border-brand-accent/20">
+                            <div class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mr-4 shrink-0">
+                                <Icon name="ledvark" class="h-10 w-10 text-brand-accent-dark" />
+                            </div>
+                            <h3 class="text-brand-earth-dark font-bold text-2xl md:text-3xl m-0">Knän & Höfter</h3>
+                        </div>
+                        <ul class="flex flex-col gap-y-3">
+                            <li><a href="/symtom/ledvark-idrottsskador-artros/ont-i-knan-knabesvar/" class={symtomCardClass}>&bull; Ont i Knän & Knäbesvär</a></li>
+                            <li><a href="/symtom/ledvark-idrottsskador-artros/ont-i-hofter-hoftbesvar/" class={symtomCardClass}>&bull; Ont i Höfter & Höftbesvär</a></li>
+                            <li><a href="/symtom/ledvark-idrottsskador-artros/" class={symtomCardClass}>&bull; Artros i Knä/Höft</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 3: Stressrelaterade & Inre      -->
+    <!-- ======================================= -->
+    <section class="bg-brand-sky/5 border-t border-brand-sky/15 pb-20 pt-16 md:pt-24 relative overflow-hidden">
+        <!-- Decor -->
+        <div class="absolute -left-16 top-0 opacity-10 pointer-events-none transform -rotate-12">
+            <Icon name="holistic_qi_human" class="w-96 h-96 text-brand-sky" />
+        </div>
+
+        <div class="container-base max-w-5xl relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <div class="inline-flex items-center justify-center h-20 w-20 rounded-full bg-brand-sky/15 text-brand-sky-dark mb-6 ring-8 ring-brand-sky/5">
+                    <Icon name="stress3" class="h-12 w-12" />
+                </div>
+                <h2 class="text-brand-sky-dark text-3xl md:text-4xl mb-4">Stressrelaterade & Inre Tillstånd</h2>
+                <p class="text-neutral-700 text-lg">
+                    Stress och mental utmattning uttrycker sig ofta fysiskt och hindrar kroppens naturliga återhämtning. Behandlingen fokuserar på att lugna nervsystemet och återställa energibalansen.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Sömnproblem -->
+                <a href="/symtom/somnproblem-insomnia/" class="group bg-white rounded-3xl p-8 border border-brand-sky/15 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+                    <div class="h-16 w-16 mb-6 rounded-full bg-brand-sky/10 flex items-center justify-center group-hover:bg-brand-sky/20 transition-colors">
+                        <Icon name="broken_moon_with_stars" class="h-10 w-10 text-brand-sky" />
+                    </div>
+                    <h3 class="text-brand-sky-dark font-bold text-xl mb-3">Sömnproblem & Insomnia</h3>
+                    <p class="text-neutral-600 text-sm">Hjälp vid insomningssvårigheter och orolig sömn.</p>
+                </a>
+
+                <!-- Utbrändhet -->
+                <a href="/symtom/utbrandhet-trotthet/" class="group bg-white rounded-3xl p-8 border border-brand-sky/15 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+                    <div class="h-16 w-16 mb-6 rounded-full bg-brand-sky/10 flex items-center justify-center group-hover:bg-brand-sky/20 transition-colors">
+                        <Icon name="outlined_wilted_leaf" class="h-10 w-10 text-brand-sky" />
+                    </div>
+                    <h3 class="text-brand-sky-dark font-bold text-xl mb-3">Utbrändhet & Trötthet</h3>
+                    <p class="text-neutral-600 text-sm">Återbygg kroppens energi och motståndskraft vid långtids trötthet.</p>
+                </a>
+
+                <!-- Ofta Förkyld -->
+                <a href="/symtom/ofta-forkyld/" class="group bg-white rounded-3xl p-8 border border-brand-sky/15 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+                    <div class="h-16 w-16 mb-6 rounded-full bg-brand-sky/10 flex items-center justify-center group-hover:bg-brand-sky/20 transition-colors">
+                        <Icon name="broken_shield" class="h-10 w-10 text-brand-sky" />
+                    </div>
+                    <h3 class="text-brand-sky-dark font-bold text-xl mb-3">Ofta Förkyld</h3>
+                    <p class="text-neutral-600 text-sm">Stärk ditt immunsystem och kroppens skyddsmekanism mot sjukdomar.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 4: Call to Action               -->
+    <!-- ======================================= -->
+    <section class="bg-white py-16">
+        <div class="container-base">
+            <div class="text-center max-w-3xl mx-auto bg-brand-earth-lightest/50 p-8 md:p-14 rounded-3xl border border-brand-earth/10 shadow-sm">
+                <h3 class="text-brand-earth-dark text-2xl sm:text-3xl font-bold mb-4">Hittar du inte ditt symtom?</h3>
+                <p class="text-neutral-700 text-lg mb-8 max-w-2xl mx-auto">
+                    Vi vet att symtom sällan uppträder isolerat eller i perfekta kategorier. Vi lägger stort engagemang i att förstå just ditt specifika mönster och kroppsbehov.
+                </p>
+                <a href="/kontakt/?subject=annat#tidsbokning" class="btn btn-primary-on-light shadow-lg px-8 py-4 text-lg inline-block">
+                    Hör av dig till oss för rådgivning
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

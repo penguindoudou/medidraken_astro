@@ -16,17 +16,17 @@ export const primaryMenu = {
           "children": [
             {
               "title": "Akut Ryggont (Ryggskott)",
-              "link": "/symtom/akut-ryggont/",
+              "link": "/symtom/rygg-landrygg/akut-ryggont/",
               "children": []
             },
             {
               "title": "Ischias & Smärta som strålar i benet",
-              "link": "/symtom/ischias/",
+              "link": "/symtom/rygg-landrygg/ischias/",
               "children": []
             },
             {
               "title": "Långvarig värk & Stelhet i ländryggen",
-              "link": "/symtom/langvarig-vark-stelhet-landrygg/",
+              "link": "/symtom/rygg-landrygg/langvarig-vark-stelhet-landrygg/",
               "children": []
             }
           ]
@@ -37,12 +37,12 @@ export const primaryMenu = {
           "children": [
             {
               "title": "Nackspärr & Stel nacke",
-              "link": "/symtom/nacksparr-stel-nacke/",
+              "link": "/symtom/nacke-axlar-skuldror/nacksparr-stel-nacke/",
               "children": []
             },
             {
-              "title": "Ont i Axeln & Värk mellan skulderbladen",
-              "link": "/symtom/ont-i-axeln-vark-mellan-skulderbladen/",
+              "title": "Ont i Axlar & Skuldror",
+              "link": "/symtom/nacke-axlar-skuldror/ont-i-axlar-skuldror/",
               "children": []
             }
           ]
@@ -53,17 +53,17 @@ export const primaryMenu = {
           "children": [
             {
               "title": "Spänningshuvudvärk & Stresshuvudvärk",
-              "link": "/symtom/spanningshuvudvark-stresshuvudvark/",
+              "link": "/symtom/huvudvark-yrsel/spanningshuvudvark-stresshuvudvark/",
               "children": []
             },
             {
               "title": "Migrän",
-              "link": "/symtom/migran/",
+              "link": "/symtom/huvudvark-yrsel/migran/",
               "children": []
             },
             {
               "title": "Yrsel & Balansproblem",
-              "link": "/symtom/yrsel-balansproblem/",
+              "link": "/symtom/huvudvark-yrsel/yrsel-balansproblem/",
               "children": []
             }
           ]
@@ -74,17 +74,17 @@ export const primaryMenu = {
           "children": [
             {
               "title": "Ont i knän & knäbesvär",
-              "link": "/symtom/ont-i-knan-knabesvar/",
+              "link": "/symtom/ledvark-idrottsskador-artros/ont-i-knan-knabesvar/",
               "children": []
             },
             {
               "title": "Ont i höfter & höftbesvär",
-              "link": "/symtom/ont-i-hofter-hoftbesvar/",
+              "link": "/symtom/ledvark-idrottsskador-artros/ont-i-hofter-hoftbesvar/",
               "children": []
             },
             {
               "title": "Tennisarmbåge, Musarm & Värk i handleder",
-              "link": "/symtom/tennisarmbage-musarm-vark-i-handleder/",
+              "link": "/symtom/ledvark-idrottsskador-artros/tennisarmbage-musarm-vark-i-handleder/",
               "children": []
             }
           ]
@@ -97,6 +97,11 @@ export const primaryMenu = {
         {
           "title": "Utbrändhet & Trötthet",
           "link": "/symtom/utbrandhet-trotthet/",
+          "children": []
+        },
+        {
+          "title": "Ofta Förkyld",
+          "link": "/symtom/ofta-forkyld/",
           "children": []
         }
       ]

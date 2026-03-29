@@ -1,12 +1,279 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
 ---
-<BaseLayout title="Behandla Symtom & Besvär">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Behandla Symtom & Besvär</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Symtom & Besvär - Medidraken">
+    <!-- ======================================= -->
+    <!-- Huvudsektion för Symtom                 -->
+    <!-- ======================================= -->
+    <section class="bg-white pt-12 pb-16">
+        <div class="section-standard">
+            <div class="container-base">
+                <!-- Sidans Introduktion -->
+                <div class="text-center max-w-4xl mx-auto mb-16 px-4 pt-4">
+                    <h1 class="text-brand-earth-dark mb-6 text-4xl md:text-5xl leading-tight">Har du ont? Känner du dig stressad eller trött?</h1>
+                    <p class="text-xl text-neutral-700 mt-4 leading-relaxed max-w-3xl mx-auto">
+                        Här hittar du information om de vanligaste besvären som TuiNa, Akupunktur, Medicinsk Qigong och Tai Chi kan hjälpa dig med. 
+                    </p>
+                </div>
+
+                <!-- Content Grid: Side-by-Side on Desktop -->
+                <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-12 items-start max-w-7xl mx-auto">
+                    
+                    <!-- Vänster: Fysiska tillstånd (Accent path) -->
+                    <div class="bg-brand-accent/10 rounded-3xl p-8 border border-brand-accent/25 shadow-sm">
+                        <div class="flex items-center mb-6 pb-6 border-b border-brand-accent/30">
+                            <div class="h-20 w-20 rounded-full bg-brand-accent/10 flex items-center justify-center mr-6 shrink-0">
+                                <Icon name="ryggont" class="h-16 w-16 text-brand-accent-dark" />
+                            </div>
+                            <h2 class="text-brand-earth-dark font-bold text-3xl m-0">Fysiska tillstånd</h2>
+                        </div>
+
+                        <!-- 2-kolumns layout i kortet för fysiska symtom -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
+                            
+                            <!-- Kolumn 1 -->
+                            <div>
+                                <ul class="flex flex-col gap-y-4">
+                                    <!-- Rygg & Ländrygg -->
+                                    <li class="group/parent relative">
+                                        <a href="/symtom/rygg-landrygg/"
+                                            class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none relative z-10">
+                                            <div class="h-20 w-20 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                                <Icon name="ryggont" class="h-17 w-17 text-brand-accent-dark" />
+                                            </div>
+                                            <span class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Rygg & Ländrygg</span>
+                                        </a>
+
+                                        <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover/parent:grid-rows-[1fr] sm:pl-16 pl-6">
+                                            <div class="overflow-hidden">
+                                                <ul class="flex flex-col opacity-0 group-hover/parent:opacity-100 transition-opacity duration-300 delay-100 pb-2">
+                                                    <li class="pt-1">
+                                                        <a href="/symtom/rygg-landrygg/akut-ryggont/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="ryggont" class="h-8 w-8 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Akut Ryggont (Ryggskott)</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/symtom/rygg-landrygg/ischias/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="ryggont" class="h-8 w-8 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Ischias & Smärta som strålar i benet</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/symtom/rygg-landrygg/langvarig-vark-stelhet-landrygg/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="ryggont" class="h-8 w-8 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Långvarig värk & Stelhet i ländryggen</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Nacke, Axlar & Skuldror -->
+                                    <li class="group/parent relative">
+                                        <a href="/symtom/nacke-axlar-skuldror/"
+                                            class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none relative z-10">
+                                            <div class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                                <Icon name="nackont" class="h-12 w-12 text-brand-accent-dark" />
+                                            </div>
+                                            <span class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Nacke, Axlar & Skuldror</span>
+                                        </a>
+
+                                        <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover/parent:grid-rows-[1fr] sm:pl-16 pl-6">
+                                            <div class="overflow-hidden">
+                                                <ul class="flex flex-col opacity-0 group-hover/parent:opacity-100 transition-opacity duration-300 delay-100 pb-2">
+                                                    <li class="pt-1">
+                                                        <a href="/symtom/nacke-axlar-skuldror/nacksparr-stel-nacke/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="nackont" class="h-8 w-8 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Nackspärr & Stel nacke</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/symtom/nacke-axlar-skuldror/ont-i-axlar-skuldror/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="nackont" class="h-8 w-8 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Ont i Axlar & Skuldror</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Huvudvärk -->
+                                    <li class="group/parent relative">
+                                        <a href="/symtom/huvudvark-yrsel/"
+                                            class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none relative z-10">
+                                            <div class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                                <Icon name="huvudvark" class="h-12 w-12 text-brand-accent-dark" />
+                                            </div>
+                                            <span class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Huvudvärk</span>
+                                        </a>
+
+                                        <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover/parent:grid-rows-[1fr] sm:pl-16 pl-6">
+                                            <div class="overflow-hidden">
+                                                <ul class="flex flex-col opacity-0 group-hover/parent:opacity-100 transition-opacity duration-300 delay-100 pb-2">
+                                                    <li class="pt-1">
+                                                        <a href="/symtom/huvudvark-yrsel/spanningshuvudvark-stresshuvudvark/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="huvudvark" class="h-8 w-8 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Spännings- & Stresshuvudvärk</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/symtom/huvudvark-yrsel/migran/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="huvudvark" class="h-8 w-8 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Migrän</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Kolumn 2 -->
+                            <div>
+                                <ul class="flex flex-col gap-y-4">
+                                    <!-- Ledvärk, Idrottsskador & Artros -->
+                                    <li class="group/parent relative">
+                                        <a href="/symtom/ledvark-idrottsskador-artros/"
+                                            class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none relative z-10">
+                                            <div class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                                <Icon name="ledvark" class="h-15 w-15 text-brand-accent-dark" />
+                                            </div>
+                                            <span class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Ledvärk, Idrottsskador & Artros</span>
+                                        </a>
+
+                                        <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out group-hover/parent:grid-rows-[1fr] sm:pl-16 pl-6">
+                                            <div class="overflow-hidden">
+                                                <ul class="flex flex-col opacity-0 group-hover/parent:opacity-100 transition-opacity duration-300 delay-100 pb-2">
+                                                    <li class="pt-1">
+                                                        <a href="/symtom/ledvark-idrottsskador-artros/ont-i-knan-knabesvar/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="ledvark" class="h-9 w-9 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Ont i knän & knäbesvär</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/symtom/ledvark-idrottsskador-artros/ont-i-hofter-hoftbesvar/" class="group/sub flex items-center p-3 -mx-4 rounded-xl hover:bg-white/50 focus:bg-white/80 transition-all outline-none">
+                                                            <div class="h-10 w-10 shrink-0 rounded-full border border-brand-accent/20 flex items-center justify-center mr-3 group-hover/sub:bg-brand-accent/10 transition-colors">
+                                                                <Icon name="ledvark" class="h-10 w-10 text-brand-accent" />
+                                                            </div>
+                                                            <span class="text-brand-accent-dark font-medium group-hover/sub:text-brand-accent transition-colors">Ont i höfter & höftbesvär</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- Tennisarmbåge, Musarm & Handleder -->
+                                    <li>
+                                        <a href="/symtom/ledvark-idrottsskador-artros/tennisarmbage-musarm-vark-i-handleder/"
+                                            class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                                            <div class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                                <Icon name="tennisarmbage" class="h-14 w-14 text-brand-accent-dark" />
+                                            </div>
+                                            <span class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Tennisarmbåge, Musarm & Handleder</span>
+                                        </a>
+                                    </li>
+
+                                    <!-- Yrsel & Balansproblem -->
+                                    <li>
+                                        <a href="/symtom/huvudvark-yrsel/yrsel-balansproblem/"
+                                            class="group flex items-center p-4 -mx-4 sm:mx-0 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-accent/50 active:scale-[0.98] transition-all outline-none">
+                                            <div class="h-16 w-16 shrink-0 rounded-full border border-brand-accent/30 flex items-center justify-center mr-4 group-hover:bg-brand-accent/20 group-hover:border-transparent group-focus:border-brand-earth-dark transition-all">
+                                                <Icon name="dizzy" class="h-14 w-14 text-brand-accent-dark" />
+                                            </div>
+                                            <span class="text-brand-accent-dark font-medium text-lg lg:text-xl group-hover:text-brand-accent group-focus:text-brand-earth-dark transition-all">Yrsel & Balansproblem</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Höger: Stressrelaterade tillstånd (Sky path) -->
+                    <div class="bg-brand-sky/5 rounded-3xl p-8 border border-brand-sky/10 shadow-sm h-full">
+                        <div class="flex items-center mb-10 pb-6 border-b border-brand-sky/20">
+                            <div class="h-20 w-20 shrink-0 rounded-full bg-brand-sky/10 flex items-center justify-center mr-6">
+                                <Icon name="stress3" class="h-18 w-18 text-brand-sky" />
+                            </div>
+                            <h2 class="text-brand-sky font-bold text-3xl m-0 leading-tight">Stressrelaterade tillstånd</h2>
+                        </div>
+
+                        <ul class="space-y-6 mt-5">
+                            <!-- Sömnproblem & Insomnia -->
+                            <li>
+                                <a href="/symtom/somnproblem-insomnia/" class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="broken_moon_with_stars" class="h-10 w-10 text-brand-sky" />
+                                    </div>
+                                    <span class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Sömnproblem & Insomnia</span>
+                                </a>
+                            </li>
+
+                            <!-- Utbrändhet & Trötthet -->
+                            <li>
+                                <a href="/symtom/utbrandhet-trotthet/" class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="outlined_wilted_leaf" class="h-10 w-10 text-brand-sky" />
+                                    </div>
+                                    <span class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Utbrändhet & Trötthet</span>
+                                </a>
+                            </li>
+
+                            <!-- Ofta Förkyld -->
+                            <li>
+                                <a href="/symtom/ofta-forkyld/" class="group flex items-center p-4 -mx-4 rounded-2xl hover:bg-white/50 focus:bg-white/80 focus:ring-2 focus:ring-brand-sky/30 active:scale-[0.98] transition-all outline-none">
+                                    <div class="h-16 w-16 shrink-0 rounded-full border border-brand-sky/30 flex items-center justify-center mr-5 group-hover:bg-brand-sky/20 group-hover:border-transparent group-focus:border-brand-sky-dark transition-all">
+                                        <Icon name="broken_shield" class="h-12 w-12 text-brand-sky" />
+                                    </div>
+                                    <span class="text-neutral-700 font-medium text-lg lg:text-xl group-hover:text-brand-sky group-focus:text-brand-sky-dark transition-all">Ofta Förkyld</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- CTA: Redo att ta första steget?         -->
+    <!-- ======================================= -->
+    <section class="bg-brand-earth-light section-standard text-center border-t border-neutral-100">
+        <div class="container-base max-w-4xl py-12 md:py-16">
+            <!-- Huvud CTA -->
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Stämmer inget riktigt in?</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Hör av dig och beskriv ditt tillstånd för oss. Vi har lång erfarenhet av att behandla en mängd olika besvär och anpassar oss efter dina unika behov.
+                </p>
+
+                <a href="/kontakt/?subject=annat"
+                    class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
+                    Kontakta oss & beskriv ditt tillstånd
+                </a>
+            </div>
+        </div>
+    </section>
 </BaseLayout>

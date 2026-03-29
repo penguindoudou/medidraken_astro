@@ -1,0 +1,99 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="relative w-full max-w-lg mx-auto select-none">
+
+    <!-- Interactive Human Diagram -->
+    <div class="relative w-full aspect-[1/2] rounded-3xl overflow-hidden bg-brand-earth-lightest/30 flex items-center justify-center p-4">
+        
+        <svg viewBox="0 0 400 800" class="w-full h-full max-h-[700px] drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+            
+            <!-- Base Silhouette -->
+            <g fill="none" stroke="currentColor" class="text-brand-earth-dark/20" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Head -->
+                <path d="M165 90 C165 55 235 55 235 90 C235 120 215 140 200 145 C185 140 165 120 165 90 Z" />
+                <path d="M185 142 L185 160 M215 142 L215 160" /> <!-- Neck -->
+                <!-- Shoulders & Arms -->
+                <path d="M185 160 C130 160 110 180 100 210 L60 400 C55 420 85 430 90 400 L120 250" />
+                <path d="M215 160 C270 160 290 180 300 210 L340 400 C345 420 315 430 310 400 L280 250" />
+                <!-- Torso -->
+                <path d="M120 250 C130 350 140 380 150 420 M280 250 C270 350 260 380 250 420" />
+                <!-- Legs -->
+                <path d="M150 420 L130 700 C125 730 165 730 170 700 L195 480 M250 420 L270 700 C275 730 235 730 230 700 L205 480" />
+                <!-- Pelvis bridge -->
+                <path d="M150 420 C180 440 220 440 250 420" />
+                <path d="M195 480 C200 460 200 460 205 480" />
+            </g>
+
+            <!-- Highlights Layer (driven by AlpineJS) -->
+            <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="transition-colors duration-300">
+                <!-- Head Highlight -->
+                <path d="M165 90 C165 55 235 55 235 90 C235 120 215 140 200 145 C185 140 165 120 165 90 Z" 
+                      :class="activeRegion === 'head' ? 'text-brand-accent' : 'text-transparent'" />
+                      
+                <!-- Neck & Shoulders Highlight -->
+                <path d="M185 160 C130 160 110 180 100 210 M215 160 C270 160 290 180 300 210 M185 142 L185 160 M215 142 L215 160" 
+                      :class="activeRegion === 'neck' ? 'text-brand-accent' : 'text-transparent'" />
+
+                <!-- Back Highlight (Using Torso lines for visual rep) -->
+                <path d="M120 250 C130 350 140 380 150 420 M280 250 C270 350 260 380 250 420 M150 420 C180 440 220 440 250 420" 
+                      :class="activeRegion === 'back' ? 'text-brand-accent' : 'text-transparent'" />
+
+                <!-- Joints & Arms Highlight -->
+                <path d="M100 210 L60 400 C55 420 85 430 90 400 L120 250 M300 210 L340 400 C345 420 315 430 310 400 L280 250" 
+                      :class="activeRegion === 'joints' ? 'text-brand-accent' : 'text-transparent'" />
+
+                <!-- Legs Highlight -->
+                <path d="M150 420 L130 700 C125 730 165 730 170 700 L195 480 M250 420 L270 700 C275 730 235 730 230 700 L205 480 M195 480 C200 460 200 460 205 480" 
+                      :class="activeRegion === 'legs' ? 'text-brand-accent' : 'text-transparent'" />
+            </g>
+
+            <!-- Interactive Hotspots (Circles) -->
+            <!-- Head -->
+            <g @mouseenter="activeRegion = 'head'" @mouseleave="activeRegion = 'none'" @click="activeRegion = 'head'" class="cursor-pointer group">
+                <circle cx="200" cy="95" r="35" fill="transparent" />
+                <circle cx="200" cy="95" r="14" class="fill-brand-accent/30 group-hover:fill-brand-accent/50 transition-all" />
+                <circle cx="200" cy="95" r="6" class="fill-brand-accent group-hover:scale-125 transition-transform origin-center" />
+            </g>
+
+            <!-- Neck / Shoulders -->
+            <g @mouseenter="activeRegion = 'neck'" @mouseleave="activeRegion = 'none'" @click="activeRegion = 'neck'" class="cursor-pointer group">
+                <circle cx="200" cy="170" r="40" fill="transparent" />
+                <circle cx="150" cy="180" r="14" class="fill-brand-accent/30 group-hover:fill-brand-accent/50 transition-all" />
+                <circle cx="150" cy="180" r="6" class="fill-brand-accent group-hover:scale-125 transition-transform origin-center" />
+                <circle cx="250" cy="180" r="14" class="fill-brand-accent/30 group-hover:fill-brand-accent/50 transition-all" />
+                <circle cx="250" cy="180" r="6" class="fill-brand-accent group-hover:scale-125 transition-transform origin-center" />
+            </g>
+
+            <!-- Lower Back / Core -->
+            <g @mouseenter="activeRegion = 'back'" @mouseleave="activeRegion = 'none'" @click="activeRegion = 'back'" class="cursor-pointer group">
+                <rect x="130" y="250" width="140" height="150" fill="transparent" />
+                <circle cx="200" cy="340" r="16" class="fill-brand-accent/30 group-hover:fill-brand-accent/50 transition-all" />
+                <circle cx="200" cy="340" r="7" class="fill-brand-accent group-hover:scale-125 transition-transform origin-center" />
+            </g>
+
+            <!-- Arms / Joints -->
+            <g @mouseenter="activeRegion = 'joints'" @mouseleave="activeRegion = 'none'" @click="activeRegion = 'joints'" class="cursor-pointer group">
+                <circle cx="85" cy="300" r="50" fill="transparent" />
+                <circle cx="315" cy="300" r="50" fill="transparent" />
+                <circle cx="85" cy="310" r="14" class="fill-brand-accent/30 group-hover:fill-brand-accent/50 transition-all" />
+                <circle cx="85" cy="310" r="6" class="fill-brand-accent group-hover:scale-125 transition-transform origin-center" />
+                <circle cx="315" cy="310" r="14" class="fill-brand-accent/30 group-hover:fill-brand-accent/50 transition-all" />
+                <circle cx="315" cy="310" r="6" class="fill-brand-accent group-hover:scale-125 transition-transform origin-center" />
+            </g>
+
+            <!-- Legs / Knees -->
+            <g @mouseenter="activeRegion = 'legs'" @mouseleave="activeRegion = 'none'" @click="activeRegion = 'legs'" class="cursor-pointer group">
+                <circle cx="140" cy="550" r="40" fill="transparent" />
+                <circle cx="260" cy="550" r="40" fill="transparent" />
+                <circle cx="160" cy="550" r="14" class="fill-brand-accent/30 group-hover:fill-brand-accent/50 transition-all" />
+                <circle cx="160" cy="550" r="6" class="fill-brand-accent group-hover:scale-125 transition-transform origin-center" />
+                <circle cx="240" cy="550" r="14" class="fill-brand-accent/30 group-hover:fill-brand-accent/50 transition-all" />
+                <circle cx="240" cy="550" r="6" class="fill-brand-accent group-hover:scale-125 transition-transform origin-center" />
+            </g>
+
+        </svg>
+
+    </div>
+</div>
