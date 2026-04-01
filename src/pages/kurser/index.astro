@@ -3,8 +3,8 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 
-import taichiBg from '../../assets/images/taichi_hero6.png';
-import qigongBg from '../../assets/images/qigong_bamboo15.png';
+import taichiTraningImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+import qigongTrainingImage from '../../assets/images/qigong_johannes_instructing_group.jpg';
 import instruktorBg from '../../assets/images/hero_instruktor5.png';
 ---
 
@@ -14,7 +14,7 @@ import instruktorBg from '../../assets/images/hero_instruktor5.png';
         <!-- Kolumn 1: Tai Chi -->
         <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-8 group min-h-[45vh] md:min-h-full overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <Image src={taichiBg} alt="Tai Chi" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <Image src={taichiTraningImage} alt="Tai Chi" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
             </div>
 
@@ -38,7 +38,7 @@ import instruktorBg from '../../assets/images/hero_instruktor5.png';
         <!-- Kolumn 2: Qigong -->
         <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-8 group min-h-[45vh] md:min-h-full overflow-hidden border-t-2 md:border-t-0 md:border-l-2 border-brand-earth-dark/40">
             <div class="absolute inset-0 z-0">
-                <Image src={qigongBg} alt="Medicinsk Qigong" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <Image src={qigongTrainingImage} alt="Medicinsk Qigong" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
             </div>
 
