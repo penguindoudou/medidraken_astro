@@ -1,12 +1,250 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import Icon from '../../../components/Icon.astro';
+
+// Images
+// Tillfällig hero-bild tills en definitiv är vald
+import heroImage from '../../../assets/images/hero_symptoms.png';
+import tuinaManImage from '../../../assets/images/tuina_man.png';
+import qigongTrainingImage from '../../../assets/images/qigong_johannes_instructing_group.jpg';
 ---
-<BaseLayout title="Ledvärk, Idrottsskador & Artros">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Ledvärk, Idrottsskador & Artros</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="TCM-behandling av Ledvärk, Artros & Tennisarmbåge i Nyköping | Medidraken">
+    <!-- ======================================= -->
+    <!-- Sektion 1: Hero – Toppsektion           -->
+    <!-- ======================================= -->
+    <section class="hero-section min-h-[60vh]">
+        <div class="hero-background">
+            <Image src={heroImage} alt="Traditionell Kinesisk Medicin för ledvärk" class="hero-bg-image opacity-80 bg-center" />
+        </div>
+        <div class="hero-content text-center">
+            <h1 class="hero-title text-brand-earth-lighter max-w-4xl mx-auto">Få hjälp med din Ledvärk & Återfå Funktion</h1>
+            <div class="hero-text bg-brand-earth-dark/50 p-8 rounded-lg backdrop-blur-sm border border-white/10 mt-6 max-w-3xl mx-auto">
+                <h2 class="hero-subtitle font-bold text-white mb-2">Minska Smärtan & Få Naturlig Rörlighet Igen</h2>
+                <p class="hero-text text-brand-earth-lightest text-lg md:text-xl leading-relaxed">
+                    Smärta i lederna, stelhet, och nedsatt rörlighet kan bero på många olika orsaker så som ålder, ärftlighet, övervikt, tidigare skador, långvarig felbelastning eller överbelastning. Vi hjälper dig - genom kinesisk medicinsk behandling och Medicinsk Qigong och Tai Chi - öka rörligheten i omkringliggande muskler, minska smärtan, etablera sundare rörelsemönster och ledfunktion.
+                </p>
+            </div>
+            
+            <div class="mt-10">
+                <a href="#vilken-typ"
+                    class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-8 py-4 text-lg inline-flex items-center">
+                    Vilket besvär har du?
+                    <span class="ml-2 font-bold">&darr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 2: Vilken typ av besvär?        -->
+    <!-- ======================================= -->
+    <section id="vilken-typ" class="section-standard bg-brand-earth-lightest">
+        <div class="container-base max-w-6xl">
+            <div class="text-center mb-10 md:mb-14">
+                <h2 class="text-brand-earth mb-4">Vad har du för besvär?</h2>
+                <p class="text-lg text-neutral-700 max-w-2xl mx-auto">
+                    Här kan du läsa mer om det de vanligaste ledbesvären vi behandlar. Välj det som stämmer bäst in på din upplevelse för att se hur vi kan hjälpa dig.
+                </p>
+            </div>
+
+            <!-- Unified Container for Context & Coherence -->
+            <div class="relative">
+                <!-- Visual 3-Cards Journey -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+
+                    <!-- Kort 1: Knäbesvär -->
+                    <a href="/symtom/ledvark-idrottsskador-artros/knabesvar/" class="group relative z-10 flex flex-col items-center text-center p-6 md:p-8 bg-brand-accent/5 rounded-3xl border border-brand-accent/20 shadow-sm transition-all hover:-translate-y-2 hover:shadow-md hover:bg-white hover:border-brand-accent/40 h-full">
+                        <div class="h-16 w-16 rounded-full bg-brand-accent/10 flex items-center justify-center mb-6 ring-4 ring-brand-earth/5 group-hover:bg-brand-accent/20 transition-colors">
+                            <Icon name="ledvark" stroke-width="0.9" class="h-16 w-16 text-brand-accent-dark group-hover:text-brand-accent transition-colors" />
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-brand-earth-dark mb-4 group-hover:text-brand-accent-dark transition-colors">Ont i knän & Knäbesvär</h3>
+                        <p class="text-neutral-600 text-sm leading-relaxed flex-grow">
+                            För dig som känner en skärande smärta när du går i trappor (särskilt nedför), eller känner dig obehagligt stel när du reser dig efter att ha suttit stilla en stund. Kanske känns knäna svaga, som att de ibland vill vika sig, eller så sätter värken helt enkelt stopp för skogspromenaden, löprundan och en aktiv vardag.
+                        </p>
+                        <div class="mt-6 font-medium text-brand-sky flex items-center group-hover:text-brand-sky-dark transition-colors">
+                            Läs mer om behandling av Knäbesvär
+                            <span class="ml-2 transform group-hover:translate-x-1 transition-transform">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <!-- Kort 2: Höftbesvär -->
+                    <a href="/symtom/ledvark-idrottsskador-artros/hoftbesvar/" class="group flex flex-col items-center text-center p-6 md:p-8 bg-brand-accent/5 rounded-3xl border border-brand-accent/20 shadow-sm transition-all hover:-translate-y-2 hover:shadow-md hover:bg-white hover:border-brand-accent/40 h-full transform md:mt-6">
+                        <div class="h-16 w-16 rounded-full bg-brand-sky/10 flex items-center justify-center mb-6 ring-4 ring-brand-earth/5 group-hover:bg-brand-accent/20 transition-colors">
+                            <Icon name="ischias_halfbody" class="h-13 w-13 text-brand-sky group-hover:text-brand-accent-dark transition-colors" />
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-brand-earth-dark mb-4 group-hover:text-brand-accent-dark transition-colors">Ont i höfter & Höftbesvär</h3>
+                        <p class="text-neutral-600 text-sm leading-relaxed flex-grow">
+                            För dig som vaknar med en stelhet som gör det trögt att komma igång på morgonen, eller som har svårt att sova för att det värker när du ligger på sidan. Men också för dig där en envis, molande värk i höft, säte eller ljumske gör det tungt att ta en promenad, springa eller bara röra dig fritt i vardagen.
+                        </p>
+                        <div class="mt-6 font-medium text-brand-sky flex items-center group-hover:text-brand-sky-dark transition-colors">
+                            Läs mer om behandling av Höftbesvär
+                            <span class="ml-2 transform group-hover:translate-x-1 transition-transform">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <!-- Kort 3: Armbåge & Handled -->
+                    <a href="/symtom/ledvark-idrottsskador-artros/tennisarmbage-musarm/" class="group relative z-10 flex flex-col items-center text-center p-6 md:p-8 bg-brand-accent/5 rounded-3xl border border-brand-accent/20 shadow-sm transition-all hover:-translate-y-2 hover:shadow-md hover:bg-white hover:border-brand-accent/40 h-full">
+                        <div class="h-16 w-16 rounded-full bg-brand-earth/10 flex items-center justify-center mb-6 ring-4 ring-brand-earth/5 group-hover:bg-brand-accent/10 transition-colors">
+                            <Icon name="tennisarmbage" class="h-14 w-14 text-brand-earth group-hover:text-brand-accent transition-colors" />
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold text-brand-earth-dark mb-4 group-hover:text-brand-accent-dark transition-colors">Tennisarmbåge, Musarm & Värk i Handleder</h3>
+                        <p class="text-neutral-600 text-sm leading-relaxed flex-grow">
+                            För dig som upplever en ilande, svag eller brännande känsla i armen. Kanske hugger det till när du använder skruvmejseln, lyfter kaffekoppen eller vrider ur en disktrasa. Det är också för dig som upplever domningar och en ständig trötthetsvärk i händerna efter långa dagar av praktiskt arbete eller framför skärmen.
+                        </p>
+                        <div class="mt-6 font-medium text-brand-sky flex items-center group-hover:text-brand-sky-dark transition-colors">
+                            Läs mer om behandling av Tennisarmbåge & Musarm
+                            <span class="ml-2 transform group-hover:translate-x-1 transition-transform">&rarr;</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 3: Två Vägar               -->
+    <!-- ======================================= -->
+    <section class="bg-white section-standard">
+        <div class="container-base">
+            <div class="text-center mb-16 max-w-4xl mx-auto">
+                <h2 class="text-brand-earth mb-6">Mer än bara Symtomlindring:<br/> Två Vägar till ett Hållbart Resultat</h2>
+                <div class="text-lg text-neutral-700 leading-relaxed md:text-xl space-y-4">
+                    <p>Vi erbjuder två kompletterande tillvägagångssätt för att hjälpa dig. De kan användas var för sig eller i kombination. Hör av dig så hittar tillsammans vi det upplägg som passar dig bäst.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+
+                <!-- Kort 1: Behandling -->
+                <div class="service-card h-full bg-brand-accent/5 border border-brand-accent/20">
+                    <div class="relative overflow-hidden group">
+                        <Image src={tuinaManImage} alt="Behandling för smärtlindring"
+                            class="card-image transition-transform duration-500 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-brand-earth/10 group-hover:bg-transparent transition-colors duration-300"></div>
+                    </div>
+                    <div class="card-content flex flex-col flex-grow">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-brand-accent/20 text-brand-earth-dark text-xl font-bold shrink-0">1</div>
+                            <h3 class="card-title text-2xl font-bold text-brand-earth-dark m-0">Behandling för Smärtlindring & Läkning</h3>
+                        </div>
+                        <p class="card-text mt-2 text-neutral-700 leading-relaxed flex-grow">
+                            För dig som lider av ledvärk, artros eller nedsatt ledfunktion och vill ha snabbast resultat rekommenderar vi <a href="/behandling/" class="text-brand-sky hover:text-brand-accent-dark font-medium underline decoration-brand-sky/20 underline-offset-4">kinesisk medicinsk behandling</a>. Med metoder som Akupunktur och TuiNa-massage hjälper vi dig att <strong class="text-brand-earth-dark font-medium">minska smärta, förbättra den funktionella rörligheten och främja kroppens egen läkningsprocess.</strong>  De flesta känner en tydlig lättnad och ökad rörlighet inom 5 behandlingar.
+                        </p>
+                        <div class="mt-8 pt-6 border-t border-brand-accent/20 flex flex-col gap-4">
+                            <a href="/behandling/" class="text-lg font-medium text-brand-sky hover:text-brand-accent-dark transition-colors flex items-center group/link">
+                                &rarr; Läs mer om våra behandlingar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kort 2: Träning -->
+                <div class="service-card h-full bg-brand-sky/5 border border-brand-sky/20">
+                    <div class="relative overflow-hidden group">
+                        <Image src={qigongTrainingImage} alt="Stärkande träning"
+                            class="card-image transition-transform duration-500 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-brand-earth/10 group-hover:bg-transparent transition-colors duration-300"></div>
+                    </div>
+                    <div class="card-content flex flex-col flex-grow">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-brand-sky/20 text-brand-sky-dark text-xl font-bold shrink-0">2</div>
+                            <h3 class="card-title text-2xl font-bold text-brand-sky-dark m-0">Stärkande Träning för Funktion och Stabilitet</h3>
+                        </div>
+                        <p class="card-text mt-2 text-neutral-700 leading-relaxed flex-grow">
+                            För dig som vill återuppbygga och stärka kroppen, erbjuder vi kurser i <a href="/kurser/medicinsk-qigong" class="text-brand-sky hover:text-brand-accent-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Medicinsk Qigong</a> och <a href="/kurser/tai-chi" class="text-brand-sky hover:text-brand-accent-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Tai Chi</a>. Här får du de praktiska verktygen för att själv kunna <strong class="text-brand-earth-dark font-medium">bygga en stark och stabil muskulatur runt lederna.</strong>
+                        </p>
+                        <div class="mt-8 pt-6 border-t border-brand-sky/20 flex flex-col gap-4">
+                            <a href="/kurser" class="text-lg font-medium text-brand-sky hover:text-brand-accent-dark transition-colors flex items-center group/link">
+                                &rarr; Se våra kurser
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 4: Osäker på var du ska börja?  -->
+    <!-- ======================================= -->
+    <section class="bg-brand-earth-light section-standard text-center">
+        <div class="container-base max-w-4xl">
+
+            <!-- Huvud CTA -->
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Har du andra fysiska besvär?</h2>
+                <div class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10 space-y-4">
+                    <p>
+                        Det kan vara svårt att kategorisera sina besvär efter en given mall. 
+                    </p>
+                    <p>
+                        Du är välkommen att höra av dig och berätta om ditt tillstånd så hjälper vi dig hitta en lämplig väg framåt om vi bedömmer att vi kan hjälpa dig, annars hänvisar vi dig vidare.
+                    </p>
+                    <p>
+                        Många upplever en tydlig skillnad i smärta och funktionell rörlighet inom 5 behandlingar, oavsett typ av besvär. Kontakta oss och berätta om din situation så rekommenderar vi en väg framåt.
+                    </p>
+                </div>
+
+                <a href="/kontakt/?subject=radgivning"
+                    class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
+                    Hör av dig & beskriv ditt tillstånd
+                </a>
+            </div>
+
+            <!-- Trust & Info Row (Discrete boxes with icon containers) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 mt-0 border-t border-brand-earth-dark/10">
+
+                <!-- Column 1: Praktisk Info -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
+                            <div class="relative flex h-3 w-3 items-center justify-center">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Mottagningar</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Vi hjälper dig med din ledvärk, artros och nedsatt ledfunktion på våra mottagningar i <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>, <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a> och <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>. Alla besök sker efter tidsbokning.
+                    </div>
+                    <a href="/kontakt/#mottagningar"
+                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Se
+                        alla mottagningar &rarr;</a>
+                </div>
+
+                <!-- Column 2: Friskvård -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="shield_health" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Friskvårdsbidrag</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Använd ditt bidrag! Alla våra behandlingar är godkända.<br />
+                    </div>
+                    <a href="/friskvardsbidrag/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs mer &rarr;</a>
+                </div>
+
+                <!-- Column 3: Presentkort -->
+                <div class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="present" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Ge bort en behandling med presentkort.<br />
+                    </div>
+                    <a href="/presentkort/" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs mer &rarr;</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 </BaseLayout>
