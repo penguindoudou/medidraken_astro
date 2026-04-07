@@ -31,7 +31,9 @@ const displayTitle = title ? `${title} | Medidraken` : "Medidraken | Akupunktur 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'></script>
+    {import.meta.env.PUBLIC_CLOUDFLARE_TOKEN && (
+      <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={`{"token": "${import.meta.env.PUBLIC_CLOUDFLARE_TOKEN}"}`}></script>
+    )}
     <!-- End Cloudflare Web Analytics -->
   </head>
   <body class="bg-neutral-100 text-neutral-700 font-body antialiased selection:bg-brand-accent selection:text-white">
