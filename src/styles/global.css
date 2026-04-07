@@ -66,6 +66,8 @@
   h5,
   h6 {
     @apply font-heading font-bold text-neutral-900;
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
 
   h1 {
@@ -205,7 +207,7 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
   }
 
   .content-box {
-    @apply bg-neutral-50/50 p-8 rounded-lg text-center border border-neutral-300;
+    @apply bg-neutral-50/50 p-6 md:p-8 rounded-lg text-center border border-neutral-300;
   }
 
   .content-box-title {
