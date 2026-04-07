@@ -15,7 +15,7 @@ export const primaryMenu = {
           "link": "/symtom/rygg-landrygg/",
           "children": [
             {
-              "title": "Akut Ryggont (Ryggskott)",
+              "title": "Akut Ryggskott",
               "link": "/symtom/rygg-landrygg/akut-ryggont/",
               "children": []
             },
