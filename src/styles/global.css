@@ -84,6 +84,8 @@
 
   p {
     @apply font-body text-base text-neutral-700 leading-relaxed;
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
 
   a {
@@ -278,8 +280,18 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
     @apply text-brand-sky hover:text-brand-earth-dark underline decoration-transparent hover:decoration-brand-earth-dark/30 underline-offset-2 transition-all duration-200;
   }
 
-  .prose h2 {
+  .prose-like-content h2 {
     @apply font-heading text-brand-earth;
+  }
+
+  .prose-like-content a {
+    @apply inline-block max-w-full;
+    overflow-wrap: anywhere;
+  }
+
+  /* Utility for exceptionally long strings like URLs */
+  .break-all {
+    word-break: break-all;
   }
 }
 
