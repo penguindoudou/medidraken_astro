@@ -149,7 +149,7 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
     /* Responsive height and padding centralized for easy tweaking */
     @apply relative text-center flex items-start justify-center text-neutral-50;
     @apply min-h-[45vh] md:min-h-[60vh];
-    @apply pt-20 pb-20 lg:pt-20 lg:pb-40; /* Try pt-16 pb-20 or pt-16 pb-16 if content fits */
+    @apply pt-10 pb-10 lg:pt-16 lg:pb-16;
   }
 
   .hero-background {
