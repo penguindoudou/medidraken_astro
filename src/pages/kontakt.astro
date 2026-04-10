@@ -23,18 +23,18 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
             <Image src={heroImage} alt="Tai Chi kurs för harmoni och hälsa" class="hero-bg-image opacity-70" />
         </div>
         <div class="hero-content text-center">
-            <div class="hero-text bg-brand-earth-dark/80 p-6 rounded-lg backdrop-blur-sm border border-white/10 md:max-w-5xl mx-auto">
+            <div class="hero-text bg-brand-earth-dark/80 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10 md:max-w-5xl mx-auto">
                 <h1 class="hero-title text-brand-accent">Kontakta Oss</h1>
 
-                <div class="space-y-4 text-lg text-neutral-100 leading-relaxed mt-0">
-                    <h2 class="hero-subtitle font-semibold mb-3">Vi ser fram emot att höra från dig!</h2>
+                <div class="text-lg text-neutral-100 leading-relaxed mt-0">
+                    <h2 class="hero-subtitle font-semibold">Vi ser fram emot att höra från dig!</h2>
 
-                    <p class="hero-text mt-0">
+                    <p class="hero-text mt-3 md:mt-5">
                         Oavsett om du har en fråga, vill anmäla ditt intresse för en kurs eller boka en behandling,
                         är du varmt välkommen att höra av dig.
                     </p>
 
-                    <p class="hero-text mt-0">
+                    <p class="hero-text mt-2 md:mt-5">
                         För snabbast svar rekommenderar vi att du ringer <a href={`tel:${siteConfig.phone.clean}`}
                             class="text-brand-accent-light hover:text-brand-sky-bright font-normal underline decoration-brand-accent-light/30 underline-offset-4 transition-colors duration-200">{siteConfig.phone.display}</a>
                         eller använder formuläret

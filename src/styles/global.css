@@ -148,8 +148,8 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
   .hero-section {
     /* Responsive height and padding centralized for easy tweaking */
     @apply relative text-center flex items-start justify-center text-neutral-50;
-    @apply min-h-[45vh] md:min-h-[60vh];
-    @apply pt-10 pb-10 lg:pt-16 lg:pb-16;
+    @apply min-h-[40vh] md:min-h-[60vh];
+    @apply pt-10 pb-12 md:pt-24 md:pb-24;
   }
 
   .hero-background {
@@ -165,7 +165,7 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
   }
 
   .hero-title {
-    @apply font-heading font-black tracking-tight pb-4 mb-0;
+    @apply font-heading font-black tracking-tight pb-2 md:pb-4 mb-0;
     /* Hero Title: stays 4.5rem down to ~600px, then shrinks to 3rem on mobile */
     font-size: clamp(3rem, 12vw, 4.5rem);
     line-height: 1.1;
@@ -203,7 +203,7 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
   }
 
   .hero-text {
-    @apply text-lg md:text-xl text-neutral-100 max-w-2xl mx-auto mt-6 shadow-black/50 drop-shadow-md;
+    @apply text-lg md:text-xl text-neutral-100 max-w-2xl mx-auto mt-3 md:mt-5 shadow-black/50 drop-shadow-md;
   }
 
   /* --- LAYOUT & CARDS --- */
