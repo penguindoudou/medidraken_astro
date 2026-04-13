@@ -1,0 +1,40 @@
+---
+export interface FAQ {
+    question: string;
+    answer: string;
+}
+
+interface Props {
+    title: string;
+    faqs: FAQ[];
+}
+
+const { title, faqs } = Astro.props;
+---
+<section class="section-standard bg-white">
+    <div class="container-base max-w-3xl">
+        <h2 class="text-brand-earth text-center mb-12">{title}</h2>
+
+        <div class="space-y-4" x-data="{ active: null }">
+            {faqs.map((faq, index) => (
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click={`active === ${index} ? active = null : active = ${index}`}
+                        class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth text-left">{faq.question}</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform"
+                            :class={`active === ${index} ? 'rotate-180' : ''`}>
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show={`active === ${index}`} x-collapse x-cloak
+                        class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        {faq.answer}
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

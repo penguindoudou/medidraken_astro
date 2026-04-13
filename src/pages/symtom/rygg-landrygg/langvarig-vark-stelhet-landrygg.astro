@@ -1,12 +1,92 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SymptomHero from '../../../components/symptom/SymptomHero.astro';
+import SymptomMethods from '../../../components/symptom/SymptomMethods.astro';
+import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../../assets/images/hero_ryggont8.png';
+import tuinaManImage from '../../../assets/images/tuina_man.png';
+import acupunctureImage from '../../../assets/images/aku_doll6.png';
+
+const methods = [
+    {
+        title: 'TuiNa-massage',
+        desc: 'Arbetar på djupet för att lösa upp den hårda bindväv och de muskelspänningar som byggts upp över lång tid. TuiNa ökar blodcirkulationen, mjukar upp stelheten och hjälper kroppen att återfå sin naturliga rörlighet.',
+        image: tuinaManImage,
+        alt: 'TuiNa-massage för långvarig värk och stelhet',
+        url: '/behandling/tuina-massage/',
+        linkText: '→ Läs mer om TuiNa-Massage',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Akupunktur',
+        desc: 'Mycket effektivt för att dämpa underliggande inflammationer, lugna ett överbelastat nervsystem och stänga av de ihållande smärtsignalerna som håller kvar ryggen i en krampande cykel.',
+        image: acupunctureImage,
+        alt: 'Akupunktur för långvarig smärtlindring',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Jag har provat mycket tidigare och inget hjälper varaktigt, varför skulle detta fungera?',
+        answer: 'Skillnaden med vårt tillvägagångssätt är att vi ser till helheten. Vi nöjer oss inte med att bara tillfälligt döva det smärtande området, utan arbetar med djupgående metoder för att korrigera de underliggande spänningar och obalanser som gör att smärtan ständigt kommer tillbaka.'
+    },
+    {
+        question: 'Min läkare säger att jag har artros eller förslitningar i ryggen, kan jag ändå få hjälp?',
+        answer: 'Ja. Även om vi inte kan trolla bort artrosen i sig, kan vi göra väldigt mycket för att lindra den smärta och stelhet som tillståndet orsakar. Genom att minska inflammation och mjuka upp musklerna runt lederna kan funktionen och livskvaliteten ofta förbättras avsevärt.'
+    },
+    {
+        question: 'Hur ser vägen ut för att bli smärtfri på sikt?',
+        answer: 'Det handlar om ett lagspel. Först använder vi behandlingar som TuiNa och Akupunktur för att effektivt bryta smärtcykeln och återställa rörligheten. När du har mindre ont rekommenderar vi ofta våra kurser i Medicinsk Qigong eller Tai Chi för att du själv ska kunna bygga upp bålstyrka, förbättra din hållning och förebygga framtida problem.'
+    }
+];
 ---
-<BaseLayout title="Långvarig värk & Stelhet i ländryggen">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Långvarig värk & Stelhet i ländryggen</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Behandling av Långvarig Ryggvärk & Stelhet i Nyköping | Medidraken">
+    
+    <SymptomHero
+        title="Långvarig Ryggvärk"
+        subtitle="Hitta en Hållbar Lösning & Återfå Rörligheten"
+        image={heroImage}
+        imageAlt="Behandling av Långvarig Ryggvärk"
+        buttonText="Behandla ryggvärken"
+        buttonLink="/kontakt"
+    >
+        En molande, ihållande värk i ländryggen som sällan släpper kan vara extremt dränerande. Ofta beror det på djupgående och långvariga spänningar eller obalanser i muskulatur och energisystem.
+        
+        Vårt mål är att inte bara ge tillfällig lindring, utan att arbeta på djupet för att lösa upp värken, återställa rörligheten och hjälpa dig bygga upp en starkare rygg från grunden.
+    </SymptomHero>
+
+    <SymptomMethods
+        title="Bryt Smärtcykeln & Stärk Ryggen"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Att behandla långvarig värk kräver ett helhetsperspektiv.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
+            Vi fokuserar först på att dämpa den kroniska smärtan och mjuka upp stelheten som byggts upp över tid. Därefter arbetar vi för att återställa ett naturligt flöde, så att din rygg kan återfå sin funktion och kraft.
+        </p>
+    </SymptomMethods>
+
+    <SymptomCTA
+        title="Låt oss hjälpa dig med din långvariga ryggvärk"
+        ctaButtonText="Hör av dig och boka behandling"
+        ctaSubject="langvarig-ryggvark"
+    >
+        <p>
+            Att komma tillrätta med en smärta som suttit i länge är en process. Vi hjälper dig att skapa en personlig plan. Vår erfarenhet visar att många upplever en tydlig skillnad i rörlighet och minskad smärta redan efter ett par behandlingar.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Långvarig Värk"
+        faqs={faqs}
+    />
+
 </BaseLayout>

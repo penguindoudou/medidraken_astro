@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+
+export interface Method {
+    title: string;
+    desc: string;
+    image: ImageMetadata;
+    alt: string;
+    url: string;
+    linkText: string;
+    theme: 'accent' | 'sky';
+}
+
+interface Props {
+    title: string;
+    methods: Method[];
+}
+
+const { title, methods } = Astro.props;
+
+const themeStyles = {
+    accent: {
+        cardBg: 'bg-brand-accent/5 border-brand-accent/20',
+        badgeBg: 'bg-brand-accent/20 text-brand-earth-dark',
+        title: 'text-brand-earth-dark',
+        linkText: 'text-brand-sky hover:text-brand-accent-dark',
+        borderTop: 'border-brand-accent/20'
+    },
+    sky: {
+        cardBg: 'bg-brand-sky/5 border-brand-sky/20',
+        badgeBg: 'bg-brand-sky/20 text-brand-sky-dark',
+        title: 'text-brand-sky-dark',
+        linkText: 'text-brand-sky hover:text-brand-accent-dark',
+        borderTop: 'border-brand-sky/20'
+    }
+};
+---
+<section id="behandlingsmetoder" class="bg-white section-standard">
+    <div class="container-base">
+        <div class="text-center mb-16 max-w-4xl mx-auto">
+            <h2 class="text-brand-earth mb-6">{title}</h2>
+            <div class="mt-8 mb-10">
+                <slot />
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mb-10 mx-auto">
+            {methods.map((method, index) => {
+                const styles = themeStyles[method.theme];
+                return (
+                    <div class={`service-card h-full border ${styles.cardBg}`}>
+                        <div class="relative overflow-hidden group">
+                            <Image src={method.image} alt={method.alt} class="card-image transition-transform duration-500 group-hover:scale-105" />
+                            <div class="absolute inset-0 bg-brand-earth/10 group-hover:bg-transparent transition-colors duration-300"></div>
+                        </div>
+                        <div class="card-content flex flex-col flex-grow">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class={`flex items-center justify-center w-12 h-12 rounded-full text-xl font-bold shrink-0 ${styles.badgeBg}`}>{index + 1}</div>
+                                <h4 class={`card-title text-2xl font-bold m-0 ${styles.title}`}>{method.title}</h4>
+                            </div>
+                            <p class="card-text mt-2 text-neutral-700 leading-relaxed flex-grow">
+                                {method.desc}
+                            </p>
+                            <div class={`mt-8 pt-6 border-t flex flex-col gap-4 ${styles.borderTop}`}>
+                                <a href={method.url} class={`text-lg font-medium transition-colors flex items-center group/link ${styles.linkText}`}>
+                                    {method.linkText}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
+    </div>
+</section>

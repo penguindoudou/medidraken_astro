@@ -152,6 +152,11 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
     @apply pt-10 pb-12 md:pt-24 md:pb-24;
   }
 
+  /* Variant for hero sections that shouldn't consume too much vertical space on desktop */
+  .hero-viewport-fit {
+    @apply max-h-[110vh] md:pt-20 md:pb-20;
+  }
+
   .hero-background {
     @apply absolute inset-0 bg-brand-accent;
   }
