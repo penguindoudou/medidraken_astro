@@ -1,12 +1,106 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SymptomHero from '../../../components/symptom/SymptomHero.astro';
+import SymptomMethods from '../../../components/symptom/SymptomMethods.astro';
+import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../../assets/images/hero_symptoms.png';
+import acupunctureImage from '../../../assets/images/aku_doll6.png';
+import tuinaManImage from '../../../assets/images/tuina_man.png';
+import taichiImage from '../../../assets/images/taichi_hero6.png';
+
+const methods = [
+    {
+        title: 'Akupunktur',
+        desc: 'Arbetar djupt in mot leden för att minska inflammation och lindra smärta. Det är ett effektivt verktyg för att dämpa de direkta smärtsignalerna i området.',
+        image: acupunctureImage,
+        alt: 'Akupunktur mot höftsmärta och inflammation',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    },
+    {
+        title: 'TuiNa-massage',
+        desc: 'Används för att lösa upp spänningar i de stora muskelgrupperna runt höften – i sätet, ländryggen och låren – som nästan alltid är involverade och förvärrar problematiken.',
+        image: tuinaManImage,
+        alt: 'TuiNa-massage lindrar muskelspänningar runt höften',
+        url: '/behandling/tuina-massage/',
+        linkText: '→ Läs mer om TuiNa-Massage',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Tai Chi & Qigong',
+        desc: 'För ett hållbart resultat erbjuder vi träning i Tai Chi och Medicinsk Qigong. Genom långsamma, viktbärande rörelser stärker du musklerna och förbättrar ledens funktion på ett mycket skonsamt sätt.',
+        image: taichiImage,
+        alt: 'Skonsam träning för starkare höfter med Tai Chi och Qigong',
+        url: '/behandling/tai-chi/',
+        linkText: '→ Läs mer om vår träning',
+        theme: 'sky' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Jag har fått diagnosen höftartros, kan jag ändå få hjälp?',
+        answer: 'Ja, absolut. Även om vi inte kan bota själva artrosen, är våra metoder mycket effektiva för att lindra symtomen. Vårt mål är att minska smärta, dämpa inflammation och lösa upp de muskelspänningar som uppstår runt den artrosdrabbade leden.'
+    },
+    {
+        question: 'Min smärta sitter mest i sätet/skinkan, är det verkligen höften?',
+        answer: 'Det är mycket vanligt. Smärta i sätet kan komma från höftleden, men den kan också komma från spända muskler (falsk ischias) eller från ländryggen. Vår inledande undersökning hjälper till att identifiera källan så att vi kan rikta behandlingen rätt.'
+    },
+    {
+        question: 'Är det inte bättre att vila helt när jag har ont i höften?',
+        answer: 'Det beror på orsaken, men ofta är skonsam och anpassad rörelse bättre än total vila. Rörelse stimulerar cirkulation och "smörjer" leden. Vi ger dig råd om vilken typ av aktivitet som är lämplig under behandlingsperioden.'
+    },
+    {
+        question: 'Vad kan jag göra själv för att få ett bättre resultat?',
+        answer: 'Din delaktighet är viktig för ett hållbart resultat. Medan vi fokuserar på att minska din smärta kliniskt, rekommenderar vi att du bygger goda vanor genom skonsam rörelse. Att praktisera Tai Chi eller Medicinsk Qigong regelbundet är ett utmärkt sätt att själv bygga en stark och smidig muskulatur runt höften på sikt.'
+    }
+];
 ---
-<BaseLayout title="Ont i höfter & höftbesvär">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Ont i höfter & höftbesvär</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Behandling av Ont i Höften & Höftartros i Nyköping | Medidraken">
+    
+    <SymptomHero
+        title="Ont i Höfter & Höftbesvär"
+        subtitle="Lindra Smärta & Återfå Höftens Funktion"
+        image={heroImage}
+        imageAlt="Behandling av höftbesvär"
+        buttonText="Boka konsultation"
+        buttonLink="/kontakt"
+    >
+        Smärta och stelhet i höften, sätet eller ljumsken kan göra allt från att gå till att sova besvärligt. Inom TCM ses smärta och nedsatt funktion ofta som ett tecken på en lokal blockering av energi (Qi).
+
+        Oavsett grundorsak fokuserar vår behandling på att minska smärta, lösa upp de spänningar som begränsar din rörlighet och stärka området för att ge dig en mer funktionell och smärtfri vardag.
+    </SymptomHero>
+
+    <SymptomMethods
+        title="Vår Strategi: Lindra, Mjuka Upp & Stärka"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Behandling av höftbesvär är alltid personligt anpassad. Oavsett om din smärta sitter i sätet, ljumsken eller själva leden hjälper vi dig att rikta behandlingen rätt.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
+            För att lindra smärta och förbättra funktionen kombinerar vi ofta djupgående behandlingar med långsiktigt stärkande träning. Tillsammans skapar vi det upplägg som passar dina behov bäst.
+        </p>
+    </SymptomMethods>
+
+    <SymptomCTA
+        title="Ta Steget mot En Rörligare och Smärtfriare Vardag"
+        ctaButtonText="Hör av dig och boka konsultation"
+        ctaSubject="hoftbesvar"
+    >
+        <p>
+            Vi hjälper dig hitta rätt behandling för dina höfter. Vår erfarenhet visar att många upplever en tydlig minskning av smärta och en mjukare, rörligare känsla efter en första serie behandlingar.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Behandling av Höftsmärta"
+        faqs={faqs}
+    />
+
 </BaseLayout>
