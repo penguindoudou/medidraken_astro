@@ -1,12 +1,91 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SymptomHero from '../../../components/symptom/SymptomHero.astro';
+import SymptomMethods from '../../../components/symptom/SymptomMethods.astro';
+import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../../assets/images/nackOCHaxelvark2.png';
+import tuinaManImage from '../../../assets/images/tuina_man.png';
+import acupunctureImage from '../../../assets/images/aku_doll6.png';
+
+const methods = [
+    {
+        title: 'TuiNa-massage',
+        desc: 'Används för att manuellt och varsamt bearbeta de krampande musklerna för att lösa upp den fysiska låsningen inifrån och ut. TuiNa mjukar upp stela muskler i nacke och axlar, ökar energi- och blodcirkulationen i området vilket påskyndar läkningsprocessen.',
+        image: tuinaManImage,
+        alt: 'TuiNa-massage för stela muskler',
+        url: '/behandling/tuina-massage/',
+        linkText: '→ Läs mer om TuiNa-Massage',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Akupunktur',
+        desc: 'Akupunktur stimulerar kroppens energisystem för läkning, hjälper djupt liggande nackmuskler att slappna av och minskar de akuta smärtsignalerna.',
+        image: acupunctureImage,
+        alt: 'Akupunktur för nackspärr',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Är det farligt att behandla när det gör så ont?',
+        answer: 'Nej, tvärtom. Behandlingen är säker och utförs alltid med stor försiktighet. Vi anpassar tekniker och tryck helt efter din smärtnivå. Att tidigt lösa upp låsningen kan förkorta läkningsprocessen avsevärt.'
+    },
+    {
+        question: 'Hur snabbt kan jag få en tid?',
+        answer: 'Vid akuta besvär som nackspärr arbetar vi för att hitta en tid åt dig så snabbt som möjligt, ofta samma dag eller nästkommande vardag. Ring eller maila oss och förklara din situation så gör vi vad vi kan för att ta emot dig direkt.'
+    }
+];
 ---
-<BaseLayout title="Nackspärr & Stel nacke">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Nackspärr & Stel nacke</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Behandling av Nackspärr & Stel Nacke i Nyköping | Medidraken">
+    
+    <SymptomHero
+        title="Nackspärr & Stel Nacke"
+        subtitle="Minska Smärta & Återställ Rörlighet"
+        image={heroImage}
+        imageAlt="Behandling av Nackspärr och Stel Nacke"
+        buttonText="Behandla nackspärr"
+        buttonLink="/kontakt"
+    >
+        Att plötsligt drabbas av nackspärr kan göra de enklaste huvudrörelser smärtsamma och begränsande. Det kan bero på orsaker som att ha sovit i en obekväm ställning, suttit i drag, gjort en plötslig rörelse eller utsatts för långvarig stress.
+        
+        Genom kinesisk medicinsk behandling mjukar vi upp muskelspänningar och hjälper energisystemet så att nackens smärta minskar och din normala rörlighet återställs.
+    </SymptomHero>
+
+    <SymptomMethods
+        title="Minska Smärta & Få Tillbaka Nackens Normala Rörlighet"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Vid nackspärr är musklerna ofta i kramp och nacken känns helt låst.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-6">
+            Vi erbjuder två kompletterande tillvägagångssätt för att hjälpa din kropp släppa spänningarna och minska smärtan. De kan användas var för sig eller i kombination.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
+            Hör av dig så hittar vi tillsammans det upplägg som passar dig bäst.
+        </p>
+    </SymptomMethods>
+
+    <SymptomCTA
+        title="Låt oss hjälpa dig med din Nackspärr"
+        ctaButtonText="Hör av dig och boka behandling"
+        ctaSubject="nacksparr"
+    >
+        <p>
+            Vi prioriterar akuta besvär som nackspärr. Vår erfarenhet är att många känner att smärtan lättar och att rörligheten börjar komma tillbaka redan efter första behandlingen.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Behandling av Nackspärr"
+        faqs={faqs}
+    />
+
 </BaseLayout>
