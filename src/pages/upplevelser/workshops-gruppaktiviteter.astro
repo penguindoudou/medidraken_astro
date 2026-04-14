@@ -1,12 +1,156 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+import heroImage from '../../assets/images/people_in_circle_meditating_johannes_and_linnea_facing_the_camera_other_side_of_circle.jpg';
+import qigongImage from '../../assets/images/qigong_johannes_instructing_group.jpg';
+import taichiImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+import stressImage from '../../assets/images/taichi_people_in_a_circle_practicing_dark_silhuets_their_backs_towards_camera_clear_blue_sky.jpg';
 ---
-<BaseLayout title="Workshops & Gruppaktiviteter">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Workshops & Gruppaktiviteter</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Boka Workshop i Qigong & Tai Chi i Nyköping | Medidraken">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <Image src={heroImage} alt="Workshops och Gruppaktiviteter" class="hero-bg-image opacity-80" />
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title text-brand-accent">Workshops & Gruppaktiviteter</h1>
+
+            <div class="hero-text bg-brand-earth-dark/40 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10">
+                <h2 class="hero-subtitle font-semibold">En Djupgående Upplevelse för Din Grupp</h2>
+
+                <p class="hero-text mt-3 md:mt-5">
+                    Vill ni som kompisgäng, förening eller företag göra något meningsfullt tillsammans? En workshop hos oss är ett perfekt sätt att lära er nya verktyg för hälsa, stärka gemenskapen och få en paus från vardagen. Vi skräddarsyr innehållet efter era önskemål.
+                </p>
+            </div>
+
+            <div class="mt-6 md:mt-10">
+                <a href="/kontakt/" class="btn btn-primary-on-dark">
+                    Boka er skräddarsydda workshop
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop Teman Section -->
+    <section class="bg-brand-earth-lightest section-standard">
+        <div class="container-base">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-earth">Exempel på Workshop-teman</h2>
+            </div>
+            
+            <div class="relative">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-6 md:mb-10 relative z-10">
+
+                    <!-- Point 1 -->
+                    <div class="service-card bg-brand-accent/20 flex flex-col relative z-10 rounded-3xl border border-brand-accent/20 shadow-sm transition-transform hover:-translate-y-1 overflow-hidden h-full">
+                        <Image src={qigongImage} alt="Introduktion till Medicinsk Qigong" class="card-image w-full h-48 object-cover" />
+                        <div class="card-content p-6 md:p-8 flex-grow flex flex-col bg-white">
+                            <h3 class="card-title text-lg md:text-xl font-bold text-brand-earth-dark mb-3">Introduktion till Medicinsk Qigong</h3>
+                            <p class="card-text text-neutral-600 text-sm flex-grow">Lär er en komplett serie med enkla, kraftfulla rörelser för att minska stress och öka energin.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="service-card bg-brand-accent/20 flex flex-col relative z-10 rounded-3xl border border-brand-accent/20 shadow-md transform md:-translate-y-6 transition-transform hover:-translate-y-1 md:hover:-translate-y-7 overflow-hidden h-full">
+                        <Image src={taichiImage} alt="Grunderna i Tai Chi" class="card-image w-full h-48 object-cover" />
+                        <div class="card-content p-6 md:p-8 flex-grow flex flex-col bg-white">
+                            <h3 class="card-title text-lg md:text-xl font-bold text-brand-earth-dark mb-3">Grunderna i Tai Chi</h3>
+                            <p class="card-text text-neutral-700 text-sm flex-grow">Få en intensiv och rolig introduktion till Tai Chins grunder och principer.</p>
+                        </div>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="service-card bg-brand-accent/20 flex flex-col relative z-10 rounded-3xl border border-brand-accent/20 shadow-sm transition-transform hover:-translate-y-1 overflow-hidden h-full">
+                        <Image src={stressImage} alt="Stresshantering i Praktiken" class="card-image w-full h-48 object-cover" />
+                        <div class="card-content p-6 md:p-8 flex-grow flex flex-col bg-white">
+                            <h3 class="card-title text-lg md:text-xl font-bold text-brand-earth-dark mb-3">Stresshantering i Praktiken</h3>
+                            <p class="card-text text-neutral-600 text-sm flex-grow">En praktisk workshop där vi delar med oss av Medidrakens effektiva verktyg för att hantera stress. Målet är att ge deltagarna metoder för att bibehålla fokus och energi, vilket leder till ett mer hållbart och produktivt arbetsliv.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Praktisk Info Sektion -->
+    <section id="bokning" class="bg-brand-earth-light section-standard text-center">
+        <div class="container-base max-w-4xl">
+
+            <!-- Huvud CTA -->
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Praktisk Information</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Låt oss skräddarsy en upplevelse som passar just er grupp. Kontakta oss idag för att diskutera era önskemål och få ett prisförslag.
+                </p>
+
+                <a href="/kontakt/"
+                    class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
+                    Boka er skräddarsydda workshop
+                </a>
+            </div>
+
+            <!-- Trust & Info Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 mt-0 border-t border-brand-earth-dark/10">
+
+                <!-- Column 1: Plats -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
+                            <div class="relative flex h-3 w-3 items-center justify-center">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Mottagning & Plats</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Workshops kan hållas i våra lokaler i Nyköping,
+                        Gnesta, Oxelösund, eller på annan plats enligt överenskommelse.
+                    </div>
+                </div>
+
+                <!-- Column 2: Pris -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="check-circle" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Pris på Offert</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Pris ges via offert, baserat på gruppstorlek, längd och innehåll.
+                    </div>
+                </div>
+
+                <!-- Column 3: Presentkort -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="present" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Ge bort en workshop som en unik och uppskattad gruppresent.<br />
+                    </div>
+                    <a href="/presentkort/"
+                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs
+                        mer &rarr;</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </BaseLayout>

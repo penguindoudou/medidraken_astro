@@ -1,12 +1,157 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+import heroImage from '../../assets/images/travels_yangshuo_river_n_front_of_greenery_and_mountains.jpg';
+import tcmImage from '../../assets/images/aku_doll4.png';
+import natureImage from '../../assets/images/travels_yangshuo_view_from_hotel_room_window_wooden_frames_river_with_mountains_murky_weather.jpg';
+import practiceImage from '../../assets/images/taichi_group_practicing_tai_chi_in_yangshuo_on_raft_in_river_in_front_of_beautiful_mountains.jpg';
+import guideImage from '../../assets/images/qigong_johannes_instructing_group.jpg';
 ---
-<BaseLayout title="Hälsoresor">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Hälsoresor</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Hälsoresa till Kina | Medidraken">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <Image src={heroImage} alt="Hälsoresa till Kina natur" class="hero-bg-image opacity-80" />
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title text-brand-accent">Hälsoresa till Kina med Johannes Mao</h1>
+
+            <div class="hero-text bg-brand-earth-dark/40 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10">
+                <h2 class="hero-subtitle font-semibold">Upplev Kultur, Natur & TCM vid dess Källa</h2>
+
+                <p class="hero-text mt-3 md:mt-5">
+                    Följ med Medidrakens grundare, Johannes Mao, på en oförglömlig hälsoresa. Detta är inte en vanlig turistresa, utan en unik möjlighet att uppleva Kinas källa till hälsa och harmoni – dess rika kultur, helande traditioner och storslagna natur, personligen guidad av Johannes som med sin bakgrund i både Kina och Sverige skapar en trygg och lärorik upplevelse.
+                </p>
+            </div>
+
+            <div class="mt-6 md:mt-10">
+                <a href="#intresse" class="btn btn-primary-on-dark">
+                    Anmäl Intresse
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 Points Section -->
+    <section class="bg-brand-earth-lightest section-standard">
+        <div class="container-base">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-earth">Vad du kan förvänta dig</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Point 1 -->
+                <div class="service-card bg-brand-accent/20">
+                    <Image src={tcmImage} alt="Inblick i TCM" class="card-image" />
+                    <div class="card-content">
+                        <h3 class="card-title">Inblick i TCM</h3>
+                        <p class="card-text">Få en unik inblick i Kinas urgamla metoder för hälsa och välbefinnande direkt vid källan.</p>
+                        <div class="card-link">
+                            <a href="/behandling/" class="btn-tertiary">Läs mer om TCM &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="service-card bg-brand-accent/20">
+                    <Image src={natureImage} alt="Kultur & Natur i Kina" class="card-image" />
+                    <div class="card-content">
+                        <h3 class="card-title">Kultur & Natur</h3>
+                        <p class="card-text">Upplev det genuina Kina bortom turiststråken, med allt från teceremonier till vandringar i hänförande bergslandskap.</p>
+                        <div class="card-link">
+                            <a href="#intresse" class="btn-tertiary">Hör av dig för programdetaljer &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 3 -->
+                <div class="service-card bg-brand-accent/20">
+                    <Image src={practiceImage} alt="Praktisera Tai Chi och Qigong i Kina" class="card-image" />
+                    <div class="card-content">
+                        <h3 class="card-title">Praktisera & Fördjupa</h3>
+                        <p class="card-text">Öva Tai Chi och Qigong i deras ursprungsmiljö för att fördjupa din förståelse och teknik.</p>
+                        <div class="card-link">
+                            <a href="/kurser/tai-chi/" class="btn-tertiary">Läs om våra kurser &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Point 4 -->
+                <div class="service-card bg-brand-accent/20">
+                    <Image src={guideImage} alt="Johannes Mao guidar grupp i Kina" class="card-image" />
+                    <div class="card-content">
+                        <h3 class="card-title">Personlig Guidning</h3>
+                        <p class="card-text">Res i en liten, trygg grupp med Johannes som din personliga guide och kunskapskälla genom hela resan.</p>
+                        <div class="card-link">
+                            <a href="/om-oss/" class="btn-tertiary">Läs om Johannes &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="section-standard">
+        <div class="container-base max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Vem Passar Resan För -->
+                <div class="relative bg-brand-earth-dark/95 text-white overflow-hidden p-8 md:p-10 rounded-2xl shadow-xl shadow-brand-earth-dark/10">
+                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                        <Icon name="holistic_qi_human" class="w-32 h-32 text-brand-accent" />
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-brand-accent/20 mb-6 text-brand-accent">
+                            <Icon name="heart_handshake-bold" class="w-10 h-10" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Vem Passar Resan För?</h3>
+                        <p class="text-lg text-neutral-300 leading-relaxed font-light">
+                            Resan passar dig som är intresserad av hälsa, personlig utveckling och TCM. Du vill uppleva Kina i en mindre eller enskild grupp och någon som arbetat med TCM både i Kina och Sverige.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Praktisk Information -->
+                <div class="relative bg-brand-earth-dark/95 text-white overflow-hidden p-8 md:p-10 rounded-2xl shadow-xl shadow-brand-earth-dark/10">
+                    <div class="absolute top-0 right-0 p-6 opacity-10">
+                        <Icon name="taichi_yinyang_gongbu" class="w-32 h-32 text-brand-accent" />
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-brand-accent/20 mb-6 text-brand-accent">
+                            <Icon name="calendar_check" class="w-10 h-10" />
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Praktisk Information</h3>
+                        <p class="text-lg text-neutral-300 leading-relaxed font-light">
+                            Vi reser i små grupper under de bästa perioderna: <span class="text-white font-semibold">maj-juni</span> och <span class="text-white font-semibold">oktober-november</span>. Resan planeras i dialog med deltagarna. <a href="/kontakt/" class="text-brand-accent font-semibold hover:text-brand-sky-bright underline decoration-brand-accent/50 underline-offset-4 transition-colors">Hör av dig</a> för att diskutera din resa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="intresse" class="bg-brand-earth-light section-standard text-center">
+        <div class="container-base max-w-4xl">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Intresserad?</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Vill du veta mer om hur en hälsoresa med Medidraken kan se ut? Hör av dig till Johannes för ett förutsättningslöst samtal om kommande resdatum, innehåll och för att anmäla ditt intresse.
+                </p>
+
+                <a href="/kontakt/" class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
+                    Hör av dig till Johannes
+                </a>
+            </div>
+        </div>
+    </section>
+
 </BaseLayout>
