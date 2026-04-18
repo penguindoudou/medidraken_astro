@@ -1,12 +1,174 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+import heroImage from '../../assets/images/tai_chi_2_men_practicing_tai_chi_in_black_clothing_on_green_grass_and_and_trees_in_background.jpg';
+import trainingImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+import treatmentImage from '../../assets/images/tuina_girl_wide2.png';
+import insightImage from '../../assets/images/qigong_johannes_instructing_group.jpg';
+import relaxImage from '../../assets/images/travels_yangshuo_view_from_hotel_room_window_wooden_frames_river_with_mountains_murky_weather.jpg';
 ---
-<BaseLayout title="Skräddarsydda Hälsodagar">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Skräddarsydda Hälsodagar</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Skräddarsydd Hälsodag i Nyköping | Medidraken">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <Image src={heroImage} alt="Skräddarsydda Hälsodagar" class="hero-bg-image opacity-80" />
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title text-brand-accent">Skräddarsydda Hälsodagar</h1>
+
+            <div class="hero-text bg-brand-earth-dark/40 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10">
+                <h2 class="hero-subtitle font-semibold">En Investering i Total Återhämtning</h2>
+
+                <p class="hero-text mt-3 md:mt-5">
+                    Ge dig själv, dina vänner eller dina kollegor den ultimata gåvan – en hel- eller halvdag helt dedikerad till hälsa och välbefinnande. Vi sätter ihop ett anpassat paket för er grupp, där ni får uppleva det bästa från Medidrakens värld.
+                </p>
+            </div>
+
+            <div class="mt-6 md:mt-10">
+                <a href="#bokning" class="btn btn-primary-on-dark">
+                    Hör av dig och berätta vad ni önskar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4 Points Section -->
+    <section class="bg-brand-earth-lightest py-10 md:py-16">
+        <div class="container-base">
+            <div class="text-center mb-8">
+                <h2 class="text-brand-earth text-2xl md:text-3xl">En Hälsodag kan innehålla:</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <!-- Point 1 -->
+                <div class="service-card bg-brand-accent/20">
+                    <Image src={trainingImage} alt="Lugn & Stärkande Träning" class="h-32 md:h-40 w-full object-cover object-[center_30%]" />
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold">Lugn & Stärkande Träning</h3>
+                        <p class="mt-1 text-base text-neutral-700 flex-grow leading-relaxed">Ett vägledande pass i Medicinsk Qigong eller Tai Chi.</p>
+                    </div>
+                </div>
+
+                <!-- Point 2 -->
+                <div class="service-card bg-brand-accent/20">
+                    <Image src={treatmentImage} alt="Återhämtande Behandlingar" class="h-32 md:h-40 w-full object-cover object-[center_25%]" />
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold">Återhämtande Behandlingar</h3>
+                        <p class="mt-1 text-base text-neutral-700 flex-grow leading-relaxed">Individuellt anpassade behandlingar som TuiNa-massage eller Akupunktur.</p>
+                    </div>
+                </div>
+
+                <!-- Point 3 -->
+                <div class="service-card bg-brand-accent/20">
+                    <Image src={insightImage} alt="Inspirerande Insikter" class="h-32 md:h-40 w-full object-cover object-[center_65%]" />
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold">Inspirerande Insikter</h3>
+                        <p class="mt-1 text-base text-neutral-700 flex-grow leading-relaxed">En kortare föreläsning om Medidrakens syn på hälsa, stresshantering eller konsten att bygga inre motståndskraft, med grund i TCM:s tidlösa principer.</p>
+                    </div>
+                </div>
+
+                <!-- Point 4 -->
+                <div class="service-card bg-brand-accent/20">
+                    <Image src={relaxImage} alt="Avslappning & Närvaro" class="h-32 md:h-40 w-full object-cover" />
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold">Avslappning & Närvaro</h3>
+                        <p class="mt-1 text-base text-neutral-700 flex-grow leading-relaxed">Tid för reflektion, te och gemenskap i en lugn miljö.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Praktisk Info Sektion -->
+    <section id="bokning" class="bg-brand-earth-light section-standard text-center">
+        <div class="container-base max-w-4xl">
+
+            <!-- Huvud CTA -->
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Hur Ser Din Hälsodag Ut?</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Låt oss skräddarsy en upplevelse som passar just er. Kontakta oss idag för att diskutera era önskemål och få ett prisförslag.
+                </p>
+            </div>
+
+            <!-- Huvud CTA -->
+            <div class="max-w-3xl mx-auto mb-16">
+                <!-- User specified CTA-Knapp -->
+                <a href="/kontakt/"
+                    class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
+                    Hör av dig och berätta vad ni önskar
+                </a>
+            </div>
+
+            <!-- Trust & Info Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 pt-6 mt-0 border-t border-brand-earth-dark/10">
+
+                <!-- Column 1: Plats -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 mr-3">
+                            <div class="relative flex h-3 w-3 items-center justify-center">
+                                <span
+                                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </div>
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Mottagning & Plats</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Hälsodagar kan arrangeras i våra lokaler i <a href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>,
+                        <a href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a>,
+                        <a href="/kontakt/#mottagningar"
+                            class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>
+                            eller på annan plats enligt överenskommelse.
+                    </div>
+                    <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Se våra adresser &rarr;</a>
+                </div>
+
+                <!-- Column 2: Pris -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="check-circle" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Pris på Offert</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Pris ges via offert, baserat på gruppstorlek och önskat innehåll.
+                    </div>
+                </div>
+
+                <!-- Column 3: Presentkort -->
+                <div
+                    class="group bg-brand-earth-dark/5 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border-2 border-brand-earth-dark/10 flex flex-col items-start text-left">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
+                            <Icon name="present" class="h-6 w-6" />
+                        </div>
+                        <span class="font-bold text-brand-earth-dark text-xl">Presentkort</span>
+                    </div>
+                    <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
+                        Perfekt att ge bort som en exklusiv och omtänksam gåva.
+                    </div>
+                    <a href="/presentkort/"
+                        class="text-brand-sky hover:text-brand-sky-dark font-medium flex items-center mt-4 group-hover:translate-x-1 transition-transform">Läs
+                        mer &rarr;</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </BaseLayout>

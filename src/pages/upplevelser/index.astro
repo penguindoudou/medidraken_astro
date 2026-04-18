@@ -1,12 +1,76 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import workshopImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+import halsodagarImage from '../../assets/images/tai_chi_2_men_practicing_tai_chi_in_black_clothing_on_green_grass_and_and_trees_in_background.jpg';
+import halsoresorImage from '../../assets/images/yangshuo_river.png';
 ---
-<BaseLayout title="Hälsoupplevelser & Resor">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Hälsoupplevelser & Resor</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Våra Upplevelser - Workshops, Hälsodagar & Resor | Medidraken">
+    <!-- Split Screen Design för Workshops & Hälsodagar (50/50 på desktop) -->
+    <div class="flex flex-col md:flex-row min-h-[60vh] md:min-h-[65vh] w-full">
+        <!-- Kolumn 1: Workshops & Gruppaktiviteter -->
+        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-6 md:p-8 group min-h-[45vh] md:min-h-full overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <Image src={workshopImage} alt="Workshops & Gruppaktiviteter" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
+            </div>
+
+            <a href="/upplevelser/workshops-gruppaktiviteter/" class="absolute inset-0 z-10" aria-label="Gå till Workshops & Gruppaktiviteter"></a>
+
+            <div class="relative z-20 pointer-events-none flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight">Workshops &<br/>Gruppaktiviteter</h2>
+                <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">En djupgående upplevelse för din grupp, skräddarsydd efter era behov.</p>
+                
+                <div class="pointer-events-auto flex justify-center mt-2 w-full">
+                    <a href="/upplevelser/workshops-gruppaktiviteter/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Läs mer om Workshops
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kolumn 2: Skräddarsydda Hälsodagar -->
+        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-6 md:p-8 group min-h-[45vh] md:min-h-full overflow-hidden border-t-2 md:border-t-0 md:border-l-2 border-brand-earth-dark/40">
+            <div class="absolute inset-0 z-0">
+                <Image src={halsodagarImage} alt="Skräddarsydda Hälsodagar" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
+            </div>
+
+            <a href="/upplevelser/skraddarsydda-halsodagar/" class="absolute inset-0 z-10" aria-label="Gå till Skräddarsydda Hälsodagar"></a>
+
+            <div class="relative z-20 pointer-events-none flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight">Skräddarsydda<br/>Hälsodagar</h2>
+                <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Fyll på med energi och inspiration genom en heldag med hälsofokus.</p>
+                
+                <div class="pointer-events-auto flex justify-center mt-2 w-full">
+                    <a href="/upplevelser/skraddarsydda-halsodagar/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Läs mer om Hälsodagar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hela Bredd Sektion: Hälsoresor -->
+    <div class="relative w-full flex flex-col justify-center items-center text-center p-6 md:p-8 group min-h-[40vh] md:min-h-[45vh] overflow-hidden border-t-2 border-brand-earth-dark/40">
+        <div class="absolute inset-0 z-0">
+            <Image src={halsoresorImage} alt="Hälsoresor till Kina" class="w-full h-full object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-brand-earth-dark/70 group-hover:bg-brand-earth-dark/60 transition-colors duration-500"></div>
+        </div>
+
+        <a href="/upplevelser/halsoresor/" class="absolute inset-0 z-10" aria-label="Gå till Hälsoresor"></a>
+
+        <div class="relative z-20 pointer-events-none flex flex-col items-center max-w-3xl">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg">Hälsoresor</h2>
+            <p class="text-lg md:text-xl text-white/95 mb-8 drop-shadow-md">Upplev Kinas kultur, natur & TCM vid dess källa med Johannes.</p>
+            
+            <div class="pointer-events-auto flex justify-center mt-2 w-full">
+                <a href="/upplevelser/halsoresor/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                    Läs mer om våra resor
+                </a>
+            </div>
+        </div>
+    </div>
 </BaseLayout>

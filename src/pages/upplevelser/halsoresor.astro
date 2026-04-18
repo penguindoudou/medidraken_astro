@@ -3,8 +3,8 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 
-import heroImage from '../../assets/images/travels_yangshuo_river_n_front_of_greenery_and_mountains.jpg';
-import tcmImage from '../../assets/images/aku_doll4.png';
+import heroImage from '../../assets/images/yangshuo_river.png';
+import tcmImage from '../../assets/images/aku_doll6.png';
 import natureImage from '../../assets/images/travels_yangshuo_view_from_hotel_room_window_wooden_frames_river_with_mountains_murky_weather.jpg';
 import practiceImage from '../../assets/images/taichi_group_practicing_tai_chi_in_yangshuo_on_raft_in_river_in_front_of_beautiful_mountains.jpg';
 import guideImage from '../../assets/images/qigong_johannes_instructing_group.jpg';
@@ -18,13 +18,13 @@ import guideImage from '../../assets/images/qigong_johannes_instructing_group.jp
         </div>
 
         <div class="hero-content">
-            <h1 class="hero-title text-brand-accent">Hälsoresa till Kina med Johannes Mao</h1>
+            <h1 class="hero-title text-brand-accent">Hälsoresa till Kina med Johannes</h1>
 
             <div class="hero-text bg-brand-earth-dark/40 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10">
                 <h2 class="hero-subtitle font-semibold">Upplev Kultur, Natur & TCM vid dess Källa</h2>
 
                 <p class="hero-text mt-3 md:mt-5">
-                    Följ med Medidrakens grundare, Johannes Mao, på en oförglömlig hälsoresa. Detta är inte en vanlig turistresa, utan en unik möjlighet att uppleva Kinas källa till hälsa och harmoni – dess rika kultur, helande traditioner och storslagna natur, personligen guidad av Johannes som med sin bakgrund i både Kina och Sverige skapar en trygg och lärorik upplevelse.
+                    Följ med Medidrakens grundare och upplev Kinas uråldriga traditioner för hälsa och harmoni. En resa fylld av kultur, hälsa och storslagen natur.
                 </p>
             </div>
 
@@ -37,58 +37,58 @@ import guideImage from '../../assets/images/qigong_johannes_instructing_group.jp
     </section>
 
     <!-- 4 Points Section -->
-    <section class="bg-brand-earth-lightest section-standard">
+    <section class="bg-brand-earth-lightest py-10 md:py-16">
         <div class="container-base">
-            <div class="text-center mb-16">
-                <h2 class="text-brand-earth">Vad du kan förvänta dig</h2>
+            <div class="text-center mb-8">
+                <h2 class="text-brand-earth text-2xl md:text-3xl">Vad du kan förvänta dig</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                 <!-- Point 1 -->
                 <div class="service-card bg-brand-accent/20">
-                    <Image src={tcmImage} alt="Inblick i TCM" class="card-image" />
-                    <div class="card-content">
-                        <h3 class="card-title">Inblick i TCM</h3>
-                        <p class="card-text">Få en unik inblick i Kinas urgamla metoder för hälsa och välbefinnande direkt vid källan.</p>
-                        <div class="card-link">
-                            <a href="/behandling/" class="btn-tertiary">Läs mer om TCM &rarr;</a>
+                    <Image src={tcmImage} alt="Inblick i TCM" class="h-32 md:h-40 w-full object-cover object-[center_30%]" />
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold">Inblick i TCM</h3>
+                        <p class="mt-1 text-base text-neutral-700 flex-grow leading-relaxed">Få en unik inblick i Kinas urgamla metoder för hälsa och välbefinnande direkt vid källan.</p>
+                        <div class="mt-3">
+                            <a href="/behandling/" class="btn-tertiary text-base font-semibold">Läs mer om TCM &rarr;</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 2 -->
                 <div class="service-card bg-brand-accent/20">
-                    <Image src={natureImage} alt="Kultur & Natur i Kina" class="card-image" />
-                    <div class="card-content">
-                        <h3 class="card-title">Kultur & Natur</h3>
-                        <p class="card-text">Upplev det genuina Kina bortom turiststråken, med allt från teceremonier till vandringar i hänförande bergslandskap.</p>
-                        <div class="card-link">
-                            <a href="#intresse" class="btn-tertiary">Hör av dig för programdetaljer &rarr;</a>
+                    <Image src={natureImage} alt="Kultur & Natur i Kina" class="h-32 md:h-40 w-full object-cover object-[center_60%]" />
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold">Kultur & Natur</h3>
+                        <p class="mt-1 text-base text-neutral-700 flex-grow leading-relaxed">Upplev det genuina Kina bortom turiststråken, med allt från teceremonier till vandringar i hänförande bergslandskap.</p>
+                        <div class="mt-3">
+                            <a href="#intresse" class="btn-tertiary text-base font-semibold">Hör av dig för programdetaljer &rarr;</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 3 -->
                 <div class="service-card bg-brand-accent/20">
-                    <Image src={practiceImage} alt="Praktisera Tai Chi och Qigong i Kina" class="card-image" />
-                    <div class="card-content">
-                        <h3 class="card-title">Praktisera & Fördjupa</h3>
-                        <p class="card-text">Öva Tai Chi och Qigong i deras ursprungsmiljö för att fördjupa din förståelse och teknik.</p>
-                        <div class="card-link">
-                            <a href="/kurser/tai-chi/" class="btn-tertiary">Läs om våra kurser &rarr;</a>
+                    <Image src={practiceImage} alt="Praktisera Tai Chi och Qigong i Kina" class="h-32 md:h-40 w-full object-cover object-[center_65%]" />
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold">Praktisera & Fördjupa</h3>
+                        <p class="mt-1 text-base text-neutral-700 flex-grow leading-relaxed">Öva Tai Chi och Qigong i deras ursprungsmiljö för att fördjupa din förståelse och teknik.</p>
+                        <div class="mt-3">
+                            <a href="/kurser/tai-chi/" class="btn-tertiary text-base font-semibold">Läs om våra kurser &rarr;</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Point 4 -->
                 <div class="service-card bg-brand-accent/20">
-                    <Image src={guideImage} alt="Johannes Mao guidar grupp i Kina" class="card-image" />
-                    <div class="card-content">
-                        <h3 class="card-title">Personlig Guidning</h3>
-                        <p class="card-text">Res i en liten, trygg grupp med Johannes som din personliga guide och kunskapskälla genom hela resan.</p>
-                        <div class="card-link">
-                            <a href="/om-oss/" class="btn-tertiary">Läs om Johannes &rarr;</a>
+                    <Image src={guideImage} alt="Johannes Mao guidar grupp i Kina" class="h-32 md:h-40 w-full object-cover" />
+                    <div class="p-4 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold">Personlig Guidning</h3>
+                        <p class="mt-1 text-base text-neutral-700 flex-grow leading-relaxed">Res i en liten grupp med Johannes som din guide och kunskapskälla under resan.</p>
+                        <div class="mt-3">
+                            <a href="/om-oss/" class="btn-tertiary text-base font-semibold">Läs om Johannes &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ import guideImage from '../../assets/images/qigong_johannes_instructing_group.jp
     <section id="intresse" class="bg-brand-earth-light section-standard text-center">
         <div class="container-base max-w-4xl">
             <div class="max-w-3xl mx-auto">
-                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Intresserad?</h2>
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Ta Första Steget på Din Resa</h2>
                 <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
                     Vill du veta mer om hur en hälsoresa med Medidraken kan se ut? Hör av dig till Johannes för ett förutsättningslöst samtal om kommande resdatum, innehåll och för att anmäla ditt intresse.
                 </p>
