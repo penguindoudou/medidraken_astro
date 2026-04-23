@@ -47,6 +47,7 @@ import { siteConfig } from '../../data/site.ts';
                         phone: '',
                         participants: '',
                         period: '',
+                        sessions: '1',
                         address: '',
                         clinic: '',
                         message: ''
@@ -99,12 +100,12 @@ import { siteConfig } from '../../data/site.ts';
                                 <h4 class="font-bold text-brand-earth-dark mb-3 text-sm uppercase tracking-wider">Hälsa på Arbetsplatsen</h4>
                                 <div class="space-y-2">
                                     <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Regelbundna klasser: Tai Chi & Qigong" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Regelbundna klasser: Tai Chi & Qigong</span>
+                                        <input type="checkbox" name="services[]" value="Tai Chi & Qigong" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
+                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Tai Chi & Qigong (Klasser)</span>
                                     </label>
                                     <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Regelbundna Behandlingar" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Regelbundna Behandlingar</span>
+                                        <input type="checkbox" name="services[]" value="Behandlingar" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
+                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Behandlingar</span>
                                     </label>
                                 </div>
                             </div>
@@ -114,8 +115,8 @@ import { siteConfig } from '../../data/site.ts';
                                 <h4 class="font-bold text-brand-earth-dark mb-3 text-sm uppercase tracking-wider">Företagsevent & Aktiviteter</h4>
                                 <div class="space-y-2">
                                     <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Föreläsning eller Workshop" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Föreläsning eller Workshop</span>
+                                        <input type="checkbox" name="services[]" value="Föreläsning / Workshop" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
+                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Föreläsning / Workshop</span>
                                     </label>
                                     <label class="flex items-start cursor-pointer group">
                                         <input type="checkbox" name="services[]" value="Uppvisning eller Prova-på" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
@@ -167,11 +168,25 @@ import { siteConfig } from '../../data/site.ts';
                                     placeholder="T.ex. 15">
                             </div>
                             <div>
-                                <label for="period" class="block text-sm font-medium text-neutral-700 mb-1">Önskad Period / Datum</label>
+                                <label for="period" class="block text-sm font-medium text-neutral-700 mb-1">Önskad Period / Startdatum</label>
                                 <input type="text" id="period" name="period" x-model="period"
                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"
-                                    placeholder="T.ex. Hösten 2026 eller vecka 42">
+                                    placeholder="T.ex. Snarast eller vecka 42">
                             </div>
+                        </div>
+
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+                            <div>
+                                <label for="sessions" class="block text-sm font-medium text-neutral-700 mb-1">Omfattning / Antal tillfällen</label>
+                                <select id="sessions" name="sessions" x-model="sessions"
+                                    class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
+                                    <option value="1">Prova-på (1 tillfälle)</option>
+                                    <option value="paket">Paket (5-10 tillfällen)</option>
+                                    <option value="lopande">Löpande / Terminsvis</option>
+                                    <option value="osaker">Jag är osäker / Berätta mer</option>
+                                </select>
+                            </div>
+
                         </div>
 
                         <!-- Plats för Genomförande -->
@@ -234,6 +249,47 @@ import { siteConfig } from '../../data/site.ts';
                                     <option value="gnesta">Gnesta</option>
                                     <option value="oxelosund">Oxelösund</option>
                                 </select>
+
+                                <!-- Dynamisk adressvisning -->
+                                <div x-show="clinic === 'gnesta'" x-cloak
+                                    class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
+                                    x-transition>
+                                    <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <span><strong>Gnesta:</strong> {siteConfig.addresses.gnesta.full}</span>
+                                </div>
+                                <div x-show="clinic === 'nykoping'" x-cloak
+                                    class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
+                                    x-transition>
+                                    <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <span><strong>Nyköping:</strong> {siteConfig.addresses.nykoping.full}</span>
+                                </div>
+                                <div x-show="clinic === 'oxelosund'" x-cloak
+                                    class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
+                                    x-transition>
+                                    <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                        </path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
+                                    <span><strong>Oxelösund:</strong> {siteConfig.addresses.oxelosund.full}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -255,4 +311,99 @@ import { siteConfig } from '../../data/site.ts';
             </div>
         </div>
     </section>
+
+    <!-- Sektion: Mottagningar (Hitta till oss) -->
+    <section class="section-standard bg-neutral-50 scroll-mt-20" id="mottagningar">
+        <div class="container-base">
+
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-3xl text-brand-earth-dark font-semibold mb-4">Hitta till Oss</h2>
+                <p class="text-lg text-neutral-700 leading-relaxed">
+                    Vi har mottagningar i Gnesta, Nyköping och Oxelösund där vi kan ta emot er personal för behandlingar eller mindre workshops.
+                </p>
+                <p class="text-lg text-neutral-700 leading-relaxed mt-4">
+                    Vi tar emot besök endast efter tidsbokning. Välkommen att kontakta oss via formuläret ovan eller telefon för tidsbokning och information.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+
+                <!-- Nyköping -->
+                <div
+                    class="bg-white rounded-xl shadow-lg shadow-brand-earth/5 overflow-hidden flex flex-col border border-brand-earth-light/20">
+                    <div class="p-6 bg-brand-accent/10 border-b border-brand-accent/20">
+                        <h4 class="text-xl font-bold text-brand-earth-dark mb-2 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-brand-sky" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Nyköping
+                        </h4>
+                        <p class="text-neutral-700 font-medium">{siteConfig.addresses.nykoping.full}</p>
+                    </div>
+                    <div class="w-full h-72 bg-neutral-200">
+                        <iframe src={siteConfig.addresses.nykoping.embedUrl} width="100%" height="100%"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Gnesta -->
+                <div
+                    class="bg-white rounded-xl shadow-lg shadow-brand-earth/5 overflow-hidden flex flex-col border border-brand-earth-light/20">
+                    <div class="p-6 bg-brand-accent/10 border-b border-brand-accent/20">
+                        <h4 class="text-xl font-bold text-brand-earth-dark mb-2 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-brand-sky" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Gnesta
+                        </h4>
+                        <p class="text-neutral-700 font-medium">{siteConfig.addresses.gnesta.full}</p>
+                    </div>
+                    <div class="w-full h-72 bg-neutral-200">
+                        <iframe src={siteConfig.addresses.gnesta.embedUrl} width="100%" height="100%" style="border:0;"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Oxelösund -->
+                <div
+                    class="bg-white rounded-xl shadow-lg shadow-brand-earth/5 overflow-hidden flex flex-col border border-brand-earth-light/20">
+                    <div class="p-6 bg-brand-accent/10 border-b border-brand-accent/20">
+                        <h4 class="text-xl font-bold text-brand-earth-dark mb-2 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-brand-sky" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Oxelösund
+                        </h4>
+                        <p class="text-neutral-700 font-medium">{siteConfig.addresses.oxelosund.full}</p>
+                    </div>
+                    <div class="w-full h-72 bg-neutral-200">
+                        <iframe src={siteConfig.addresses.oxelosund.embedUrl} width="100%" height="100%"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </BaseLayout>
+
