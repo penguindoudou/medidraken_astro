@@ -1,0 +1,135 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+// Images
+import heroImage from '../../assets/images/corporate_event_hero.png';
+import workshopImage from '../../assets/images/corporate_workshop.png';
+import performanceImage from '../../assets/images/corporate_performance.png';
+---
+
+<BaseLayout title="Aktiviteter till Företagsevent & Kick-off i Nyköping | Medidraken">
+    <!-- ======================================= -->
+    <!-- Sektion 1: Toppsektion (Hero)           -->
+    <!-- ======================================= -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <Image src={heroImage} alt="Företagsevent och Aktiviteter" class="hero-bg-image" />
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title text-brand-accent">Skapa ett Minnesvärt & Energigivande Företagsevent</h1>
+            
+            <div class="hero-text bg-brand-earth-dark/40 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10">
+                <p class="text-white/95 leading-relaxed">
+                    Lyft er nästa konferens, kick-off eller hälsodag med ett unikt inslag. Vi erbjuder inspirerande och praktiska aktiviteter som ger deltagarna ny energi, konkreta verktyg för stresshantering och en gemensam upplevelse utöver det vanliga.
+                </p>
+            </div>
+            
+            <div class="mt-6 md:mt-10">
+                <a href="#erbjudanden" class="btn btn-primary-on-dark">
+                    Se våra aktiviteter
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 2: Våra Erbjudanden för Event   -->
+    <!-- ======================================= -->
+    <section id="erbjudanden" class="bg-white py-16 md:py-24">
+        <div class="container-base max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-brand-earth-dark mb-4 text-3xl md:text-5xl">Två Sätt att Förgylla Ert Event</h2>
+                <p class="text-neutral-600 text-lg max-w-2xl mx-auto">
+                    Beroende på ert syfte och tidsram kan vi erbjuda två typer av uppskattade aktiviteter.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Undersektion 1: Interaktivt & Lärorikt -->
+                <div class="bg-brand-accent/20 rounded-2xl shadow-lg border border-brand-accent/10 flex flex-col group hover:shadow-xl transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative rounded-t-2xl">
+                        <Image src={workshopImage} alt="Föreläsningar & Workshops" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div class="absolute top-4 left-4 bg-brand-accent text-brand-earth-dark text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+                            Interaktivt & Lärorikt
+                        </div>
+                    </div>
+                    
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl md:text-3xl font-heading text-brand-earth-dark mb-2">Föreläsningar & Workshops</h3>
+                        <p class="text-brand-earth-dark/70 text-sm font-medium mb-4 flex items-center">
+                            <Icon name="users" class="w-4 h-4 mr-2" />
+                            Passar för: Konferenser, temadagar, avdelningsmöten
+                        </p>
+                        
+                        <p class="text-neutral-700 mb-6 leading-relaxed">
+                            En interaktiv session där vi kombinerar en inspirerande föreläsning med en praktisk workshop. Vi skräddarsyr alltid innehållet efter era önskemål, men ett populärt tema är <strong>"Medidrakens Verktyg för Minskad Stress & Ny Energi"</strong>, där deltagarna får lära sig enkla Qigong-rörelser för att hantera stress i vardagen.
+                        </p>
+
+                        <div class="mt-auto pt-6 border-t border-brand-earth-dark/5">
+                            <a href="/kontakt-offert/?subject=forelasning-workshop#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark hover:-translate-y-1 transition-transform shadow-md rounded-lg py-3 px-6 font-semibold w-full flex justify-center text-center">
+                                Begär Offert för Föreläsning/Workshop
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Undersektion 2: Energigivande & Överraskande -->
+                <div class="bg-brand-accent/20 rounded-2xl shadow-lg border border-brand-accent/10 flex flex-col group hover:shadow-xl transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative rounded-t-2xl">
+                        <Image src={performanceImage} alt="Uppvisningar & Prova-på-pass" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div class="absolute top-4 left-4 bg-brand-accent text-brand-earth-dark text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+                            Energigivande & Överraskande
+                        </div>
+                    </div>
+                    
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl md:text-3xl font-heading text-brand-earth-dark mb-2">Uppvisningar & Prova-på-pass</h3>
+                        <p class="text-brand-earth-dark/70 text-sm font-medium mb-4 flex items-center">
+                            <Icon name="bolt" class="w-4 h-4 mr-2" />
+                            Passar för: Kick-offer, mässor eller som en energigivande ice-breaker
+                        </p>
+                        
+                        <p class="text-neutral-700 mb-6 leading-relaxed">
+                            Överraska deltagarna med en vacker och harmonisk uppvisning i Tai Chi eller bjud in till ett kort, enkelt och roligt prova-på-pass med Medicinsk Qigong. Det är ett garanterat sätt att få igång energin i gruppen, skapa samtalsämnen och erbjuda en minnesvärd upplevelse. Ingen tidigare erfarenhet krävs och alla kan delta.
+                        </p>
+
+                        <div class="mt-auto pt-6 border-t border-brand-earth-dark/5">
+                            <a href="/kontakt-offert/?subject=uppvisning-provapa#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark hover:-translate-y-1 transition-transform shadow-md rounded-lg py-3 px-6 font-semibold w-full flex justify-center text-center">
+                                Begär Offert för Uppvisning/Prova-på
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 3: Praktisk Information (CTA)   -->
+    <!-- ======================================= -->
+    <section class="bg-brand-earth-light section-standard text-center">
+        <div class="container-base max-w-4xl">
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Vi Anpassar Oss Helt efter Ert Event</h2>
+                <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
+                    Alla våra tjänster kan anpassas helt efter era önskemål. Vi levererar 
+                    <span class="font-semibold text-brand-earth-dark">på plats hos er, på er konferensanläggning eller i våra egna lokaler</span> 
+                    (i 
+                    <a href="/kontakt-offert/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>, 
+                    <a href="/kontakt-offert/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a> 
+                    eller 
+                    <a href="/kontakt-offert/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>) 
+                    efter överenskommelse. Kontakta oss för att diskutera ett upplägg och få en offert.
+                </p>
+
+                <a href="/kontakt-offert/?subject=eventaktivitet#offert"
+                    class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl">
+                    Begär Offert för Ert Event
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
