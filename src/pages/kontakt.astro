@@ -342,6 +342,8 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                                 <option value="instruktorskurs">Instruktörskurs</option>
                                 <option value="behandling">Behandling</option>
                                 <option value="halsoresa">Hälsoresa till Kina</option>
+                                <option value="workshop">Workshops & Gruppaktiviteter</option>
+                                <option value="halsodag">Skräddarsydda Hälsodagar</option>
                                 <option x-show="!useFriskvardsbidrag" :disabled="useFriskvardsbidrag" value="presentkort">Presentkort</option>
                                 <option value="ovrigt">Övrigt</option>
                             </select>
@@ -458,7 +460,7 @@ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= tod
                         </div>
 
                         <!-- Bokningspreferenser (Tid & Dag) -->
-                        <div x-show="['taichi', 'qigong', 'behandling', 'instruktorskurs'].includes(subject)" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
+                        <div x-show="['taichi', 'qigong', 'behandling', 'instruktorskurs', 'workshop', 'halsodag'].includes(subject)" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
                             <h4 class="text-xl font-bold text-brand-earth-dark flex items-center">
                                 <Icon name="clock" class="w-6 h-6 mr-3 text-brand-accent-dark" />
                                 Tidspreferenser <span class="text-sm font-normal text-neutral-500 ml-2">(valfritt)</span>
