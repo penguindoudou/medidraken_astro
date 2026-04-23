@@ -39,68 +39,91 @@ import heroImage from '../../assets/images/taichi_in_a_circle_instructor_johanne
     <!-- ======================================= -->
     <!-- Sektion 2: Våra Regelbundna Tjänster    -->
     <!-- ======================================= -->
-    <section id="tjanster" class="bg-brand-accent/20 section-standard text-center pb-2 mt-0">
-        <div class="container-base max-w-4xl">
-            <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Vad behöver din personal?</h2>
+    <section id="tjanster" class="bg-white py-16 md:py-24">
+        <div class="container-base max-w-6xl">
+            <h2 class="text-brand-earth-dark mb-12 text-center text-3xl md:text-5xl">Vad behöver din personal?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- Kort 1: Proaktiv Träning -->
+                <div class="bg-brand-accent/20 rounded-2xl shadow-lg border border-brand-accent/10 flex flex-col group hover:shadow-xl transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative rounded-t-2xl">
+                        <Image src={placeholder1} alt="Medicinsk Qigong & Tai Chi på Jobbet" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-brand-earth-dark/10 group-hover:bg-brand-earth-dark/0 transition-colors duration-500"></div>
+                    </div>
+                    
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl md:text-3xl font-heading text-brand-earth-dark mb-4">Medicinsk Qigong & Tai Chi</h3>
+                        
+                        <p class="text-neutral-700 mb-6 leading-relaxed">
+                            Ge personalen en chans att återhämta sig, sträcka ut "kontorskroppen" och fylla på med ny energi. Vi håller 45-60 minuters pass hos er eller i våra lokaler.
+                        </p>
+
+                        <div class="mb-8">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <Icon name="check-circle" class="w-6 h-6 text-brand-accent mr-3 flex-shrink-0" />
+                                    <span class="text-neutral-600">Minskad stress & ökat fokus</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <Icon name="check-circle" class="w-6 h-6 text-brand-accent mr-3 flex-shrink-0" />
+                                    <span class="text-neutral-600">Bättre samarbete & teamkänsla</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <Icon name="check-circle" class="w-6 h-6 text-brand-accent mr-3 flex-shrink-0" />
+                                    <span class="text-neutral-600">Uppskattad gemensam aktivitet</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-auto pt-6 border-t border-brand-earth-dark/5">
+                            <a href="/kontakt/?subject=qigong-pa-jobbet#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark hover:-translate-y-1 transition-transform shadow-md rounded-lg py-3 px-6 font-semibold w-full flex justify-center text-center">
+                                Begär Offert för Qigong/Tai Chi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kort 2: Förebyggande & Reaktiv Vård -->
+                <div class="bg-brand-accent/20 rounded-2xl shadow-lg border border-brand-accent/10 flex flex-col group hover:shadow-xl transition-all duration-300">
+                    <div class="h-64 overflow-hidden relative rounded-t-2xl">
+                        <Image src={placeholder2} alt="Behandlingar på Plats" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-brand-earth-dark/10 group-hover:bg-brand-earth-dark/0 transition-colors duration-500"></div>
+                    </div>
+                    
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl md:text-3xl font-heading text-brand-earth-dark mb-4">Behandlingar på Plats</h3>
+                        
+                        <p class="text-neutral-700 mb-6 leading-relaxed">
+                            Vi kommer till er med behandlingsbänk. Personalen bokar korta, effektiva behandlingar för att åtgärda problem snabbt, innan de blir allvarliga.
+                        </p>
+
+                        <div class="mb-8">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <Icon name="check-circle" class="w-6 h-6 text-brand-accent mr-3 flex-shrink-0" />
+                                    <span class="text-neutral-600">Förebygger arbetsrelaterade besvär</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <Icon name="check-circle" class="w-6 h-6 text-brand-accent mr-3 flex-shrink-0" />
+                                    <span class="text-neutral-600">Lindrar "kontorsnacke" & musarm</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <Icon name="check-circle" class="w-6 h-6 text-brand-accent mr-3 flex-shrink-0" />
+                                    <span class="text-neutral-600">Minskad sjukfrånvaro & ökat välmående</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-auto pt-6 border-t border-brand-earth-dark/5">
+                            <a href="/kontakt/?subject=behandlingar-pa-plats#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark hover:-translate-y-1 transition-transform shadow-md rounded-lg py-3 px-6 font-semibold w-full flex justify-center text-center">
+                                Begär Offert för Behandlingar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- Split Screen Layout för de två undersektionerna -->
-    <div class="flex flex-col md:flex-row min-h-[60vh] md:min-h-[65vh] w-full">
-        <!-- Kolumn 1: Proaktiv Träning -->
-        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-6 md:p-10 group min-h-[45vh] md:min-h-full overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <Image src={placeholder1} alt="Medicinsk Qigong & Tai Chi på Jobbet" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
-            </div>
-
-            <div class="relative z-20 flex flex-col items-center justify-center h-full max-w-md mx-auto">
-                <h3 class="text-3xl md:text-4xl lg:text-5xl font-heading text-brand-accent mb-6 leading-tight drop-shadow-lg">Medicinsk Qigong &<br/>Tai Chi på Jobbet</h3>
-                
-                <div class="bg-brand-earth-dark/40 p-6 rounded-lg backdrop-blur-sm border border-white/10 mb-8 min-h-[200px] flex flex-col justify-center">
-                    <p class="text-base md:text-lg text-white/95 mb-4 text-left">
-                        <strong class="text-brand-accent">Nytta för företaget:</strong> Minskad stress, ökat fokus, bättre samarbete och en uppskattad gemensam aktivitet.
-                    </p>
-                    <p class="text-base md:text-lg text-white/90 text-left">
-                        <strong class="text-brand-accent">Hur det fungerar:</strong> Vi kommer till er arbetsplats (eller ni till oss) på en fast tid varje vecka, till exempel innan arbetsdagens början, under lunchen eller på eftermiddagen. Ett 45-60 minuters pass med Qigong eller Tai Chi ger personalen en chans att återhämta sig, sträcka ut "kontorskroppen" och fylla på med ny energi.
-                    </p>
-                </div>
-                
-                <div class="mt-auto pointer-events-auto flex justify-center w-full">
-                    <a href="/kontakt/?subject=qigong-pa-jobbet#offert" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform w-full md:w-auto">
-                        Begär Offert för Qigong/Tai Chi
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Kolumn 2: Förebyggande & Reaktiv Vård -->
-        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-6 md:p-10 group min-h-[45vh] md:min-h-full overflow-hidden border-t-2 md:border-t-0 md:border-l-2 border-brand-earth-dark/40">
-            <div class="absolute inset-0 z-0">
-                <Image src={placeholder2} alt="Behandlingar på Plats" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
-            </div>
-
-            <div class="relative z-20 flex flex-col items-center justify-center h-full max-w-md mx-auto">
-                <h3 class="text-3xl md:text-4xl lg:text-5xl font-heading text-brand-accent mb-6 leading-tight drop-shadow-lg">Behandlingar<br/>på Plats</h3>
-                
-                <div class="bg-brand-earth-dark/40 p-6 rounded-lg backdrop-blur-sm border border-white/10 mb-8 min-h-[200px] flex flex-col justify-center">
-                    <p class="text-base md:text-lg text-white/95 mb-4 text-left">
-                        <strong class="text-brand-accent">Nytta för företaget:</strong> Förebygger och behandlar arbetsrelaterade besvär som "kontorsnacke", ryggont och musarm, vilket kan leda till färre sjukskrivningar och ökat välmående.
-                    </p>
-                    <p class="text-base md:text-lg text-white/90 text-left">
-                        <strong class="text-brand-accent">Hur det fungerar:</strong> Vi kommer till er arbetsplats med en behandlingsbänk under ett par timmar, till exempel en eller flera gånger i månaden. Personalen kan då boka in sig för kortare, effektiva behandlingar för att åtgärda specifika problem innan de blir allvarliga.
-                    </p>
-                </div>
-                
-                <div class="mt-auto pointer-events-auto flex justify-center w-full">
-                    <a href="/kontakt/?subject=behandlingar-pa-plats#offert" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform w-full md:w-auto">
-                        Begär Offert för Behandlingar
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- ======================================= -->
     <!-- Sektion 3: Praktisk Information (CTA)   -->
@@ -110,9 +133,10 @@ import heroImage from '../../assets/images/taichi_in_a_circle_instructor_johanne
 
             <!-- Huvud CTA -->
             <div class="max-w-3xl mx-auto mb-16">
-                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Flexibelt & Enkelt för Er</h2>
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Förbättra Personalens Hälsa & Arbetsglädje</h2>
                 <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
-                    Alla våra tjänster kan anpassas helt efter era önskemål. Vi levererar <span class="font-semibold">på plats hos er eller i våra egna lokaler</span> (i <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>, <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a> eller <a href="/kontakt/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>) efter överenskommelse. Kontakta oss för att diskutera ett upplägg och få en offert.
+                    Alla våra tjänster kan anpassas helt efter era önskemål. Vi levererar våra tjänster på plats hos er eller i våra egna lokaler. 
+                    Om du har frågor eller specifika önskemål, kontakta oss för att diskutera ett upplägg och få en offert.
                 </p>
 
                 <a href="/kontakt/?subject=foretagsanpassat#offert"
@@ -157,10 +181,10 @@ import heroImage from '../../assets/images/taichi_in_a_circle_instructor_johanne
                             class="flex items-center justify-center h-10 w-10 rounded-full bg-brand-earth-dark/25 text-brand-accent mr-3">
                             <Icon name="shield_health" class="h-6 w-6" />
                         </div>
-                        <span class="font-bold text-brand-earth-dark text-xl">Hållbarhetstänk</span>
+                        <span class="font-bold text-brand-earth-dark text-xl">Resiliens</span>
                     </div>
                     <div class="text-neutral-700 leading-relaxed text-sm md:text-base flex-grow">
-                        Att investera i personalens hälsa bygger hållbara, resilienta och produktiva arbetsgrupper samt minskar sårbarheten för långtidssjukskrivningar.<br />
+                        Att investera i personalens hälsa bygger starkare, mer resilienta och produktiva arbetsgrupper.<br />
                     </div>
                 </div>
 
