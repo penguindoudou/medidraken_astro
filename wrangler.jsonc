@@ -1,6 +1,7 @@
 {
   "name": "medidraken",
   "compatibility_date": "2026-04-27",
+  "main": "./dist/_worker.js/index.js",
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS"
