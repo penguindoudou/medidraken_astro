@@ -35,10 +35,31 @@ if (Astro.request.method === "POST") {
     text += `E-post: ${data.get("email") || "-"}\n`;
     text += `Telefon: ${data.get("phone") || "-"}\n\n`;
     
-    const services = data.getAll("services[]");
-    if (services.length > 0) text += `Tjänster: ${services.join(', ')}\n`;
+    const services = data.getAll("services[]") as string[];
+    if (services.length > 0) {
+      text += `Tjänster:\n`;
+      const groups = [
+        { parent: "Friskvård på Arbetsplatsen", subs: ["Medicinsk Qigong & Tai Chi", "Behandlingar på Plats"] },
+        { parent: "Event & Aktivitet", subs: ["Workshop: Introduktion till Stresshantering", "Uppvisning & Prova-på"] },
+        { parent: "Samarbeten", subs: ["Samarbete: Boka Kurser", "Samarbete: Boka Behandlingar", "Samarbete: Boka Instruktörsutbildning"] },
+        { parent: "Specialförfrågan", subs: [] }
+      ];
+      
+      groups.forEach(group => {
+        const hasParent = services.includes(group.parent);
+        const selectedSubs = group.subs.filter(s => services.includes(s));
+        
+        if (hasParent || selectedSubs.length > 0) {
+          text += `• ${group.parent}\n`;
+          selectedSubs.forEach(sub => text += `  - ${sub}\n`);
+        }
+      });
+    }
     
-    text += `Deltagare: ${data.get("participants") || "-"}\n`;
+    const specialRequest = data.get("specialRequest");
+    if (specialRequest && services.includes("Specialförfrågan")) text += `\nSpecialförfrågan Detaljer:\n${specialRequest}\n`;
+    
+    text += `\nDeltagare: ${data.get("participants") || "-"}\n`;
     text += `Period: ${data.get("period") || "-"}\n`;
     text += `Omfattning: ${data.get("sessions") || "-"}\n\n`;
     
@@ -94,17 +115,17 @@ if (Astro.request.method === "POST") {
         </div>
         <div class="hero-content text-center">
             <div class="hero-text bg-brand-earth-dark/80 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10 md:max-w-5xl mx-auto">
-                <h1 class="hero-title text-brand-accent">Begär en Skräddarsydd Offert</h1>
+                <h1 class="hero-title text-brand-accent">Boka Företagstjänster & Offert</h1>
 
                 <div class="text-lg text-neutral-100 leading-relaxed mt-0">
                     <h2 class="hero-subtitle font-semibold">Vi ser fram emot att höra från er!</h2>
                     <p class="hero-text mt-2 text-white/95">
-                        Vi ser fram emot att höra från er och hur vi kan hjälpa er att skapa en friskare och mer välmående arbetsplats. Fyll i formuläret nedan, så återkommer vi till er inom kort med ett personligt förslag och en offert.
+                        Berätta vad ni är intresserade av så återkommer vi med ett förslag som passar just er verksamhet.
                     </p>
                     
                     <h3 class="font-semibold text-xl mt-6 text-brand-accent-light">Föredrar du att bolla idéer direkt?</h3>
                     <p class="hero-text mt-2 md:mt-3">
-                        Inga problem! Ring oss gärna på <a href={`tel:${siteConfig.phone.clean}`} class="text-brand-accent-light hover:text-brand-sky-bright font-normal underline decoration-brand-accent-light/30 underline-offset-4 transition-colors duration-200">{siteConfig.phone.display}</a> så kan vi tillsammans diskutera ett passande upplägg för just er.
+                        Ring oss gärna på <a href={`tel:${siteConfig.phone.clean}`} class="text-brand-accent-light hover:text-brand-sky-bright font-normal underline decoration-brand-accent-light/30 underline-offset-4 transition-colors duration-200">{siteConfig.phone.display}</a>.
                     </p>
                 </div>
             </div>
@@ -115,7 +136,7 @@ if (Astro.request.method === "POST") {
     <section class="pb-20 pt-16 lg:pb-28 lg:pt-20 bg-brand-earth-lightest relative overflow-hidden">
         <div class="container-base max-w-4xl">
             <div class="contact-form-wrapper bg-white shadow-xl shadow-brand-earth/5 p-8 sm:p-10 rounded-2xl border border-brand-earth-light/30">
-                <h2 class="text-2xl md:text-3xl font-heading text-brand-earth-dark mb-8 font-semibold border-b border-brand-earth-light/30 pb-4">Offertförfrågan</h2>
+                <h2 class="text-2xl md:text-3xl font-heading text-brand-earth-dark mb-8 font-semibold border-b border-brand-earth-light/30 pb-4">Kontakt & Förfrågan</h2>
 
                 {formStatus === 'success' ? (
                     <div class="bg-brand-sky-light/10 border border-brand-sky/30 rounded-xl p-8 text-center">
@@ -123,7 +144,7 @@ if (Astro.request.method === "POST") {
                             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         </div>
                         <h4 class="text-2xl font-bold text-brand-earth-dark mb-2">Tack för er förfrågan!</h4>
-                        <p class="text-neutral-700">Vi har tagit emot er offertförfrågan och återkommer med ett förslag så snart vi kan.</p>
+                        <p class="text-neutral-700">Vi har tagit emot er förfrågan och återkommer så snart vi kan.</p>
                         <a href="/for-foretag/kontakt-offert" class="mt-6 inline-block btn btn-primary-on-light">Skicka en till förfrågan</a>
                     </div>
                 ) : (
@@ -145,7 +166,39 @@ if (Astro.request.method === "POST") {
                         sessions: 'Prova-på (1 tillfälle)',
                         address: '',
                         clinic: '',
-                        message: ''
+                        message: '',
+                        selectedServices: [],
+                        init() {
+                            const params = new URLSearchParams(window.location.search);
+                            const type = params.get('type');
+                            if (type === 'event') {
+                                this.selectedServices.push('Event & Aktivitet');
+                                const subtype = params.get('subtype');
+                                if (subtype === 'workshop') {
+                                    this.selectedServices.push('Workshop: Introduktion till Stresshantering');
+                                } else if (subtype === 'uppvisning') {
+                                    this.selectedServices.push('Uppvisning & Prova-på');
+                                }
+                            } else if (type === 'friskvard') {
+                                this.selectedServices.push('Friskvård på Arbetsplatsen');
+                                const subtype = params.get('subtype');
+                                if (subtype === 'qigong') {
+                                    this.selectedServices.push('Medicinsk Qigong & Tai Chi');
+                                } else if (subtype === 'behandlingar') {
+                                    this.selectedServices.push('Behandlingar på Plats');
+                                }
+                            } else if (type === 'samarbete') {
+                                this.selectedServices.push('Samarbeten');
+                                const subtype = params.get('subtype');
+                                if (subtype === 'kurser') {
+                                    this.selectedServices.push('Samarbete: Boka Kurser');
+                                } else if (subtype === 'behandlingar') {
+                                    this.selectedServices.push('Samarbete: Boka Behandlingar');
+                                } else if (subtype === 'utbildning') {
+                                    this.selectedServices.push('Samarbete: Boka Instruktörsutbildning');
+                                }
+                            }
+                        }
                     }">
                     
                     <!-- Honeypot -->
@@ -190,62 +243,91 @@ if (Astro.request.method === "POST") {
                             <Icon name="check-circle" class="w-6 h-6 mr-3 text-brand-accent-dark" />
                             Vilka tjänster är ni intresserade av?
                         </h3>
-                        <p class="text-sm text-neutral-600 mb-4">Välj en eller flera tjänster som ni vill att offerten ska omfatta.</p>
+                        <p class="text-sm text-neutral-600 mb-4">Välj en eller flera kategorier.</p>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <!-- Hälsa på Arbetsplatsen -->
-                            <div class="bg-brand-sky-light/5 p-4 rounded-xl border border-brand-sky/10">
-                                <h4 class="font-bold text-brand-earth-dark mb-3 text-sm uppercase tracking-wider">Hälsa på Arbetsplatsen</h4>
-                                <div class="space-y-2">
-                                    <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Tai Chi & Qigong" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Tai Chi & Qigong (Klasser)</span>
+                        <div class="grid grid-cols-1 gap-6">
+                            <!-- Friskvård för Personal -->
+                            <div class="bg-brand-sky-light/5 p-5 rounded-xl border border-brand-sky/10 transition-all hover:border-brand-sky/30">
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" name="services[]" value="Friskvård på Arbetsplatsen" x-model="selectedServices" class="mt-1 w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
+                                    <div class="ml-3">
+                                        <span class="block font-bold text-brand-earth-dark group-hover:text-brand-sky transition-colors">Friskvård på Arbetsplatsen</span>
+                                        <span class="text-xs text-neutral-500">Massage, Tai Chi-klasser eller behandlingar</span>
+                                    </div>
+                                </label>
+
+                                <div x-show="selectedServices.includes('Friskvård på Arbetsplatsen')" x-cloak x-transition class="mt-4 ml-8 space-y-3 pt-3 border-l-2 border-brand-sky/20 pl-4">
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="services[]" value="Medicinsk Qigong & Tai Chi" x-model="selectedServices" class="w-4 h-4 text-brand-sky border-neutral-300 rounded">
+                                        <span class="ml-2 text-sm text-neutral-700">Medicinsk Qigong & Tai Chi</span>
                                     </label>
-                                    <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Behandlingar" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Behandlingar</span>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="services[]" value="Behandlingar på Plats" x-model="selectedServices" class="w-4 h-4 text-brand-sky border-neutral-300 rounded">
+                                        <span class="ml-2 text-sm text-neutral-700">Behandlingar på Plats</span>
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Företagsevent & Aktiviteter -->
-                            <div class="bg-brand-sky-light/5 p-4 rounded-xl border border-brand-sky/10">
-                                <h4 class="font-bold text-brand-earth-dark mb-3 text-sm uppercase tracking-wider">Företagsevent & Aktiviteter</h4>
-                                <div class="space-y-2">
-                                    <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Föreläsning / Workshop" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Föreläsning / Workshop</span>
+                            <!-- Event & Aktivitet -->
+                            <div class="bg-brand-sky-light/5 p-5 rounded-xl border border-brand-sky/10 transition-all hover:border-brand-sky/30">
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" name="services[]" value="Event & Aktivitet" x-model="selectedServices" class="mt-1 w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
+                                    <div class="ml-3">
+                                        <span class="block font-bold text-brand-earth-dark group-hover:text-brand-sky transition-colors">Event & Aktivitet</span>
+                                        <span class="text-xs text-neutral-500">Föreläsning, workshop eller uppvisning</span>
+                                    </div>
+                                </label>
+
+                                <div x-show="selectedServices.includes('Event & Aktivitet')" x-cloak x-transition class="mt-4 ml-8 space-y-3 pt-3 border-l-2 border-brand-sky/20 pl-4">
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="services[]" value="Workshop: Introduktion till Stresshantering" x-model="selectedServices" class="w-4 h-4 text-brand-sky border-neutral-300 rounded">
+                                        <span class="ml-2 text-sm text-neutral-700">Workshop: Introduktion till Stresshantering</span>
                                     </label>
-                                    <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Uppvisning eller Prova-på" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Uppvisning eller Prova-på</span>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="services[]" value="Uppvisning & Prova-på" x-model="selectedServices" class="w-4 h-4 text-brand-sky border-neutral-300 rounded">
+                                        <span class="ml-2 text-sm text-neutral-700">Uppvisning & Prova-på</span>
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Utbildning & Samarbeten -->
-                            <div class="bg-brand-sky-light/5 p-4 rounded-xl border border-brand-sky/10">
-                                <h4 class="font-bold text-brand-earth-dark mb-3 text-sm uppercase tracking-wider">Utbildning & Samarbeten</h4>
-                                <div class="space-y-2">
-                                    <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Instruktörsutbildning för personal" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Instruktörsutbildning för personal</span>
+                            <!-- Samarbeten (Dynamic) -->
+                            <div class="bg-brand-sky-light/5 p-5 rounded-xl border border-brand-sky/10 transition-all hover:border-brand-sky/30">
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" name="services[]" value="Samarbeten" x-model="selectedServices" class="mt-1 w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
+                                    <div class="ml-3">
+                                        <span class="block font-bold text-brand-earth-dark group-hover:text-brand-sky transition-colors">Samarbeten</span>
+                                        <span class="text-xs text-neutral-500">För hälsoanläggningar, gym eller större projekt</span>
+                                    </div>
+                                </label>
+
+                                <div x-show="selectedServices.includes('Samarbeten')" x-cloak x-transition class="mt-4 ml-8 space-y-3 pt-3 border-l-2 border-brand-sky/20 pl-4">
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="services[]" value="Samarbete: Boka Kurser" x-model="selectedServices" class="w-4 h-4 text-brand-sky border-neutral-300 rounded">
+                                        <span class="ml-2 text-sm text-neutral-700">Boka Kurser (för gäster/kunder)</span>
                                     </label>
-                                    <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Samarbete med hälsoanläggning/gym/spa" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Samarbete med hälsoanläggning/gym/spa</span>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="services[]" value="Samarbete: Boka Behandlingar" x-model="selectedServices" class="w-4 h-4 text-brand-sky border-neutral-300 rounded">
+                                        <span class="ml-2 text-sm text-neutral-700">Boka Behandlingar (på er plats)</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="checkbox" name="services[]" value="Samarbete: Boka Instruktörsutbildning" x-model="selectedServices" class="w-4 h-4 text-brand-sky border-neutral-300 rounded">
+                                        <span class="ml-2 text-sm text-neutral-700">Boka Instruktörsutbildning (för personal)</span>
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- Annat -->
-                            <div class="bg-brand-sky-light/5 p-4 rounded-xl border border-brand-sky/10">
-                                <h4 class="font-bold text-brand-earth-dark mb-3 text-sm uppercase tracking-wider">Annat</h4>
-                                <div class="space-y-2">
-                                    <label class="flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="services[]" value="Annat / Jag är osäker" class="mt-1 w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
-                                        <span class="ml-2 text-sm text-neutral-700 group-hover:text-brand-earth-dark transition-colors">Annat / Jag är osäker</span>
-                                    </label>
+                            <!-- Specialförfrågan (Dynamic) -->
+                            <div class="bg-brand-sky-light/5 p-5 rounded-xl border border-brand-sky/10 transition-all hover:border-brand-sky/30">
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" name="services[]" value="Specialförfrågan" x-model="selectedServices" class="mt-1 w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky focus:ring-2">
+                                    <div class="ml-3">
+                                        <span class="block font-bold text-brand-earth-dark group-hover:text-brand-sky transition-colors">Specialförfrågan</span>
+                                        <span class="text-xs text-neutral-500">Andra önskemål eller skräddarsydda behov</span>
+                                    </div>
+                                </label>
+
+                                <div x-show="selectedServices.includes('Specialförfrågan')" x-cloak x-transition class="mt-4 pt-2">
+                                    <textarea name="specialRequest" placeholder="Beskriv er specialförfrågan här..." class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-white text-sm" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
