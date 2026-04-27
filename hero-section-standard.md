@@ -47,7 +47,7 @@ The main content box should use the `.hero-text` class for its outer container.
 
         <div class="hero-text bg-brand-earth-dark/60 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10">
             <h2 class="hero-subtitle text-xl font-semibold">Compelling Subtitle</h2>
-            <p class="hero-text mt-3 md:mt-5">Primary hero text paragraph.</p>
+            <p class="hero-text mt-2">Primary hero text paragraph.</p>
             <p class="hero-text mt-2 md:mt-3">Secondary details or smaller prompt.</p>
         </div>
 
