@@ -23,6 +23,11 @@ if (Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
     
+    if (data.get("website")) {
+      formStatus = 'success';
+      throw new Error("SILENT_HONEYPOT");
+    }
+
     // Get env vars with fallback for Cloudflare runtime
     let botToken = import.meta.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_BOT_TOKEN || (Astro.locals as any).runtime?.env?.TELEGRAM_BOT_TOKEN;
     const chatId = import.meta.env.TELEGRAM_CHAT_ID || process.env.TELEGRAM_CHAT_ID || (Astro.locals as any).runtime?.env?.TELEGRAM_CHAT_ID;
@@ -31,9 +36,6 @@ if (Astro.request.method === "POST") {
     if (botToken) {
       botToken = botToken.trim().replace(/^['"]|['"]$/g, '').replace(/^bot/i, '');
     }
-    
-    console.log(`[Debug] Bot Token prefix:`, botToken ? botToken.substring(0, 5) + '...' : 'UNDEFINED');
-    console.log(`[Debug] Chat ID:`, chatId ? 'Set' : 'UNDEFINED');
     
     let text = `📨 Nytt kontaktformulär!\n`;
     text += `Namn: ${data.get("name") || "-"}\n`;
@@ -93,6 +95,11 @@ if (Astro.request.method === "POST") {
     const message = data.get("message");
     if (message) text += `\nMeddelande:\n${message}`;
 
+    // Telegram limit is 4096. Truncate total payload to 4000 chars.
+    if (text.length > 4000) {
+      text = text.substring(0, 4000) + '... [Klippt]';
+    }
+
     if (botToken && chatId) {
        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
          method: 'POST',
@@ -110,8 +117,12 @@ if (Astro.request.method === "POST") {
       formStatus = 'error';
     }
   } catch (e) {
-    console.error("Form processing error:", e);
-    formStatus = 'error';
+    if (e instanceof Error && e.message === "SILENT_HONEYPOT") {
+      // Do nothing, silent fail
+    } else {
+      console.error("Form processing error:", e);
+      formStatus = 'error';
+    }
   }
 }
 ---
@@ -346,6 +357,9 @@ if (Astro.request.method === "POST") {
                                 useSpecificDate = true;
                             }
                         ">
+
+                    <!-- Honeypot -->
+                    <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
 
                     {/* Data for Alpine.js */}
                     <script id="nextTaiChiData" type="application/json" set:html={JSON.stringify(nextTaiChi || null)} />
