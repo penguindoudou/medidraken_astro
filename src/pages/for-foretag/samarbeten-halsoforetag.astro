@@ -3,9 +3,10 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 
-import heroImage from '../../assets/images/tuina_man.png';
+import heroImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
 import card1Image from '../../assets/images/taichi_in_a_circle_several_students_parting_the_wild horses_mane_on_green_grass_sunny_weather.jpg';
 import card2Image from '../../assets/images/taichi_johannes_teaching_circle.jpg';
+import tuinaImage from '../../assets/images/tuina_head_woman.png';
 ---
 
 <BaseLayout title="Samarbete för Gym, Spa & Hälsoföretag i Nyköping | Medidraken">
@@ -14,13 +15,14 @@ import card2Image from '../../assets/images/taichi_johannes_teaching_circle.jpg'
     <!-- ======================================= -->
     <section class="hero-section">
         <div class="hero-background">
-            <Image src={heroImage} alt="Stärk Ert Erbjudande – Samarbeta med Oss" class="hero-bg-image" />
+            <Image src={heroImage} alt="Utöka Ert Erbjudande med Vår Expertis" class="hero-bg-image" />
         </div>
 
         <div class="hero-content">
-            <h1 class="hero-title text-brand-accent">Stärk Ert Erbjudande – Samarbeta med Oss</h1>
+            <h1 class="hero-title text-brand-accent">Utöka Ert Erbjudande med Vår Expertis</h1>
             
             <div class="hero-text bg-brand-earth-dark/40 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10">
+            <h2 class="hero-subtitle font-semibold">Konkreta Verktyg för Stresshantering och Behandlingar mot Smärta</h2>
                 <p class="hero-text mt-2 text-white/95">
                     Driver du ett gym, spa, en yogastudio eller annan hälsoverksamhet? Genom ett samarbete med oss på Medidraken kan ni bredda ert utbud med unik expertis inom <strong>Medicinsk Qigong, Tai Chi och TCM-behandlingar</strong>. Tillsammans kan vi skapa ett mervärde för era befintliga kunder och attrahera nya.
                 </p>
@@ -41,61 +43,97 @@ import card2Image from '../../assets/images/taichi_johannes_teaching_circle.jpg'
         <div class="container-base max-w-6xl">
             <h2 class="text-brand-earth-dark mb-6 text-center text-3xl md:text-5xl">Hur Ett Samarbete Kan Se Ut</h2>
             <p class="text-center text-neutral-700 text-lg max-w-2xl mx-auto mb-12">
-                Vi är flexibla och öppna för olika typer av samarbeten. Här är två av de vanligaste modellerna.
+                Vi är öppna för olika typer av samarbeten. Såhär kan det se ut:
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                <!-- Undersektion 1: För Era Kunder & Medlemmar -->
-                <div class="bg-brand-accent/20 rounded-2xl shadow-lg border border-brand-accent/10 flex flex-col group hover:shadow-xl transition-all duration-300">
-                    <div class="h-64 overflow-hidden relative rounded-t-2xl">
-                        <Image src={card1Image} alt="Exklusiva Kurser, Workshops & Behandlingar" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                <!-- Undersektion 1: Kurser & Workshops -->
+                <div class="bg-brand-accent/10 rounded-2xl shadow-lg border border-brand-accent/5 flex flex-col group hover:shadow-xl transition-all duration-300">
+                    <div class="h-56 overflow-hidden relative rounded-t-2xl">
+                        <Image src={card1Image} alt="Exklusiva Kurser & Workshops" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div class="absolute inset-0 bg-brand-earth-dark/10 group-hover:bg-brand-earth-dark/0 transition-colors duration-500"></div>
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow">
-                        <span class="text-brand-accent-dark font-semibold tracking-wider uppercase text-sm">För Era Kunder & Medlemmar</span>
-                        <h3 class="text-2xl md:text-3xl font-heading text-brand-earth-dark mb-4">Exklusiva Kurser, Workshops & Behandlingar</h3>
+                        <span class="text-brand-accent-dark font-semibold tracking-wider uppercase text-xs mb-2">För Kunder & Medlemmar</span>
+                        <h3 class="text-2xl font-heading text-brand-earth-dark mb-4">Gäst-Workshops & Kurser</h3>
                         
-                        <div class="mb-4">
-                            <strong>Passar för:</strong> Gym som vill erbjuda unika gruppträningspass, spa-anläggningar som vill komplettera sitt utbud med holistiska behandlingar, eller studios som vill arrangera gäst-workshops.
-                        </div>
+                        <ul class="space-y-4 mb-8 text-neutral-700">
+                            <li class="flex gap-3">
+                                <Icon name="taichi_yinyang_gongbu" class="w-6 h-6 text-brand-accent-dark shrink-0" />
+                                <span><strong>Medicinsk Qigong & Tai Chi:</strong> Skräddarsydda pass för era medlemmar.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <Icon name="check-circle" class="w-6 h-6 text-brand-accent-dark shrink-0" />
+                                <span><strong>Mervärde:</strong> Unika upplevelser som stärker er position på marknaden.</span>
+                            </li>
+                        </ul>
 
-                        <p class="text-neutral-700 mb-6 leading-relaxed">
-                            Vi kan skräddarsy exklusiva kurser eller workshops i <strong>Medicinsk Qigong och Tai Chi</strong> för era medlemmar. Vi kan även erbjuda TCM-behandlingar som en del av era spapaket eller som en "pop-up"-tjänst i era lokaler. Detta ger era kunder tillgång till nya upplevelser och stärker er position på marknaden.
-                        </p>
-
-                        <div class="mt-auto pt-6 border-t border-brand-earth-dark/5">
-                            <a href="/for-foretag/kontakt-offert/?subject=samarbete-kurser#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark hover:-translate-y-1 transition-transform shadow-md rounded-lg py-3 px-6 font-semibold w-full flex justify-center text-center">
-                                Diskutera ett Samarbete
+                        <div class="mt-auto">
+                            <a href="/for-foretag/kontakt-offert/?subject=samarbete-kurser#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark transition-all shadow-md rounded-lg py-3 px-6 font-semibold w-full text-center">
+                                Diskutera Kurser
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Undersektion 2: För Er Personal -->
-                <div class="bg-brand-accent/20 rounded-2xl shadow-lg border border-brand-accent/10 flex flex-col group hover:shadow-xl transition-all duration-300">
-                    <div class="h-64 overflow-hidden relative rounded-t-2xl">
-                        <Image src={card2Image} alt="Professionell Utveckling & Instruktörsutbildning" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <!-- Undersektion 2: TCM-Behandlingar & Massage -->
+                <div class="bg-brand-accent/10 rounded-2xl shadow-lg border border-brand-accent/5 flex flex-col group hover:shadow-xl transition-all duration-300">
+                    <div class="h-56 overflow-hidden relative rounded-t-2xl">
+                        <Image src={tuinaImage} alt="TCM-Behandlingar & Massage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div class="absolute inset-0 bg-brand-earth-dark/10 group-hover:bg-brand-earth-dark/0 transition-colors duration-500"></div>
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow">
-                        <span class="text-brand-accent-dark font-semibold tracking-wider uppercase text-sm">För Er Personal</span>
-                        <h3 class="text-2xl md:text-3xl font-heading text-brand-earth-dark mb-4">Professionell Utveckling & Instruktörsutbildning</h3>
+                        <span class="text-brand-accent-dark font-semibold tracking-wider uppercase text-xs mb-2">För Kunder & Personal</span>
+                        <h3 class="text-2xl font-heading text-brand-earth-dark mb-4">Behandlingar & Massage</h3>
                         
-                        <div class="mb-4">
-                            <strong>Passar för:</strong> Företag som vill kompetensutveckla sin personal och kunna erbjuda <strong>Medicinsk Qigong eller Tai Chi</strong> som en del av sitt ordinarie schema.
+                        <ul class="space-y-4 mb-8 text-neutral-700">
+                            <li class="flex gap-3">
+                                <Icon name="heart_pulse" class="w-6 h-6 text-brand-accent-dark shrink-0" />
+                                <span><strong>Tuina Massage:</strong> Djupgående behandling mot stress och fysisk smärta.</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <Icon name="pin" class="w-6 h-6 text-brand-accent-dark shrink-0" />
+                                <span><strong>Pop-up Klinik:</strong> Vi besöker er verksamhet för behandlingar på plats.</span>
+                            </li>
+                        </ul>
+
+                        <div class="mt-auto">
+                            <a href="/for-foretag/kontakt-offert/?subject=behandlingar-samarbete#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark transition-all shadow-md rounded-lg py-3 px-6 font-semibold w-full text-center">
+                                Boka Behandlingar
+                            </a>
                         </div>
+                    </div>
+                </div>
 
-                        <p class="text-neutral-700 mb-6 leading-relaxed">
-                            Investera i er personal genom våra professionella instruktörsutbildningar. Under ledning av Johannes Mao, med över 30 års erfarenhet, ger vi era instruktörer de verktyg och den djupa kunskap som krävs för att själva kunna leda högkvalitativa klasser i Medicinsk Qigong och Tai Chi.
-                        </p>
+                <!-- Undersektion 3: Instruktörsutbildning -->
+                <div class="bg-brand-accent/10 rounded-2xl shadow-lg border border-brand-accent/5 flex flex-col group hover:shadow-xl transition-all duration-300">
+                    <div class="h-56 overflow-hidden relative rounded-t-2xl">
+                        <Image src={card2Image} alt="Instruktörsutbildning" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-brand-earth-dark/10 group-hover:bg-brand-earth-dark/0 transition-colors duration-500"></div>
+                    </div>
+                    
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="text-brand-accent-dark font-semibold tracking-wider uppercase text-xs mb-2">För Er Personal</span>
+                        <h3 class="text-2xl font-heading text-brand-earth-dark mb-4">Instruktörsutbildning</h3>
+                        
+                        <ul class="space-y-4 mb-4 text-neutral-700">
+                            <li class="flex gap-3">
+                                <Icon name="taichi_yinyang_mabu" class="w-6 h-6 text-brand-accent-dark shrink-0" />
+                                <span><strong>Instruktör:</strong> Leds av Johannes Mao (30+ års erfarenhet).</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <Icon name="calendar_check" class="w-6 h-6 text-brand-accent-dark shrink-0" />
+                                <span><strong>Eget Schema:</strong> Utbilda personalen att hålla egna klasser.</span>
+                            </li>
+                        </ul>
 
-                        <a href="/kurser/instruktorsutbildning/" class="text-brand-sky hover:text-brand-sky-dark font-semibold underline underline-offset-4 decoration-brand-sky/30 mb-8 inline-block">Läs mer om vår Instruktörsutbildning</a>
+                        <a href="/kurser/instruktorsutbildning/" class="text-brand-sky hover:text-brand-sky-dark text-sm font-semibold underline underline-offset-4 decoration-brand-sky/30 mb-8 inline-block">Läs om utbildningen</a>
 
-                        <div class="mt-auto pt-6 border-t border-brand-earth-dark/5">
-                            <a href="/for-foretag/kontakt-offert/?subject=instruktorsutbildning#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark hover:-translate-y-1 transition-transform shadow-md rounded-lg py-3 px-6 font-semibold w-full flex justify-center text-center">
-                                Begär Offert för Instruktörsutbildning
+                        <div class="mt-auto">
+                            <a href="/for-foretag/kontakt-offert/?subject=instruktorsutbildning#offert" class="btn bg-brand-accent text-brand-earth-dark hover:bg-brand-accent-dark transition-all shadow-md rounded-lg py-3 px-6 font-semibold w-full text-center">
+                                Begär Offert
                             </a>
                         </div>
                     </div>
@@ -110,13 +148,13 @@ import card2Image from '../../assets/images/taichi_johannes_teaching_circle.jpg'
     <section class="bg-brand-earth-light section-standard text-center">
         <div class="container-base max-w-4xl">
             <div class="max-w-3xl mx-auto mb-16">
-                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Låt Oss Skapa Värde Tillsammans</h2>
+                <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Låt Oss Skapa Mervärde Tillsammans</h2>
                 <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
-                    Vi tror på styrkan i lokala samarbeten. Vi kan leverera våra tjänster <strong>på plats hos er eller i våra egna lokaler</strong> (i 
+                    Vi tror på styrkan i lokala samarbeten. Vi kan leverera våra tjänster <strong>på plats hos er eller i våra egna lokaler</strong> i 
                     <a href="/for-foretag/kontakt-offert/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Nyköping</a>, 
                     <a href="/for-foretag/kontakt-offert/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Gnesta</a> 
                     eller 
-                    <a href="/for-foretag/kontakt-offert/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>). 
+                    <a href="/for-foretag/kontakt-offert/#mottagningar" class="text-brand-sky hover:text-brand-sky-dark font-medium underline decoration-brand-sky/20 underline-offset-4">Oxelösund</a>. 
                     Kontakta oss för ett förutsättningslöst möte där vi kan diskutera hur ett samarbete kan se ut.
                 </p>
 
