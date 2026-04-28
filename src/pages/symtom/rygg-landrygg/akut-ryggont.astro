@@ -26,13 +26,13 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
                 <p class="hero-text text-white text-lg md:text-xl mt-2 leading-relaxed">
                     Ryggskott kommer ofta plötsligt och kan vara oerhört smärtsamt och begränsande. Det kan bero på orsaker som plötslig överbelastning, stillasittande under längre perioder och bristande hållning och stress.
                     
-                    Genom kinesisk medicinsk behandling mjukar vi upp muskelspänningar och stärker energisystem så att din rygg får goda förutsättningar för minskad smärta och förbättrad funktion.
+                    Med TCM:s behandlingsmetoder mjukar vi upp muskelspänningar och stärker energisystem så att din rygg får goda förutsättningar för minskad smärta och förbättrad funktion.
             </div>
             
             <div class="mt-6 md:mt-10">
                 <a href="/kontakt"
                     class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-8 py-4 text-lg inline-flex items-center">
-                    Behandla ryggskott
+                    Hör av Dig & Boka Behandling
                 </a>
             </div>
         </div>
@@ -77,7 +77,7 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
                             <h4 class="card-title text-2xl font-bold text-brand-earth-dark m-0">TuiNa-massage</h4>
                         </div>
                         <p class="card-text mt-2 text-neutral-700 leading-relaxed flex-grow">
-                            Används för att manuellt och varsamt bearbeta de spända musklerna för att lösa upp den fysiska låsningen inifrån och ut. TuiNa mjukar upp stela muskler, ökar energi- och blodcirkulationen i området vilket påskyndar läkningsprocessen.
+                            TuiNa mjukar varsamt upp stela muskler, ökar energi- och blodcirkulationen i området vilket stärker ryggens egna läkningsförmåga och ger goda förutsättningar för minskad smärta och förbättrad rörlighet.
                         </p>
                         <div class="mt-8 pt-6 border-t border-brand-accent/20 flex flex-col gap-4">
                             <a href="/behandling/tuina-massage/" class="text-lg font-medium text-brand-sky hover:text-brand-accent-dark transition-colors flex items-center group/link">
@@ -100,7 +100,7 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
                             <h4 class="card-title text-2xl font-bold text-brand-sky-dark m-0">Akupunktur</h4>
                         </div>
                         <p class="card-text mt-2 text-neutral-700 leading-relaxed flex-grow">
-                            Akupunktur stimulerar kroppens energisystem för läkning, hjälper kroppen att slappna av och minskar de akuta smärtsignalerna. 
+                            Akupunktur stimulerar och stärker kroppens energisystem och egna läkningsförmåga för att ge goda förutsättningar för att minska smärtan. 
                         </p>
                         <div class="mt-8 pt-6 border-t border-brand-sky/20 flex flex-col gap-4">
                             <a href="/behandling/akupunktur/" class="text-lg font-medium text-brand-sky hover:text-brand-accent-dark transition-colors flex items-center group/link">
@@ -130,7 +130,7 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
 
                 <a href="/kontakt/?subject=akut-ryggont#tidsbokning"
                     class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-0">
-                    Hör av dig och boka behandling
+                    Hör av Dig & Boka Behandling
                 </a>
             </div>
 
@@ -211,7 +211,7 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
                     </button>
                     <div x-show="active === 1" x-collapse x-cloak
                         class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
-                        Ja, absolut. Vi är vana vid att behandla akuta tillstånd. Behandlingen anpassas helt efter din smärtnivå och rörelseförmåga. Ofta kan vi utföra behandlingen i en position som är så bekväm som möjligt för dig, till exempel sittande eller liggande på sidan.
+                        Ja, absolut. Vi är vana vid att behandla akuta tillstånd. Behandlingen anpassas helt efter din smärtnivå och rörelseförmåga. Ofta kan vi utföra behandlingen i en position som är så bekväm som möjligt för dig, till exempel sittande eller liggande mage eller sidan.
                     </div>
                 </div>
 
@@ -231,6 +231,25 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
                     <div x-show="active === 2" x-collapse x-cloak
                         class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
                         Vid akuta besvär som ryggskott arbetar vi för att hitta en tid åt dig så snabbt som möjligt, ofta samma dag eller nästkommande vardag. Ring eller maila oss och förklara din situation så gör vi vad vi kan för att ta emot dig direkt.
+                    </div>
+                </div>
+
+                <!-- Fråga 3 -->
+                <div class="border border-neutral-200 rounded-lg overflow-hidden">
+                    <button @click="active === 3 ? active = null : active = 3"
+                        class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
+                        <span class="font-bold text-brand-earth text-left">Vad kan jag själv göra för att förebygga så att jag inte får ryggont igen?</span>
+                        <span class="ml-4 text-brand-sky transform transition-transform"
+                            :class="active === 3 ? 'rotate-180' : ''">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </button>
+                    <div x-show="active === 3" x-collapse x-cloak
+                        class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
+                        När vi har minskat den akuta smärtan är det viktigt att du stärker muskulaturen. Regelbunden praktik av Tai Chi och Qigong är utmärkta verktyg för att bygga en stark, balanserad och stabil grund på lång sikt.
                     </div>
                 </div>
 
