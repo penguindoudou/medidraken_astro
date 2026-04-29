@@ -1,12 +1,94 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SymptomHero from '../../../components/symptom/SymptomHero.astro';
+import SymptomMethods from '../../../components/symptom/SymptomMethods.astro';
+import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../../assets/images/nackOCHaxelvark2.png';
+import tuinaManImage from '../../../assets/images/tuina_man.png';
+import acupunctureImage from '../../../assets/images/aku_doll6.png';
+
+const methods = [
+    {
+        title: 'TuiNa-massage',
+        desc: 'TuiNa mjukar varsamt upp stela muskler och löser upp djupa spänningar i axlar och skuldror. Detta ökar energi- och blodcirkulationen, vilket ger goda förutsättningar för minskad smärta och en friare rörlighet.',
+        image: tuinaManImage,
+        alt: 'TuiNa-massage för värk i axlar och skuldror',
+        url: '/behandling/tuina-massage/',
+        linkText: '→ Läs mer om TuiNa-Massage',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Akupunktur',
+        desc: 'Akupunktur stimulerar kroppens energisystem och hjälper överansträngda muskler kring axlar och skulderblad att slappna, vilket ger goda förutsättningar för minskad smärta och förbättrad rörlighet.',
+        image: acupunctureImage,
+        alt: 'Akupunktur för värk i axlar',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Är det farligt att behandla när axeln känns inflammerad?',
+        answer: 'Behandlingen är skonsam och anpassas alltid efter din aktuella smärt- och inflammationsnivå. Vi använder tekniker som syftar till att öka cirkulationen och dämpa inflammationen utan att överbelasta området.'
+    },
+    {
+        question: 'Hur många behandlingar behövs vanligtvis för axelvärk?',
+        answer: 'Antalet behandlingar beror på hur länge du haft besvären. Vid nyuppkommen smärta kan några få behandlingar räcka, medan mer kroniska problem kring skuldrorna kan kräva en längre serie för ett varaktigt resultat. Vi utvärderar detta tillsammans.'
+    }
+];
 ---
-<BaseLayout title="Ont i Axlar & Skuldror">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Ont i Axlar & Skuldror</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Behandling av Värk i Axlar & Skuldror i Nyköping | Medidraken">
+    
+    <SymptomHero
+        title="Värk i Axlar & Skuldror"
+        subtitle="Minska Smärta & Förbättra Rörlighet"
+        image={heroImage}
+        imageAlt="Behandling av värk i axlar och skuldror"
+        buttonText="Hör av Dig & Boka Behandling"
+        buttonLink="/kontakt"
+    >
+        Värk i axlar och skuldror kan orsakas av långvarigt stillasittande, stress, dålig hållning eller överbelastning. 
+        Spänningarna kan leda till en tung, molande värk eller skarp smärta vid rörelse.
+        
+        Med TCM:s behandlingsmetoder mjukar vi upp muskelspänningar och stärker 
+        energisystemet så att dina axlar och skuldror får goda förutsättningar
+        till minskad smärta och förbättrad rörlighet.
+    </SymptomHero>
+
+    <SymptomMethods
+        title="Minska Smärta & Förbättra Rörligheten"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Vid värk i axlar och skuldror är muskulaturen ofta ansträngd, stram och öm.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-6">
+            Vi erbjuder två kompletterande metoder för att hjälpa kroppen släppa spänningarna och minska värken. De kan användas var för sig eller i kombination.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
+            Hör av dig så hittar vi tillsammans det upplägg som passar dina specifika besvär bäst.
+        </p>
+    </SymptomMethods>
+
+    <SymptomCTA
+        title="Låt Oss Hjälpa Dig med din Värk"
+        ctaButtonText="Hör av Dig & Boka Behandling"
+        ctaSubject="axelvark"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Vi hjälper dig hitta rätt behandling för din värk. Många upplever minskad och förbättrad rörlighet inom 3 behandlingar.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Behandling av Axlar & Skuldror"
+        faqs={faqs}
+    />
+
 </BaseLayout>

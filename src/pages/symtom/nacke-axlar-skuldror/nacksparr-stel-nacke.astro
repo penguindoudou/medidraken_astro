@@ -13,7 +13,7 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
 const methods = [
     {
         title: 'TuiNa-massage',
-        desc: 'Används för att manuellt och varsamt bearbeta de krampande musklerna för att lösa upp den fysiska låsningen inifrån och ut. TuiNa mjukar upp stela muskler i nacke och axlar, ökar energi- och blodcirkulationen i området vilket påskyndar läkningsprocessen.',
+        desc: 'TuiNa mjukar varsamt upp stela muskler i nacke och axlar, ökar energi- och blodcirkulationen i området vilket ger de goda förutsättningar för minskad smärta och förbättrad rörlighet.',
         image: tuinaManImage,
         alt: 'TuiNa-massage för stela muskler',
         url: '/behandling/tuina-massage/',
@@ -22,7 +22,7 @@ const methods = [
     },
     {
         title: 'Akupunktur',
-        desc: 'Akupunktur stimulerar kroppens energisystem för läkning, hjälper djupt liggande nackmuskler att slappna av och minskar de akuta smärtsignalerna.',
+        desc: 'Akupunktur stimulerar kroppens energisystem för läkning, hjälper djupt liggande nack- och axelmuskler att slappna av och minskar de akuta smärtsignalerna.',
         image: acupunctureImage,
         alt: 'Akupunktur för nackspärr',
         url: '/behandling/akupunktur/',
@@ -34,11 +34,11 @@ const methods = [
 const faqs = [
     {
         question: 'Är det farligt att behandla när det gör så ont?',
-        answer: 'Nej, tvärtom. Behandlingen är säker och utförs alltid med stor försiktighet. Vi anpassar tekniker och tryck helt efter din smärtnivå. Att tidigt lösa upp låsningen kan förkorta läkningsprocessen avsevärt.'
+        answer: 'Behandlingen är säker och utförs alltid med stor försiktighet. Vi anpassar tekniker och tryck helt efter din smärtnivå. Att tidigt mjuka upp låsningen kan förkorta läkningsprocessen avsevärt.'
     },
     {
         question: 'Hur snabbt kan jag få en tid?',
-        answer: 'Vid akuta besvär som nackspärr arbetar vi för att hitta en tid åt dig så snabbt som möjligt, ofta samma dag eller nästkommande vardag. Ring eller maila oss och förklara din situation så gör vi vad vi kan för att ta emot dig direkt.'
+        answer: 'Vid akuta besvär som nackspärr arbetar vi för att hitta en tid åt dig så snabbt som möjligt, ofta samma dag eller nästkommande vardag. Ring eller använd kontaktformuläret för att beskriva din situation och boka tid. Vi gör vad vi kan för att ta emot dig direkt.'
     }
 ];
 ---
@@ -47,26 +47,28 @@ const faqs = [
     
     <SymptomHero
         title="Nackspärr & Stel Nacke"
-        subtitle="Minska Smärta & Återställ Rörlighet"
+        subtitle="Minska Smärta & Förbättra Rörlighet"
         image={heroImage}
         imageAlt="Behandling av Nackspärr och Stel Nacke"
-        buttonText="Behandla nackspärr"
+        buttonText="Hör av Dig & Boka Behandling"
         buttonLink="/kontakt"
     >
-        Att plötsligt drabbas av nackspärr kan göra de enklaste huvudrörelser smärtsamma och begränsande. Det kan bero på orsaker som att ha sovit i en obekväm ställning, suttit i drag, gjort en plötslig rörelse eller utsatts för långvarig stress.
+        Nackspärr kan göra de enklaste huvudrörelser smärtsamma och begränsande. 
+        Det kan orsakas av att du sovit i en obekväm ställning, suttit i drag, gjort en plötslig rörelse eller stress.
         
-        Genom kinesisk medicinsk behandling mjukar vi upp muskelspänningar och hjälper energisystemet så att nackens smärta minskar och din normala rörlighet återställs.
+        Med TCM:s behandlingsmetoder mjukar vi upp muskelspänningar och stärker 
+        energisystemet så att smärtan i nacken och rörligheten får goda förutsättningar att förbättras.
     </SymptomHero>
 
     <SymptomMethods
-        title="Minska Smärta & Få Tillbaka Nackens Normala Rörlighet"
+        title="Minska Smärta & Förbättra Rörligheten"
         methods={methods}
     >
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
-            Vid nackspärr är musklerna ofta i kramp och nacken känns helt låst.
+            Vid nackspärr är musklerna ofta i kramp och nacken känns stel och låst.
         </p>
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-6">
-            Vi erbjuder två kompletterande tillvägagångssätt för att hjälpa din kropp släppa spänningarna och minska smärtan. De kan användas var för sig eller i kombination.
+            Vi erbjuder två kompletterande metoder för att hjälpa din kropp släppa spänningarna och minska smärtan. De kan användas var för sig eller i kombination.
         </p>
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
             Hör av dig så hittar vi tillsammans det upplägg som passar dig bäst.
@@ -75,11 +77,11 @@ const faqs = [
 
     <SymptomCTA
         title="Låt oss hjälpa dig med din Nackspärr"
-        ctaButtonText="Hör av dig och boka behandling"
+        ctaButtonText="Hör av Dig & Boka Behandling"
         ctaSubject="nacksparr"
     >
-        <p>
-            Vi prioriterar akuta besvär som nackspärr. Vår erfarenhet är att många känner att smärtan lättar och att rörligheten börjar komma tillbaka redan efter första behandlingen.
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Vi prioriterar akuta besvär som nackspärr. Vår erfarenhet är att många känner att smärtan lättar och att rörligheten börjar komma tillbaka inom 3 behandlingar.
         </p>
     </SymptomCTA>
 
