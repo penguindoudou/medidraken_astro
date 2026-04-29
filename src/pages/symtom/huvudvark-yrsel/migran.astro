@@ -8,12 +8,12 @@ import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
 // Images
 import heroImage from '../../../assets/images/hero_huvudvark3.png';
 import acupunctureImage from '../../../assets/images/aku_doll6.png';
-import tuinaImage from '../../../assets/images/tuina_man.png';
+import tuinaImage from '../../../assets/images/tuina_head_woman.png';
 
 const methods = [
     {
         title: 'Akupunktur',
-        desc: 'Akupunktur är ett effektivt verktyg för att arbeta förebyggande mot migrän. Genom att varsamt stimulera specifika punkter hjälper vi till att reglera nervsystemet, dämpa stress och balansera kroppen inifrån. Behandlingen kompletteras ofta med öronakupressur för att förlänga den balanserande effekten mellan besöken.',
+        desc: 'Akupunktur är effektivt för att arbeta förebyggande mot migrän. Genom stimulering av specifika punkter hjälper vi dig att reglera nervsystemet, minska stress och balansera kroppen inifrån. Behandlingen kompletteras ofta med öronakupressur för att förlänga den balanserande effekten mellan besöken.',
         image: acupunctureImage,
         alt: 'Akupunktur för att förebygga migrän',
         url: '/behandling/akupunktur/',
@@ -53,38 +53,46 @@ const faqs = [
 >
     
     <SymptomHero
-        title="Få Kontroll över Din Migrän"
+        title="Låt Oss Hjälpa Dig Med Din Migrän"
         subtitle="Förebyggande Behandling för Färre Anfall"
         image={heroImage}
         imageAlt="Förebyggande behandling av migrän"
-        buttonText="Behandla migrän"
+        buttonText="Behandla Migrän"
         buttonLink="/kontakt"
     >
-        Att leva med återkommande migrän är verkligen påfrestande. 
+        Känner du kraftig, pulserande eller bultande huvudvärk? 
+        </br>
+        Migrän triggas ofta av stress, oro och ett känsligt nervsystem.
         Vi hjälper dig stärka kroppen och skapa förutsättningar 
         för att minska intensiteten, frekvensen och längden på dina migränanfall så att
-        du får tillbaka din vardag och livskvalitet.
+        du kan få tillbaka din vardag och livskvalitet.
     </SymptomHero>
 
     <SymptomMethods
-        title="En Helhetsstrategi för att Hantera Migrän"
+        title="Hur vi Behandlar Migrän"
         methods={methods}
     >
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
-            Behandling av migrän är alltid högst individuell. Efter en noggrann inledande dialog skapar vi en behandlingsplan som är helt anpassad efter just din typ av migrän och dess underliggande orsaker.
+            Vi erbjuder två kompletterande metoder för att balansera nervsystemet och hjälpa kroppen att släppa 
+            inre spänningar som byggts upp över tid. 
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            På så sätt ger vi din kropp 
+            goda förutsättningar för att minska både antalet migränanfall och hur kraftfulla de blir. 
+            Metoderna kan användas var för sig eller i kombination.
         </p>
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
-            Målet med våra metoder är detsamma: att balansera ditt system och minska de triggers som orsakar din migrän. Beroende på dina behov använder vi metoderna var för sig eller i kombination för bästa resultat.
+            Hör av dig så hittar vi tillsammans det upplägg som passar dig bäst.
         </p>
     </SymptomMethods>
 
     <SymptomCTA
-        title="Ta Steget mot Färre Migränattacker"
-        ctaButtonText="Hör av dig och boka behandling"
+        title="Få Hjälp Med Din Migrän"
+        ctaButtonText="Hör av Dig & Boka behandling"
         ctaSubject="migran"
     >
-        <p>
-            Att få kontroll över sin migrän är en process. Vi hjälper dig att skapa en personlig, förebyggande plan. Många upplever en märkbar minskning av sina anfall redan efter en initial serie behandlingar.
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Att få bukt med sin migrän är en process. Vi hjälper dig att skapa en förebyggande behandlingsplan. Många upplever en minskning av sina anfall inom 5 behandlingar.
         </p>
     </SymptomCTA>
 

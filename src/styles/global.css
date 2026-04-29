@@ -208,7 +208,7 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
   }
 
   .hero-text {
-    @apply text-lg md:text-xl text-neutral-100 max-w-2xl mx-auto mt-3 md:mt-5 shadow-black/50 drop-shadow-md;
+    @apply text-lg md:text-xl text-neutral-100 max-w-2xl mx-auto mt-2 shadow-black/50 drop-shadow-md;
   }
 
   /* --- LAYOUT & CARDS --- */
