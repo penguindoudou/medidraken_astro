@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import SymptomHero from '../../../components/symptom/SymptomHero.astro';
-import SymptomMethods from '../../../components/symptom/SymptomMethods.astro';
+import SymptomMethodsThreeCol from '../../../components/symptom/SymptomMethodsThreeCol.astro';
 import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
 import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
 
 // Images
-import heroImage from '../../../assets/images/hero_symptoms.png';
+import heroImage from '../../../assets/images/hoftbesvar_hoftsmarta_hero.png';
 import acupunctureImage from '../../../assets/images/aku_doll6.png';
-import tuinaManImage from '../../../assets/images/tuina_man.png';
+import tuinaManImage from '../../../assets/images/tuina_girl_wide2.png';
 import taichiImage from '../../../assets/images/taichi_hero6.png';
 
 const methods = [
@@ -37,7 +37,7 @@ const methods = [
         alt: 'Skonsam träning för starkare höfter med Tai Chi och Qigong',
         url: '/kurser',
         linkText: '→ Läs mer om vår träning',
-        theme: 'sky' as const
+        theme: 'accent' as const
     }
 ];
 
@@ -77,7 +77,7 @@ const faqs = [
         för att ge goda förutsättningar för minskad smärta och förbättrad rörlighet och funktion i vardagen.
     </SymptomHero>
 
-    <SymptomMethods
+    <SymptomMethodsThreeCol
         title="Minska Smärta & Förbättra Funktion"
         methods={methods}
     >
@@ -89,7 +89,7 @@ const faqs = [
             kombinerar vi ofta behandlingar med skonsam stärkande träning. 
             Hör av dig så hittar vi tillsammans ett upplägg som passar dig bäst.
         </p>
-    </SymptomMethods>
+    </SymptomMethodsThreeCol>
 
     <SymptomCTA
         title="Få Hjälp Med Din Höftbesvär"

@@ -1,12 +1,114 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SymptomHero from '../../../components/symptom/SymptomHero.astro';
+import SymptomMethodsThreeCol from '../../../components/symptom/SymptomMethodsThreeCol.astro';
+import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../../assets/images/kneepain_hero3.png';
+import acupunctureImage from '../../../assets/images/aku_doll6.png';
+import tuinaManImage from '../../../assets/images/tuina_girl_wide2.png';
+import taichiImage from '../../../assets/images/taichi_hero6.png';
+
+const methods = [
+    {
+        title: 'TuiNa-massage',
+        desc: 'TuiNa används för att lösa upp spänningar i de stora muskelgrupperna runt knät, låren och vaderna som nästan alltid är involverade i knäbesvär.',
+        image: tuinaManImage,
+        alt: 'TuiNa-massage mjukar upp muskelspänningar och stimulerar cirkulationen runt knät',
+        url: '/behandling/tuina-massage/',
+        linkText: '→ Läs mer om TuiNa-Massage',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Akupunktur',
+        desc: 'Akupunktur används för att reglera de energibanor som löper genom knät och benmuskulaturen.',
+        image: acupunctureImage,
+        alt: 'Akupunktur mot knäsmärta och inflammation',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    },
+    {
+        title: 'Tai Chi & Qigong',
+        desc: 'Tai Chi och Medicinsk Qigong hjälper till att stärka de muskler som stöttar upp knät och därmed bidra till minskad smärta och förbättrad funktion.',
+        image: taichiImage,
+        alt: 'Skonsam träning för starkare knän med Tai Chi och Qigong',
+        url: '/kurser',
+        linkText: '→ Läs mer om vår träning',
+        theme: 'accent' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Jag har fått diagnosen knäartros, kan jag ändå få hjälp?',
+        answer: 'Absolut. Även om vi inte kan bota själva artrosen, är våra metoder mycket effektiva för att stärka och förbättra funktionen av musklerna runt knät och därmed skapa förutsättningar för minskad smärta, ökad rörlighet och bättre funktion i vardagen.'
+    },
+    {
+        question: 'Min smärta sitter mest på utsidan/insidan av knät, vad beror det på?',
+        answer: 'Det är mycket vanligt. Smärta på olika sidor av knät kan bero på överansträngda muskler, problem med menisker eller ledband. Vår inledande undersökning hjälper till att identifiera källan så att vi kan rikta behandlingen rätt.'
+    },
+    {
+        question: 'Är det inte bättre att vila helt när jag har ont i knäna?',
+        answer: 'Det beror på orsaken, men ofta är skonsam och anpassad rörelse bättre än total vila. Rörelse stimulerar cirkulation och "smörjer" leden. Vi ger dig råd om vilken typ av aktivitet som är lämplig under behandlingsperioden.'
+    },
+    {
+        question: 'Vad kan jag göra själv för att få ett bättre resultat?',
+        answer: 'Din delaktighet är viktig för bästa resultat. Medan vi fokuserar på att minska din smärta genom behandling, rekommenderar vi regelbunden skonsam rörelse. Att praktisera Tai Chi eller Medicinsk Qigong regelbundet är ett utmärkt sätt att själv bygga en stark och smidig muskulatur runt knät på sikt.'
+    }
+];
 ---
-<BaseLayout title="Ont i knän & knäbesvär">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Ont i knän & knäbesvär</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Behandling av Ont i Knän & Knäartros i Nyköping | Medidraken">
+    
+    <SymptomHero
+        title="Ont i Knän & Knäbesvär"
+        subtitle="Minska Smärta & Förbättra Funktion"
+        image={heroImage}
+        imageAlt="Behandling av knäbesvär"
+        buttonText="Behandla Knäbesvär"
+        buttonLink="/kontakt"
+    >
+        Smärta och stelhet i knäna kan göra allt från att gå i trappor till att resa sig upp besvärligt. 
+        Ofta beror det på överbelastning, muskelsvaghet eller knäartros. 
+        Med TCM-behandling och träning kan vi hjälpa dig att mjuka upp muskelspänningar och stärka musklerna kring knäna 
+        för att ge goda förutsättningar för minskad smärta och förbättrad rörlighet och funktion i vardagen.
+    </SymptomHero>
+
+    <SymptomMethodsThreeCol
+        title="Minska Smärta & Förbättra Funktion"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Oavsett om din smärta sitter runt knäskålen, på in- eller utsidan av knät hjälper vi dig att hitta rätt behandling för just dig och din kropp.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
+            För att ge kroppen goda förutsättningar för minskad smärta och förbättrad funktion 
+            kombinerar vi ofta behandlingar med skonsam stärkande träning. 
+            Hör av dig så hittar vi tillsammans ett upplägg som passar dig bäst.
+        </p>
+    </SymptomMethodsThreeCol>
+
+    <SymptomCTA
+        title="Få Hjälp Med Dina Knäbesvär"
+        ctaButtonText="Hör av Dig & Boka Behandling"
+        ctaSubject="ont-i-knan-knabesvar"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Vi hjälper dig hitta rätt behandling för dina knän. 
+            Att bli helt fri från sina knäbesvär är inte alltid möjligt. 
+             
+            Många börjar dock uppleva en minskning i
+            smärta och en mjukare, 
+            rörligare känsla inom 5 behandlingar.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Behandling av Knäsmärta"
+        faqs={faqs}
+    />
+
 </BaseLayout>

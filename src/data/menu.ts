@@ -84,7 +84,7 @@ export const primaryMenu = {
             },
             {
               "title": "Tennisarmbåge, Musarm & Värk i handleder",
-              "link": "/symtom/ledvark-idrottsskador-artros/tennisarmbage-musarm-vark-i-handleder/",
+              "link": "/symtom/ledvark-idrottsskador-artros/tennisarmbage-musarm/",
               "children": []
             }
           ]
