@@ -6,24 +6,15 @@ import SymptomCTA from '../../components/symptom/SymptomCTA.astro';
 import SymptomFAQ from '../../components/symptom/SymptomFAQ.astro';
 
 // Images
-import heroImage from '../../assets/images/somnproblem_hero.png';
+import heroImage from '../../assets/images/hero_somnproblem2.png';
 import acupunctureImage from '../../assets/images/aku_doll6.png';
 import tuinaManImage from '../../assets/images/tuina_girl_wide2.png';
 import taichiImage from '../../assets/images/taichi_hero6.png';
 
 const methods = [
     {
-        title: 'Akupunktur',
-        desc: 'Mycket effektivt för att balansera nervsystemet, minska stresshormoner och främja avslappning, vilket är avgörande för en god natts sömn.',
-        image: acupunctureImage,
-        alt: 'Akupunktur lugnar nervsystemet och hjälper vid sömnproblem',
-        url: '/behandling/akupunktur/',
-        linkText: '→ Läs mer om Akupunktur',
-        theme: 'sky' as const
-    },
-    {
         title: 'TuiNa-massage',
-        desc: 'En djupgående massage som löser upp fysiska spänningar och stress i kroppen, vilket i sin tur hjälper sinnet att varva ner.',
+        desc: 'TuiNa-massage hjälper till att lösa upp fysiska spänningar och stress i kroppen, vilket hjälper sinnet att varva ner så att du kan sova gott och känna dig mer utvilad.',
         image: tuinaManImage,
         alt: 'TuiNa-massage för djup avslappning och bättre sömn',
         url: '/behandling/tuina-massage/',
@@ -31,8 +22,17 @@ const methods = [
         theme: 'accent' as const
     },
     {
+        title: 'Akupunktur',
+        desc: 'Akupunktur hjälper kroppen att minska stress, balansera nerv- och energisystem, så att du får förutsättningar att sova gott och känna dig mer utvilad.',
+        image: acupunctureImage,
+        alt: 'Akupunktur lugnar nervsystemet och hjälper vid sömnproblem',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    },
+    {
         title: 'Tai Chi & Qigong',
-        desc: 'Skonsamma och meditativa rörelser som hjälper till att sänka stressnivåerna, minska oro och bygga upp kroppens energi på ett harmoniskt sätt.',
+        desc: 'Skonsamma och meditativa rörelser som hjälper dig att sänka stressnivåerna, minska oro och bygga upp kroppens energi på ett harmoniskt sätt.',
         image: taichiImage,
         alt: 'Lugnande rörelser och andning med Tai Chi och Qigong',
         url: '/kurser',
@@ -43,20 +43,24 @@ const methods = [
 
 const faqs = [
     {
-        question: 'Kan akupunktur verkligen hjälpa mig att sova?',
-        answer: 'Ja, akupunktur är mycket effektivt för att lugna nervsystemet och minska stress. Många patienter upplever en djup avslappning redan under behandlingen och sover ofta märkbart bättre därefter.'
+        question: 'Kan akupunktur och TuiNa hjälpa vid sömnproblem?',
+        answer: 'Ja, akupunktur och TuiNa är mycket effektivt för att lugna nervsystemet och minska stress. Många patienter upplever en djup avslappning redan under behandlingen och sover ofta bättre efter en behandlingsperiod.'
+    },
+    {
+        question: 'Hjälper Tai Chi och Qigong mot sömnproblem?',
+        answer: 'Ja, det är ett kraftfullt verktyg. Träningen balanserar kroppen genom långsamma medvetna rörelser och medveten andning. Det sänker kroppens kortisolnivåer och lugnar nervsystemet. För dig med sömnbesvär innebär det att du tränar upp förmågan att stilla tankarna och skifta från dagens stress till nattens vila, vilket underlättar både insomning och djupsömn.'
     },
     {
         question: 'Hur många behandlingar behövs?',
-        answer: 'Det är individuellt och beror på hur länge du haft problemen. Många märker en förbättring av sömnkvaliteten inom 3-5 behandlingar, men vid långvariga och kroniska sömnproblem kan en längre behandlingsperiod behövas för att stabilisera resultatet.'
+        answer: 'Det är individuellt och beror på hur länge du haft problemen. Många märker en förbättring av sömnkvaliteten inom 5 behandlingar, men vid långvariga och kroniska sömnproblem kan en längre behandlingsperiod behövas.'
     },
     {
         question: 'Varför påverkas sömnen av stress och oro?',
-        answer: 'När vi är stressade är kroppens "kamp- och flyktsystem" aktivt, vilket gör det svårt för hjärnan att ställa om till vila. Våra behandlingar syftar till att aktivera kroppens lugn- och rosystem (det parasympatiska nervsystemet) så att återhämtning kan ske.'
+        answer: 'När vi är stressade är kroppens "kamp- och flyktsystem" aktivt, vilket gör det svårt för hjärnan att ställa om till vila. Våra behandlingar hjälper till att aktivera kroppens lugn- och rosystem (det parasympatiska nervsystemet) så att återhämtning kan ske.'
     },
     {
         question: 'Finns det något jag kan göra själv för att få bättre sömn?',
-        answer: 'Din delaktighet är viktig. Utöver våra behandlingar rekommenderar vi god sömnhygien, att undvika skärmar innan läggdags och att etablera en nedvarvningsrutin. Att regelbundet praktisera Medicinsk Qigong är också ett utmärkt verktyg för att hantera stress i vardagen.'
+        answer: 'Din delaktighet är viktig. Utöver våra behandlingar rekommenderar vi goda sömnvanor som att undvika skärmar innan läggdags och att etablera en nedvarvningsrutin. Att regelbundet praktisera Medicinsk Qigong är också ett utmärkt verktyg för att hantera stress i vardagen.'
     }
 ];
 ---
@@ -65,29 +69,31 @@ const faqs = [
     
     <SymptomHero
         title="Sömnproblem & Insomnia"
-        subtitle="Få En Djupare & Mer Återhämtande Sömn"
+        subtitle="Få En Djupare & Återhämtande Sömn"
         image={heroImage}
         imageAlt="Behandling av sömnproblem och svårt att sova"
-        buttonText="Boka Behandling"
+        buttonText="Behandla Sömnproblem"
         buttonLink="/kontakt"
     >
         Svårt att somna, orolig sömn eller vaknar du ofta för tidigt? 
-        Långvariga sömnproblem påverkar energi, humör och immunförsvar negativt. 
-        Ofta är stress, obalans eller spänningar i kroppen grundorsaken.
-        Med TCM-behandling kan vi hjälpa till att lugna nervsystemet, minska stress och 
-        reglera kroppens naturliga dygnsrytm för att ge dig förutsättningar för en djupare, bättre och mer utvilande sömn.
+        Långvariga sömnproblem försämrar energinivåerna, humöret och immunförsvaret. 
+        Ofta är stress, obalans och spänningar viktiga underliggande faktorer till sömnproblem.
+        Med TCM-behandling och träning kan vi hjälpa lugna nervsystemet, minska stress och 
+        stödja kroppen att återfinna sin naturliga dygnsrytm så att du kan få en djupare återhämtande sömn.
     </SymptomHero>
 
     <SymptomMethodsThreeCol
-        title="Behandla Orsaken Till Dina Sömnbesvär"
+        title="Hur vi Behandlar Sömnbesvär"
         methods={methods}
     >
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
-            För att komma tillrätta med sömnproblem behöver vi ofta hjälpa kroppen att skifta från stress till återhämtning.
+            Vid sömnproblem är nervsystemet ofta överaktivt, vilket gör att kroppen har svårt att ställa om till vila.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Vi erbjuder kompletterande metoder för att hjälpa din kropp skifta från stress till återhämtning och återskapa en naturlig sömnrytm. De kan användas var för sig eller i kombination.
         </p>
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
-            Vi anpassar behandlingen efter just dina symptom, vare sig det handlar om svårigheter att somna in, 
-            många uppvaknanden eller att du känner dig ständigt utmattad. Hör av dig så hittar vi rätt upplägg för dig.
+            Hör av dig så hittar vi rätt upplägg för dig.
         </p>
     </SymptomMethodsThreeCol>
 
@@ -97,10 +103,10 @@ const faqs = [
         ctaSubject="somnproblem"
     >
         <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
-            Vi hjälper dig att hitta tillbaka till en naturlig och vilsam sömn.
+            Vi stödjer din kropp att hitta tillbaka till en naturlig och vilsam sömn.
             
-            Många av våra patienter upplever en tydlig skillnad 
-            och en lugnare känsla i kroppen redan inom de första behandlingarna.
+            Många av våra patienter upplever en förbättrad sömnkvalitet
+            och lugnare känsla i kroppen inom 5 behandlingar.
         </p>
     </SymptomCTA>
 
