@@ -1,12 +1,117 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SymptomHero from '../../components/symptom/SymptomHero.astro';
+import SymptomMethodsThreeCol from '../../components/symptom/SymptomMethodsThreeCol.astro';
+import SymptomCTA from '../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../assets/images/hero_symptoms4.png';
+import acupunctureImage from '../../assets/images/aku_doll6.png';
+import tuinaManImage from '../../assets/images/tuina_girl_wide2.png';
+import taichiImage from '../../assets/images/taichi_hero6.png';
+
+const methods = [
+    {
+        title: 'TuiNa-massage',
+        desc: 'TuiNa-massage hjälper till att lösa upp djupa fysiska spänningar och sänka stressnivåerna, vilket ger kroppen möjlighet till välbehövlig vila och återhämtning.',
+        image: tuinaManImage,
+        alt: 'TuiNa-massage för avslappning och minskad stress',
+        url: '/behandling/tuina-massage/',
+        linkText: '→ Läs mer om TuiNa-Massage',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Akupunktur',
+        desc: 'Akupunktur balanserar kroppens energisystem, stärker svaga organfunktioner och lugnar nervsystemet för att hjälpa kroppen att återhämta sig.',
+        image: acupunctureImage,
+        alt: 'Akupunktur stärker kroppens energi och lugnar nervsystemet',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    },
+    {
+        title: 'Tai Chi & Qigong',
+        desc: 'Skonsamma och meditativa rörelser som hjälper dig att sänka stressnivåerna, fylla på med ny energi och stärka kroppen inifrån och ut.',
+        image: taichiImage,
+        alt: 'Medicinsk Qigong och Tai Chi för energi och balans',
+        url: '/kurser',
+        linkText: '→ Läs mer om vår träning',
+        theme: 'accent' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Kan akupunktur och TuiNa-massage hjälpa mot utbrändhet och extrem trötthet?',
+        answer: 'Ja, inom traditionell kinesisk medicin ser vi utbrändhet som en djup brist på energi kombinerat med obalanser i kroppens system. Akupunktur och TuiNa är effektivt för att stärka dessa system, lugna nervsystemet och stimulera kroppens egen självläkande förmåga.'
+    },
+    {
+        question: 'Varför känner jag mig fortfarande trött fastän jag vilar?',
+        answer: 'Vid djup utmattning räcker inte alltid vanlig vila (som att sitta i soffan) eftersom kroppens stressystem fortfarande kan vara aktivt. Våra behandlingar och rörelseträning hjälper till att aktivera det parasympatiska nervsystemet (kroppens lugn- och rosystem) så att djup återhämtning kan ske.'
+    },
+    {
+        question: 'Hur många behandlingar behövs vid utmattning?',
+        answer: 'Eftersom utbrändhet ofta byggts upp under lång tid tar det också tid att återhämta sig. I början rekommenderar vi ofta regelbundna behandlingar och/eller träningssessioner för att bryta stressmönstret och stödja kroppen, följt av glesare besök i takt med att energin börjar återvända.'
+    },
+    {
+        question: 'Kan Medicinsk Qigong och Tai Chi hjälpa mig att få tillbaka energin?',
+        answer: 'Absolut. Det är ett av de mest kraftfulla verktygen för att bygga upp livsenergi och hantera stress. Genom långsamma, medvetna rörelser och andning fyller du på kroppens energidepåer utan att överbelasta ett redan trött och ansträngt system.'
+    },
+    {
+        question: 'Vad kan jag göra själv i vardagen för att återhämta mig mer effektivt?',
+        answer: 'Din delaktighet är jätteviktig. Utöver behandlingar är det avgörande att minska kraven på dig själv, etablera tydliga gränser mellan arbete och ledighet, och att lägga in korta, regelbundna pauser av "mikrovila" under dagen för att ge hjärnan en chans att vila.'
+    }
+];
 ---
-<BaseLayout title="Utbrändhet & Trötthet">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Utbrändhet & Trötthet</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Behandling av Utbrändhet & Trötthet i Nyköping | Medidraken">
+    
+    <SymptomHero
+        title="Utbrändhet & Trötthet"
+        subtitle="Öka Din Naturliga Energi & Livskraft"
+        image={heroImage}
+        imageAlt="Behandling av utbrändhet, stress och trötthet"
+        buttonText="Boka Behandling"
+        buttonLink="/kontakt"
+    >
+        Känner du dig ständigt trött, tömd på energi eller på gränsen till utbrändhet? 
+        Långvarig stress och brist på återhämtning kan leda till en djup utmattning, både fysiskt och mentalt. 
+        Med hjälp av TCM-behandlingar och skonsam rörelseträning kan vi stödja din kropp 
+        att fylla på sina energidepåer, sänka stressen och hitta tillbaka till en hållbar balans i vardagen.
+    </SymptomHero>
+
+    <SymptomMethodsThreeCol
+        title="Hur vi Behandlar Utmattning"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Vid utbrändhet och extrem trötthet är kroppens energireserver ofta tömda och nervsystemet är satt ur balans.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Vi erbjuder skonsamma och återbyggande metoder för att hjälpa din kropp att återhämta sig och successivt bygga upp ny kraft. De kan användas var för sig eller i en kombination som passar dig.
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
+            Hör av dig så hittar vi rätt upplägg för din återhämtning.
+        </p>
+    </SymptomMethodsThreeCol>
+
+    <SymptomCTA
+        title="Få Hjälp Med Din Återhämtning"
+        ctaButtonText="Hör av Dig & Boka Tid"
+        ctaSubject="utbrandhet"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Vi stödjer din kropp att hitta tillbaka till sin naturliga kraft och energi.
+            
+            Många av våra patienter upplever en ökad grundenergi och ett 
+            betydligt lugnare inre efter en tids regelbundna behandlingar och/eller träningssessioner.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Utbrändhet & Trötthet"
+        faqs={faqs}
+    />
+
 </BaseLayout>
