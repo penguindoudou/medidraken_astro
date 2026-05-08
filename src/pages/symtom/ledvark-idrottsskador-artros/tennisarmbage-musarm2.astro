@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import SymptomHero from '../../../components/symptom/SymptomHero.astro';
-import SymptomMethods from '../../../components/symptom/SymptomMethods.astro';
+import SymptomMethodsThreeCol from '../../../components/symptom/SymptomMethodsThreeCol.astro';
 import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
 import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
 
@@ -9,6 +9,7 @@ import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
 import heroImage from '../../../assets/images/armbagssmarta_hero.png';
 import acupunctureImage from '../../../assets/images/aku_doll6.png';
 import tuinaManImage from '../../../assets/images/tuina_girl_wide2.png';
+import taichiImage from '../../../assets/images/taichi_hero6.png';
 
 const methods = [
     {
@@ -22,23 +23,28 @@ const methods = [
     },
     {
         title: 'Akupunktur',
-        desc: 'Akupunktur är en effektiv metod för att stimulera blodcirkulationen och lugna inflammerade muskelfästen runt armbåge och handled. Det ger goda förutsättningar för minskad smärta och förbättrad rörlighet.',
+        desc: 'Akupunktur är en effektiv metod för att stimulera blodcirkulationen och lugna inflammerade muskelfästen runt armbåge och handled.',
         image: acupunctureImage,
         alt: 'Akupunktur mot tennisarmbåge och handledssmärta',
         url: '/behandling/akupunktur/',
         linkText: '→ Läs mer om Akupunktur',
         theme: 'sky' as const
+    },
+    {
+        title: 'Tai Chi & Qigong',
+        desc: 'Mjuka och skonsamma rörelser från Tai Chi och Medicinsk Qigong hjälper till att bibehålla rörlighet och cirkulation utan att överbelasta.',
+        image: taichiImage,
+        alt: 'Skonsam träning för armar och händer med Tai Chi och Qigong',
+        url: '/kurser',
+        linkText: '→ Läs mer om vår träning',
+        theme: 'accent' as const
     }
 ];
 
 const faqs = [
     {
-        question: 'Jag har ont i armbågen när jag lyfter saker, är det tennisarmbåge?',
-        answer: 'Det är mycket möjligt. Smärta på armbågens utsida när du lyfter, greppar något eller vrider ur en disktrasa är klassiska tecken på tennisarmbåge. Det är en överbelastningsskada som vi hjälpt många med.'
-    },
-    {
-        question: 'Det värker på insidan av armbågen, vad kan det bero på?',
-        answer: 'Smärta på armbågens insida kallas ofta för golfarmbåge. Trots namnet beror det oftast på upprepade lyft eller rörelser i vardagen, inte golf. Precis som tennisarmbåge är det en överbelastningsskada som vi hjälpt många med.'
+        question: 'Vad är egentligen skillnaden på tennisarmbåge och golfarmbåge?',
+        answer: 'Båda är överbelastningsskador, men smärtan sitter på olika ställen. Vid tennisarmbåge (lateral epikondylit) har du ont på armbågens utsida, medan golfarmbåge (medial epikondylit) ger smärta på armbågens insida.'
     },
     {
         question: 'Hjälper akupunktur mot domningar ut i fingrarna (karpaltunnelsyndrom)?',
@@ -46,11 +52,11 @@ const faqs = [
     },
     {
         question: 'Måste jag sluta jobba framför datorn om jag har musarm?',
-        answer: 'Nej, men det är viktigt att anpassa din ergonomi och ta korta pauser. Vi kombinerar behandling med att ge dig ergonomiska råd och enkla övningar du kan göra under arbetsdagen för att minska arbetspåfrestningen.'
+        answer: 'Nej, men det är viktigt att anpassa din ergonomi och ta korta pauser. Vi kombinerar behandling med att ge dig ergonomiska råd och enkla övningar du kan göra under arbetsdagen för att minska belastningen.'
     },
     {
         question: 'Hur lång tid tar det att bli bra från en tennisarmbåge?',
-        answer: 'Det varierar beroende på hur länge du haft besvären. Eftersom senfästen läker långsamt kan det ta tid, men med rätt behandling brukar man märka en påbörjad förbättring i smärta och funktion inom några behandlingstillfällen.'
+        answer: 'Det varierar beroende på hur länge du haft besvären. Eftersom senfästen läker långsamt kan det ta tid, men med rätt behandling brukar man märka en tydlig förbättring i smärta och funktion inom några behandlingstillfällen.'
     }
 ];
 ---
@@ -65,27 +71,24 @@ const faqs = [
         buttonText="Behandla Armbåge & Handled"
         buttonLink="/kontakt"
     >
-        Har du ont på utsidan av armbågen, domningar i fingrarna eller värk i handleden?
-        Känns det obehagligt att vrida ur disktrasan?
-        Tennisarmbåge, golfarmbåge och musarm beror ofta på ensidiga rörelser och överbelastning.
-        Genom TCM-behandling kan vi hjälpa till att lösa upp underliggande muskelspänningar
-        och påskynda kroppens egen läkning så du får goda förutsättningar till minskad smärta och fungerande armar och händer.
+        Har du ont på utsidan av armbågen, domningar i fingrarna eller värk i handleden? 
+        Tennisarmbåge, golfarmbåge och musarm beror ofta på ensidiga rörelser och överbelastning. 
+        Genom TCM-behandling kan vi hjälpa till att lösa upp spänningar i underarmarna 
+        och påskynda kroppens egen läkning så du får goda förutsättningar till minskad smärta och fungerande armarna och händer.
     </SymptomHero>
 
-    <SymptomMethods
-        title="Hur vi Behandlar Tennisarmbåge, Musarm & Värk i Handlederna"
+    <SymptomMethodsThreeCol
+        title="Behandla Orsaken till Överbelastningen"
         methods={methods}
     >
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
             Värk i armbåge och handleder påverkar nästan allt vi gör, från att lyfta ett mjölkpaket till att arbeta framför datorn.
         </p>
-        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-6">
-            Vi erbjuder två kompletterande metoder för att minska den akuta smärtan vid senfästet och behandla de muskelspänningar i underarm och axel som ofta bidrar till problemet. De kan användas var för sig eller i kombination.
-        </p>
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
-            Hör av dig så hittar vi tillsammans det upplägg som passar dina specifika besvär bäst.
+            Våra behandlingar fokuserar på att både lindra den akuta smärtan vid senfästet 
+            och att behandla de muskelspänningar i underarm och axel som ofta är grundorsaken till problemet.
         </p>
-    </SymptomMethods>
+    </SymptomMethodsThreeCol>
 
     <SymptomCTA
         title="Få Hjälp Med Din Armbågs- eller Handledssmärta"
@@ -93,9 +96,10 @@ const faqs = [
         ctaSubject="armbagssmarta"
     >
         <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
-            Vi hjälper dig hitta rätt behandling för din värk.
+            Ju tidigare du söker hjälp för överbelastningsskador som tennisarmbåge, 
+            desto snabbare går läkningen.  
              
-            Många börjar uppleva en minskning i smärta och en mjukare, rörligare känsla inom 5 behandlingar.
+            Många börjar uppleva en minskning i smärta och en mjukare, rörligare känsla inom 3 behandlingar.
         </p>
     </SymptomCTA>
 
