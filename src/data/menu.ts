@@ -69,22 +69,22 @@ export const primaryMenu = {
           ]
         },
         {
-          "title": "Ledvärk, Idrottsskador & Artros",
-          "link": "/symtom/ledvark-idrottsskador-artros/",
+          "title": "Ledvärk, Ledbesvär & Idrottsskador",
+          "link": "/symtom/ledvark-idrottsskador/",
           "children": [
             {
               "title": "Ont i knän & knäbesvär",
-              "link": "/symtom/ledvark-idrottsskador-artros/ont-i-knan-knabesvar/",
+              "link": "/symtom/ledbesvar-idrottsskador/ont-i-knan-knabesvar/",
               "children": []
             },
             {
               "title": "Ont i höfter & höftbesvär",
-              "link": "/symtom/ledvark-idrottsskador-artros/ont-i-hofter-hoftbesvar/",
+              "link": "/symtom/ledbesvar-idrottsskador/ont-i-hofter-hoftbesvar/",
               "children": []
             },
             {
               "title": "Tennisarmbåge, Musarm & Värk i handleder",
-              "link": "/symtom/ledvark-idrottsskador-artros/tennisarmbage-musarm/",
+              "link": "/symtom/ledbesvar-idrottsskador/tennisarmbage-musarm/",
               "children": []
             }
           ]
@@ -131,8 +131,8 @@ export const primaryMenu = {
           "children": []
         },
         {
-          "title": "Stärka Immunförsvaret & Bygga Motståndskraft",
-          "link": "/na-dina-halsomal/starka-immunforsvaret-bygga-motstandskraft/",
+          "title": "Stärk Motståndskraften",
+          "link": "/na-dina-halsomal/starka-motstandskraften/",
           "children": []
         }
       ]
