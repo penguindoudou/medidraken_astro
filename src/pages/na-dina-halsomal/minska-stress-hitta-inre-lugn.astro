@@ -1,12 +1,105 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SymptomHero from '../../components/symptom/SymptomHero.astro';
+import SymptomMethodsThreeCol from '../../components/symptom/SymptomMethodsThreeCol.astro';
+import SymptomCTA from '../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../assets/images/hero_symptoms4.png';
+import treatmentImage from '../../assets/images/tuina_girl_wide2.png';
+import qigongImage from '../../assets/images/qigong_johannes_instructing_group_all_facing_camera_on_green_grass_in_front_of_lake_murky_weather_white_sky_almost_white_looking_lake.jpg';
+import taichiImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+
+const methods = [
+    {
+        title: 'Akupunktur & TuiNa',
+        desc: 'Avslappnande behandlingar som balanserar kroppens nervsystem, löser upp djupa spänningar och ger dig en stund av total återhämtning och ro.',
+        image: treatmentImage,
+        alt: 'Avslappnande behandling med Akupunktur och TuiNa',
+        url: '/behandling/',
+        linkText: '→ Läs mer om våra behandlingar',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Medicinsk Qigong',
+        desc: 'Lär dig enkla, meditativa rörelser och andningstekniker som hjälper dig att släppa stress, grunda dig och bygga upp din inre energi.',
+        image: qigongImage,
+        alt: 'Medicinsk Qigong för inre lugn och minskad stress',
+        url: '/kurser/medicinsk-qigong/',
+        linkText: '→ Läs mer om Medicinsk Qigong',
+        theme: 'sky' as const
+    },
+    {
+        title: 'Tai Chi',
+        desc: 'Mjuka och flytande rörelser som förbättrar ditt fokus, stärker din kroppsmedvetenhet och ger ett djupt inre lugn i vardagen.',
+        image: taichiImage,
+        alt: 'Tai Chi för fokus och kroppskännedom',
+        url: '/kurser/tai-chi/',
+        linkText: '→ Läs mer om Tai Chi',
+        theme: 'accent' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Hur snabbt kan jag förvänta mig att känna mig lugnare?',
+        answer: 'Många känner en omedelbar avslappning efter en behandling eller ett träningspass. För att uppnå ett mer varaktigt inre lugn och minska långvarig stress rekommenderar vi regelbunden behandling eller träning. Alla är olika och har olika förutsättningar, men många börjar uppleva ett ökat inre lugn och en stabilare energinivå inom 5 behandlingar eller efter cirka 5 veckors kontinuerlig Qigong eller Tai Chi, förutsatt att de har goda vanor i sin vardag.'
+    },
+    {
+        question: 'Passar Qigong och Tai Chi om jag är väldigt stressad och har svårt att sitta still?',
+        answer: 'Absolut. Eftersom Qigong och Tai Chi är "meditation i rörelse" är de ofta mycket lättare att ta till sig för personer med hög stressnivå än stillasittande meditation. Rörelserna hjälper sinnet att fokusera och kroppen att släppa spänningar.'
+    },
+    {
+        question: 'Ska jag välja behandling eller träning för att minska min stress?',
+        answer: 'Det beror på vad du känner att du behöver mest just nu. Om du är mycket trött och uppe i varv kan behandlingar (Akupunktur/TuiNa) vara en bra start för att få djup vila. Om du vill ha aktiva verktyg för att hantera stress i vardagen är Qigong eller Tai Chi utmärkta val. Många väljer också att kombinera träning med behandling.'
+    },
+    {
+        question: 'Vad kan jag göra själv i vardagen för att hitta mer inre ro?',
+        answer: 'Försök att skapa korta "mikropauser" under dagen där du bara andas djupt några gånger. Att vistas i naturen, minska skärmtiden på kvällen och att öva på närvaro i det du gör är också kraftfulla verktyg för att minska stress.'
+    }
+];
 ---
-<BaseLayout title="Minska Stress & Hitta Inre Lugn">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Minska Stress & Hitta Inre Lugn</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Minska Stress & Hitta Inre Lugn | Nyköping | Medidraken">
+    
+    <SymptomHero
+        title="Minska Stress & Hitta Inre Lugn"
+        subtitle="Verktyg och Stöd för ett Mer Balanserat Liv"
+        image={heroImage}
+        imageAlt="Person som finner inre lugn i vacker natur"
+        buttonText="Boka Tid för Återhämtning"
+        buttonLink="/kontakt"
+    >
+        I dagens höga tempo är det lätt att tappa fotfästet och känna sig överväldigad av stress. 
+        Men det är fullt möjligt att hitta tillbaka till ett tillstånd av inre ro och balans. 
+        Genom våra behandlingar och kurser får du hjälp att lugna nervsystemet, släppa djupa 
+        spänningar och lära dig konkreta verktyg för att navigera vardagen med mer harmoni.
+    </SymptomHero>
+
+    <SymptomMethodsThreeCol
+        title="Vägar till Minskad Stress"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Vi erbjuder flera vägar för att hjälpa dig minska stress och öka ditt inre lugn. Välj det som passar dig bäst, eller kombinera behandlingar med egen träning för optimal effekt.
+        </p>
+    </SymptomMethodsThreeCol>
+
+    <SymptomCTA
+        title="Ta Första Steget Mot ett Lugnare Liv"
+        ctaButtonText="Hör av Dig till Oss"
+        ctaSubject="minska-stress"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Du behöver inte hantera stressen ensam. Låt oss hjälpa dig att hitta 
+            verktygen och stödet för en mer balanserad och harmonisk vardag.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Stresshantering & Inre Lugn"
+        faqs={faqs}
+    />
+
 </BaseLayout>

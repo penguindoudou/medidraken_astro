@@ -70,7 +70,7 @@ export const primaryMenu = {
         },
         {
           "title": "Ledvärk, Ledbesvär & Idrottsskador",
-          "link": "/symtom/ledvark-idrottsskador/",
+          "link": "/symtom/ledbesvar-idrottsskador/",
           "children": [
             {
               "title": "Ont i knän & knäbesvär",

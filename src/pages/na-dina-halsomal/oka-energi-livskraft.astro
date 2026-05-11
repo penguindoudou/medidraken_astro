@@ -1,12 +1,107 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SymptomHero from '../../components/symptom/SymptomHero.astro';
+import SymptomMethodsThreeCol from '../../components/symptom/SymptomMethodsThreeCol.astro';
+import SymptomCTA from '../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../assets/images/hero_symptoms4.png';
+import treatmentImage from '../../assets/images/tuina_girl_wide2.png';
+import qigongImage from '../../assets/images/qigong_johannes_instructing_group_all_facing_camera_on_green_grass_in_front_of_lake_murky_weather_white_sky_almost_white_looking_lake.jpg';
+import taichiImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+
+const methods = [
+    {
+        title: 'Akupunktur & TuiNa',
+        desc: 'Energigivande behandlingar som löser upp muskelspänningar och blockeringar, förbättrar cirkulationen och hjälper kroppen att ladda batterierna på djupet.',
+        image: treatmentImage,
+        alt: 'Behandling med Akupunktur och TuiNa för ökad energi',
+        url: '/behandling/',
+        linkText: '→ Läs mer om våra behandlingar',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Medicinsk Qigong',
+        desc: 'Bygg upp din livskraft (Qi) inifrån med stärkande andningsövningar och rörelser som fyller dig med ny energi och mental klarhet.',
+        image: qigongImage,
+        alt: 'Medicinsk Qigong för ökad livskraft och energi',
+        url: '/kurser/medicinsk-qigong/',
+        linkText: '→ Läs mer om Medicinsk Qigong',
+        theme: 'sky' as const
+    },
+    {
+        title: 'Tai Chi',
+        desc: 'Stärkande och flödande rörelser som ger dig bättre uthållighet, stabiliserar din energi och bygger upp en stark grund i din kropp.',
+        image: taichiImage,
+        alt: 'Tai Chi för uthållighet och styrka',
+        url: '/kurser/tai-chi/',
+        linkText: '→ Läs mer om Tai Chi',
+        theme: 'accent' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Hur bygger jag bäst upp min energi på lång sikt?',
+        answer: 'Ett hållbart sätt att bygga energi är att kombinera djup återhämtning med stärkande, balanserad rörelse. Qigong och Tai Chi är utmärkta för att bygga upp din grundenergi över tid, medan behandlingar som Akupunktur och TuiNa kan hjälpa till att bryta mönster av trötthet och stagnerad energi.'
+    },
+    {
+        question: 'Är behandlingarna utmattande om jag redan har låg energi?',
+        answer: 'Nej, tvärtom. Våra behandlingar anpassas alltid efter din nuvarande energinivå. Om du är mycket trött fokuserar vi på mjuk, stärkande behandling som hjälper dig att fylla på snarare än att anstränga dig.'
+    },
+    {
+        question: 'Kan jag träna Qigong eller Tai Chi även om jag är väldigt trött?',
+        answer: 'Absolut. Eftersom rörelserna är mjuka och anpassningsbara fungerar de utmärkt även när energin är låg. Träningen genererar energi. Många upplever att de känner sig piggare efter ett pass.'
+    },
+    {
+        question: 'Hur ofta behöver jag komma för att märka skillnad?',
+        answer: 'Många känner en uppfriskande effekt direkt. För att etablera en stabilare och högre energinivå rekommenderar vi regelbundenhet. En grundkurs i Qigong eller Tai Chi kombinerat med egen träning hemifrån, eller en behandlingsserie på 5 gånger ger ofta en tydlig märkbar ökning i våra klienters dagliga energinivåer förutsatt att de upprätthåller sunda vanor i sin vardag.'
+    }
+];
 ---
-<BaseLayout title="Öka Energi & Livskraft i Vardagen">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Öka Energi & Livskraft i Vardagen</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout 
+    title="Öka Energi & Livskraft | Nyköping | Medidraken"
+    description="Känner du dig dränerad? Vi hjälper dig att bygga upp din inre energi och livskraft med Akupunktur, TuiNa, Qigong och Tai Chi i Nyköping."
+>
+    
+    <SymptomHero
+        title="Öka Energi & Livskraft"
+        subtitle="Bygg upp din inre styrka och uthållighet"
+        image={heroImage}
+        imageAlt="Person med stark livskraft"
+        buttonText="Boka Tid för Ny Energi"
+        buttonLink="/kontakt"
+    >
+        Känner du dig ofta dränerad eller saknar du den där gnistan i vardagen? 
+        Vi hjälper dig att fylla på dina depåer och återfå din naturliga vitalitet. 
+        Genom våra stärkande behandlingar och kurser hjälper vi kroppen att öka energin och bygga en hållbar grund för ett aktivt och sunt liv.
+    </SymptomHero>
+
+    <SymptomMethodsThreeCol
+        title="Vägar till Mer Energi"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Välj den väg som passar dig bäst för att fylla på reserverna. Oavsett om du föredrar att ta emot stärkande behandlingar eller själv vill lära dig verktyg för att generera energi genom rörelse, finns vi här för dig.
+        </p>
+    </SymptomMethodsThreeCol>
+
+    <SymptomCTA
+        title="Börja Bygga Din Livskraft Idag"
+        ctaButtonText="Hör av Dig till Oss"
+        ctaSubject="oka-energi"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Låt oss hjälpa dig att hitta tillbaka till din naturliga energi. 
+            Vi guidar dig till de metoder som bäst stödjer din väg mot ökad vitalitet.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Energi & Livskraft"
+        faqs={faqs}
+    />
+
 </BaseLayout>
