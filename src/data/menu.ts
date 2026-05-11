@@ -62,7 +62,7 @@ export const primaryMenu = {
               "children": []
             },
             {
-              "title": "Yrsel & Balansproblem",
+              "title": "Balansproblem",
               "link": "/symtom/huvudvark/balansproblem/",
               "children": []
             }
