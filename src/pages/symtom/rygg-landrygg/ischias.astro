@@ -13,7 +13,7 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
 const methods = [
     {
         title: 'TuiNa-massage',
-        desc: 'TuiNa-massage är mycket effektivt för att mjuka upp de djupt liggande muskelspänningar i säte och ländrygg som ofta är den fysiska orsaken till att ischiasnerven hamnar i kläm och ger goda förutsättningar för minskad smärta och förbättrad rörlighet och funktion.',
+        desc: 'TuiNa-massage är mycket effektivt för att mjuka upp de djupt liggande muskelspänningar i säte och ländrygg som ofta är den fysiska orsaken till att ischiasnerven hamnar i kläm. Detta ger kroppen goda förutsättningar för minskad smärta samt förbättrad rörlighet och funktion.',
         image: tuinaManImage,
         alt: 'TuiNa-massage för att lösa upp tryck från spända muskler',
         url: '/behandling/tuina-massage/',
@@ -22,9 +22,9 @@ const methods = [
     },
     {
         title: 'Akupunktur',
-        desc: 'Akupunktur stimulerar och stärker kroppens energisystem och egna läkningsförmåga för att ge goda förutsättningar för att minska inflammation och utstrålande smärta.',
+        desc: 'Akupunktur stimulerar och stärker kroppens återhämtningssystem för att ge goda förutsättningar för att minska den utstrålande smärtan.',
         image: acupunctureImage,
-        alt: 'Akupunktur för ischias och inflammation',
+        alt: 'Akupunktur vid ischiasbesvär',
         url: '/behandling/akupunktur/',
         linkText: '→ Läs mer om Akupunktur',
         theme: 'sky' as const
@@ -33,56 +33,53 @@ const methods = [
 
 const faqs = [
     {
-        question: 'Finns olika typer av ischias?',
-        answer: 'Ischiassmärtan kan bero på att ischiasnervens rot är i kläm av en skadad disk i ryggen men kan också bero på nedsatt cirkulation, tryck eller skada närmare höft och ben. Vi har hjälpt många klienter med olika typer av ischias.'
+        question: 'Finns olika typer av ischiasbesvär?',
+        answer: 'Ischiassmärtan kan bero på att ischiasnervens rot är i kläm av en skadad disk i ryggen men kan också bero på nedsatt cirkulation, tryck eller skada närmare höft och ben. Vi har hjälpt många klienter med olika typer av ischiasbesvär.'
     },
     {
         question: 'Kan behandlingen göra det värre i början?',
         answer: 'Efter en djupgående behandling kan du uppleva en tillfällig "återhämtningsvärk" eller ömhet i musklerna likt träningsvärk, vilket är normalt. Själva nervsmärtan brukar dock inte förvärras. Vi för alltid en noggrann dialog med dig för att säkerställa att behandlingen är trygg och anpassad efter din reaktion.'
     },
     {
-        question: 'Vad kan jag själv göra för att förebygga så att jag inte får ischias igen?',
+        question: 'Vad kan jag själv göra för att förebygga så att jag inte får ischiasbesvär igen?',
         answer: 'När vi har minskat den akuta smärtan är det viktigt att du stärker muskulaturen. Regelbunden praktik av Tai Chi och Qigong är utmärkta verktyg för att bygga en stark, balanserad och stabil grund på lång sikt.'
     }
 ];
 ---
 
-<BaseLayout title="Behandling av Ischias & Smärta i Benet i Nyköping | Medidraken">
+<BaseLayout title="Behandling av Ischiasbesvär & Utstrålande Smärta i Nyköping | Medidraken">
     
     <SymptomHero
-        title="Ischias & Utstrålande Smärta"
+        title="Ischiasbesvär & Utstrålande Smärta"
         subtitle="Minska Smärta & Förbättra Rörligheten"
         image={heroImage}
         imageAlt="Ischias och utstrålande smärta behandling"
-        buttonText="Behandla Ischias"
+        buttonText="Få Hjälp Med Ischiasbesvär"
         buttonLink="/kontakt"
     >
-        Ischiassmärta strålar ofta från ländryggen, ilar genom skinka, 
-        höft och ben. Kan vara oerhört intensivt och begränsande.
+        Ischiassmärta strålar ofta från ländryggen, ilar genom säte, 
+        höft och ben och kan vara oerhört intensivt och begränsande.
         
-        Orsaker kan vara längre stillasittande, plötsliga tunga, felaktiga belastningar och stress.
+        Orsaker kan vara längre stillasittande, plötsliga tunga, felaktig belastning eller stress.
         
-        Med TCM:s behandlingsmetoder fokuserar vi på att minska trycket och stärka energisystemet kring ischiasnerven så att du får goda förutsättningar för 
-        minskad smärta och förbättrad rörlighet.
+        Med TCM:s metoder fokuserar vi på att avlasta området och stärka  stärka cirkulationen kring ischiasnerven, 
+        vilket ger din kropp goda förutsättningar för minskad smärta och förbättrad rörlighet.
     </SymptomHero>
 
     <SymptomMethods
-        title="Hur vi Behandlar Ischias & Utstrålande Smärta"
+        title="Hur Vi Arbetar Vid Ischiasbesvär & Utstrålande Smärta"
         methods={methods}
     >
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
-            Vid ischiassmärta är nerven ofta påverkad av tryck från spända muskler i ländrygg/säte och begränsad cirkulation.
+            Vid ischiassmärta är nerven ofta påverkad av tryck från spända muskler i ländrygg och säte samt begränsad cirkulation.
         </p>
         <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-6">
-            Vi erbjuder två kompletterande metoder för att hjälpa din kropp släppa spänningarna och öka cirkulationen. De kan användas var för sig eller i kombination.
-        </p>
-        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto">
-            Hör av dig så hittar vi tillsammans det upplägg som passar dig bäst.
+            Vi erbjuder kompletterande metoder för att hjälpa din kropp släppa dessa spänningar och öka cirkulationen.
         </p>
     </SymptomMethods>
 
     <SymptomCTA
-        title="Få Hjälp Med Din Ischias"
+        title="Få Hjälp Med Ischiasbesvär"
         ctaButtonText="Hör av Dig & Boka Behandling"
         ctaSubject="ischias"
     >
@@ -92,7 +89,7 @@ const faqs = [
     </SymptomCTA>
 
     <SymptomFAQ
-        title="Vanliga Frågor om Behandling av Ischias"
+        title="Vanliga Frågor om Behandling av Ischiasbesvär"
         faqs={faqs}
     />
 

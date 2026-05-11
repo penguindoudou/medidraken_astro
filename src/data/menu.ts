@@ -20,7 +20,7 @@ export const primaryMenu = {
               "children": []
             },
             {
-              "title": "Ischias & Smärta som strålar i benet",
+              "title": "Ischiasbesvär & Smärta som strålar i benet",
               "link": "/symtom/rygg-landrygg/ischias/",
               "children": []
             },
@@ -90,8 +90,8 @@ export const primaryMenu = {
           ]
         },
         {
-          "title": "Sömnproblem & Insomnia",
-          "link": "/symtom/somnproblem-insomnia/",
+          "title": "Sömnbesvär",
+          "link": "/symtom/somnproblem/",
           "children": []
         },
         {

@@ -13,17 +13,8 @@ import taichiImage from '../../assets/images/taichi_hero6.png';
 
 const methods = [
     {
-        title: 'Akupunktur',
-        desc: 'Akupunktur stimulerar kroppens eget immunförsvar och hjälper till att bygga upp motståndskraften inifrån, så att du blir mindre mottaglig för förkylningar och infektioner.',
-        image: acupunctureImage,
-        alt: 'Akupunktur för ett starkare immunförsvar',
-        url: '/behandling/akupunktur/',
-        linkText: '→ Läs mer om Akupunktur',
-        theme: 'sky' as const
-    },
-    {
         title: 'TuiNa-massage',
-        desc: 'TuiNa-massage ökar blodcirkulationen och energiflödet, vilket stöttar kroppens förmåga att rensa ut slaggprodukter och snabbare återhämta sig från sjukdom.',
+        desc: 'TuiNa-massage ökar cirkulationen, löser upp muskulära spänningar och stagnation i kroppens energisystem. Genom att öka blodcirkulationen och främja kroppens naturliga flöde stöttas din förmåga att återhämta dig effektivt.',
         image: tuinaManImage,
         alt: 'TuiNa-massage stärker kroppens vitalitet',
         url: '/behandling/tuina-massage/',
@@ -31,8 +22,17 @@ const methods = [
         theme: 'accent' as const
     },
     {
+        title: 'Akupunktur',
+        desc: 'Akupunktur används för att skapa lugn och balans i kroppen. Behandlingen hjälper din kropp att lösa upp spänningar, stimulera kroppens energiflöde och bygga upp sin naturliga inre motståndskraft.',
+        image: acupunctureImage,
+        alt: 'Akupunktur för ett starkare immunförsvar',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    },
+    {
         title: 'Tai Chi & Qigong',
-        desc: 'Medvetna rörelser och andningsövningar som långsiktigt stärker din inre energi (Qi), sänker stress och skapar en stabil grund för ett motståndskraftigt immunförsvar.',
+        desc: 'Genom medvetna rörelser och andning tränar du upp en inre balans och lugn. Det är ett kraftfullt verktyg för att bygga upp din inre energi, sänka dina stressnivåer och bygga upp en stabil grund för din hälsa.',
         image: taichiImage,
         alt: 'Tai Chi och Qigong stärker immunförsvaret inifrån',
         url: '/kurser',
@@ -43,35 +43,38 @@ const methods = [
 
 const faqs = [
     {
-        question: 'Kan akupunktur hjälpa mot återkommande förkylningar?',
-        answer: 'Ja, inom traditionell kinesisk medicin ser vi återkommande förkylningar som ett tecken på en försvagad "Wei Qi" (kroppens försvarsenergi). Akupunktur hjälper till att stärka denna energi och balansera immunförsvaret, vilket gör dig mer motståndskraftig.'
+        question: 'Kan akupunktur och TuiNa-massage bidra till bättre hälsa vid återkommande förkylningar?',
+        answer: "Inom traditionell kinesisk medicin arbetar vi med att stärka kroppens balans och det vi kallar 'Wei Qi' – kroppens motståndskraft. Akupunktur och TuiNa-massage kan fungera som ett stödjande komplement för att skapa lugn och balans i kroppen, vilket många av våra klienter upplever ger dem bättre förutsättningar att hålla sig friska."
     },
     {
-        question: 'Varför blir jag sjuk så fort jag stressar ner?',
-        answer: 'Långvarig stress håller kroppen i ett konstant "kamp- och flyktläge" vilket tröttar ut immunförsvaret. När du äntligen slappnar av sjunker stresshormonerna, och det försvagade immunförsvaret orkar inte stå emot infektioner. Våra behandlingar hjälper dig att minska grundstressen så att immunförsvaret kan återhämta sig.'
+        question: 'Varför blir jag ofta sjuk när stressen släpper?',
+        answer: 'När kroppen under lång tid varit i ett högstressläge prioriteras ofta återhämtningssystemen ned. När stressen väl släpper får immunförsvaret en chans att återhämta sig, vilket ibland kan yttra sig i att man blir sårbar för infektioner. Våra behandlingar syftar till att hjälpa kroppen att hitta en mer hållbar balans i vardagen, snarare än att bara reagera på stresstoppar.'
     },
     {
-        question: 'När är det bäst att behandla – under en förkylning eller förebyggande?',
-        answer: 'Vi behandlar gärna förebyggande för att bygga upp ditt immunförsvar innan du blir sjuk. Om du redan har en begynnande förkylning kan vi ibland hjälpa kroppen att mota bort den snabbare, men vid kraftig infektion med hög feber rekommenderar vi att du stannar hemma och vilar.'
+        question: 'Kan jag komma behandling när jag är förkyld?',
+        answer: 'Vi arbetar främst förebyggande för att hjälpa dig bygga upp din inre balans och motståndskraft över tid. Om du har en pågående förkylning rekommenderar vi generellt vila. Vid kraftiga symtom eller hög feber bör du alltid låta kroppen vila och rådfråga vården.'
     },
     {
-        question: 'Hur kan Tai Chi och Qigong hjälpa mitt immunförsvar?',
-        answer: 'Forskning visar att långsamma, medvetna rörelser kombinerat med djupandning ökar kroppens energi och balans. Genom att regelbundet utöva Medicinsk Qigong eller Tai Chi minskar du stress och stärker din lungkapacitet, vilket är en avgörande del för ett starkt immunförsvar inom TKM.'
+        question: 'Hur kan Tai Chi och Qigong hjälpa mig när jag lätt blir förkyld?',
+        answer: 'Regelbundna övningar i Tai Chi och Qigong kombinerar rörelse, medveten andning och mental närvaro. Många upplever att detta är ett effektivt sätt att sänka stressnivåerna och förbättra den allmänna återhämtningen. När kroppen är i vila och balans har den bättre förutsättningar att fungera optimalt.'
     },
     {
-        question: 'Hur många behandlingar krävs för att bygga upp immunförsvaret?',
-        answer: 'Att stärka ett svagt immunförsvar är en process som tar lite tid. Vi rekommenderar ofta en grundkur på 5-10 behandlingar för att ge kroppen en chans att bygga upp sin motståndskraft från grunden.'
+        question: 'Hur många behandlingar behövs för att se resultat?',
+        answer: 'Det är individuellt hur kroppen svarar eftersom alla är olika. Att stärka kroppens inre motståndskraft och förbättra sin hälsa kan ta tid. Vi rekommenderar ofta en serie på 5–10 behandlingar för att ge kroppen kontinuitet och möjlighet att integrera effekterna av behandlingen.'
     }
 ];
 ---
 
-<BaseLayout title="Behandling av Svagt Immunförsvar & Förkylning i Nyköping | Medidraken">
+<BaseLayout 
+    title="Stärk din naturliga motståndskraft i Nyköping"
+    description="Söker du stöd för att hålla dig frisk? Vi hjälper dig att stärka kroppens energisystem genom akupunktur och TuiNa. Välkommen till Medidraken i Nyköping."
+>
     
     <SymptomHero
         title="Ofta Förkyld & Svagt Immunförsvar"
-        subtitle="Bygg Upp Din Inre Motståndskraft"
+        subtitle="Stärk Din Naturliga Motståndskraft"
         image={heroImage}
-        imageAlt="Behandling för att stärka immunförsvaret"
+        imageAlt="Behandling för dig som ofta blir förkyld"
         buttonText="Stärk Din Inre Motståndskraft"
         buttonLink="/kontakt"
     >
@@ -100,13 +103,12 @@ const faqs = [
     <SymptomCTA
         title="Få Hjälp Att Bli Mer Motståndskraftig"
         ctaButtonText="Hör av Dig & Boka Behandling"
-        ctaSubject="immunforsvar"
+        ctaSubject="ofta-forkyld"
     >
         <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
-            Vi stödjer din kropp att bygga upp ett starkt och stabilt immunförsvar.
+            Ett fritt energiflöde och låga stressnivåer skapar goda förutsättningar för vitalitet och ett starkt immunförsvar. 
             
-            Många av våra patienter upplever ökad vitalitet och färre 
-            sjukdagar efter en behandlingsperiod.
+            Många av våra klienter upplever en tydlig skillnad i sin allmänna hälsa och ork efter en period av regelbundna behandlingar och träning. 
         </p>
     </SymptomCTA>
 
