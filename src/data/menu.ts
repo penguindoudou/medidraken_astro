@@ -48,22 +48,22 @@ export const primaryMenu = {
           ]
         },
         {
-          "title": "Huvudvärk & Yrsel",
-          "link": "/symtom/huvudvark-yrsel/",
+          "title": "Huvudvärk & Balansproblem",
+          "link": "/symtom/huvudvark/",
           "children": [
             {
               "title": "Spänningshuvudvärk & Stresshuvudvärk",
-              "link": "/symtom/huvudvark-yrsel/spanningshuvudvark-stresshuvudvark/",
+              "link": "/symtom/huvudvark/spanningshuvudvark-stresshuvudvark/",
               "children": []
             },
             {
               "title": "Migrän",
-              "link": "/symtom/huvudvark-yrsel/migran/",
+              "link": "/symtom/huvudvark/migran/",
               "children": []
             },
             {
               "title": "Yrsel & Balansproblem",
-              "link": "/symtom/huvudvark-yrsel/yrsel-balansproblem/",
+              "link": "/symtom/huvudvark/balansproblem/",
               "children": []
             }
           ]

@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import SymptomHero from '../../../components/symptom/SymptomHero.astro';
+import SymptomMethods from '../../../components/symptom/SymptomMethods.astro';
+import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../../assets/images/hero_huvudvark3.png';
+import acupunctureImage from '../../../assets/images/aku_doll6.png';
+import tuinaImage from '../../../assets/images/tuina_head_woman.png';
+
+const methods = [
+    {
+        title: 'Akupunktur',
+        desc: 'Akupunktur är effektivt för att lugna nervsystemet och återställa kroppens inre balans. Genom att stödja specifika punkter hjälper vi till att reglera nervsystemet, förbättra cirkulationen och minska stress.',
+        image: acupunctureImage,
+        alt: 'Akupunktur för att stödja kroppens stabilitet och återställa balans',
+        url: '/behandling/akupunktur/',
+        linkText: '→ Läs mer om Akupunktur',
+        theme: 'sky' as const
+    },
+    {
+        title: 'TuiNa-massage',
+        desc: 'Ostadighet och balansproblem är ofta kopplade till kraftiga spänningar i nacke, axlar och käkar som påverkar blodflödet och nerverna upp till huvudet. Med TuiNa-massage mjukar vi upp dessa muskelspänningar och stödjer cirkulationen till huvudet.',
+        image: tuinaImage,
+        alt: 'TuiNa-massage mot spänningar som utlöser ostadighet',
+        url: '/behandling/tuina-massage/',
+        linkText: '→ Läs mer om TuiNa-Massage',
+        theme: 'accent' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Kan spänningar i nacken verkligen orsaka ostadighet?',
+        answer: 'Ja, det är mycket vanligt. Så kallad cervikogen ostadighet uppstår när stela muskler och leder i nacken påverkar nervsystemets och kroppens förmåga att tolka balanssignaler. Genom att lösa upp dessa spänningar kan känslan av ostadighet minska avsevärt.'
+    },
+    {
+        question: 'Hur många besök behövs innan det blir bättre?',
+        answer: 'Det är individuellt och beror på hur länge du haft besvären och vad som orsakar dem. Många upplever en ökad känsla av stabilitet och balans allteftersom spänningarna i nacke och axlar släpper.'
+    },
+    {
+        question: 'Kan stress orsaka spänningar och balansproblem?',
+        answer: 'Stress påverkar hela nervsystemet och kan göra att kroppens balanssystem blir överkänsligt, samtidigt som det ofta skapar muskelspänningar. Både akupunktur och TuiNa-massage är djupt avslappnande metoder som hjälper till att sänka stressnivåerna och återhämta nervsystemet, vilket ofta har en mycket positiv effekt på stressrelaterad ostadighet.'
+    }
+];
+---
+
+<BaseLayout 
+    title="Upplever du Ostadighet & Obalans? Få Hjälp med Nackspänningar i Nyköping & Gnesta | Medidraken"
+    description="Upplever du ostadighet och spänningar i nacke och axlar? Vi stödjer kroppen med akupunktur & TuiNa-massage för djup avspänning och ökad stabilitet."
+>
+    
+    <SymptomHero
+        title="Balansproblem och Spänningar i Nacke och Axlar"
+        subtitle="Vi Hjälper Dig Med Djup Avspänning för Ökad Stabilitet"
+        image={heroImage}
+        imageAlt="Hjälp med nackrelaterade spänningar och ostadighet"
+        buttonText="Få Hjälp Med Nackrelaterade Spänningar"
+        buttonLink="/kontakt"
+    >
+        <h2 class="text-2xl font-serif text-brand-earth-dark mb-3">Varför Nackspänningar Påverkar Balansen</h2>
+        <p class="mb-4">
+            Många som upplever en känsla av ostadighet har samtidigt kraftiga spänningar i nacke, käkar och axlar. Vi arbetar med att lösa upp dessa spänningar, vilket ofta leder till en bättre cirkulation och en känsla av ökad trygghet i kroppen.
+        </p>
+        
+        <p class="mt-6 text-sm italic font-medium text-brand-sky-bright/90 bg-brand-sand-light/50 p-4 rounded-lg border border-brand-sand/30">
+            Observera: Yrsel är ett symptom som kan kräva medicinsk utredning. Vid plötslig eller kraftig yrsel bör du alltid kontakta din vårdcentral.
+        </p>
+    </SymptomHero>
+
+    <SymptomMethods
+        title="Så fungerar våra metoder för avspänning"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Vi erbjuder kompletterande metoder för att balansera nervsystemet och hjälpa kroppen att släppa inre spänningar som byggts upp över tid. 
+        </p>
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            På så sätt ger vi din kropp goda förutsättningar för att minska spänningar och öka känslan av stabilitet i din vardag. 
+        </p>
+    </SymptomMethods>
+
+    <SymptomCTA
+        title="Låt Oss Hjälpa Dig Med Dina Spänningar"
+        ctaButtonText="Hör av Dig & Boka Tid"
+        ctaSubject="balansproblem"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Att lösa upp djupliggande spänningar är en process. Många upplever en ökad känsla av trygghet och stabilitet i kroppen när spänningarna i nacken och axlarna minskar.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Nackrelaterade Spänningar & Ostadighet"
+        faqs={faqs}
+    />
+
+</BaseLayout>
