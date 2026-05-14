@@ -1,12 +1,110 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SymptomHero from '../../components/symptom/SymptomHero.astro';
+import SymptomMethodsThreeCol from '../../components/symptom/SymptomMethodsThreeCol.astro';
+import SymptomCTA from '../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+import treatmentImage from '../../assets/images/tuina_girl_wide.png';
+import qigongImage from '../../assets/images/qigong_johannes_instructing_group_all_facing_camera_on_green_grass_in_front_of_lake_murky_weather_white_sky_almost_white_looking_lake.jpg';
+import taichiImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+
+const methods = [
+    {
+        title: 'Tai Chi',
+        desc: 'Den optimala träningen för balans och koordination. Genom flödande viktöverföringar bygger du upp en stark, stabil och smidig grund.',
+        image: taichiImage,
+        alt: 'Tai Chi för stabilitet och balans',
+        url: '/kurser/tai-chi/',
+        linkText: '→ Läs mer om Tai Chi',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Medicinsk Qigong',
+        desc: 'Träna upp din kroppskontroll och mjukhet genom långsamma, medvetna rörelser. Förbättrar både fysisk flexibilitet och mental närvaro.',
+        image: qigongImage,
+        alt: 'Medicinsk Qigong för mjukhet och kroppskontroll',
+        url: '/kurser/medicinsk-qigong/',
+        linkText: '→ Läs mer om Medicinsk Qigong',
+        theme: 'sky' as const
+    },
+    {
+        title: 'Akupunktur & TuiNa',
+        desc: 'Djupgående behandlingar som löser upp muskelspänningar, mjukar upp stela leder och återskapar kroppens naturliga rörlighet och cirkulation.',
+        image: treatmentImage,
+        alt: 'Behandling med Akupunktur och TuiNa för ökad rörlighet',
+        url: '/behandling/',
+        linkText: '→ Läs mer om våra behandlingar',
+        theme: 'accent' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Vilken metod är bäst för att förbättra min balans?',
+        answer: 'Tai Chi är känt för sin förmåga att förbättra balans och förhindra fallolyckor. Den långsamma och medvetna viktöverföringen tränar upp ditt nervsystem och stärker musklerna som stabiliserar kroppen. Om du samtidigt har stelhet kan kombinationen med Akupunktur och TuiNa ge snabbare resultat.'
+    },
+    {
+        question: 'Hjälper behandlingarna om jag är väldigt stel i lederna?',
+        answer: 'Ja. Akupunktur och TuiNa är utmärkta för att behandla ledstelhet och muskelspänningar. Genom att öka blodgenomströmningen och släppa på blockeringar hjälper vi lederna att återfå sin naturliga rörlighet och flexibilitet.'
+    },
+    {
+        question: 'Jag har dålig koordination. Kan jag ändå lära mig Qigong eller Tai Chi?',
+        answer: 'Absolut! Både Qigong och Tai Chi är till för att träna upp koordinationen. Du lär dig i din egen takt. De långsamma rörelserna gör det lättare att följa med och bygger succesivt upp samarbetet mellan hjärna och kropp.'
+    },
+    {
+        question: 'Hur snabbt kan jag förvänta mig att bli rörligare?',
+        answer: 'Många börjar känna sig mjukare och mer rörliga inom de 3-5 första behandlingarna eller träningspassen. För att skapa en bestående förändring i kroppens rörelsemönster och flexibilitet rekommenderar vi kontinuerlig träning samt en serie behandlingar vid behov.'
+    }
+];
 ---
-<BaseLayout title="Förbättra Balans, Rörlighet & Kroppskontroll">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Förbättra Balans, Rörlighet & Kroppskontroll</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout 
+    title="Förbättra Balans, Rörlighet & Kroppskontroll | Nyköping | Medidraken"
+    description="Få en smidigare, starkare och mer balanserad kropp. Upptäck hur Akupunktur, TuiNa, Qigong och Tai Chi i Nyköping ökar din rörlighet och kroppskontroll."
+>
+    
+    <SymptomHero
+        title="Förbättra Balans, Rörlighet & Kroppskontroll"
+        subtitle="Skapa En Smidig, Stark och Stabil Kropp"
+        image={heroImage}
+        imageAlt="Person i god balans med mjuk rörlighet"
+        buttonText="Boka Tid för Din Kropp"
+        buttonLink="/kontakt"
+    >
+        Vill du kunna röra dig fritt och säkert i vardagen? Oavsett om du vill 
+        känna dig mjukare och bekvämare i din kropp, förbättra din idrottsprestation eller känna dig tryggare 
+        i din balans, hjälper vi dig att nå dit. Vi erbjuder metoder som bygger upp din 
+        stabilitet, flexibilitet och koordination från grunden så din kropp får goda möjligheter att röra sig friare och säkrare.
+    </SymptomHero>
+
+    <SymptomMethodsThreeCol
+        title="Vägen till en Smidigare Kropp"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Vi erbjuder flera vägar till ökad fysisk frihet. Våra behandlingar löser upp 
+            stelhet och spänningar som hindrar din rörlighet, medan våra träningsmetoder 
+            ger dig verktygen att själv träna upp din balans och kroppskontroll.
+        </p>
+    </SymptomMethodsThreeCol>
+
+    <SymptomCTA
+        title="Ta Första Steget Mot En Smidigare Kropp"
+        ctaButtonText="Hör av Dig & Boka Tid"
+        ctaSubject="forbattra-balans-rorlighet"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Låt oss hjälpa dig att hitta tillbaka till naturlig rörlighet och stabilitet. 
+            Vi hjälper dig hitta rätt behandlingar och kurser som bäst stödjer dina personliga mål.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Balans & Rörlighet"
+        faqs={faqs}
+    />
+
 </BaseLayout>

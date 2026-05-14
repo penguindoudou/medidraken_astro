@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SymptomHero from '../../components/symptom/SymptomHero.astro';
+import SymptomMethodsThreeCol from '../../components/symptom/SymptomMethodsThreeCol.astro';
+import SymptomCTA from '../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../assets/images/qigong_bamboo.png';
+import qigongImage from '../../assets/images/qigong_johannes_instructing_group_all_facing_camera_on_green_grass_in_front_of_lake_murky_weather_white_sky_almost_white_looking_lake.jpg';
+import taichiImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+import treatmentImage from '../../assets/images/tuina_head_woman.png';
+
+const methods = [
+    {
+        title: 'Medicinsk Qigong',
+        desc: 'Träna upp din mentala närvaro och rensa tankarna. Genom medveten andning och lugna rörelser bygger du upp ett starkt, uthålligt fokus utan att dränera din energi.',
+        image: qigongImage,
+        alt: 'Medicinsk Qigong för mentalt fokus',
+        url: '/kurser/medicinsk-qigong/',
+        linkText: '→ Läs mer om Medicinsk Qigong',
+        theme: 'sky' as const
+    },
+    {
+        title: 'Tai Chi',
+        desc: 'Meditation i rörelse. Den optimala träningen för att synkronisera kropp och sinne, vilket ger dig en djupare koncentrationsförmåga och mental klarhet i vardagen.',
+        image: taichiImage,
+        alt: 'Tai Chi för mental styrka och klarhet',
+        url: '/kurser/tai-chi/',
+        linkText: '→ Läs mer om Tai Chi',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Akupunktur & TuiNa',
+        desc: 'Behandlingar som lugnar nervsystemet och stimulerar blodcirkulationen till huvudet. Effektivt för att skingra hjärndimma och ge hjärnan bästa möjliga förutsättningar.',
+        image: treatmentImage,
+        alt: 'Behandling med Akupunktur för ökad mental klarhet',
+        url: '/behandling/',
+        linkText: '→ Läs mer om våra behandlingar',
+        theme: 'accent' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Hur kan fysisk träning som Qigong och Tai Chi förbättra mitt fokus?',
+        answer: 'Genom att förena rörelse med medveten andning och mental närvaro tränar du upp hjärnans förmåga att stanna kvar i nuet. Detta minskar mentalt brus och bygger successivt upp starkare, uthålligare koncentrationsförmåga.'
+    },
+    {
+        question: 'Kan akupunktur hjälpa mot hjärndimma och mental trötthet?',
+        answer: 'Ja. Akupunktur är kraftfull metod för att balansera nervsystemet, förbättra cirkulationen och minska stresshormoner. När kroppen återfår balans får hjärnan lättare att sortera information och behålla klart fokus.'
+    },
+    {
+        question: 'Jag har väldigt svårt att sitta still och meditera. Fungerar dessa metoder ändå?',
+        answer: 'Absolut! Både Tai Chi och Qigong kallas ofta "meditation i rörelse". För många med mycket tankar eller myror i kroppen är det betydligt enklare att hitta mentalt fokus när kroppen får röra sig i lugnt, förutbestämt mönster jämfört med stillasittande meditation.'
+    },
+    {
+        question: 'Hur lång tid tar det innan jag märker skillnad?',
+        answer: 'Många upplever ökad mental klarhet och lugnare sinne direkt efter träningspass eller behandling. För att bygga upp långsiktig och stabil mental styrka rekommenderar vi kontinuerlig träning under några veckor till månader.'
+    }
+];
+---
+
+<BaseLayout 
+    title="Stärk Fokus & Mental Styrka | Nyköping | Medidraken"
+    description="Förbättra din koncentration, minska mental trötthet och bygg en stark inre grund. Upptäck hur Medicinsk Qigong, Tai Chi och Akupunktur i Nyköping ger dig skarpare fokus."
+>
+    
+    <SymptomHero
+        title="Stärk Fokus & Mental Styrka"
+        subtitle="Skapa Ett Skarpt, Klart och Fokuserat Sinne"
+        image={heroImage}
+        imageAlt="Symbol för mental klarhet och fokus"
+        buttonText="Boka Tid för Ditt Sinne"
+        buttonLink="/kontakt"
+    >
+        Vill du behålla koncentrationen hela dagen utan att bli dränerad? 
+        Oavsett om du vill prestera bättre i arbetslivet, hantera krävande vardag med större 
+        närvaro, eller bara känna dig mer mentalt vaken kan vi hjälpa dig. 
+        Våra metoder stödjer dig att rensa hjärndimma, bygga upp mental uthållighet och 
+        ger verktyg för ett starkt och ihärdigt fokus.
+    </SymptomHero>
+
+    <SymptomMethodsThreeCol
+        title="Vägen till Mental Klarhet"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4">
+            Mental styrka och fokus handlar inte om att tvinga fram resultat, utan om att 
+            skapa rätt inre miljö för hjärnan att trivas i. Våra behandlingar nollställer nervsystemet, 
+            medan våra träningsmetoder lär dig aktivt styra och behålla din uppmärksamhet.
+        </p>
+    </SymptomMethodsThreeCol>
+
+    <SymptomCTA
+        title="Ta Första Steget Mot Ett Skarpare Sinne"
+        ctaButtonText="Hör av Dig & Boka Tid"
+        ctaSubject="stark-fokus-mental-styrka"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Låt oss hjälpa dig bygga upp mental uthållighet och hitta tillbaka 
+            till klart och ostört fokus. Vi guidar dig till behandlingar och kurser 
+            som bäst stödjer dina mål.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor om Fokus & Mental Styrka"
+        faqs={faqs}
+    />
+
+</BaseLayout>

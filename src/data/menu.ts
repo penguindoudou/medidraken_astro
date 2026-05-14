@@ -70,21 +70,21 @@ export const primaryMenu = {
         },
         {
           "title": "Ledvärk, Ledbesvär & Idrottsskador",
-          "link": "/symtom/ledbesvar-idrottsskador/",
+          "link": "/symtom/ledvark-idrottsskador/",
           "children": [
             {
               "title": "Ont i knän & knäbesvär",
-              "link": "/symtom/ledbesvar-idrottsskador/ont-i-knan-knabesvar/",
+              "link": "/symtom/ledvark-idrottsskador/ont-i-knan-knabesvar/",
               "children": []
             },
             {
               "title": "Ont i höfter & höftbesvär",
-              "link": "/symtom/ledbesvar-idrottsskador/ont-i-hofter-hoftbesvar/",
+              "link": "/symtom/ledvark-idrottsskador/ont-i-hofter-hoftbesvar/",
               "children": []
             },
             {
               "title": "Tennisarmbåge, Musarm & Värk i handleder",
-              "link": "/symtom/ledbesvar-idrottsskador/tennisarmbage-musarm/",
+              "link": "/symtom/ledvark-idrottsskador/tennisarmbage-musarm/",
               "children": []
             }
           ]
@@ -127,7 +127,7 @@ export const primaryMenu = {
         },
         {
           "title": "Stärka Fokus & Mental Styrka",
-          "link": "/na-dina-halsomal/starka-fokus-mental-styrka/",
+          "link": "/na-dina-halsomal/stark-fokus-mental-styrka/",
           "children": []
         },
         {
