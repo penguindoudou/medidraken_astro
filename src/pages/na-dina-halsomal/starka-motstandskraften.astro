@@ -1,12 +1,105 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SymptomHero from '../../components/symptom/SymptomHero.astro';
+import SymptomMethodsThreeCol from '../../components/symptom/SymptomMethodsThreeCol.astro';
+import SymptomCTA from '../../components/symptom/SymptomCTA.astro';
+import SymptomFAQ from '../../components/symptom/SymptomFAQ.astro';
+
+// Images
+import heroImage from '../../assets/images/hero_immune.png';
+import treatmentImage from '../../assets/images/tuina_girl_wide2.png';
+import qigongImage from '../../assets/images/qigong_johannes_instructing_group_all_facing_camera_on_green_grass_in_front_of_lake_murky_weather_white_sky_almost_white_looking_lake.jpg';
+import taichiImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+
+const methods = [
+    {
+        title: 'Akupunktur & TuiNa',
+        desc: 'Stärkande behandlingar som optimerar kroppens funktioner och hjälper till att bygga upp din inre sköld, det vi inom traditionell kinesisk medicin kallar Wei Qi.',
+        image: treatmentImage,
+        alt: 'Behandling med Akupunktur och TuiNa för starkare motståndskraft',
+        url: '/behandling/',
+        linkText: '→ Läs mer om våra behandlingar',
+        theme: 'accent' as const
+    },
+    {
+        title: 'Medicinsk Qigong',
+        desc: 'Proaktiv träning med meditativa rörelser och andningstekniker för att fylla på kroppens energidepåer och upprätthålla goda förutsättningar för optimal hälsa och vitalitet under årets alla årstider.',
+        image: qigongImage,
+        alt: 'Medicinsk Qigong för inre styrka och energi',
+        url: '/kurser/medicinsk-qigong/',
+        linkText: '→ Läs mer om Medicinsk Qigong',
+        theme: 'sky' as const
+    },
+    {
+        title: 'Tai Chi',
+        desc: 'Regelbunden och fokuserad rörelse som stärker kroppen inifrån och ut, vilket skapar goda förutsättningar för optimal hälsa och vitalitet under årets alla årstider.',
+        image: taichiImage,
+        alt: 'Tai Chi för hälsa och vitalitet',
+        url: '/kurser/tai-chi/',
+        linkText: '→ Läs mer om Tai Chi',
+        theme: 'accent' as const
+    }
+];
+
+const faqs = [
+    {
+        question: 'Vad är Wei Qi och hur påverkar det min hälsa?',
+        answer: 'Wei Qi är ett begrepp inom traditionell kinesisk medicin som kan liknas vid kroppens inre sköld eller immunförsvar. Det cirkulerar strax under huden och skyddar oss mot yttre påfrestningar. Genom våra behandlingar och träningsformer arbetar vi för att stärka din Wei Qi och därmed din naturliga motståndskraft.'
+    },
+    {
+        question: 'Hur bygger jag upp mitt försvar långsiktigt?',
+        answer: 'Att bygga en stark motståndskraft kräver kontinuitet. En kombination av regelbundna, balanserande behandlingar som Akupunktur och TuiNa, tillsammans med stärkande träning som Tai Chi eller Qigong, skapar goda förutsättningar för kroppen att bibehålla en stabil och robust hälsa.'
+    },
+    {
+        question: 'Hur hjälper Tai Chi och Qigong mig att hålla mig frisk?',
+        answer: 'De är utmärkta proaktiva verktyg för att bygga upp kroppen inifrån. Regelbunden träning ökar din kroppsmedvetenhet, sänker grundstressen och ser till att energin flödar fritt, vilket skapar en stabil grund för att behålla en hög vitalitet och stark hälsa.'
+    },
+    {
+        question: 'Hur ofta bör jag gå på behandling för att upprätthålla min hälsa?',
+        answer: 'När vi arbetar proaktivt rekommenderar vi ofta glesare, men regelbundna besök för att underhålla balansen. Många väljer att komma 1-2 gånger i månaden för att ge kroppen bästa möjliga stöd, men vi skräddarsyr alltid upplägget efter dina unika behov.'
+    }
+];
 ---
-<BaseLayout title="Stärka Immunförsvaret & Bygga Motståndskraft">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Stärka Immunförsvaret & Bygga Motståndskraft</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout title="Stärk Immunförsvar & Motståndskraft | Nyköping | Medidraken">
+    
+    <SymptomHero
+        title="Bygg Upp Din Naturliga Motståndskraft"
+        subtitle="För En Stark & Stabil Hälsa Året Om"
+        image={heroImage}
+        imageAlt="Person som utstrålar hälsa och motståndskraft"
+        buttonText="Börja Bygga Din Inre Styrka"
+        buttonLink="/kontakt"
+    >
+        Vill du ge din kropp de bästa förutsättningarna för att hålla sig stark och frisk? 
+        Genom att arbeta förebyggande kan vi hjälpa dig att bygga upp din inre energi och motståndskraft. 
+        Med akupunktur, TuiNa och stärkande träning skapar vi en stabil grund för din hälsa, 
+        så att du kan möta vardagens påfrestningar med ökad vitalitet och styrka.
+    </SymptomHero>
+
+    <SymptomMethodsThreeCol
+        title="Bygg Din Hälsa Från Grunden"
+        methods={methods}
+    >
+        <p class="text-lg text-neutral-700 leading-relaxed max-w-3xl mx-auto mb-4 text-center">
+            Vi erbjuder flera vägar för att hjälpa dig optimera din inre motståndskraft. Välj det som passar dig bäst.
+        </p>
+    </SymptomMethodsThreeCol>
+
+    <SymptomCTA
+        title="Börja Bygga Din Inre Styrka"
+        ctaButtonText="Hör av Dig & Boka Uppstart"
+        ctaSubject="stark-motstandskraft"
+    >
+        <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-4">
+            Ett fritt energiflöde och låga stressnivåer skapar goda förutsättningar för vitalitet 
+            och ett starkt inre försvar. Många upplever en skillnad i hälsa och ork efter en period av regelbunden träning/behandling.
+        </p>
+    </SymptomCTA>
+
+    <SymptomFAQ
+        title="Vanliga Frågor: Så Håller Du Dig Stark & Frisk"
+        faqs={faqs}
+    />
+
 </BaseLayout>
