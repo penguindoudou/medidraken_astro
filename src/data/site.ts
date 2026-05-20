@@ -34,5 +34,12 @@ export const siteConfig = {
       mapUrl: 'https://www.google.com/maps/place/Föreningsgatan+30,+613+31+Oxelösund',
       embedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2066.8284534722883!2d17.0984183!3d58.6698654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4658d55acbb92deb%3A0xe10deba15e378e0e!2sF%C3%B6reningsgatan%2030%2C%20613%2031%20Oxel%C3%B6sund!5e0!3m2!1ssv!2sse!4v1700000000000!5m2!1ssv!2sse'
     }
+  },
+  social: {
+    // facebook: 'https://www.facebook.com/Medidraken/?locale=sv_SE',
+    // instagram: 'https://instagram.com/shufflaz',
+    // linkedin: 'https://www.linkedin.com/company/medidraken',
+    // x: 'https://x.com/medidraken',
+    // youtube: 'https://www.youtube.com/medidraken',
   }
 };
