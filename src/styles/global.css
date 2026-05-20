@@ -66,7 +66,7 @@
   h5,
   h6 {
     @apply font-heading font-bold text-neutral-900;
-    hyphens: auto;
+    hyphens: manual;
     overflow-wrap: break-word;
   }
 
@@ -84,7 +84,7 @@
 
   p {
     @apply font-body text-base text-neutral-700 leading-relaxed;
-    hyphens: auto;
+    hyphens: manual;
     overflow-wrap: break-word;
   }
 
@@ -178,7 +178,7 @@ Custom Component Styles - Design System: "Jord & Himmel 2.0"
     /* Safe word break */
     word-break: break-word;
     /* Legacy support */
-    hyphens: auto;
+    hyphens: manual;
     /* Automatic hyphenation for Swedish */
 
     @media (min-width: 768px) {
