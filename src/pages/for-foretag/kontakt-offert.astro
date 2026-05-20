@@ -59,9 +59,10 @@ if (Astro.request.method === "POST") {
     const specialRequest = data.get("specialRequest");
     if (specialRequest && services.includes("Specialförfrågan")) text += `\nSpecialförfrågan Detaljer:\n${specialRequest}\n`;
     
-    text += `\nDeltagare: ${data.get("participants") || "-"}\n`;
+    text += `Deltagare: ${data.get("participants") || "-"}\n`;
     text += `Period: ${data.get("period") || "-"}\n`;
-    text += `Omfattning: ${data.get("sessions") || "-"}\n\n`;
+    text += `Omfattning: ${data.get("sessions") || "-"}\n`;
+    text += `Budget: ${data.get("budget") || "-"}\n\n`;
     
     const locationType = data.get("locationType");
     text += `Plats: ${locationType === 'hos_er' ? 'Hos Företaget' : 'Hos Medidraken'}\n`;
@@ -164,6 +165,7 @@ if (Astro.request.method === "POST") {
                         participants: '',
                         period: '',
                         sessions: 'Prova-på (1 tillfälle)',
+                        budget: '',
                         address: '',
                         clinic: '',
                         message: '',
@@ -366,7 +368,18 @@ if (Astro.request.method === "POST") {
                                     <option value="Jag är osäker / Berätta mer">Jag är osäker / Berätta mer</option>
                                 </select>
                             </div>
-
+                            <div>
+                                <label for="budget" class="block text-sm font-medium text-neutral-700 mb-1">Budget (valfritt)</label>
+                                <select id="budget" name="budget" x-model="budget"
+                                    class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
+                                    <option value="">-- Välj budget --</option>
+                                    <option value="Under 10 000 kr">Under 10 000 kr</option>
+                                    <option value="10 000 – 25 000 kr">10 000 – 25 000 kr</option>
+                                    <option value="25 000 – 50 000 kr">25 000 – 50 000 kr</option>
+                                    <option value="Över 50 000 kr">Över 50 000 kr</option>
+                                    <option value="Ej fastställd / Vet ej">Ej fastställd / Vet ej</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Plats för Genomförande -->
