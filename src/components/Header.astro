@@ -1,7 +1,7 @@
 ---
 import { primaryMenu } from '../data/menu.ts';
 ---
-<header id="masthead" class="site-header sticky top-0 z-50 shadow-md" x-data="{ mobileMenuOpen: false }">
+<header id="masthead" class="site-header sticky top-0 z-50 shadow-md" x-data="{ mobileMenuOpen: false, activeMenu: null, activeSubMenu: null }">
     <div class="container-base">    
         <div class="relative flex items-center justify-center nav-md:gap-x-1 nav-lg:gap-x-8 h-20">
             
@@ -60,7 +60,7 @@ import { primaryMenu } from '../data/menu.ts';
             {/* Mobile Menu Toggle (Requires AlpineJS on the page) */}
             <div class="absolute right-0 nav-md:hidden flex items-center">
                 <button 
-                    @click="mobileMenuOpen = !mobileMenuOpen" 
+                    @click="mobileMenuOpen = !mobileMenuOpen; activeMenu = null; activeSubMenu = null" 
                     type="button" 
                     class="mobile-menu-toggle">
                     <span class="sr-only">Öppna huvudmenyn</span>
@@ -77,43 +77,43 @@ import { primaryMenu } from '../data/menu.ts';
     </div>
 
     {/* Mobile Menu Container */}
-    <div id="mobile-menu" class="nav-md:hidden border-t border-neutral-200 bg-white" x-show="mobileMenuOpen" style="display: none;">
+    <div id="mobile-menu" class="nav-md:hidden border-t border-neutral-200 bg-white max-h-[calc(100vh-5rem)] overflow-y-auto" x-show="mobileMenuOpen" style="display: none;">
         <nav class="px-4 pt-2 pb-6 space-y-1">
-            {primaryMenu.items.map((item) => (
-                <div x-data={item.children?.length > 0 ? "{ isExpanded: false }" : ""} class="border-b border-neutral-100 last:border-0 group">
+            {primaryMenu.items.map((item, index) => (
+                <div class="border-b border-neutral-100 last:border-0 group">
                     <div class="flex items-center justify-between pr-2">
                         <a href={item.link} class={`mobile-nav-link ${item.children?.length > 0 ? 'font-bold' : 'font-medium'}`}>
                             {item.title}
                         </a>
                         {item.children?.length > 0 && (
-                            <button @click="isExpanded = !isExpanded" 
+                            <button @click={`activeMenu = (activeMenu === ${index} ? null : ${index}); activeSubMenu = null`} 
                                 type="button" 
                                 class="p-2 rounded-md text-brand-earth-dark hover:text-brand-sky hover:bg-neutral-50 focus:outline-none focus:bg-brand-sky-bright focus:text-brand-earth"
                             >
-                                <svg class="h-5 w-5 transition-transform duration-200" :class="{ 'rotate-180': isExpanded }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <svg class="h-5 w-5 transition-transform duration-200" :class={`{ 'rotate-180': activeMenu === ${index} }`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </button>
                         )}
                     </div>
                     {item.children?.length > 0 && (
-                        <div x-show="isExpanded" x-transition class="pl-4 pb-2 space-y-1 bg-neutral-50 rounded-md mb-2">
-                            {item.children.map((child) => (
-                                <div x-data={child.children?.length > 0 ? "{ isSubExpanded: false }" : ""}>
+                        <div x-show={`activeMenu === ${index}`} x-transition class="pl-4 pb-2 space-y-1 bg-neutral-50 rounded-md mb-2">
+                            {item.children.map((child, subIndex) => (
+                                <div>
                                     <div class="flex items-center justify-between">
                                         <a href={child.link} class="mobile-sub-link">
                                             {child.title}
                                         </a>
                                         {child.children?.length > 0 && (
-                                            <button @click="isSubExpanded = !isSubExpanded" type="button" class="p-2 mr-2 rounded-md text-black hover:text-brand-sky hover:bg-neutral-200 focus:outline-none focus:bg-brand-sky-bright focus:text-brand-sky-light">
-                                                <svg class="h-4 w-4 transition-transform duration-200" :class="{ 'rotate-180': isSubExpanded }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <button @click={`activeSubMenu = (activeSubMenu === '${index}-${subIndex}' ? null : '${index}-${subIndex}')`} type="button" class="p-2 mr-2 rounded-md text-black hover:text-brand-sky hover:bg-neutral-200 focus:outline-none focus:bg-brand-sky-bright focus:text-brand-sky-light">
+                                                <svg class="h-4 w-4 transition-transform duration-200" :class={`{ 'rotate-180': activeSubMenu === '${index}-${subIndex}' }`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                                 </svg>
                                             </button>
                                         )}
                                     </div>
                                     {child.children?.length > 0 && (
-                                        <div x-show="isSubExpanded" x-transition class="pl-4 border-l-2 border-neutral-200 ml-3 my-1">
+                                        <div x-show={`activeSubMenu === '${index}-${subIndex}'`} x-transition class="pl-4 border-l-2 border-neutral-200 ml-3 my-1">
                                             {child.children.map((grandchild) => (
                                                 <a href={grandchild.link} class="mobile-sub-link-level-3">
                                                     {grandchild.title}
