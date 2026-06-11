@@ -619,7 +619,7 @@ if (Astro.request.method === "POST") {
                         <!-- Friskvårdsbidrag Checkbox -->
                         <div class="mt-4">
                             <label class="flex items-start space-x-3 p-4 bg-brand-sky-light/10 border border-brand-sky/20 rounded-lg cursor-pointer hover:bg-brand-sky-light/20 transition-all">
-                                <input type="checkbox" name="use_friskvardsbidrag" x-model="useFriskvardsbidrag" class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                <input type="checkbox" name="use_friskvardsbidrag" x-model="useFriskvardsbidrag" class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                 <div>
                                     <span class="text-brand-earth-dark font-medium block leading-tight">Jag vill använda friskvårdsbidrag</span>
                                     <span class="text-xs text-neutral-500 mt-1 block">Kryssa i om du vill använda ditt friskvårdsbidrag för din kurs/behandling.</span>
@@ -665,136 +665,141 @@ if (Astro.request.method === "POST") {
                                         <!-- Dynamiska val under Symptom -->
                         <div x-show="hasSymptom" x-cloak class="mt-4 space-y-3" x-transition>
                             <label class="block text-sm font-bold text-brand-earth-dark">Välj symptom/besvär <span class="text-red-500">*</span></label>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-stretch">
                                 <!-- Rygg & Ländrygg -->
-                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50">
-                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                <div class="flex flex-col p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl transition-all h-full"
+                                     :class="symptomCats.includes('rygg-landrygg') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 cursor-pointer select-none">
                                         <input type="checkbox" name="symptoms" value="rygg-landrygg"
                                             @change="toggleSymptomCat('rygg-landrygg')"
                                             :checked="symptomCats.includes('rygg-landrygg')"
-                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                         <span class="font-bold text-brand-earth-dark text-sm">Rygg & Ländrygg</span>
                                     </label>
                                     
                                     <div x-show="symptomCats.includes('rygg-landrygg')" x-cloak x-transition class="mt-3 pl-6 space-y-2 border-l-2 border-brand-sky/20">
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="akut-ryggont" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Akut Ryggskott</span>
                                         </label>
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="ischias" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Ischiasbesvär & Smärta som strålar i benet</span>
                                         </label>
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="langvarig-vark-stelhet-landrygg" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Långvarig värk & Stelhet i ländryggen</span>
                                         </label>
                                     </div>
                                 </div>
 
                                 <!-- Nacke, Axlar & Skuldror -->
-                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50">
-                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                <div class="flex flex-col p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl transition-all h-full"
+                                     :class="symptomCats.includes('nacke-axlar-skuldror') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 cursor-pointer select-none">
                                         <input type="checkbox" name="symptoms" value="nacke-axlar-skuldror"
                                             @change="toggleSymptomCat('nacke-axlar-skuldror')"
                                             :checked="symptomCats.includes('nacke-axlar-skuldror')"
-                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                         <span class="font-bold text-brand-earth-dark text-sm">Nacke, Axlar & Skuldror</span>
                                     </label>
                                     
                                     <div x-show="symptomCats.includes('nacke-axlar-skuldror')" x-cloak x-transition class="mt-3 pl-6 space-y-2 border-l-2 border-brand-sky/20">
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="nacksparr-stel-nacke" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Nackspärr & Stel nacke</span>
                                         </label>
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="ont-i-axlar-skuldror" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Ont i Axlar & Skuldror</span>
                                         </label>
                                     </div>
                                 </div>
 
                                 <!-- Huvudvärk & Balansproblem -->
-                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50">
-                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                <div class="flex flex-col p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl transition-all h-full"
+                                     :class="symptomCats.includes('huvudvark') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 cursor-pointer select-none">
                                         <input type="checkbox" name="symptoms" value="huvudvark"
                                             @change="toggleSymptomCat('huvudvark')"
                                             :checked="symptomCats.includes('huvudvark')"
-                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                         <span class="font-bold text-brand-earth-dark text-sm">Huvudvärk & Balansproblem</span>
                                     </label>
                                     
                                     <div x-show="symptomCats.includes('huvudvark')" x-cloak x-transition class="mt-3 pl-6 space-y-2 border-l-2 border-brand-sky/20">
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="spanningshuvudvark-stresshuvudvark" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Spänningshuvudvärk & Stresshuvudvärk</span>
                                         </label>
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="migran" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Migrän</span>
                                         </label>
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="balansproblem" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Balansproblem</span>
                                         </label>
                                     </div>
                                 </div>
 
                                 <!-- Ledvärk, Ledbesvär & Idrottsskador -->
-                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50">
-                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                <div class="flex flex-col p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl transition-all h-full"
+                                     :class="symptomCats.includes('ledvark-idrottsskador') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 cursor-pointer select-none">
                                         <input type="checkbox" name="symptoms" value="ledvark-idrottsskador"
                                             @change="toggleSymptomCat('ledvark-idrottsskador')"
                                             :checked="symptomCats.includes('ledvark-idrottsskador')"
-                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                         <span class="font-bold text-brand-earth-dark text-sm">Ledvärk, Ledbesvär & Idrottsskador</span>
                                     </label>
                                     
                                     <div x-show="symptomCats.includes('ledvark-idrottsskador')" x-cloak x-transition class="mt-3 pl-6 space-y-2 border-l-2 border-brand-sky/20">
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="ont-i-knan-knabesvar" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Ont i knän & knäbesvär</span>
                                         </label>
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="ont-i-hofter-hoftbesvar" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Ont i höfter & höftbesvär</span>
                                         </label>
                                         <label class="flex items-start space-x-2.5 cursor-pointer select-none">
                                             <input type="checkbox" name="symptoms" value="tennisarmbage-musarm" x-model="symptoms"
-                                                class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                                class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                             <span class="text-xs text-neutral-700">Tennisarmbåge, Musarm & Värk i handleder</span>
                                         </label>
                                     </div>
                                 </div>
 
                                 <!-- Standalone categories -->
-                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50 sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
-                                        <input type="checkbox" name="symptoms" value="somnproblem" x-model="symptomCats"
-                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
-                                        <span class="font-bold text-brand-earth-dark text-sm">Sömnbesvär</span>
-                                    </label>
-                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
-                                        <input type="checkbox" name="symptoms" value="utbrandhet-trotthet" x-model="symptomCats"
-                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
-                                        <span class="font-bold text-brand-earth-dark text-sm">Utbrändhet & Trötthet</span>
-                                    </label>
-                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
-                                        <input type="checkbox" name="symptoms" value="ofta-forkyld" x-model="symptomCats"
-                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
-                                        <span class="font-bold text-brand-earth-dark text-sm">Ofta Förkyld</span>
-                                    </label>
-                                </div>
+                                <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer select-none h-full transition-all"
+                                       :class="symptomCats.includes('somnproblem') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'hover:bg-neutral-50'">
+                                    <input type="checkbox" name="symptoms" value="somnproblem" x-model="symptomCats"
+                                        class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                    <span class="text-sm text-neutral-700 font-medium">Sömnbesvär</span>
+                                </label>
+                                <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer select-none h-full transition-all"
+                                       :class="symptomCats.includes('utbrandhet-trotthet') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'hover:bg-neutral-50'">
+                                    <input type="checkbox" name="symptoms" value="utbrandhet-trotthet" x-model="symptomCats"
+                                        class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                    <span class="text-sm text-neutral-700 font-medium">Utbrändhet & Trötthet</span>
+                                </label>
+                                <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer select-none h-full transition-all"
+                                       :class="symptomCats.includes('ofta-forkyld') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'hover:bg-neutral-50'">
+                                    <input type="checkbox" name="symptoms" value="ofta-forkyld" x-model="symptomCats"
+                                        class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                    <span class="text-sm text-neutral-700 font-medium">Ofta Förkyld</span>
+                                </label>
                             </div>
                         </div>
                                     </div>
@@ -829,31 +834,31 @@ if (Astro.request.method === "POST") {
                                 <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none h-full transition-all"
                                        :class="healthGoals.includes('minska-stress-hitta-inre-lugn') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : ''">
                                     <input type="checkbox" name="health_goals" value="minska-stress-hitta-inre-lugn" x-model="healthGoals"
-                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                     <span class="text-sm text-neutral-700 font-medium">Minska Stress & Hitta Inre Lugn</span>
                                 </label>
                                 <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none h-full transition-all"
                                        :class="healthGoals.includes('oka-energi-livskraft') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : ''">
                                     <input type="checkbox" name="health_goals" value="oka-energi-livskraft" x-model="healthGoals"
-                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                     <span class="text-sm text-neutral-700 font-medium">Öka Energi & Livskraft i Vardagen</span>
                                 </label>
                                 <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none h-full transition-all"
                                        :class="healthGoals.includes('forbattra-balans-rorlighet-kroppskontroll') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : ''">
                                     <input type="checkbox" name="health_goals" value="forbattra-balans-rorlighet-kroppskontroll" x-model="healthGoals"
-                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                     <span class="text-sm text-neutral-700 font-medium">Förbättra Balans, Rörlighet & Kroppskontroll</span>
                                 </label>
                                 <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none h-full transition-all"
                                        :class="healthGoals.includes('stark-fokus-mental-styrka') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : ''">
                                     <input type="checkbox" name="health_goals" value="stark-fokus-mental-styrka" x-model="healthGoals"
-                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                     <span class="text-sm text-neutral-700 font-medium">Stärka Fokus & Mental Styrka</span>
                                 </label>
                                 <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none h-full transition-all"
                                        :class="healthGoals.includes('starka-motstandskraften') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : ''">
                                     <input type="checkbox" name="health_goals" value="starka-motstandskraften" x-model="healthGoals"
-                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                     <span class="text-sm text-neutral-700 font-medium">Stärk Motståndskraften</span>
                                 </label>
                             </div>
@@ -904,7 +909,7 @@ if (Astro.request.method === "POST") {
                                     <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none h-full transition-all"
                                            :class="subjects.includes(opt.val) ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : ''">
                                         <input type="checkbox" name="subject" :value="opt.val" x-model="subjects"
-                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
                                         <span class="text-sm text-neutral-700 font-medium" x-text="opt.label"></span>
                                     </label>
                                 </template>
