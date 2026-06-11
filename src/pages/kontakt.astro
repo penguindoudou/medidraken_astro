@@ -17,6 +17,50 @@ const today = new Date().setHours(0, 0, 0, 0);
 const nextTaiChi = coursesTaiChi.find(c => new Date(c.lastDate).getTime() >= today);
 const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= today);
 
+const symptomsMap: Record<string, string> = {
+  // Categories
+  'rygg-landrygg': 'Rygg & Ländrygg',
+  'nacke-axlar-skuldror': 'Nacke, Axlar & Skuldror',
+  'huvudvark': 'Huvudvärk & Balansproblem',
+  'ledvark-idrottsskador': 'Ledvärk, Ledbesvär & Idrottsskador',
+  'somnproblem': 'Sömnbesvär',
+  'utbrandhet-trotthet': 'Utbrändhet & Trötthet',
+  'ofta-forkyld': 'Ofta Förkyld',
+  
+  // Specific
+  'akut-ryggont': 'Rygg: Akut Ryggskott',
+  'ischias': 'Rygg: Ischiasbesvär & Smärta som strålar i benet',
+  'langvarig-vark-stelhet-landrygg': 'Rygg: Långvarig värk & Stelhet i ländryggen',
+  'nacksparr-stel-nacke': 'Nacke/Axlar: Nackspärr & Stel nacke',
+  'ont-i-axlar-skuldror': 'Nacke/Axlar: Ont i Axlar & Skuldror',
+  'spanningshuvudvark-stresshuvudvark': 'Huvudvärk: Spänningshuvudvärk & Stresshuvudvärk',
+  'migran': 'Huvudvärk: Migrän',
+  'balansproblem': 'Huvudvärk: Balansproblem',
+  'ont-i-knan-knabesvar': 'Ledvärk: Ont i knän & knäbesvär',
+  'ont-i-hofter-hoftbesvar': 'Ledvärk: Ont i höfter & höftbesvär',
+  'tennisarmbage-musarm': 'Ledvärk: Tennisarmbåge, Musarm & Värk i handleder'
+};
+
+const healthGoalsMap: Record<string, string> = {
+  'minska-stress-hitta-inre-lugn': 'Minska Stress & Hitta Inre Lugn',
+  'oka-energi-livskraft': 'Öka Energi & Livskraft i Vardagen',
+  'forbattra-balans-rorlighet-kroppskontroll': 'Förbättra Balans, Rörlighet & Kroppskontroll',
+  'stark-fokus-mental-styrka': 'Stärka Fokus & Mental Styrka',
+  'starka-motstandskraften': 'Stärk Motståndskraften'
+};
+
+const subjectMap: Record<string, string> = {
+  'taichi': 'Tai Chi',
+  'qigong': 'Medicinsk Qigong',
+  'instruktorskurs': 'Instruktörskurs',
+  'behandling': 'Behandling',
+  'halsoresa': 'Hälsoresa till Kina',
+  'workshop': 'Workshops & Gruppaktiviteter',
+  'halsodag': 'Skräddarsydda Hälsodagar',
+  'presentkort': 'Presentkort',
+  'ovrigt': 'Övrigt'
+};
+
 let formStatus = '';
 
 if (Astro.request.method === "POST") {
@@ -41,7 +85,37 @@ if (Astro.request.method === "POST") {
     text += `Namn: ${data.get("name") || "-"}\n`;
     text += `E-post: ${data.get("email") || "-"}\n`;
     text += `Telefon: ${data.get("phone") || "-"}\n`;
-    text += `Ärende: ${data.get("subject") || "-"}\n`;
+
+    const interestSymptom = data.get("interest_symptom");
+    const interestHealthGoal = data.get("interest_health_goal");
+    const interestService = data.get("interest_service");
+
+    const interests: string[] = [];
+    if (interestSymptom) interests.push("Symptom & Besvär");
+    if (interestHealthGoal) interests.push("Hälsomål");
+    if (interestService) interests.push("Specifik Tjänst");
+    text += `Intresseområden: ${interests.join(", ") || "-"}\n`;
+
+    // Symptoms
+    const rawSymptoms = data.getAll("symptoms");
+    if (rawSymptoms.length > 0) {
+      const symptomNames = rawSymptoms.map(key => symptomsMap[key] || key);
+      text += `Symptom/Besvär: ${symptomNames.join(', ')}\n`;
+    }
+
+    // Health Goals
+    const rawGoals = data.getAll("health_goals");
+    if (rawGoals.length > 0) {
+      const goalNames = rawGoals.map(key => healthGoalsMap[key] || key);
+      text += `Hälsomål: ${goalNames.join(', ')}\n`;
+    }
+
+    // Specific Service
+    const rawSubject = data.get("subject") as string || "";
+    if (rawSubject) {
+      const subjectName = subjectMap[rawSubject] || rawSubject || "-";
+      text += `Ärende/Tjänst: ${subjectName}\n`;
+    }
     
     const location = data.get("location");
     if (location) text += `Ort: ${location}\n`;
@@ -235,128 +309,227 @@ if (Astro.request.method === "POST") {
                             <!-- NOTERA TILL UTVECKLARE: Här kan du klistra in din Fluent Forms shortcode typ [fluentform id="1"].
                             Nedan är en välbyggd mockup på hur formuläret ska se ut enligt instruktionerna. -->
                             <form action="" method="POST" class="space-y-5"
-                        x-data="{ 
-                            subject: '', 
-                            subSubject: '', 
-                            location: '', 
-                            recipient: 'Okänd', 
-                            amount: '',
-                            useFriskvardsbidrag: false,
-                            friskvardsAmount: '',
-                            selectedDays: [],
-                            selectedTimes: [],
-                            selectedTravelPeriods: [],
-                            customTravelPeriod: '',
-                            specificDate: '',
-                            specificTime: '',
-                            useSpecificDate: false,
-                            isPrefilled: false,
-                            prefillSource: ''
-                        }" x-init="
-                            const params = new URLSearchParams(window.location.search);
-                            if (params.has('subject')) {
-                                if (params.get('subject') === 'friskvardsbidrag') {
-                                    useFriskvardsbidrag = true;
-                                } else {
-                                    subject = params.get('subject');
-                                }
-                            }
-                            if (params.has('sub')) subSubject = params.get('sub');
-                            if (params.has('location')) location = params.get('location');
-                            let urlDate = params.has('date') ? params.get('date') : null;
-                            let urlTime = params.has('time') ? params.get('time') : null;
-
-                            $watch('useFriskvardsbidrag', value => {
-                                if (value && subject === 'presentkort') {
-                                    subject = '';
-                                }
-                            });
-                            
-                            $watch('subject', value => { 
-                                if (params.has('subject') && params.get('subject') !== 'friskvardsbidrag' && value !== params.get('subject')) {
-                                    urlDate = null;
-                                    urlTime = null;
-                                }
-                                subSubject = '';
-                                selectedDays = [];
-                                selectedTimes = [];
-                                selectedTravelPeriods = [];
-                                customTravelPeriod = '';
-                                specificDate = urlDate || '';
-                                specificTime = urlTime || '';
-                                isPrefilled = false;
-                            });
-
-                            const applyPrefill = () => {
-                                if (subSubject === 'helgkurs') {
-                                    if (urlDate || urlTime) {
-                                        specificDate = urlDate || '';
-                                        specificTime = urlTime || '';
-                                        isPrefilled = true;
-                                        prefillSource = 'url';
-                                        useSpecificDate = true;
-                                    } else {
-                                        let course = null;
-                                        try {
-                                            const elId = subject === 'taichi' ? 'nextTaiChiData' : (subject === 'qigong' ? 'nextQigongData' : null);
-                                            if (elId) {
-                                                const el = document.getElementById(elId);
-                                                if (el && el.textContent) course = JSON.parse(el.textContent);
-                                            }
-                                        } catch (e) {
-                                            console.warn('Could not parse course data', e);
-                                        }
-                                        
-                                        if (course) {
-                                            specificDate = course.date || '';
-                                            specificTime = course.times || '';
-                                            isPrefilled = true;
-                                            prefillSource = 'auto';
-                                            useSpecificDate = true;
+                                @submit="if (!validateForm()) $event.preventDefault()"
+                                x-data="{ 
+                                    hasSymptom: false,
+                                    hasHealthGoal: false,
+                                    hasService: false,
+                                    symptomCats: [],
+                                    symptoms: [],
+                                    healthGoals: [],
+                                    validationError: '',
+                                    subject: '', 
+                                    subSubject: '', 
+                                    location: '', 
+                                    recipient: 'Okänd', 
+                                    amount: '',
+                                    useFriskvardsbidrag: false,
+                                    friskvardsAmount: '',
+                                    selectedDays: [],
+                                    selectedTimes: [],
+                                    selectedTravelPeriods: [],
+                                    customTravelPeriod: '',
+                                    specificDate: '',
+                                    specificTime: '',
+                                    useSpecificDate: false,
+                                    isPrefilled: false,
+                                    prefillSource: '',
+                                    getSymptomParent(symptom) {
+                                        const parentMap = {
+                                            'akut-ryggont': 'rygg-landrygg',
+                                            'ischias': 'rygg-landrygg',
+                                            'langvarig-vark-stelhet-landrygg': 'rygg-landrygg',
+                                            'nacksparr-stel-nacke': 'nacke-axlar-skuldror',
+                                            'ont-i-axlar-skuldror': 'nacke-axlar-skuldror',
+                                            'spanningshuvudvark-stresshuvudvark': 'huvudvark',
+                                            'migran': 'huvudvark',
+                                            'balansproblem': 'huvudvark',
+                                            'ont-i-knan-knabesvar': 'ledvark-idrottsskador',
+                                            'ont-i-hofter-hoftbesvar': 'ledvark-idrottsskador',
+                                            'tennisarmbage-musarm': 'ledvark-idrottsskador'
+                                        };
+                                        return parentMap[symptom] || null;
+                                    },
+                                    toggleSymptomCat(cat) {
+                                        if (this.symptomCats.includes(cat)) {
+                                            this.symptomCats = this.symptomCats.filter(c => c !== cat);
+                                            this.symptoms = this.symptoms.filter(s => this.getSymptomParent(s) !== cat);
                                         } else {
-                                            specificDate = '';
-                                            specificTime = '';
-                                            isPrefilled = false;
-                                            prefillSource = '';
+                                            this.symptomCats.push(cat);
+                                        }
+                                    },
+                                    isMessageRequired() {
+                                        return this.hasSymptom || this.hasHealthGoal || (this.hasService && this.subject !== 'ovrigt');
+                                    },
+                                    validateForm() {
+                                        this.validationError = '';
+                                        if (!this.hasSymptom && !this.hasHealthGoal && !this.hasService) {
+                                            this.validationError = `Välj minst ett av de tre alternativen.`;
+                                            return false;
+                                        }
+                                        if (this.hasSymptom && this.symptomCats.length === 0) {
+                                            this.validationError = 'Vänligen välj minst ett symptom/besvär i listan.';
+                                            return false;
+                                        }
+                                        if (this.hasHealthGoal && this.healthGoals.length === 0) {
+                                            this.validationError = 'Vänligen välj minst ett hälsomål i listan.';
+                                            return false;
+                                        }
+                                        if (this.hasService && !this.subject) {
+                                            this.validationError = 'Vänligen välj en specifik tjänst / ett ärende i rullistan.';
+                                            return false;
+                                        }
+                                        return true;
+                                    },
+                                    init() {
+                                        const symptomsList = [
+                                            'akut-ryggont', 'ischias', 'langvarig-vark-stelhet-landrygg', 'nacksparr-stel-nacke', 
+                                            'ont-i-axlar-skuldror', 'spanningshuvudvark-stresshuvudvark', 'migran', 'balansproblem', 
+                                            'ont-i-knan-knabesvar', 'ont-i-hofter-hoftbesvar', 'tennisarmbage-musarm', 'somnproblem', 
+                                            'utbrandhet-trotthet', 'ofta-forkyld'
+                                        ];
+                                        const healthGoalsList = [
+                                            'minska-stress-hitta-inre-lugn', 'oka-energi-livskraft', 'forbattra-balans-rorlighet-kroppskontroll', 
+                                            'stark-fokus-mental-styrka', 'starka-motstandskraften'
+                                        ];
+
+                                        const params = new URLSearchParams(window.location.search);
+                                        if (params.has('subject')) {
+                                            const urlSubj = params.get('subject');
+                                            if (urlSubj === 'friskvardsbidrag') {
+                                                this.useFriskvardsbidrag = true;
+                                                this.hasService = true;
+                                                this.subject = '';
+                                            } else if (symptomsList.includes(urlSubj)) {
+                                                this.hasSymptom = true;
+                                                const parent = this.getSymptomParent(urlSubj);
+                                                if (parent) {
+                                                    if (!this.symptomCats.includes(parent)) this.symptomCats.push(parent);
+                                                    if (!this.symptoms.includes(urlSubj)) this.symptoms.push(urlSubj);
+                                                } else {
+                                                    if (!this.symptomCats.includes(urlSubj)) this.symptomCats.push(urlSubj);
+                                                }
+                                            } else if (healthGoalsList.includes(urlSubj)) {
+                                                this.hasHealthGoal = true;
+                                                if (!this.healthGoals.includes(urlSubj)) this.healthGoals.push(urlSubj);
+                                            } else {
+                                                this.hasService = true;
+                                                this.subject = urlSubj;
+                                            }
+                                        }
+                                        if (params.has('sub')) this.subSubject = params.get('sub');
+                                        if (params.has('location')) this.location = params.get('location');
+                                        let urlDate = params.has('date') ? params.get('date') : null;
+                                        let urlTime = params.has('time') ? params.get('time') : null;
+
+                                        this.$watch('hasService', value => {
+                                            if (!value) {
+                                                this.subject = '';
+                                                this.subSubject = '';
+                                            }
+                                        });
+                                        this.$watch('hasSymptom', value => {
+                                            if (!value) {
+                                                this.symptomCats = [];
+                                                this.symptoms = [];
+                                            }
+                                        });
+                                        this.$watch('hasHealthGoal', value => {
+                                            if (!value) {
+                                                this.healthGoals = [];
+                                            }
+                                        });
+
+                                        this.$watch('useFriskvardsbidrag', value => {
+                                            if (value && this.subject === 'presentkort') {
+                                                this.subject = '';
+                                            }
+                                        });
+                                        
+                                        this.$watch('subject', value => { 
+                                            if (params.has('subject') && params.get('subject') !== 'friskvardsbidrag' && value !== params.get('subject')) {
+                                                urlDate = null;
+                                                urlTime = null;
+                                            }
+                                            this.subSubject = '';
+                                            this.selectedDays = [];
+                                            this.selectedTimes = [];
+                                            this.selectedTravelPeriods = [];
+                                            this.customTravelPeriod = '';
+                                            this.specificDate = urlDate || '';
+                                            this.specificTime = urlTime || '';
+                                            this.isPrefilled = false;
+                                        });
+
+                                        const applyPrefill = () => {
+                                            if (this.subSubject === 'helgkurs') {
+                                                if (urlDate || urlTime) {
+                                                    this.specificDate = urlDate || '';
+                                                    this.specificTime = urlTime || '';
+                                                    this.isPrefilled = true;
+                                                    this.prefillSource = 'url';
+                                                    this.useSpecificDate = true;
+                                                } else {
+                                                    let course = null;
+                                                    try {
+                                                        const elId = this.subject === 'taichi' ? 'nextTaiChiData' : (this.subject === 'qigong' ? 'nextQigongData' : null);
+                                                        if (elId) {
+                                                            const el = document.getElementById(elId);
+                                                            if (el && el.textContent) course = JSON.parse(el.textContent);
+                                                        }
+                                                    } catch (e) {
+                                                        console.warn('Could not parse course data', e);
+                                                    }
+                                                    
+                                                    if (course) {
+                                                        this.specificDate = course.date || '';
+                                                        this.specificTime = course.times || '';
+                                                        this.isPrefilled = true;
+                                                        this.prefillSource = 'auto';
+                                                        this.useSpecificDate = true;
+                                                    } else {
+                                                        this.specificDate = '';
+                                                        this.specificTime = '';
+                                                        this.isPrefilled = false;
+                                                        this.prefillSource = '';
+                                                    }
+                                                }
+                                            } else {
+                                                this.isPrefilled = false;
+                                                this.prefillSource = '';
+                                                this.useSpecificDate = false;
+                                            }
+                                        };
+
+                                        this.$watch('subSubject', value => {
+                                            if (params.has('sub') && value !== '' && value !== params.get('sub')) {
+                                                urlDate = null;
+                                                urlTime = null;
+                                            }
+                                            applyPrefill();
+                                        });
+
+                                        this.$watch('selectedTravelPeriods', (value, oldValue) => {
+                                            const unsure = 'Vet ej / Behöver rådgivning';
+                                            if (value.includes(unsure) && value.length > 1) {
+                                                if (oldValue.includes(unsure)) {
+                                                    this.selectedTravelPeriods = value.filter(p => p !== unsure);
+                                                } else {
+                                                    this.selectedTravelPeriods = [unsure];
+                                                }
+                                            }
+                                        });
+
+                                        if (this.subSubject === 'helgkurs') {
+                                            setTimeout(applyPrefill, 100);
+                                        } else if (urlDate || urlTime) {
+                                            this.specificDate = urlDate || '';
+                                            this.specificTime = urlTime || '';
+                                            this.useSpecificDate = true;
                                         }
                                     }
-                                } else {
-                                    isPrefilled = false;
-                                    prefillSource = '';
-                                    useSpecificDate = false;
-                                }
-                            };
-
-                            $watch('subSubject', value => {
-                                if (params.has('sub') && value !== '' && value !== params.get('sub')) {
-                                    urlDate = null;
-                                    urlTime = null;
-                                }
-                                applyPrefill();
-                            });
-
-                            $watch('selectedTravelPeriods', (value, oldValue) => {
-                                const unsure = 'Vet ej / Behöver rådgivning';
-                                if (value.includes(unsure) && value.length > 1) {
-                                    // If 'Vet ej' was already selected and a new option is added, remove 'Vet ej'
-                                    if (oldValue.includes(unsure)) {
-                                        selectedTravelPeriods = value.filter(p => p !== unsure);
-                                    } else {
-                                        // If 'Vet ej' was just selected, clear all other options
-                                        selectedTravelPeriods = [unsure];
-                                    }
-                                }
-                            });
-
-                            // Run prefill on init if params already set
-                            if (subSubject === 'helgkurs') {
-                                setTimeout(applyPrefill, 100);
-                            } else if (urlDate || urlTime) {
-                                specificDate = urlDate || '';
-                                specificTime = urlTime || '';
-                                useSpecificDate = true;
-                            }
-                        ">
+                                }"
+                            >
 
                     <!-- Honeypot -->
                     <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
@@ -460,11 +633,257 @@ if (Astro.request.method === "POST") {
                             </div>
                         </div>
 
-                        <!-- Main Category -->
+                        <!-- Intresseområden (3 Boxar) -->
                         <div class="mt-6 border-t border-brand-earth-light/20 pt-6">
+                            <label class="block text-sm font-bold text-brand-earth-dark mb-3">Vad söker du hjälp för? <span class="text-red-500">*</span></label>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <!-- Box 1: Symptom -->
+                                <div role="button" tabindex="0"
+                                    @click="hasSymptom = !hasSymptom"
+                                    @keydown.space.prevent="hasSymptom = !hasSymptom"
+                                    @keydown.enter.prevent="hasSymptom = !hasSymptom"
+                                    :class="hasSymptom ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky shadow-sm' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
+                                    class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                                    <input type="checkbox" name="interest_symptom" :checked="hasSymptom" class="sr-only">
+                                    <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
+                                        <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                    </div>
+                                    <h5 class="font-bold text-brand-earth-dark text-base mb-1">Symtom & Besvär</h5>
+                                    <p class="text-xs text-neutral-500 leading-normal">Specifik smärta m.m.</p>
+                                    <div x-show="hasSymptom" class="absolute top-3 right-3 text-brand-sky">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                </div>
+                                    
+                                    <div class="mt-2">
+                                        <!-- Dynamiska val under Symptom -->
+                        <div x-show="hasSymptom" x-cloak class="mt-4 space-y-3" x-transition>
+                            <label class="block text-sm font-bold text-brand-earth-dark">Välj symptom/besvär <span class="text-red-500">*</span></label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Rygg & Ländrygg -->
+                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50">
+                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="symptoms" value="rygg-landrygg"
+                                            @change="toggleSymptomCat('rygg-landrygg')"
+                                            :checked="symptomCats.includes('rygg-landrygg')"
+                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                        <span class="font-bold text-brand-earth-dark text-sm">Rygg & Ländrygg</span>
+                                    </label>
+                                    
+                                    <div x-show="symptomCats.includes('rygg-landrygg')" x-cloak x-transition class="mt-3 pl-6 space-y-2 border-l-2 border-brand-sky/20">
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="akut-ryggont" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Akut Ryggskott</span>
+                                        </label>
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="ischias" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Ischiasbesvär & Smärta som strålar i benet</span>
+                                        </label>
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="langvarig-vark-stelhet-landrygg" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Långvarig värk & Stelhet i ländryggen</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Nacke, Axlar & Skuldror -->
+                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50">
+                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="symptoms" value="nacke-axlar-skuldror"
+                                            @change="toggleSymptomCat('nacke-axlar-skuldror')"
+                                            :checked="symptomCats.includes('nacke-axlar-skuldror')"
+                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                        <span class="font-bold text-brand-earth-dark text-sm">Nacke, Axlar & Skuldror</span>
+                                    </label>
+                                    
+                                    <div x-show="symptomCats.includes('nacke-axlar-skuldror')" x-cloak x-transition class="mt-3 pl-6 space-y-2 border-l-2 border-brand-sky/20">
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="nacksparr-stel-nacke" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Nackspärr & Stel nacke</span>
+                                        </label>
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="ont-i-axlar-skuldror" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Ont i Axlar & Skuldror</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Huvudvärk & Balansproblem -->
+                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50">
+                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="symptoms" value="huvudvark"
+                                            @change="toggleSymptomCat('huvudvark')"
+                                            :checked="symptomCats.includes('huvudvark')"
+                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                        <span class="font-bold text-brand-earth-dark text-sm">Huvudvärk & Balansproblem</span>
+                                    </label>
+                                    
+                                    <div x-show="symptomCats.includes('huvudvark')" x-cloak x-transition class="mt-3 pl-6 space-y-2 border-l-2 border-brand-sky/20">
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="spanningshuvudvark-stresshuvudvark" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Spänningshuvudvärk & Stresshuvudvärk</span>
+                                        </label>
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="migran" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Migrän</span>
+                                        </label>
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="balansproblem" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Balansproblem</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Ledvärk, Ledbesvär & Idrottsskador -->
+                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50">
+                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="symptoms" value="ledvark-idrottsskador"
+                                            @change="toggleSymptomCat('ledvark-idrottsskador')"
+                                            :checked="symptomCats.includes('ledvark-idrottsskador')"
+                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                        <span class="font-bold text-brand-earth-dark text-sm">Ledvärk, Ledbesvär & Idrottsskador</span>
+                                    </label>
+                                    
+                                    <div x-show="symptomCats.includes('ledvark-idrottsskador')" x-cloak x-transition class="mt-3 pl-6 space-y-2 border-l-2 border-brand-sky/20">
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="ont-i-knan-knabesvar" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Ont i knän & knäbesvär</span>
+                                        </label>
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="ont-i-hofter-hoftbesvar" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Ont i höfter & höftbesvär</span>
+                                        </label>
+                                        <label class="flex items-start space-x-2.5 cursor-pointer select-none">
+                                            <input type="checkbox" name="symptoms" value="tennisarmbage-musarm" x-model="symptoms"
+                                                class="w-4 h-4 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                            <span class="text-xs text-neutral-700">Tennisarmbåge, Musarm & Värk i handleder</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Standalone categories -->
+                                <div class="border border-neutral-200 rounded-xl p-4 bg-neutral-50/50 sm:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="symptoms" value="somnproblem" x-model="symptomCats"
+                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                        <span class="font-bold text-brand-earth-dark text-sm">Sömnbesvär</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="symptoms" value="utbrandhet-trotthet" x-model="symptomCats"
+                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                        <span class="font-bold text-brand-earth-dark text-sm">Utbrändhet & Trötthet</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="symptoms" value="ofta-forkyld" x-model="symptomCats"
+                                            class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                        <span class="font-bold text-brand-earth-dark text-sm">Ofta Förkyld</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <!-- Box 2: Hälsomål -->
+                                <div role="button" tabindex="0"
+                                    @click="hasHealthGoal = !hasHealthGoal"
+                                    @keydown.space.prevent="hasHealthGoal = !hasHealthGoal"
+                                    @keydown.enter.prevent="hasHealthGoal = !hasHealthGoal"
+                                    :class="hasHealthGoal ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky shadow-sm' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
+                                    class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                                    <input type="checkbox" name="interest_health_goal" :checked="hasHealthGoal" class="sr-only">
+                                    <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
+                                        <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
+                                    </div>
+                                    <h5 class="font-bold text-brand-earth-dark text-base mb-1">Förbättra Min Hälsa</h5>
+                                    <p class="text-xs text-neutral-500 leading-normal">Mer energi, förbättra balans m.m.</p>
+                                    <div x-show="hasHealthGoal" class="absolute top-3 right-3 text-brand-sky">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                </div>
+                                    
+                                    <div class="mt-2">
+                                        <!-- Dynamiska val under Hälsomål -->
+                        <div x-show="hasHealthGoal" x-cloak class="mt-4 space-y-3" x-transition>
+                            <label class="block text-sm font-bold text-brand-earth-dark">Välj hälsomål <span class="text-red-500">*</span></label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none">
+                                    <input type="checkbox" name="health_goals" value="minska-stress-hitta-inre-lugn" x-model="healthGoals"
+                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                    <span class="text-sm text-neutral-700 font-medium">Minska Stress & Hitta Inre Lugn</span>
+                                </label>
+                                <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none">
+                                    <input type="checkbox" name="health_goals" value="oka-energi-livskraft" x-model="healthGoals"
+                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                    <span class="text-sm text-neutral-700 font-medium">Öka Energi & Livskraft i Vardagen</span>
+                                </label>
+                                <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none">
+                                    <input type="checkbox" name="health_goals" value="forbattra-balans-rorlighet-kroppskontroll" x-model="healthGoals"
+                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                    <span class="text-sm text-neutral-700 font-medium">Förbättra Balans, Rörlighet & Kroppskontroll</span>
+                                </label>
+                                <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none">
+                                    <input type="checkbox" name="health_goals" value="stark-fokus-mental-styrka" x-model="healthGoals"
+                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                    <span class="text-sm text-neutral-700 font-medium">Stärka Fokus & Mental Styrka</span>
+                                </label>
+                                <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none">
+                                    <input type="checkbox" name="health_goals" value="starka-motstandskraften" x-model="healthGoals"
+                                        class="w-5 h-5 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                    <span class="text-sm text-neutral-700 font-medium">Stärk Motståndskraften</span>
+                                </label>
+                            </div>
+                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <!-- Box 3: Specifik Tjänst -->
+                                <div role="button" tabindex="0"
+                                    @click="hasService = !hasService"
+                                    @keydown.space.prevent="hasService = !hasService"
+                                    @keydown.enter.prevent="hasService = !hasService"
+                                    :class="hasService ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky shadow-sm' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
+                                    class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                                    <input type="checkbox" name="interest_service" :checked="hasService" class="sr-only">
+                                    <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
+                                        <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                        </svg>
+                                    </div>
+                                    <h5 class="font-bold text-brand-earth-dark text-base mb-1">Jag Önskar Specifik Tjänst</h5>
+                                    <p class="text-xs text-neutral-500 leading-normal">Taichi, Qigong, TuiNa m.m.</p>
+                                    <div x-show="hasService" class="absolute top-3 right-3 text-brand-sky">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                    </div>
+                                </div>
+                                    
+                                    <div class="mt-2">
+                                        <!-- Dropdown för Specifik Tjänst (Visas endast om hasService är true) -->
+                        <div x-show="hasService" x-cloak class="mt-4"
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 -translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0">
                             <label for="subject" class="block text-sm font-medium text-neutral-700 mb-1">Ditt Ärende
                                 <span class="text-red-500">*</span></label>
-                            <select id="subject" name="subject" required x-model="subject"
+                            <select id="subject" name="subject" :required="hasService" x-model="subject"
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
                                 <option value="">-- Välj ett ärende --</option>
                                 <option value="taichi">Tai Chi</option>
@@ -588,9 +1007,12 @@ if (Astro.request.method === "POST") {
                             <input type="text" id="other_request" name="other_request" :required="subject === 'ovrigt'"
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
                         </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         <!-- Bokningspreferenser (Tid & Dag) -->
-                        <div x-show="['taichi', 'qigong', 'behandling', 'instruktorskurs', 'workshop', 'halsodag'].includes(subject)" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
+                        <div x-show="hasSymptom || hasHealthGoal || ['taichi', 'qigong', 'behandling', 'instruktorskurs', 'workshop', 'halsodag'].includes(subject)" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
                             <h4 class="text-xl font-bold text-brand-earth-dark flex items-center">
                                 <Icon name="clock" class="w-6 h-6 mr-3 text-brand-accent-dark" />
                                 Tidspreferenser <span class="text-sm font-normal text-neutral-500 ml-2">(valfritt)</span>
@@ -721,11 +1143,16 @@ if (Astro.request.method === "POST") {
                         <div>
                             <label for="message" class="block text-sm font-medium text-neutral-700 mb-1 mt-4">Ditt
                                 Meddelande
-                                <span class="text-red-500" x-show="subject !== 'ovrigt'">*</span></label>
-                            <p class="text-xs text-neutral-500 mb-2" x-show="!['ovrigt'].includes(subject)">Beskriv ditt
+                                <span class="text-red-500" x-show="isMessageRequired()">*</span></label>
+                            <p class="text-xs text-neutral-500 mb-2" x-show="isMessageRequired()">Beskriv ditt
                                 ärende, dina frågor eller vad du behöver hjälp med.</p>
-                            <textarea id="message" name="message" rows="5" :required="subject !== 'ovrigt'"
+                            <textarea id="message" name="message" rows="5" :required="isMessageRequired()"
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"></textarea>
+                        </div>
+
+                        <!-- Visa valideringsfel om det finns -->
+                        <div x-show="validationError" x-cloak class="bg-red-50 text-red-600 p-4 rounded-lg border border-red-200 text-sm font-medium mt-4">
+                            <span x-text="validationError"></span>
                         </div>
 
                         <button type="submit"

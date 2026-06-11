@@ -1,0 +1,567 @@
+diff --git a/src/pages/kontakt.astro b/src/pages/kontakt.astro
+index e178e81..1f84237 100644
+--- a/src/pages/kontakt.astro
++++ b/src/pages/kontakt.astro
+@@ -17,6 +17,52 @@ const today = new Date().setHours(0, 0, 0, 0);
+ const nextTaiChi = coursesTaiChi.find(c => new Date(c.lastDate).getTime() >= today);
+ const nextQigong = coursesQigong.find(c => new Date(c.lastDate).getTime() >= today);
+ 
++const symptomsMap: Record<string, string> = {
++  'akut-ryggont': 'Akut Ryggskott',
++  'ischias': 'Ischiasbesvär & Utstrålande Smärta',
++  'langvarig-ryggvark': 'Långvarig Ryggvärk & Stelhet',
++  'nacksparr': 'Nackspärr & Stel nacke',
++  'ont-i-axlar-skuldror': 'Ont i Axlar & Skuldror',
++  'spanningshuvudvark': 'Spänningshuvudvärk & Stresshuvudvärk',
++  'migran': 'Migrän',
++  'balansproblem': 'Balansproblem',
++  'ont-i-knan-knabesvar': 'Ont i Knän & Knäbesvär',
++  'hoftbesvar': 'Ont i Höfter & Höftbesvär',
++  'armbagssmarta': 'Tennisarmbåge, Musarm & Handledsvärk',
++  'somnproblem': 'Sömnbesvär',
++  'utbrandhet': 'Utbrändhet & Trötthet',
++  'ofta-forkyld': 'Ofta Förkyld'
++};
++
++const healthGoalsMap: Record<string, string> = {
++  'minska-stress': 'Minska Stress & Hitta Inre Lugn',
++  'oka-energi': 'Öka Energi & Livskraft i Vardagen',
++  'forbattra-balans-rorlighet': 'Förbättra Balans, Rörlighet & Kroppskontroll',
++  'stark-fokus-mental-styrka': 'Stärka Fokus & Mental Styrka',
++  'stark-motstandskraft': 'Stärk Motståndskraften'
++};
++
++const methodMap: Record<string, string> = {
++  'expert_assessment': 'Låt experten bedöma bästa metod (rekommenderas)',
++  'taichi': 'Tai Chi',
++  'qigong': 'Medicinsk Qigong',
++  'behandling': 'Behandling (Akupunktur eller TuiNa-massage)'
++};
++
++const subjectMap: Record<string, string> = {
++  'symtom': 'Hjälp med symptom / besvär',
++  'halsomal': 'Hälsomål',
++  'taichi': 'Tai Chi',
++  'qigong': 'Medicinsk Qigong',
++  'instruktorskurs': 'Instruktörskurs',
++  'behandling': 'Behandling',
++  'halsoresa': 'Hälsoresa till Kina',
++  'workshop': 'Workshops & Gruppaktiviteter',
++  'halsodag': 'Skräddarsydda Hälsodagar',
++  'presentkort': 'Presentkort',
++  'ovrigt': 'Övrigt'
++};
++
+ let formStatus = '';
+ 
+ if (Astro.request.method === "POST") {
+@@ -41,7 +87,28 @@ if (Astro.request.method === "POST") {
+     text += `Namn: ${data.get("name") || "-"}\n`;
+     text += `E-post: ${data.get("email") || "-"}\n`;
+     text += `Telefon: ${data.get("phone") || "-"}\n`;
+-    text += `Ärende: ${data.get("subject") || "-"}\n`;
++    
++    const rawSubject = data.get("subject") as string || "";
++    const subjectName = subjectMap[rawSubject] || rawSubject || "-";
++    text += `Ärende: ${subjectName}\n`;
++    
++    if (rawSubject === 'symtom') {
++      const symtomKey = data.get("selected_symptom") as string;
++      const symtomName = symptomsMap[symtomKey] || symtomKey || "-";
++      text += `Symptom/Besvär: ${symtomName}\n`;
++      
++      const methodKey = data.get("selected_method") as string;
++      const methodName = methodMap[methodKey] || methodKey || "-";
++      text += `Önskad metod: ${methodName}\n`;
++    } else if (rawSubject === 'halsomal') {
++      const halsomalKey = data.get("selected_halsomal") as string;
++      const halsomalName = healthGoalsMap[halsomalKey] || halsomalKey || "-";
++      text += `Hälsomål: ${halsomalName}\n`;
++      
++      const methodKey = data.get("selected_method") as string;
++      const methodName = methodMap[methodKey] || methodKey || "-";
++      text += `Önskad metod: ${methodName}\n`;
++    }
+     
+     const location = data.get("location");
+     if (location) text += `Ort: ${location}\n`;
+@@ -235,30 +302,67 @@ if (Astro.request.method === "POST") {
+                             <!-- NOTERA TILL UTVECKLARE: Här kan du klistra in din Fluent Forms shortcode typ [fluentform id="1"].
+                             Nedan är en välbyggd mockup på hur formuläret ska se ut enligt instruktionerna. -->
+                             <form action="" method="POST" class="space-y-5"
+-                        x-data="{ 
+-                            subject: '', 
+-                            subSubject: '', 
+-                            location: '', 
+-                            recipient: 'Okänd', 
+-                            amount: '',
+-                            useFriskvardsbidrag: false,
+-                            friskvardsAmount: '',
+-                            selectedDays: [],
+-                            selectedTimes: [],
+-                            selectedTravelPeriods: [],
+-                            customTravelPeriod: '',
+-                            specificDate: '',
+-                            specificTime: '',
+-                            useSpecificDate: false,
+-                            isPrefilled: false,
+-                            prefillSource: ''
+-                        }" x-init="
++                                x-data="{
++                                    path: '',
++                                    subject: '', 
++                                    subSubject: '', 
++                                    selectedSymptom: '',
++                                    selectedHalsomal: '',
++                                    methodChoice: 'expert',
++                                    selectedMethod: 'expert_assessment',
++                                    location: '', 
++                                    recipient: 'Okänd', 
++                                    amount: '',
++                                    useFriskvardsbidrag: false,
++                                    friskvardsAmount: '',
++                                    selectedDays: [],
++                                    selectedTimes: [],
++                                    selectedTravelPeriods: [],
++                                    customTravelPeriod: '',
++                                    specificDate: '',
++                                    specificTime: '',
++                                    useSpecificDate: false,
++                                    isPrefilled: false,
++                                    prefillSource: '',
++                                    getActiveService() {
++                                        if (this.path === 'service') return this.subject;
++                                        if (['symtom', 'halsomal'].includes(this.path) && this.methodChoice === 'custom') return this.selectedMethod;
++                                        return '';
++                                    }
++                                }" x-init="
++                            const symptomsList = [
++                                'akut-ryggont', 'ischias', 'langvarig-ryggvark', 'nacksparr', 
++                                'ont-i-axlar-skuldror', 'spanningshuvudvark', 'migran', 'balansproblem', 
++                                'ont-i-knan-knabesvar', 'hoftbesvar', 'armbagssmarta', 'somnproblem', 
++                                'utbrandhet', 'ofta-forkyld'
++                            ];
++                            const healthGoalsList = [
++                                'minska-stress', 'oka-energi', 'forbattra-balans-rorlighet', 
++                                'stark-fokus-mental-styrka', 'stark-motstandskraft'
++                            ];
++
+                             const params = new URLSearchParams(window.location.search);
+                             if (params.has('subject')) {
+-                                if (params.get('subject') === 'friskvardsbidrag') {
++                                const urlSubj = params.get('subject');
++                                if (urlSubj === 'friskvardsbidrag') {
+                                     useFriskvardsbidrag = true;
++                                    path = 'service';
++                                    subject = '';
++                                } else if (symptomsList.includes(urlSubj)) {
++                                    path = 'symtom';
++                                    subject = 'symtom';
++                                    selectedSymptom = urlSubj;
++                                    methodChoice = 'expert';
++                                    selectedMethod = 'expert_assessment';
++                                } else if (healthGoalsList.includes(urlSubj)) {
++                                    path = 'halsomal';
++                                    subject = 'halsomal';
++                                    selectedHalsomal = urlSubj;
++                                    methodChoice = 'expert';
++                                    selectedMethod = 'expert_assessment';
+                                 } else {
+-                                    subject = params.get('subject');
++                                    path = 'service';
++                                    subject = urlSubj;
+                                 }
+                             }
+                             if (params.has('sub')) subSubject = params.get('sub');
+@@ -272,6 +376,36 @@ if (Astro.request.method === "POST") {
+                                 }
+                             });
+                             
++                            $watch('path', value => {
++                                if (value === 'symtom') {
++                                    subject = 'symtom';
++                                } else if (value === 'halsomal') {
++                                    subject = 'halsomal';
++                                } else {
++                                    subject = '';
++                                }
++                                subSubject = '';
++                                selectedSymptom = '';
++                                selectedHalsomal = '';
++                                methodChoice = 'expert';
++                                selectedMethod = 'expert_assessment';
++                                selectedDays = [];
++                                selectedTimes = [];
++                                selectedTravelPeriods = [];
++                                customTravelPeriod = '';
++                                specificDate = urlDate || '';
++                                specificTime = urlTime || '';
++                                isPrefilled = false;
++                            });
++
++                            $watch('methodChoice', value => {
++                                if (value === 'expert') {
++                                    selectedMethod = 'expert_assessment';
++                                } else {
++                                    selectedMethod = '';
++                                }
++                            });
++                            
+                             $watch('subject', value => { 
+                                 if (params.has('subject') && params.get('subject') !== 'friskvardsbidrag' && value !== params.get('subject')) {
+                                     urlDate = null;
+@@ -460,34 +594,211 @@ if (Astro.request.method === "POST") {
+                             </div>
+                         </div>
+ 
+-                        <!-- Main Category -->
++                        <!-- Första Valet: 3 Boxar -->
+                         <div class="mt-6 border-t border-brand-earth-light/20 pt-6">
+-                            <label for="subject" class="block text-sm font-medium text-neutral-700 mb-1">Ditt Ärende
++                            <label class="block text-sm font-bold text-brand-earth-dark mb-3">Vad söker du hjälp för? <span class="text-red-500">*</span></label>
++                            
++                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
++                                <!-- Box 1: Symptom -->
++                                <button type="button" 
++                                    @click="path = 'symtom'"
++                                    :class="path === 'symtom' ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
++                                    class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative focus:outline-none">
++                                    <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
++                                        <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
++                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
++                                        </svg>
++                                    </div>
++                                    <h5 class="font-bold text-brand-earth-dark text-base mb-1">Symptom & Besvär</h5>
++                                    <p class="text-xs text-neutral-500 leading-normal">Få hjälp med t.ex. ryggont, nackspärr eller sömnbesvär.</p>
++                                    <div x-show="path === 'symtom'" class="absolute top-3 right-3 text-brand-sky">
++                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
++                                    </div>
++                                </button>
++
++                                <!-- Box 2: Hälsomål -->
++                                <button type="button" 
++                                    @click="path = 'halsomal'"
++                                    :class="path === 'halsomal' ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
++                                    class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative focus:outline-none">
++                                    <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
++                                        <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
++                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
++                                        </svg>
++                                    </div>
++                                    <h5 class="font-bold text-brand-earth-dark text-base mb-1">Mina Hälsomål</h5>
++                                    <p class="text-xs text-neutral-500 leading-normal">Stressreducering, ökad energi, bättre balans och mental styrka.</p>
++                                    <div x-show="path === 'halsomal'" class="absolute top-3 right-3 text-brand-sky">
++                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
++                                    </div>
++                                </button>
++
++                                <!-- Box 3: Annat ärende -->
++                                <button type="button" 
++                                    @click="path = 'service'"
++                                    :class="path === 'service' ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
++                                    class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative focus:outline-none">
++                                    <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
++                                        <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
++                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
++                                        </svg>
++                                    </div>
++                                    <h5 class="font-bold text-brand-earth-dark text-base mb-1">Specifik tjänst / Annat</h5>
++                                    <p class="text-xs text-neutral-500 leading-normal">Boka en specifik kurs, hälsoresa, köp presentkort eller andra frågor.</p>
++                                    <div x-show="path === 'service'" class="absolute top-3 right-3 text-brand-sky">
++                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
++                                    </div>
++                                </button>
++                            </div>
++                            
++                            <!-- Hidden Fields for Path and Subject -->
++                            <input type="hidden" name="path" :value="path" />
++                            <input type="hidden" name="subject" :value="subject" />
++                        </div>
++
++                        <!-- Sub-Category: Symptom -->
++                        <div x-show="path === 'symtom'" x-cloak class="mt-4"
++                            x-transition:enter="transition ease-out duration-300"
++                            x-transition:enter-start="opacity-0 -translate-y-2"
++                            x-transition:enter-end="opacity-100 translate-y-0">
++                            <label for="selected_symptom" class="block text-sm font-medium text-neutral-700 mb-1">Vilket symptom/besvär gäller det?
+                                 <span class="text-red-500">*</span></label>
+-                            <select id="subject" name="subject" required x-model="subject"
++                            <select id="selected_symptom" name="selected_symptom"
++                                :required="path === 'symtom'" x-model="selectedSymptom"
+                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
+-                                <option value="">-- Välj ett ärende --</option>
+-                                <option value="taichi">Tai Chi</option>
+-                                <option value="qigong">Medicinsk Qigong</option>
+-                                <option value="instruktorskurs">Instruktörskurs</option>
+-                                <option value="behandling">Behandling</option>
+-                                <option value="halsoresa">Hälsoresa till Kina</option>
+-                                <option value="workshop">Workshops & Gruppaktiviteter</option>
+-                                <option value="halsodag">Skräddarsydda Hälsodagar</option>
+-                                <option x-show="!useFriskvardsbidrag" :disabled="useFriskvardsbidrag" value="presentkort">Presentkort</option>
+-                                <option value="ovrigt">Övrigt</option>
++                                <option value="">-- Välj symptom/besvär --</option>
++                                <optgroup label="Rygg & Ländrygg">
++                                    <option value="akut-ryggont">Akut Ryggskott</option>
++                                    <option value="ischias">Ischiasbesvär & Smärta som strålar i benet</option>
++                                    <option value="langvarig-ryggvark">Långvarig värk & Stelhet i ländryggen</option>
++                                </optgroup>
++                                <optgroup label="Nacke, Axlar & Skuldror">
++                                    <option value="nacksparr">Nackspärr & Stel nacke</option>
++                                    <option value="ont-i-axlar-skuldror">Ont i Axlar & Skuldror</option>
++                                </optgroup>
++                                <optgroup label="Huvudvärk & Balansproblem">
++                                    <option value="spanningshuvudvark">Spänningshuvudvärk & Stresshuvudvärk</option>
++                                    <option value="migran">Migrän</option>
++                                    <option value="balansproblem">Balansproblem</option>
++                                </optgroup>
++                                <optgroup label="Ledvärk, Ledbesvär & Idrottsskador">
++                                    <option value="ont-i-knan-knabesvar">Ont i knän & knäbesvär</option>
++                                    <option value="hoftbesvar">Ont i höfter & höftbesvär</option>
++                                    <option value="armbagssmarta">Tennisarmbåge, Musarm & Värk i handleder</option>
++                                </optgroup>
++                                <option value="somnproblem">Sömnbesvär</option>
++                                <option value="utbrandhet">Utbrändhet & Trötthet</option>
++                                <option value="ofta-forkyld">Ofta Förkyld</option>
+                             </select>
+                         </div>
+ 
++                        <!-- Sub-Category: Hälsomål -->
++                        <div x-show="path === 'halsomal'" x-cloak class="mt-4"
++                            x-transition:enter="transition ease-out duration-300"
++                            x-transition:enter-start="opacity-0 -translate-y-2"
++                            x-transition:enter-end="opacity-100 translate-y-0">
++                            <label for="selected_halsomal" class="block text-sm font-medium text-neutral-700 mb-1">Vilket hälsomål vill du uppnå?
++                                <span class="text-red-500">*</span></label>
++                            <select id="selected_halsomal" name="selected_halsomal"
++                                :required="path === 'halsomal'" x-model="selectedHalsomal"
++                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
++                                <option value="">-- Välj hälsomål --</option>
++                                <option value="minska-stress">Minska Stress & Hitta Inre Lugn</option>
++                                <option value="oka-energi">Öka Energi & Livskraft i Vardagen</option>
++                                <option value="forbattra-balans-rorlighet">Förbättra Balans, Rörlighet & Kroppskontroll</option>
++                                <option value="stark-fokus-mental-styrka">Stärka Fokus & Mental Styrka</option>
++                                <option value="stark-motstandskraft">Stärk Motståndskraften</option>
++                            </select>
++                        </div>
++
++                        <!-- Metodval Box -->
++                        <div x-show="['symtom', 'halsomal'].includes(path)" x-cloak class="mt-4 space-y-3" x-transition>
++                            <label class="block text-sm font-bold text-neutral-700">Val av metod</label>
++                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
++                                <!-- Val A: Låt experten bedöma -->
++                                <label class="relative flex flex-col p-4 rounded-xl border cursor-pointer transition-all duration-200 hover:bg-neutral-50"
++                                    :class="methodChoice === 'expert' ? 'bg-brand-sky-light/10 border-brand-sky ring-1 ring-brand-sky' : 'bg-white border-neutral-200'">
++                                    <input type="radio" name="method_choice" value="expert" x-model="methodChoice" class="sr-only">
++                                    <div class="flex items-center justify-between mb-1">
++                                        <span class="text-sm font-bold" :class="methodChoice === 'expert' ? 'text-brand-sky-dark' : 'text-neutral-700'">Låt experten bedöma (rekommenderas)</span>
++                                        <template x-if="methodChoice === 'expert'">
++                                            <svg class="w-4 h-4 text-brand-sky-dark" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
++                                        </template>
++                                    </div>
++                                    <span class="text-xs text-neutral-500">Våra terapeuter utvärderar ditt tillstånd och rekommenderar bästa behandling, Tai Chi eller Qigong.</span>
++                                </label>
++
++                                <!-- Val B: Specifik tjänst -->
++                                <label class="relative flex flex-col p-4 rounded-xl border cursor-pointer transition-all duration-200 hover:bg-neutral-50"
++                                    :class="methodChoice === 'custom' ? 'bg-brand-sky-light/10 border-brand-sky ring-1 ring-brand-sky' : 'bg-white border-neutral-200'">
++                                    <input type="radio" name="method_choice" value="custom" x-model="methodChoice" class="sr-only">
++                                    <div class="flex items-center justify-between mb-1">
++                                        <span class="text-sm font-bold" :class="methodChoice === 'custom' ? 'text-brand-sky-dark' : 'text-neutral-700'">Jag önskar en specifik tjänst</span>
++                                        <template x-if="methodChoice === 'custom'">
++                                            <svg class="w-4 h-4 text-brand-sky-dark" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
++                                        </template>
++                                    </div>
++                                    <span class="text-xs text-neutral-500">Om du vet exakt vilken metod eller tjänst du önskar kan du välja den själv.</span>
++                                </label>
++                            </div>
++                        </div>
++
++                        <!-- Specifik tjänst / ärende dropdown (visas för 'service' eller 'custom' metodval) -->
++                        <div x-show="path === 'service' || (['symtom', 'halsomal'].includes(path) && methodChoice === 'custom')" x-cloak class="mt-4"
++                            x-transition:enter="transition ease-out duration-300"
++                            x-transition:enter-start="opacity-0 -translate-y-2"
++                            x-transition:enter-end="opacity-100 translate-y-0">
++                            
++                            <!-- Dropdown for direct service selection -->
++                            <template x-if="path === 'service'">
++                                <div>
++                                    <label for="subject" class="block text-sm font-medium text-neutral-700 mb-1">Välj specifik tjänst / ärende <span class="text-red-500">*</span></label>
++                                    <select id="subject" name="subject" :required="path === 'service'" x-model="subject"
++                                        class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
++                                        <option value="">-- Välj ärende --</option>
++                                        <option value="taichi">Tai Chi (Specifik kurs eller privatundervisning)</option>
++                                        <option value="qigong">Medicinsk Qigong (Specifik kurs eller privatundervisning)</option>
++                                        <option value="instruktorskurs">Instruktörskurs</option>
++                                        <option value="behandling">Behandling (Specifik bokning av Akupunktur / TuiNa)</option>
++                                        <option value="halsoresa">Hälsoresa till Kina</option>
++                                        <option value="workshop">Workshops & Gruppaktiviteter</option>
++                                        <option value="halsodag">Skräddarsydda Hälsodagar</option>
++                                        <option x-show="!useFriskvardsbidrag" :disabled="useFriskvardsbidrag" value="presentkort">Presentkort</option>
++                                        <option value="ovrigt">Övrigt</option>
++                                    </select>
++                                </div>
++                            </template>
++
++                            <!-- Dropdown for method choice selection under symptoms/goals -->
++                            <template x-if="['symtom', 'halsomal'].includes(path) && methodChoice === 'custom'">
++                                <div>
++                                    <label for="selected_method" class="block text-sm font-medium text-neutral-700 mb-1">Välj önskad metod / tjänst <span class="text-red-500">*</span></label>
++                                    <select id="selected_method" name="selected_method" :required="['symtom', 'halsomal'].includes(path) && methodChoice === 'custom'" x-model="selectedMethod"
++                                        class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
++                                        <option value="">-- Välj önskad metod --</option>
++                                        <option value="behandling">Behandling (Akupunktur / TuiNa-massage)</option>
++                                        <option value="qigong">Medicinsk Qigong</option>
++                                        <option value="taichi">Tai Chi</option>
++                                        <option value="instruktorskurs">Instruktörskurs</option>
++                                        <option value="halsoresa">Hälsoresa till Kina</option>
++                                        <option value="workshop">Workshops & Gruppaktiviteter</option>
++                                        <option value="halsodag">Skräddarsydda Hälsodagar</option>
++                                        <option x-show="!useFriskvardsbidrag" :disabled="useFriskvardsbidrag" value="presentkort">Presentkort</option>
++                                        <option value="ovrigt">Övrigt</option>
++                                    </select>
++                                </div>
++                            </template>
++                        </div>
++
+                         <!-- Sub-Category: Tai Chi & Qigong -->
+-                        <div x-show="['taichi', 'qigong'].includes(subject)" x-cloak class="mt-4"
++                        <div x-show="['taichi', 'qigong'].includes(getActiveService())" x-cloak class="mt-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                             <label for="course_type" class="block text-sm font-medium text-neutral-700 mb-1">Typ av kurs
+                                 <span class="text-red-500">*</span></label>
+                             <select id="course_type" name="course_type"
+-                                :required="['taichi', 'qigong'].includes(subject)" x-model="subSubject"
++                                :required="['taichi', 'qigong'].includes(getActiveService())" x-model="subSubject"
+                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
+                                 <option value="">-- Välj typ av kurs --</option>
+                                 <option value="helgkurs">Helgkurs</option>
+@@ -498,7 +809,7 @@ if (Astro.request.method === "POST") {
+                         </div>
+ 
+                         <!-- Specifik förfrågan (Text area) -->
+-                        <div x-show="['taichi', 'qigong'].includes(subject) && subSubject === 'specifik_forfragan'"
++                        <div x-show="['taichi', 'qigong'].includes(getActiveService()) && subSubject === 'specifik_forfragan'"
+                             x-cloak class="mt-4" x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+@@ -506,19 +817,19 @@ if (Astro.request.method === "POST") {
+                                 class="block text-sm font-medium text-neutral-700 mb-1">Beskriv din förfrågan kort <span
+                                     class="text-red-500">*</span></label>
+                             <input type="text" id="specific_request" name="specific_request"
+-                                :required="['taichi', 'qigong'].includes(subject) && subSubject === 'specifik_forfragan'"
++                                :required="['taichi', 'qigong'].includes(getActiveService()) && subSubject === 'specifik_forfragan'"
+                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
+                         </div>
+ 
+                         <!-- Sub-Category: Behandling -->
+-                        <div x-show="subject === 'behandling'" x-cloak class="mt-4"
++                        <div x-show="getActiveService() === 'behandling'" x-cloak class="mt-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                             <label for="behandling_type" class="block text-sm font-medium text-neutral-700 mb-1">Typ av behandling
+                                 <span class="text-red-500">*</span></label>
+                             <select id="behandling_type" name="behandling_type"
+-                                :required="subject === 'behandling'" x-model="subSubject"
++                                :required="getActiveService() === 'behandling'" x-model="subSubject"
+                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
+                                 <option value="">-- Välj typ av behandling --</option>
+                                 <option value="terapeutisk">Terapeutisk behandling (TuiNa eller Akupunktur)</option>
+@@ -541,14 +852,14 @@ if (Astro.request.method === "POST") {
+                         </div>
+ 
+                         <!-- Sub-Category: Presentkort -->
+-                        <div x-show="subject === 'presentkort'" x-cloak class="mt-4 space-y-4"
++                        <div x-show="getActiveService() === 'presentkort'" x-cloak class="mt-4 space-y-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                             <div>
+                                 <label for="giftcard_type" class="block text-sm font-medium text-neutral-700 mb-1">Vad för
+                                     typ av presentkort? <span class="text-red-500">*</span></label>
+-                                <select id="giftcard_type" name="giftcard_type" :required="subject === 'presentkort'"
++                                <select id="giftcard_type" name="giftcard_type" :required="getActiveService() === 'presentkort'"
+                                     x-model="subSubject"
+                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
+                                     <option value="">-- Välj typ --</option>
+@@ -562,7 +873,7 @@ if (Astro.request.method === "POST") {
+                             <div x-show="subSubject === 'valfritt_belopp'" x-cloak x-transition
+                                 class="bg-brand-sky-light/10 p-4 rounded-lg border border-brand-sky/20">
+                                 <label for="amount" class="block text-sm font-medium text-neutral-700 mb-1">Önskat belopp (kr) <span class="text-red-500">*</span></label>
+-                                <input type="number" id="amount" name="amount" x-model="amount" :required="subject === 'presentkort' && subSubject === 'valfritt_belopp'"
++                                <input type="number" id="amount" name="amount" x-model="amount" :required="getActiveService() === 'presentkort' && subSubject === 'valfritt_belopp'"
+                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"
+                                     placeholder="T.ex. 500" min="1">
+                                 <p class="text-xs text-neutral-500 mt-2">Fyll i det belopp du vill ladda presentkortet med.</p>
+@@ -570,7 +881,7 @@ if (Astro.request.method === "POST") {
+ 
+                             <div class="bg-brand-accent/5 p-4 rounded-lg border border-brand-accent/20">
+                                 <label for="recipient_name" class="block text-sm font-medium text-neutral-700 mb-1">Mottagarens namn <span class="text-red-500">*</span></label>
+-                                <input type="text" id="recipient_name" name="recipient_name" x-model="recipient" :required="subject === 'presentkort'"
++                                <input type="text" id="recipient_name" name="recipient_name" x-model="recipient" :required="getActiveService() === 'presentkort'"
+                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
+                                 <p class="text-xs text-neutral-500 mt-2">Ange namn på mottagaren. Låt det stå <span class="font-semibold text-brand-earth">"Okänd"</span> om du inte vet namnet än.</p>
+                             </div>
+@@ -579,18 +890,18 @@ if (Astro.request.method === "POST") {
+                         <!-- Friskvårdsbidrag sub-category element removed -->
+ 
+                         <!-- Övrigt Text Input -->
+-                        <div x-show="subject === 'ovrigt'" x-cloak class="mt-4"
++                        <div x-show="getActiveService() === 'ovrigt'" x-cloak class="mt-4"
+                             x-transition:enter="transition ease-out duration-300"
+                             x-transition:enter-start="opacity-0 -translate-y-2"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                             <label for="other_request" class="block text-sm font-medium text-neutral-700 mb-1">Vad
+                                 gäller ditt ärende? <span class="text-red-500">*</span></label>
+-                            <input type="text" id="other_request" name="other_request" :required="subject === 'ovrigt'"
++                            <input type="text" id="other_request" name="other_request" :required="getActiveService() === 'ovrigt'"
+                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
+                         </div>
+ 
+                         <!-- Bokningspreferenser (Tid & Dag) -->
+-                        <div x-show="['taichi', 'qigong', 'behandling', 'instruktorskurs', 'workshop', 'halsodag'].includes(subject)" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
++                        <div x-show="['taichi', 'qigong', 'behandling', 'instruktorskurs', 'workshop', 'halsodag', 'symtom', 'halsomal'].includes(subject)" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
+                             <h4 class="text-xl font-bold text-brand-earth-dark flex items-center">
+                                 <Icon name="clock" class="w-6 h-6 mr-3 text-brand-accent-dark" />
+                                 Tidspreferenser <span class="text-sm font-normal text-neutral-500 ml-2">(valfritt)</span>
+@@ -665,21 +976,14 @@ if (Astro.request.method === "POST") {
+                                             <template x-if="selectedTimes.includes(time)">
+                                                 <svg class="w-4 h-4 ml-auto text-brand-sky-dark" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                             </template>
+-                                        </label>
+-                                    </template>
+-                                </div>
+-                                <input type="hidden" name="preferred_time_ranges" :value="selectedTimes.join(', ')">
+-                            </div>
+-                        </div>
+-
+-                        <!-- Resepreferenser (Hälsoresa) -->
+-                        <div x-show="subject === 'halsoresa'" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
++                                                         <!-- Resepreferenser (Hälsoresa) -->
++                        <div x-show="getActiveService() === 'halsoresa'" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
+                             <h4 class="text-xl font-bold text-brand-earth-dark flex items-center">
+                                 <Icon name="calendar" class="w-6 h-6 mr-3 text-brand-accent-dark" />
+                                 Reseperiod <span class="text-sm font-normal text-neutral-500 ml-2">(valfritt)</span>
+                             </h4>
+ 
+-                            <div x-show="subject === 'halsoresa'" x-cloak
++                            <div x-show="getActiveService() === 'halsoresa'" x-cloak
+                                 class="mt-4 bg-brand-sky-light/10 p-4 rounded-lg border border-brand-sky/20 transition-all duration-300"
+                                 x-transition>
+                                 <p class="text-sm text-brand-earth-dark font-medium flex items-start">
+@@ -721,10 +1025,10 @@ if (Astro.request.method === "POST") {
+                         <div>
+                             <label for="message" class="block text-sm font-medium text-neutral-700 mb-1 mt-4">Ditt
+                                 Meddelande
+-                                <span class="text-red-500" x-show="subject !== 'ovrigt'">*</span></label>
+-                            <p class="text-xs text-neutral-500 mb-2" x-show="!['ovrigt'].includes(subject)">Beskriv ditt
++                                <span class="text-red-500" x-show="getActiveService() !== 'ovrigt'">*</span></label>
++                            <p class="text-xs text-neutral-500 mb-2" x-show="!['ovrigt'].includes(getActiveService())">Beskriv ditt
+                                 ärende, dina frågor eller vad du behöver hjälp med.</p>
+-                            <textarea id="message" name="message" rows="5" :required="subject !== 'ovrigt'"
++                            <textarea id="message" name="message" rows="5" :required="getActiveService() !== 'ovrigt'"
+                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"></textarea>
+                         </div>
+ 
