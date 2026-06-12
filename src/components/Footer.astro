@@ -44,7 +44,10 @@ const activeSocialLinks = allPlatforms
 <footer class="site-footer bg-brand-earth-dark text-neutral-100 py-16">
     <div class="container-base">
 
-        <div class="footer-grid-layout grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <div class:list={[
+            "footer-grid-layout grid-cols-1 md:grid-cols-2 lg:mx-auto",
+            activeSocialLinks.length > 0 ? "lg:grid-cols-[4fr_3fr_3fr] lg:max-w-7xl" : "lg:max-w-4xl"
+        ]}>
             
             {/* COLUMN 1: Contact Info */}
             <div class="footer-widget-area text-left">
