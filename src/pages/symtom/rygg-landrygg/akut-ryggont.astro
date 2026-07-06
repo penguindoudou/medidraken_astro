@@ -7,9 +7,41 @@ import Icon from '../../../components/Icon.astro';
 import heroImage from '../../../assets/images/ryggvark_hero5.png';
 import tuinaManImage from '../../../assets/images/tuina_man2.png';
 import acupunctureImage from '../../../assets/images/aku_doll6.png';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Jag har så ont att jag knappt kan röra mig, kan jag verkligen få behandling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, absolut. Vi är vana vid att behandla akuta tillstånd. Behandlingen anpassas helt efter din smärtnivå och rörelseförmåga. Ofta kan vi utföra behandlingen i en position som är så bekväm som möjligt för dig, till exempel sittande eller liggande mage eller sidan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hur snabbt kan jag få en tid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vid akuta besvär som ryggskott arbetar vi för att hitta en tid åt dig så snabbt som möjligt, ofta samma dag eller nästkommande vardag. Ring eller maila oss och förklara din situation så gör vi vad vi kan för att ta emot dig direkt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vad kan jag själv göra för att förebygga så att jag inte får ryggont igen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "När vi har minskat den akuta smärtan är det viktigt att du stärker muskulaturen. Regelbunden praktik av Tai Chi och Qigong är utmärkta verktyg för att bygga en stark, balanserad och stabil grund på lång sikt."
+      }
+    }
+  ]
+};
 ---
 
-<BaseLayout title="Behandling av Akut Ryggskott i Nyköping, Gnesta och Oxelösund | Effektiv Hjälp | Medidraken">
+<BaseLayout title="Behandling av Akut Ryggskott i Nyköping, Gnesta och Oxelösund | Effektiv Hjälp | Medidraken"
+  description="Få snabb och effektiv hjälp vid akut ryggskott och ryggont i Nyköping, Gnesta och Oxelösund. Boka tid hos Medidraken.">
     <!-- ======================================= -->
     <!-- Sektion 1: Hero – Toppsektion           -->
     <!-- ======================================= -->
@@ -253,4 +285,6 @@ import acupunctureImage from '../../../assets/images/aku_doll6.png';
         </div>
     </section>
 
+    <!-- FAQ Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

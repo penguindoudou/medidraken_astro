@@ -6,9 +6,34 @@ import Icon from '../components/Icon.astro';
 // Placeholder bild, byt ut vid tillfälle
 import heroImage from '../assets/images/taichi_hero6.png'; 
 import { siteConfig } from '../data/site.ts';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Är ni anslutna till Epassi, Benify eller Wellnet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "För närvarande är vi inte direktanslutna till någon portal. Processen är därför att du betalar direkt till oss och sedan använder det detaljerade kvittot du får för att själv registrera ditt utlägg i din portal och få ersättning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Viktigt att tänka på gällande Skatteverket & Kvitton",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ditt Ansvar: Det är alltid ditt eget ansvar att säkerställa att din valda aktivitet godkänns av just din arbetsgivare. Spara Kvittot: Se till att du sparar det specifika kvitto vi ger dig! Vanliga kortkvitton eller handskrivna lappar räcker oftast inte som bevis hos Skatteverket eller portalerna. Vårt kvitto innehåller all rätt information. Skatteverkets Regler: För den allra senaste officiella informationen kring friskvård, besök Skatteverkets webbplats."
+      }
+    }
+  ]
+};
 ---
 
-<BaseLayout title="Använd Ditt Friskvårdsbidrag för Massage & Qigong i Nyköping | Medidraken">
+
+<BaseLayout title="Använd Ditt Friskvårdsbidrag för Massage & Qigong i Nyköping | Medidraken"
+  description="Använd ditt friskvårdsbidrag hos Medidraken i Nyköping & Gnesta. Våra kurser i Tai Chi och Qigong samt stressreducerande behandlingar är godkända av Skatteverket.">
     <!-- Sektion 1: Toppsektion (Hero) -->
     <section class="hero-section">
         <div class="hero-background">
@@ -416,4 +441,7 @@ import { siteConfig } from '../data/site.ts';
             </div>
         </div>
     </section>
+
+    <!-- FAQ Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

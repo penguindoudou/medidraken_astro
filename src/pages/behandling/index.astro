@@ -9,9 +9,40 @@ import acupunctureImage from '../../assets/images/aku_doll6.png';
 import tuina_manImage from '../../assets/images/tuina_man.png';
 import johannes_mao_profileImage from '../../assets/images/johannes_mao_profile.jpg';
 import linnea_mao_profileImage from '../../assets/images/linnea_mao_profile.jpg';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Hur vet jag vilken behandling som är bäst för mig?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Det behöver du inte veta på förhand. Under vår första kontakt diskuterar vi dina besvär, och utifrån det rekommenderar vi den metod eller kombination av metoder som vi bedömer kommer att hjälpa dig bäst."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hur snabbt kan jag förvänta mig resultat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Det är individuellt, men vår erfarenhet är att många känner en närkbar skillnad inom 3 behandlings-tillfällen. För mer långvariga eller komplexa besvär kan en längre behandlingsserie behövas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vad kan jag göra själv för att förbättra resultatet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Din delaktighet är avgörande för ett hållbart resultat. Ett framgångsrikt upplägg bygger ofta på tre delar som samverkar: 1. Effektiva Verktyg för Hälsa & Läkning (behandlingar, Qigong, Tai Chi), 2. Skapa Hållbara Vanor för Långsiktigt Välmående, 3. Använd oss som ditt stöd och bollplank."
+      }
+    }
+  ]
+};
 ---
 
-<BaseLayout title="Behandling">
+<BaseLayout title="Behandling" description="Minska smärta and stress med akupunktur, TuiNa-massage och oljemassage hos Medidraken i Nyköping och Gnesta. Boka din behandling idag.">
     <!-- 
    SEO-Anvisning: 
    Meta-titel: "Behandlingar i Nyköping & Gnesta | Akupunktur & TuiNa | Medidraken"
@@ -536,4 +567,7 @@ import linnea_mao_profileImage from '../../assets/images/linnea_mao_profile.jpg'
             </div>
         </div>
     </section>
+
+    <!-- FAQ Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { siteConfig } from '../data/site.ts';
 
 interface Props {
   title?: string;
@@ -19,6 +20,78 @@ const displayTitle = title
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL('/assets/images/medidraken-logo_white_background.png', Astro.site);
+
+const localBusinessSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Medidraken - Nyköping",
+    "image": ogImageURL.toString(),
+    "@id": `${siteConfig.url}/#nykoping`,
+    "url": siteConfig.url,
+    "telephone": siteConfig.phone.clean,
+    "email": siteConfig.email,
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": siteConfig.addresses.nykoping.street,
+      "addressLocality": siteConfig.addresses.nykoping.city,
+      "postalCode": siteConfig.addresses.nykoping.zip,
+      "addressCountry": "SE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 58.7533088,
+      "longitude": 17.0006764
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Medidraken - Gnesta",
+    "image": ogImageURL.toString(),
+    "@id": `${siteConfig.url}/#gnesta`,
+    "url": siteConfig.url,
+    "telephone": siteConfig.phone.clean,
+    "email": siteConfig.email,
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": siteConfig.addresses.gnesta.street,
+      "addressLocality": siteConfig.addresses.gnesta.city,
+      "postalCode": siteConfig.addresses.gnesta.zip,
+      "addressCountry": "SE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 59.0494875,
+      "longitude": 17.3056093
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Medidraken - Oxelösund",
+    "image": ogImageURL.toString(),
+    "@id": `${siteConfig.url}/#oxelosund`,
+    "url": siteConfig.url,
+    "telephone": siteConfig.phone.clean,
+    "email": siteConfig.email,
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": siteConfig.addresses.oxelosund.street,
+      "addressLocality": siteConfig.addresses.oxelosund.city,
+      "postalCode": siteConfig.addresses.oxelosund.zip,
+      "addressCountry": "SE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 58.6698654,
+      "longitude": 17.0984183
+    }
+  }
+];
 ---
 <html lang="sv">
   <head>
@@ -56,6 +129,10 @@ const ogImageURL = new URL('/assets/images/medidraken-logo_white_background.png'
       <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon={`{"token": "${import.meta.env.PUBLIC_CLOUDFLARE_TOKEN}"}`}></script>
     )}
     <!-- End Cloudflare Web Analytics -->
+
+    { (Astro.url.pathname === '/' || Astro.url.pathname === '/index.html') && (
+      <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    ) }
   </head>
   <body class="bg-neutral-100 text-neutral-700 font-body antialiased selection:bg-brand-accent selection:text-white">
     <Header />
