@@ -1,3 +1,5 @@
+import coursesData from './courses.json';
+
 export type Course = {
   title: string;
   /** Vilken typ av kurs det är, t.ex. "Helgkurs" eller "Terminskurs". Visas ex. på index-sidan. */
@@ -9,32 +11,7 @@ export type Course = {
   lastDate: string;
 };
 
-// ==========================================
-// Medicinsk Qigong
-// ==========================================
-export const coursesQigong: Course[] = [
-  // Exempel på en framtida kurs (Helgkurs-format används nu överallt):
-  {
-    title: 'Grundkurs',
-    format: 'Helgkurs',
-    location: 'Nyköping',
-    date: '14-15 Okt',
-    times: '10:00 - 15:00',
-    lastDate: '2026-10-15',
-  },
-];
+export const coursesQigong: Course[] = coursesData.qigong;
+export const coursesTaiChi: Course[] = coursesData.taichi;
 
-// ==========================================
-// Tai Chi
-// ==========================================
-export const coursesTaiChi: Course[] = [
-  {
-    title: 'Grundkurs',
-    format: 'Helgkurs',
-    location: 'Nyköping',
-    date: '20-21 Juni',
-    times: '10:00 - 15:00',
-    lastDate: '2026-10-15',
-  },
 
-];
