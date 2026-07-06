@@ -13,7 +13,12 @@ const {
   description = "Medidraken - Din väg till mindre smärta, mindre stress och mer energi med Traditionell Kinesisk Medicin." 
 } = Astro.props;
 
-const displayTitle = title ? `${title} | Medidraken` : "Medidraken | Akupunktur & TCM i Nyköping, Gnesta & Oxelösund";
+const displayTitle = title 
+  ? (title.includes("Medidraken") ? title : `${title} | Medidraken`) 
+  : "Medidraken | Akupunktur & TCM i Nyköping, Gnesta & Oxelösund";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL('/assets/images/medidraken-logo_white_background.png', Astro.site);
 ---
 <html lang="sv">
   <head>
@@ -25,6 +30,22 @@ const displayTitle = title ? `${title} | Medidraken` : "Medidraken | Akupunktur 
     <!-- SEO Basics -->
     <title>{displayTitle}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={displayTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content="sv_SE" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={displayTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageURL} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
