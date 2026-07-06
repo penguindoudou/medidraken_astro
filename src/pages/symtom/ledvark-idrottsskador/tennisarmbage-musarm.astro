@@ -6,7 +6,7 @@ import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
 import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
 
 // Images
-import heroImage from '../../../assets/images/armbagssmarta_hero.png';
+import heroImage from '../../../assets/images/armbagssmarta_hero3.png';
 import acupunctureImage from '../../../assets/images/aku_doll6.png';
 import tuinaManImage from '../../../assets/images/tuina_girl_wide2.png';
 
@@ -57,20 +57,22 @@ const faqs = [
 
 <BaseLayout title="Behandling av Tennisarmbåge, Musarm & Värk i Handleder i Nyköping | Medidraken">
     
-    <SymptomHero
-        title="Tennisarmbåge, Musarm & Värk i Handleder"
-        subtitle="Minska Smärta & Förbättra Funktion"
-        image={heroImage}
-        imageAlt="Behandling av tennisarmbåge och handledsvärk"
-        buttonText="Behandla Armbåge & Handled"
-        buttonLink="/kontakt?subject=tennisarmbage-musarm"
-    >
-        Har du ont på utsidan av armbågen, domningar i fingrarna eller värk i handleden?
-        Känns det obehagligt att vrida ur disktrasan?
-        Tennisarmbåge, golfarmbåge och musarm beror ofta på ensidiga rörelser och överbelastning.
-        Genom TCM-behandling kan vi hjälpa till att lösa upp underliggande muskelspänningar
-        och påskynda kroppens egen läkning så du får goda förutsättningar till minskad smärta och fungerande armar och händer.
-    </SymptomHero>
+    <div class="hero-tennisarmbage">
+        <SymptomHero
+            title="Tennisarmbåge, Musarm & Värk i Handleder"
+            subtitle="Minska Smärta & Förbättra Funktion"
+            image={heroImage}
+            imageAlt="Behandling av tennisarmbåge och handledsvärk"
+            buttonText="Behandla Armbåge & Handled"
+            buttonLink="/kontakt?subject=tennisarmbage-musarm"
+        >
+            Har du ont på utsidan av armbågen, domningar i fingrarna eller värk i handleden?
+            Känns det obehagligt att vrida ur disktrasan?
+            Tennisarmbåge, golfarmbåge och musarm beror ofta på ensidiga rörelser och överbelastning.
+            Genom TCM-behandling kan vi hjälpa till att lösa upp underliggande muskelspänningar
+            och påskynda kroppens egen läkning så du får goda förutsättningar till minskad smärta och fungerande armar och händer.
+        </SymptomHero>
+    </div>
 
     <SymptomMethods
         title="Hur vi Behandlar Tennisarmbåge, Musarm & Värk i Handlederna"
@@ -102,3 +104,9 @@ const faqs = [
     />
 
 </BaseLayout>
+
+<style is:global>
+  .hero-tennisarmbage .hero-bg-image {
+    object-position: 50% 30% !important;
+  }
+</style>

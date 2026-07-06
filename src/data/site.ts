@@ -5,8 +5,8 @@ export const siteConfig = {
   domain,
   url: `https://www.${domain}`,
   phone: {
-    display: '+46 70-581 40 86',
-    clean: '+46705814086'
+    display: '+46 70-581 40 98',
+    clean: '+46705814098'
   },
   email: `info@${domain}`,
   addresses: {
@@ -36,7 +36,7 @@ export const siteConfig = {
     }
   },
   social: {
-    facebook: 'https://www.facebook.com/Medidraken/?locale=sv_SE',
+    // facebook: 'https://www.facebook.com/Medidraken/?locale=sv_SE',
     // instagram: 'https://instagram.com/shufflaz',
     // linkedin: 'https://www.linkedin.com/company/medidraken',
     // x: 'https://x.com/medidraken',
