@@ -1030,6 +1030,7 @@ if (Astro.request.method === "POST") {
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                         <!-- Bokningspreferenser (Tid & Dag) -->
                         <div x-show="hasSymptom || hasHealthGoal || subjects.some(s => ['taichi', 'qigong', 'behandling', 'instruktorskurs', 'workshop', 'halsodag'].includes(s))" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
@@ -1180,6 +1181,8 @@ if (Astro.request.method === "POST") {
                             Skicka Meddelande
                         </button>
                     </form>
+                    </>
+                    )}
 
                     <div class="mt-8 text-center border-t border-neutral-100 pt-6">
                         <p class="text-sm text-neutral-600">
