@@ -10,7 +10,10 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   output: 'static',
   adapter: cloudflare({
-    imageService: 'compile'
+    imageService: 'compile',
+    assets: {
+      binding: 'STATIC_ASSETS'
+    }
   }),
   devToolbar: {
     enabled: false
