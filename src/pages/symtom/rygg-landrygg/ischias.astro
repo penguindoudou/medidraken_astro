@@ -6,7 +6,7 @@ import SymptomCTA from '../../../components/symptom/SymptomCTA.astro';
 import SymptomFAQ from '../../../components/symptom/SymptomFAQ.astro';
 
 // Images
-import heroImage from '../../../assets/images/ischias_hero2.png';
+import heroImage from '../../../assets/images/ischias_hero4.png';
 import tuinaManImage from '../../../assets/images/tuina_man2.png';
 import acupunctureImage from '../../../assets/images/aku_doll6.png';
 
@@ -50,22 +50,24 @@ const faqs = [
 <BaseLayout title="Behandling vid Ischiasbesvär & Utstrålande Smärta i Nyköping | Medidraken"
   description="Dras du med ischias eller utstrålande smärta i benet? Våra behandlingar i Nyköping & Gnesta hjälper till att lindra trycket på nerven och minska smärta.">
     
-    <SymptomHero
-        title="Ischiasbesvär & Utstrålande Smärta"
-        subtitle="Minska Smärta & Förbättra Rörligheten"
-        image={heroImage}
-        imageAlt="Ischias och utstrålande smärta behandling"
-        buttonText="Få Hjälp Med Ischiasbesvär"
-        buttonLink="/kontakt?subject=ischias"
-    >
-        Ischiassmärta strålar ofta från ländryggen, ilar genom säte, 
-        höft och ben och kan vara oerhört intensivt och begränsande.
-        
-        Orsaker kan vara längre stillasittande, plötsliga tunga, felaktig belastning eller stress.
-        
-        Med TCM:s metoder fokuserar vi på att avlasta området och stärka  stärka cirkulationen kring ischiasnerven, 
-        vilket ger din kropp goda förutsättningar för minskad smärta och förbättrad rörlighet.
-    </SymptomHero>
+    <div class="hero-ischias">
+        <SymptomHero
+            title="Ischiasbesvär & Utstrålande Smärta"
+            subtitle="Minska Smärta & Förbättra Rörligheten"
+            image={heroImage}
+            imageAlt="Ischias och utstrålande smärta behandling"
+            buttonText="Få Hjälp Med Ischiasbesvär"
+            buttonLink="/kontakt?subject=ischias"
+        >
+            Ischiassmärta strålar ofta från ländryggen, ilar genom säte, 
+            höft och ben och kan vara oerhört intensivt och begränsande.
+            
+            Orsaker kan vara längre stillasittande, plötsliga tunga, felaktig belastning eller stress.
+            
+            Med TCM:s metoder fokuserar vi på att avlasta området och stärka  stärka cirkulationen kring ischiasnerven, 
+            vilket ger din kropp goda förutsättningar för minskad smärta och förbättrad rörlighet.
+        </SymptomHero>
+    </div>
 
     <SymptomMethods
         title="Hur Vi Arbetar Vid Ischiasbesvär & Utstrålande Smärta"
@@ -95,3 +97,9 @@ const faqs = [
     />
 
 </BaseLayout>
+
+<style is:global>
+  .hero-ischias .hero-bg-image {
+    object-position: 50% 30% !important;
+  }
+</style>
