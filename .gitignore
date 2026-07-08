@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 # previous wp site reference material
 legacy_wp_site/
+.wrangler/

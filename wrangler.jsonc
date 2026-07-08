@@ -3,8 +3,7 @@
   "compatibility_date": "2026-04-27",
   "pages_build_output_dir": "./dist/client",
   "assets": {
-    "directory": "./dist/client",
-    "binding": "ASSETS"
+    "directory": "./dist/client"
   },
   "compatibility_flags": [
     "nodejs_compat"
