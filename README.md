@@ -1,59 +1,111 @@
 # Medidraken: Traditional Chinese Medicine & Wellness Center
 
-This repository contains the source code for the **Medidraken** website, a platform for a Swedish Traditional Chinese Medicine (TCM) and wellness practice specializing in TuiNa, Acupuncture, Medical Qigong, and Tai Chi.
+Source code for the **Medidraken** website — a Swedish TCM and wellness practice specializing in TuiNa, Acupuncture, Medical Qigong, and Tai Chi.
 
 > [!NOTE]
-> This repository is being shared publicly **to showcase my current work** as part of a professional portfolio.
-> 
-> **Project History**: This site was originally started on WordPress but was migrated to **Astro** to leverage modern performance and a component-based architecture. All content from the initial WordPress phase has been successfully migrated.
+> Shared publicly as part of a professional portfolio.
 >
-> **Project Status**: 🏗️ **Under Active Development**. While the core site is functional, several SEO pages and specialized sections are currently being expanded.
+> **History**: Originally launched on WordPress. Rebuilt in **Astro** for performance — but the rebuild was far more than a migration. The majority of pages, all Swedish copy, and all hero/section images are **new content created from scratch** during the Astro phase.
+>
+> **Status**: 🟡 **Feature-complete. Contact form testing in progress.**
+
+---
 
 ## 🚀 Project Overview
 
-The Medidraken platform is a comprehensive digital hub for Traditional Chinese Medicine (TCM). 
+Full-featured digital hub for Traditional Chinese Medicine (TCM) in Swedish, with SEO-optimized symptom pages, health goal funnels, corporate wellness offerings, and experience packages.
 
-### ✅ Completed
-- **Performance Excellence**: Migrated from WordPress to Astro ensuring high performance (Core Web Vitals)
-- **Core Pages**: Homepage (Start), Contact, and About Us.
-- **Courses & Training**: Full implementations of **Tai Chi** and **Medical Qigong** pages and their subpages, presenting courses (weekend and private).
-- **Treatments**: Detailed service pages for **TuiNa Massage**, **Oil Massage** and **Acupuncture**.
-- **Legal Pages**: Privacy Policy and Terms of Service.
-- **Conversion-Optimized**: Implemented clear Calls to Action (CTAs) across all core pages to streamline the user journey towards the contact phase.
+---
 
-### 🚧 In Development
-- **Symptom & Health Goals**: Expanding the library of specific symptoms and health goals to improve SEO and streamlining the conversion paths for potential clients.
-- **Corporate Services**: Specialized wellness offerings for businesses and groups.
-.
+## ✅ Completed
+
+### Core
+- Homepage, Contact page, About Us
+- Privacy Policy & Terms of Service
+- Gift card (`presentkort`) page
+- Friskvårdsbidrag (wellness benefit) information page
+- 404 page
+
+### Treatments
+- TuiNa Massage
+- Oil Massage
+- Acupuncture
+
+### Courses & Training
+| Section | Pages |
+|---|---|
+| Tai Chi | Index, weekend course, private lessons |
+| Medical Qigong | Index, weekend course, private lessons |
+
+### Symptom Pages (`/symtom/`)
+| Category | Subpages |
+|---|---|
+| Rygg & Ländryggsbesvär | Index, Akut ryggont, Ischias, Långvarig värk & stelhet |
+| Ledvärk & Idrottsskador | Index, Ont i knän, Ont i höfter, Tennisarm/musarm |
+| Nacke, Axlar & Skuldror | Index, Nackspärr/stel nacke, Ont i axlar & skuldror |
+| Huvudvärk | Index, Migrän, Spänningshuvudvärk, Balansproblem |
+| Standalone | Sömnproblem, Utbrändhet & trötthet, Ofta förkyld |
+
+### Health Goals (`/na-dina-halsomal/`)
+- Index
+- Minska stress & hitta inre lugn
+- Öka energi & livskraft
+- Stärk fokus & mental styrka
+- Stärka motståndskraften
+- Förbättra balans, rörlighet & kroppskontroll
+
+### Corporate Services (`/for-foretag/`)
+- Index
+- Hälsa på arbetsplatsen
+- Företagsevent & aktiviteter
+- Samarbeten med hälsoföretag
+- Kontakt & offert
+
+### Experiences (`/upplevelser/`)
+- Index
+- Hälsoresor
+- Skräddarsydda hälsodagar
+- Workshops & gruppaktiviteter
+
+---
+
+## 🚧 In Progress
+
+- **Contact form**: End-to-end testing of form submission, validation, and Cloudflare Worker email delivery
+
+---
 
 ## 🛠 Tech Stack
 
-- **Framework**: [Astro](https://astro.build/)
-- **Styling**: Vanilla CSS (TailwindCSS for layout utilities)
-- **Icons**: Custom SVG components
-- **Deployment**: Configured for static site hosting
+| Layer | Technology |
+|---|---|
+| Framework | [Astro](https://astro.build/) |
+| Styling | Vanilla CSS |
+| Icons | Custom SVG components |
+| Deployment | Cloudflare Pages + Workers |
+| Email | Cloudflare Email Worker |
+
+---
 
 ## 🧞 Commands
 
-All commands are run from the root of the project:
+Run from project root:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
+| Command | Action |
+|---|---|
+| `npm install` | Install dependencies |
+| `npm run dev` | Dev server at `localhost:4321` |
+| `npm run build` | Build to `./dist/` |
+| `npm run preview` | Preview production build locally |
+
+---
 
 ## 📄 License & Copyright
 
 **Copyright (c) 2026 Din Hälsa-Medidraken. All rights reserved.**
 
-All source code, assets, and content in this repository are the intellectual property of **Din Hälsa-Medidraken**. 
-
-- This repository is shared for **demonstration and educational purposes only**.
-- **No part of this repository** may be copied, reproduced, or distributed without express written permission.
-- The repository includes a `LICENSE` file detailing these restrictions.
+Shared for demonstration and educational purposes only. No part may be copied, reproduced, or distributed without express written permission.
 
 ---
 
-*This project was developed by Simon Mao. Connect with me on [LinkedIn](https://www.linkedin.com/in/simon-mao-808aa1191/) if you have questions about the implementation.*
+*Developed by Simon Mao · [LinkedIn](https://www.linkedin.com/in/simon-mao-808aa1191/)*
