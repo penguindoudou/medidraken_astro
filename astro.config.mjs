@@ -9,14 +9,15 @@ import cloudflare from '@astrojs/cloudflare';
 // https://astro.build/config
 export default defineConfig({
   output: 'server', // Changed from 'static'
-  adapter: cloudflare({
-    mode: 'directory',
-  }),
+  adapter: cloudflare(),
   devToolbar: {
     enabled: false
   },
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['astro/compiler-runtime']
+    },
     server: {
       watch: {
         ignored: ['**/legacy_wp_site/**']

@@ -1,12 +1,106 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import halsaImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
+import eventImage from '../../assets/images/taichi_group_practicing_tai_chi_fan_pubu_in_yangshuo_on_raft_in_river_in_front_of_beautiful_mountains.jpg';
+import samarbetenImage from '../../assets/images/taichi_in_a_circle_several_students_parting_the_wild horses_mane_on_green_grass_sunny_weather.jpg';
+import offertImage from '../../assets/images/taich_performance_on_red_stage_group_with_black_and_blue_clothing_blue_oxelösunds_hamn_ab_logoandtext_inbackground_blue_background.jpg';
 ---
-<BaseLayout title="Friskare Personal & Förbättrad Prestation" description="Investera i personalens hälsa. Vi erbjuder Qigong, Tai Chi, och TCM-behandling för företag i Nyköping. Förebygg stress och sjukskrivningar.">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Friskare Personal & Förbättrad Prestation</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout
+  title="För Företag – Friskvård, Event & Samarbeten | Medidraken"
+  description="Investera i personalens hälsa. Medidraken erbjuder friskvård på arbetsplatsen, företagsevent, kick-off-aktiviteter och samarbeten för gym och hälsoföretag i Nyköping."
+>
+    <!-- Övre rad: Hälsa på Arbetsplatsen & Företagsevent (50/50) -->
+    <div class="flex flex-col md:flex-row min-h-[60vh] md:min-h-[65vh] w-full">
+
+        <!-- Kolumn 1: Hälsa på Arbetsplatsen -->
+        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-6 md:p-8 group min-h-[45vh] md:min-h-full overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <Image src={halsaImage} alt="Hälsa på Arbetsplatsen" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
+            </div>
+
+            <a href="/for-foretag/halsa-pa-arbetsplatsen/" class="absolute inset-0 z-10" aria-label="Gå till Hälsa på Arbetsplatsen"></a>
+
+            <div class="relative z-20 pointer-events-none flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight">Hälsa på<br/>Arbetsplatsen</h2>
+                <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Regelbundna klasser i Qigong & Tai Chi och behandlingar direkt hos er.</p>
+
+                <div class="pointer-events-auto flex justify-center mt-2 w-full">
+                    <a href="/for-foretag/halsa-pa-arbetsplatsen/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Läs mer om Friskvård
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kolumn 2: Företagsevent & Aktiviteter -->
+        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-6 md:p-8 group min-h-[45vh] md:min-h-full overflow-hidden border-t-2 md:border-t-0 md:border-l-2 border-brand-earth-dark/40">
+            <div class="absolute inset-0 z-0">
+                <Image src={eventImage} alt="Företagsevent & Aktiviteter" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-brand-earth-dark/60 group-hover:bg-brand-earth-dark/50 transition-colors duration-500"></div>
+            </div>
+
+            <a href="/for-foretag/foretagsevent-aktiviteter/" class="absolute inset-0 z-10" aria-label="Gå till Företagsevent & Aktiviteter"></a>
+
+            <div class="relative z-20 pointer-events-none flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight">Företagsevent<br/>& Aktiviteter</h2>
+                <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Kick-off, workshop eller uppvisning – ett inslag utöver det vanliga.</p>
+
+                <div class="pointer-events-auto flex justify-center mt-2 w-full">
+                    <a href="/for-foretag/foretagsevent-aktiviteter/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Läs mer om Event
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nedre rad: Samarbeten & Kontakt/Offert (50/50) -->
+    <div class="flex flex-col md:flex-row min-h-[50vh] md:min-h-[55vh] w-full border-t-2 border-brand-earth-dark/40">
+
+        <!-- Kolumn 3: Samarbeten -->
+        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-6 md:p-8 group min-h-[40vh] md:min-h-full overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <Image src={samarbetenImage} alt="Samarbeten för Hälsoföretag" class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-brand-earth-dark/65 group-hover:bg-brand-earth-dark/55 transition-colors duration-500"></div>
+            </div>
+
+            <a href="/for-foretag/samarbeten-halsoforetag/" class="absolute inset-0 z-10" aria-label="Gå till Samarbeten för Hälsoföretag"></a>
+
+            <div class="relative z-20 pointer-events-none flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight">Samarbeten<br/>& Partnerskap</h2>
+                <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Gym, spa och hälsoföretag – utöka ert utbud med vår expertis.</p>
+
+                <div class="pointer-events-auto flex justify-center mt-2 w-full">
+                    <a href="/for-foretag/samarbeten-halsoforetag/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Läs mer om Samarbeten
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kolumn 4: Kontakt & Offert -->
+        <div class="relative w-full md:w-1/2 flex flex-col justify-center items-center text-center p-6 md:p-8 group min-h-[40vh] md:min-h-full overflow-hidden border-t-2 md:border-t-0 md:border-l-2 border-brand-earth-dark/40">
+            <div class="absolute inset-0 z-0">
+                <Image src={offertImage} alt="Kontakt & Offert" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div class="absolute inset-0 bg-brand-earth-dark/65 group-hover:bg-brand-earth-dark/55 transition-colors duration-500"></div>
+            </div>
+
+            <a href="/for-foretag/kontakt-offert/" class="absolute inset-0 z-10" aria-label="Gå till Kontakt & Offert"></a>
+
+            <div class="relative z-20 pointer-events-none flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight">Kontakt<br/>& Offert</h2>
+                <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Berätta vad ni behöver – vi återkommer med ett skräddarsytt förslag.</p>
+
+                <div class="pointer-events-auto flex justify-center mt-2 w-full">
+                    <a href="/for-foretag/kontakt-offert/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform">
+                        Begär Offert
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </BaseLayout>
