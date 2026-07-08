@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "node scripts/fetch-courses.js && astro dev",
-    "build": "node scripts/fetch-courses.js && astro build",
+    "build": "rm -rf dist && node scripts/fetch-courses.js && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

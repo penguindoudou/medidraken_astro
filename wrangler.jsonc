@@ -4,5 +4,8 @@
   "pages_build_output_dir": "./dist/client",
   "compatibility_flags": [
     "nodejs_compat"
-  ]
+  ],
+  "assets": {
+    "binding": "ASSETS_BINDING_OVERRIDE"
+  }
 }
