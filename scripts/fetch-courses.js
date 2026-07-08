@@ -119,12 +119,32 @@ async function main() {
     const csvText = await res.text();
     const rows = parseCSV(csvText);
 
+    // Empty sheet = no scheduled courses, that's valid.
+    if (rows.length === 0) {
+      const coursesData = { qigong: [], taichi: [] };
+      fs.writeFileSync(outputPath, JSON.stringify(coursesData, null, 2), 'utf8');
+      console.log("CSV is empty — no courses scheduled. Wrote empty courses.json.");
+      return;
+    }
+
+    // Sheet has rows but no 'type' column = wrong sheet uploaded.
+    const hasTypeColumn = Object.prototype.hasOwnProperty.call(rows[0], 'type');
+    if (!hasTypeColumn) {
+      console.error("[fetch-courses] FATAL: CSV has rows but no 'type' column found.");
+      console.error("[fetch-courses] Got columns:", Object.keys(rows[0]).join(', '));
+      console.error("[fetch-courses] Expected column 'type' with values 'qigong' or 'taichi'. Wrong sheet uploaded?");
+      process.exit(1);
+    }
+
     const qigongRows = rows.filter(r => r.type === 'qigong');
     const taichiRows = rows.filter(r => r.type === 'taichi' || r.type === 'tai chi');
 
+    // Has rows and a type column, but nothing matches = wrong data.
     if (qigongRows.length === 0 && taichiRows.length === 0) {
-      console.error("[fetch-courses] FATAL: CSV fetched but no rows with type 'qigong' or 'taichi' found.");
-      console.error("[fetch-courses] Check that the Google Sheet has a 'type' column with correct values.");
+      const foundTypes = [...new Set(rows.map(r => r.type).filter(Boolean))];
+      console.error("[fetch-courses] FATAL: CSV has rows with a 'type' column but no values match 'qigong' or 'taichi'.");
+      console.error("[fetch-courses] Found type values:", foundTypes.length ? foundTypes.join(', ') : '(all empty)');
+      console.error("[fetch-courses] Check the 'type' column values in the Google Sheet.");
       process.exit(1);
     }
 
