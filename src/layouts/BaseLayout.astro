@@ -7,11 +7,13 @@ import { siteConfig } from '../data/site.ts';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const { 
   title, 
-  description = "Medidraken - Din väg till mindre smärta, mindre stress och mer energi med Traditionell Kinesisk Medicin." 
+  description = "Medidraken - Din väg till mindre smärta, mindre stress och mer energi med Traditionell Kinesisk Medicin.",
+  noindex = false
 } = Astro.props;
 
 const displayTitle = title 
@@ -19,7 +21,7 @@ const displayTitle = title
   : "Medidraken | Akupunktur & TCM i Nyköping, Gnesta & Oxelösund";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImageURL = new URL('/assets/images/medidraken-logo_white_background.png', Astro.site);
+const ogImageURL = new URL('/assets/images/og-social.png', Astro.site);
 
 const localBusinessSchema = [
   {
@@ -103,6 +105,7 @@ const localBusinessSchema = [
     <!-- SEO Basics -->
     <title>{displayTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->

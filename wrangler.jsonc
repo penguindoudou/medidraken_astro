@@ -1,8 +1,9 @@
 {
   "name": "medidraken",
   "compatibility_date": "2026-04-27",
+  "pages_build_output_dir": "./dist/client",
   "assets": {
-    "directory": "./dist",
+    "directory": "./dist/client",
     "binding": "ASSETS"
   },
   "compatibility_flags": [

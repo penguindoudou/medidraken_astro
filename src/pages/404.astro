@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 – Sidan hittades inte"
+  description="Sidan du letar efter finns inte längre eller har flyttats. Återgå till Medidraken och hitta akupunktur, Qigong och TuiNa-behandlingar i Nyköping, Gnesta och Oxelösund."
+  noindex={true}
+>
+  <main id="main-content">
+    <section class="section-standard" style="min-height: 60vh; display: flex; align-items: center;">
+      <div class="container-base max-w-2xl text-center">
+
+        <div class="mb-8" aria-hidden="true">
+          <span style="font-size: 7rem; line-height: 1; display: block; opacity: 0.15; font-weight: 800; color: var(--color-brand-earth, #6b4f2a);">404</span>
+        </div>
+
+        <h1 class="text-brand-earth" style="margin-top: -2rem;">Sidan hittades inte</h1>
+
+        <p class="mt-4 text-lg leading-relaxed text-neutral-600">
+          Adressen du sökte verkar inte finnas – den kan ha flyttats, bytt namn eller tagits bort.
+        </p>
+
+        <p class="mt-2 text-base text-neutral-500">
+          Prova att navigera härifrån:
+        </p>
+
+        <nav aria-label="Hjälplänkar vid 404" class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+          <a href="/" class="btn btn-primary-on-dark">
+            Till startsidan
+          </a>
+          <a href="/kontakt/" class="btn btn-secondary-on-dark">
+            Kontakta oss
+          </a>
+        </nav>
+
+        <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+          <a href="/symtom/" class="content-box hover:shadow-md transition-shadow duration-200 text-brand-earth font-medium">
+            🩺 Symtom & besvär
+          </a>
+          <a href="/behandling/" class="content-box hover:shadow-md transition-shadow duration-200 text-brand-earth font-medium">
+            ✋ Behandlingar
+          </a>
+          <a href="/kurser/medicinsk-qigong/" class="content-box hover:shadow-md transition-shadow duration-200 text-brand-earth font-medium">
+            🌿 Kurser
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</BaseLayout>
