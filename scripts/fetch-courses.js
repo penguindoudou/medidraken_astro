@@ -105,8 +105,9 @@ async function main() {
   const outputPath = path.join(process.cwd(), 'src', 'data', 'courses.json');
 
   if (!sheetUrl) {
-    console.log("No PUBLIC_COURSES_SHEET_URL set. Keeping existing courses.json.");
-    return;
+    console.error("[fetch-courses] FATAL: PUBLIC_COURSES_SHEET_URL is not set.");
+    console.error("[fetch-courses] Set this variable in Cloudflare Pages → Settings → Environment Variables.");
+    process.exit(1);
   }
 
   console.log("Fetching courses from Google Sheets...");
@@ -122,8 +123,9 @@ async function main() {
     const taichiRows = rows.filter(r => r.type === 'taichi' || r.type === 'tai chi');
 
     if (qigongRows.length === 0 && taichiRows.length === 0) {
-      console.warn("Parsed CSV but found no courses matching type 'qigong' or 'taichi'.");
-      return;
+      console.error("[fetch-courses] FATAL: CSV fetched but no rows with type 'qigong' or 'taichi' found.");
+      console.error("[fetch-courses] Check that the Google Sheet has a 'type' column with correct values.");
+      process.exit(1);
     }
 
     const coursesData = {
@@ -134,7 +136,8 @@ async function main() {
     fs.writeFileSync(outputPath, JSON.stringify(coursesData, null, 2), 'utf8');
     console.log(`Successfully wrote ${coursesData.qigong.length} Qigong and ${coursesData.taichi.length} Tai Chi courses to src/data/courses.json`);
   } catch (error) {
-    console.error("Failed to fetch courses from Google Sheets. Keeping existing courses.json. Error:", error.message);
+    console.error("[fetch-courses] FATAL: Failed to fetch courses from Google Sheets:", error.message);
+    process.exit(1);
   }
 }
 
