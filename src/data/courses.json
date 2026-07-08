@@ -1,22 +1,4 @@
 {
-  "qigong": [
-    {
-      "title": "Grundkurs i Medicinsk Qigong",
-      "format": "Helgkurs",
-      "location": "Nyköping",
-      "date": "21-22 Okt",
-      "times": "10:00 - 15:00",
-      "lastDate": "2026-10-15"
-    }
-  ],
-  "taichi": [
-    {
-      "title": "Tai Chi 24-form",
-      "format": "Terminskurs",
-      "location": "Gnesta",
-      "date": "Tisdagar fr. 8 Sep",
-      "times": "18:30 - 20:00",
-      "lastDate": "2026-09-08"
-    }
-  ]
+  "qigong": [],
+  "taichi": []
 }
