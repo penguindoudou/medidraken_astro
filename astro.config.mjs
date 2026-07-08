@@ -4,17 +4,10 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { EnumChangefreq } from 'sitemap';
-import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  adapter: cloudflare({
-    imageService: 'compile',
-    assets: {
-      binding: 'STATIC_ASSETS'
-    }
-  }),
   devToolbar: {
     enabled: false
   },
