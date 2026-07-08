@@ -5,7 +5,7 @@ Source code for the **Medidraken** website — a Swedish TCM and wellness practi
 > [!NOTE]
 > Shared publicly as part of a professional portfolio.
 >
-> **History**: Originally launched on WordPress. Rebuilt in **Astro** for performance — but the rebuild was far more than a migration. The majority of pages, all Swedish copy, and all hero/section images are **new content created from scratch** during the Astro phase.
+> **History**: Unstructured vanilla HTML/CSS → WordPress → rebuilt in **Astro**, with content rewritten and expanded — new SEO pages, Swedish copy, and AI-enhanced imagery.
 >
 > **Status**: 🟡 **Feature-complete. Contact form testing in progress.**
 
