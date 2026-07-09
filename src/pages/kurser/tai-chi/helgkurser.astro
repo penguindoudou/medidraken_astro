@@ -5,6 +5,10 @@ import Icon from '../../../components/Icon.astro';
 
 // Images
 import taichi_hero6Image from '../../../assets/images/taichi_hero6.png';
+import taichiCircleImage from '../../../assets/images/taichi_in_a_circle_several_students_parting_the_wild horses_mane_on_green_grass_sunny_weather.jpg';
+import johannes_mao_profileImage from '../../../assets/images/johannes_mao_profile.jpg';
+import maria_morris_profileImage from '../../../assets/images/maria_morris_profile.jpg';
+import magnus_rooth_profileImage from '../../../assets/images/magnus_rooth_profile.jpg';
 import { siteConfig } from '../../../data/site.ts';
 import { coursesTaiChi } from '../../../data/courses.ts';
 
@@ -251,12 +255,100 @@ const activeCourses = coursesTaiChi.filter(course => new Date(course.lastDate) >
     </div>
 </section>
 
+<!-- ======================================= -->
+<!-- Sektion 4: Träningen & Gemenskapen      -->
+<!-- ======================================= -->
+<section class="section-standard bg-white overflow-hidden">
+    <div class="container-base">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            <!-- Bild -->
+            <div class="relative order-2 lg:order-1">
+                <!-- Dekorativ ram/skugga -->
+                <div class="absolute inset-0 bg-brand-accent transform -translate-x-3 translate-y-3 rounded-lg opacity-20"></div>
+                <div class="relative rounded-lg overflow-hidden bg-brand-accent shadow-xl">
+                    <Image src={taichiCircleImage}
+                        alt="Elever som övar Tai Chi i en cirkel på grönt gräs"
+                        class="w-full object-cover h-[480px] opacity-90 hover:scale-[1.02] transition-transform duration-500" />
+                </div>
+            </div>
 
+            <!-- Text -->
+            <div class="order-1 lg:order-2">
+                <h2 class="text-brand-earth mb-6">Lär Dig Tai Chi, Steg för Steg</h2>
+                <p class="mb-6">
+                    Du behöver ingen tidigare erfarenhet eller vara i "god form" för att börja. Under ledning av våra
+                    skickliga instruktörer guidas du tryggt genom varje moment.
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="text-brand-earth-dark block font-semibold text-lg">Du lär dig genom att göra</strong>
+                            <span class="text-neutral-700">Vi börjar direkt med formen. Inlärningen sker genom praktisk
+                                övning.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="text-brand-earth-dark block font-semibold text-lg">En Tydlig Progression</strong>
+                            <span class="text-neutral-700">Från grundläggande 24-form till avancerade tekniker för dig
+                                som vill utvecklas långsiktigt.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="text-brand-earth-dark block font-semibold text-lg">Grundande Gemenskap</strong>
+                            <span class="text-neutral-700">Vi samskapar en harmonisk atmosfär med gemensam rörelse för fördjupad kroppskännedom och god hälsa.</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="bg-white/50 p-6 rounded-lg border-l-4 border-brand-earth mb-6">
+                    <p class="italic text-neutral-800">
+                        "Vi ser din hälsoresa som ett samspel. Vår roll är inte bara att instruera, utan att skapa en
+                        trygg atmosfär där du kan använda Tai Chi som ditt personliga verktyg för balans."
+                    </p>
+                </div>
+
+                <!-- Team Link with Thumbnails -->
+                <div class="flex items-center gap-4">
+                    <div class="flex -space-x-3">
+                        <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
+                            src={johannes_mao_profileImage} alt="Johannes" />
+                        <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
+                            src={maria_morris_profileImage} alt="Maria" />
+                        <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
+                            src={magnus_rooth_profileImage} alt="Magnus" />
+                    </div>
+                    <a href="/om-oss/#team" class="btn-tertiary">
+                        Möt våra instruktörer &rarr;
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 
 <!-- ======================================= -->
 <!-- Sektion 5: Aktuella Kursstarter (Logic) -->
 <!-- ======================================= -->
-<section class="section-standard bg-white" id="kursstarter">
+<section class="section-standard bg-brand-earth-lightest/30" id="kursstarter">
     <div class="container-base">
         <h2 class="text-brand-earth text-center mb-10">Kommande Helgkurser i Tai Chi</h2>
 
