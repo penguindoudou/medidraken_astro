@@ -325,9 +325,105 @@ const activeCourses = coursesQigong.filter(course => new Date(course.lastDate) >
     </section>
 
     <!-- ======================================= -->
-    <!-- Sektion 4: Kursstarter / Fallback       -->
+    <!-- Sektion 4: Metod & Team                 -->
     <!-- ======================================= -->
-    <section class="section-standard bg-white" id="kursanmalan">
+    <section class="section-standard bg-white overflow-hidden">
+        <div class="container-base">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Text -->
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-brand-earth mb-6">Lätt att Börja – Kraftfulla Resultat</h2>
+                    <p class="mb-6">
+                        Du behöver inga förkunskaper för att börja med Medicinsk Qigong. Rörelserna är enkla, skonsamma och
+                        kan anpassas efter allas fysiska förutsättningar. Vår pedagogik bygger på några enkla principer:
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong class="text-brand-earth-dark block">Enkla, Kraftfulla Övningar</strong>
+                                <span class="text-neutral-700">Vi fokuserar på beprövade metoder som är lätta att lära
+                                    sig
+                                    men ger djup effekt.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong class="text-brand-earth-dark block">Känn Effekten Direkt</strong>
+                                <span class="text-neutral-700">Många upplever ökat lugn redan första passet, medan
+                                    varaktiga
+                                    resultat kommer med tid.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
+                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <strong class="text-brand-earth-dark block">Hälsan & Energi i Fokus, Inte Prestation</strong>
+                                <span class="text-neutral-700">Vi guidar dig till att lyssna på din kropp och använda
+                                    Qigong
+                                    för ditt välbefinnande.</span>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="bg-white/50 p-6 rounded-lg border-l-4 border-brand-earth mb-6">
+                        <p class="italic text-neutral-800">
+                            "Vi ser din hälsoresa som ett samspel. För oss är dina frågor och upplevelser en viktig del
+                            av
+                            undervisningen. Vår roll är att skapa en trygg atmosfär där du hittar balans och energi."
+                        </p>
+                    </div>
+
+                    <!-- Team Link with Thumbnails -->
+                    <div class="flex items-center gap-4">
+                        <div class="flex -space-x-3">
+                            <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
+                                src={johannes_mao_profileImage} alt="Johannes" />
+                            <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
+                                src={maria_morris_profileImage} alt="Maria" />
+                            <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
+                                src={magnus_rooth_profileImage} alt="Magnus" />
+                        </div>
+                        <a href="/om-oss/#team" class="btn-tertiary">
+                            Möt våra instruktörer &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bild -->
+                <div class="order-1 lg:order-2 relative">
+                    <!-- Dekorativ ram/skugga -->
+                    <div
+                        class="absolute inset-0 bg-brand-accent transform translate-x-3 translate-y-3 rounded-lg opacity-20">
+                    </div>
+                    <div class="relative rounded-lg overflow-hidden bg-brand-accent shadow-xl">
+                        <Image src={qigong_johannes_instructing_groupImage} alt="Instruktör som visar Qigong-rörelse"
+                            class="w-full object-cover h-[560px] opacity-85" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================================= -->
+    <!-- Sektion 5: Kursstarter / Fallback       -->
+    <!-- ======================================= -->
+    <section class="section-standard bg-brand-earth-lightest" id="kursanmalan">
         <div class="container-base">
             <h2 class="text-brand-earth text-center mb-10">Kursstarter för Medicinsk Qigong</h2>
 
@@ -472,102 +568,6 @@ const activeCourses = coursesQigong.filter(course => new Date(course.lastDate) >
                 </div>
             </div>
             )}
-        </div>
-    </section>
-
-    <!-- ======================================= -->
-    <!-- Sektion 5: Metod & Team                 -->
-    <!-- ======================================= -->
-    <section class="section-standard bg-brand-earth-lightest overflow-hidden">
-        <div class="container-base">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-                <!-- Text -->
-                <div class="order-2 lg:order-1">
-                    <h2 class="text-brand-earth mb-6">Lätt att Börja – Kraftfulla Resultat</h2>
-                    <p class="mb-6">
-                        Du behöver inga förkunskaper för att börja med Medicinsk Qigong. Rörelserna är enkla, skonsamma och
-                        kan anpassas efter allas fysiska förutsättningar. Vår pedagogik bygger på några enkla principer:
-                    </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                            <div>
-                                <strong class="text-brand-earth-dark block">Enkla, Kraftfulla Övningar</strong>
-                                <span class="text-neutral-700">Vi fokuserar på beprövade metoder som är lätta att lära
-                                    sig
-                                    men ger djup effekt.</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                            <div>
-                                <strong class="text-brand-earth-dark block">Känn Effekten Direkt</strong>
-                                <span class="text-neutral-700">Många upplever ökat lugn redan första passet, medan
-                                    varaktiga
-                                    resultat kommer med tid.</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0 h-6 w-6 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent-dark mr-3 mt-1">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                            <div>
-                                <strong class="text-brand-earth-dark block">Hälsan & Energi i Fokus, Inte Prestation</strong>
-                                <span class="text-neutral-700">Vi guidar dig till att lyssna på din kropp och använda
-                                    Qigong
-                                    för ditt välbefinnande.</span>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <div class="bg-white/50 p-6 rounded-lg border-l-4 border-brand-earth mb-6">
-                        <p class="italic text-neutral-800">
-                            "Vi ser din hälsoresa som ett samspel. För oss är dina frågor och upplevelser en viktig del
-                            av
-                            undervisningen. Vår roll är att skapa en trygg atmosfär där du hittar balans och energi."
-                        </p>
-                    </div>
-
-                    <!-- Team Link with Thumbnails -->
-                    <div class="flex items-center gap-4">
-                        <div class="flex -space-x-3">
-                            <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
-                                src={johannes_mao_profileImage} alt="Johannes" />
-                            <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
-                                src={maria_morris_profileImage} alt="Maria" />
-                            <Image class="inline-block h-10 w-10 rounded-full ring-2 ring-brand-earth bg-neutral-800"
-                                src={magnus_rooth_profileImage} alt="Magnus" />
-                        </div>
-                        <a href="/om-oss/#team" class="btn-tertiary">
-                            Möt våra instruktörer &rarr;
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Bild -->
-                <div class="order-1 lg:order-2 relative">
-                    <!-- Dekorativ ram/skugga -->
-                    <div
-                        class="absolute inset-0 bg-brand-accent transform translate-x-3 translate-y-3 rounded-lg opacity-20">
-                    </div>
-                    <div class="relative rounded-lg overflow-hidden bg-brand-accent shadow-xl">
-                        <Image src={qigong_johannes_instructing_groupImage} alt="Instruktör som visar Qigong-rörelse"
-                            class="w-full object-cover h-[560px] opacity-85" />
-                    </div>
-                </div>
-
-            </div>
         </div>
     </section>
 
