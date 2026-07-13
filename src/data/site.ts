@@ -8,6 +8,20 @@ export const siteConfig = {
     display: '+46 70-581 40 98',
     clean: '+46705814098'
   },
+  phones: {
+    linnea: {
+      name: 'Linnéa',
+      display: '+46 70-581 40 98',
+      clean: '+46705814098',
+      role: 'Bokning av behandling'
+    },
+    johannes: {
+      name: 'Johannes',
+      display: '+46 70-581 40 86',
+      clean: '+46705814086',
+      role: 'Kurser, resor & övriga frågor'
+    }
+  },
   email: `info@${domain}`,
   addresses: {
     gnesta: {

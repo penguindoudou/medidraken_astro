@@ -1207,8 +1207,18 @@ if (Astro.request.method === "POST") {
                                 </svg>
                                 Telefon
                             </div>
-                            <a href={`tel:${siteConfig.phone.clean}`}
-                                class="text-brand-sky-dark hover:text-brand-accent-dark font-medium text-lg ml-9 transition-colors">{siteConfig.phone.display}</a>
+                            <div class="ml-9 space-y-2">
+                                <div>
+                                    <a href={`tel:${siteConfig.phones.linnea.clean}`}
+                                        class="text-brand-sky-dark hover:text-brand-accent-dark font-medium text-lg transition-colors">{siteConfig.phones.linnea.display}</a>
+                                    <span class="block text-xs text-neutral-500 mt-0.5">{siteConfig.phones.linnea.name} — {siteConfig.phones.linnea.role}</span>
+                                </div>
+                                <div>
+                                    <a href={`tel:${siteConfig.phones.johannes.clean}`}
+                                        class="text-brand-sky-dark hover:text-brand-accent-dark font-medium text-lg transition-colors">{siteConfig.phones.johannes.display}</a>
+                                    <span class="block text-xs text-neutral-500 mt-0.5">{siteConfig.phones.johannes.name} — {siteConfig.phones.johannes.role}</span>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <div class="flex items-center text-brand-earth-dark font-semibold text-lg mb-2">
