@@ -12,6 +12,18 @@ import heroImage from '../assets/images/Tai-Chi kurs 2.jpg';
 import { siteConfig } from '../data/site.ts';
 import { coursesTaiChi, coursesQigong } from '../data/courses.ts';
 
+// ─── AVAILABILITY NOTICE ─────────────────────────────────────────────────────
+// Set `active: true` and `returnDate` to show a "not reachable by phone" notice.
+// The notice disappears automatically once returnDate has passed.
+// Set `active: false` to hide it regardless of date.
+const availabilityNotice = {
+  active: true,
+  returnDate: new Date('2026-07-15T11:00:00+02:00'), // When they're back
+};
+const showAvailabilityNotice =
+  availabilityNotice.active && new Date() < availabilityNotice.returnDate;
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Helpers for prefilling next upcoming helgkurs
 const today = new Date().setHours(0, 0, 0, 0);
 const nextTaiChi = coursesTaiChi.find(c => new Date(c.lastDate).getTime() >= today);
@@ -1218,6 +1230,17 @@ if (Astro.request.method === "POST") {
                                         class="text-brand-sky-dark hover:text-brand-accent-dark font-medium text-lg transition-colors">{siteConfig.phones.johannes.display}</a>
                                     <span class="block text-xs text-neutral-500 mt-0.5">{siteConfig.phones.johannes.name} — {siteConfig.phones.johannes.role}</span>
                                 </div>
+                                {/* TEMP NOTICE — controlled by availabilityNotice config at top of frontmatter */}
+                                {showAvailabilityNotice && (
+                                <div class="mt-3 flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2.5">
+                                    <svg class="w-4 h-4 shrink-0 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <p class="text-xs text-amber-800 leading-relaxed">
+                                        Vi är för tillfället inte tillgängliga per telefon och återkommer <strong>den {availabilityNotice.returnDate.toLocaleDateString('sv-SE', { day: 'numeric', month: 'long' })}</strong>. Skicka gärna ett meddelande via formuläret, så hör vi av oss så snart vi är tillbaka.
+                                    </p>
+                                </div>
+                                )}
                             </div>
                         </div>
                         <div>
