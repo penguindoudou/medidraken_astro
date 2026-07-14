@@ -19,7 +19,7 @@ export const siteConfig = {
       name: 'Johannes',
       display: '+46 70-581 40 86',
       clean: '+46705814086',
-      role: 'Kurser, resor & övriga frågor'
+      role: 'Kurser, upplevelser, företag & övriga frågor'
     }
   },
   email: `info@${domain}`,
