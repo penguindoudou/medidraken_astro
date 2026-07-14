@@ -50,7 +50,7 @@ export const siteConfig = {
     }
   },
   social: {
-    // facebook: 'https://www.facebook.com/Medidraken/?locale=sv_SE',
+    facebook: 'https://www.facebook.com/Medidraken/?locale=sv_SE',
     // instagram: 'https://instagram.com/shufflaz',
     // linkedin: 'https://www.linkedin.com/company/medidraken',
     // x: 'https://x.com/medidraken',
