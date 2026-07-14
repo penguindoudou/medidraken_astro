@@ -73,15 +73,14 @@ const subjectMap: Record<string, string> = {
   'ovrigt': 'Övrigt'
 };
 
-let formStatus = '';
+let formStatus = Astro.url.searchParams.get('skickat') === '1' ? 'success' : '';
 
 if (Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
     
     if (data.get("website")) {
-      formStatus = 'success';
-      throw new Error("SILENT_HONEYPOT");
+      return Astro.redirect('/kontakt?skickat=1', 302);
     }
 
     // Get env vars with fallback for Cloudflare runtime
@@ -92,96 +91,138 @@ if (Astro.request.method === "POST") {
     if (botToken) {
       botToken = botToken.trim().replace(/^['"]|['"]$/g, '').replace(/^bot/i, '');
     }
-    
-    let text = `📨 Nytt kontaktformulär!\n`;
-    text += `Namn: ${data.get("name") || "-"}\n`;
-    text += `E-post: ${data.get("email") || "-"}\n`;
-    text += `Telefon: ${data.get("phone") || "-"}\n`;
+
+    // Helper to escape HTML special chars for Telegram HTML parse mode
+    const esc = (s: unknown) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    // Timestamp
+    const now = new Date();
+    const timestamp = now.toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+    // Location slug → display name
+    const locationMap: Record<string, string> = {
+      'gnesta': 'Gnesta',
+      'nykoping': 'Nyköping',
+      'oxelosund': 'Oxelösund',
+    };
+
+    // Course type slug → display name
+    const courseTypeMap: Record<string, string> = {
+      'helgkurs': 'Helgkurs',
+      'privatkurs': 'Privatkurs',
+      'specifik_forfragan': 'Specifik förfrågan',
+      'vet_ej': 'Vet ej / Behöver rådgivning',
+    };
+
+    // Behandling type slug → display name
+    const behandlingTypeMap: Record<string, string> = {
+      'terapeutisk': 'Terapeutisk (TuiNa eller Akupunktur)',
+      'oljemassage': 'Oljemassage',
+    };
+
+    // Giftcard type slug → display name
+    const giftcardTypeMap: Record<string, string> = {
+      'valfritt_belopp': 'Valfritt belopp',
+      'specifik_behandling': 'Specifik Behandling',
+      'specifik_kurs': 'Specifik Kurs',
+      'vet_ej': 'Vet ej / Behöver rådgivning',
+    };
+
+    let text = `📨 <b>Nytt kontaktformulär</b>  <i>${esc(timestamp)}</i>\n`;
+    text += `━━━━━━━━━━━━━━━━━━\n`;
+    text += `👤 <b>Kontaktuppgifter</b>\n`;
+    text += `<b>Namn:</b> ${esc(data.get("name") || "–")}\n`;
+    text += `<b>E-post:</b> ${esc(data.get("email") || "–")}\n`;
+    text += `<b>Telefon:</b> ${esc(data.get("phone") || "–")}\n`;
+
+    const location = data.get("location") as string | null;
+    if (location) text += `<b>Ort:</b> ${esc(locationMap[location] || location)}\n`;
+
+    const useFriskvardsbidrag = data.get("use_friskvardsbidrag");
+    if (useFriskvardsbidrag) {
+      const friskvardsAmount = data.get("friskvards_amount");
+      text += `<b>Friskvårdsbidrag:</b> Ja${friskvardsAmount ? ` (${esc(friskvardsAmount)} kr)` : ''}\n`;
+    }
+
+    text += `\n━━━━━━━━━━━━━━━━━━\n`;
+    text += `🎯 <b>Ärende</b>\n`;
 
     const interestSymptom = data.get("interest_symptom");
     const interestHealthGoal = data.get("interest_health_goal");
     const interestService = data.get("interest_service");
 
-    const interests: string[] = [];
-    if (interestSymptom) interests.push("Symptom & Besvär");
-    if (interestHealthGoal) interests.push("Hälsomål");
-    if (interestService) interests.push("Specifik Tjänst");
-    text += `Intresseområden: ${interests.join(", ") || "-"}\n`;
-
     // Symptoms
-    const rawSymptoms = data.getAll("symptoms");
-    if (rawSymptoms.length > 0) {
-      const symptomNames = rawSymptoms.map(key => symptomsMap[key] || key);
-      text += `Symptom/Besvär: ${symptomNames.join(', ')}\n`;
+    if (interestSymptom) {
+      const rawSymptoms = data.getAll("symptoms");
+      const symptomNames = rawSymptoms.map(key => symptomsMap[key as string] || key);
+      text += `<b>Symptom/Besvär:</b> ${esc(symptomNames.join(', ') || '–')}\n`;
     }
 
     // Health Goals
-    const rawGoals = data.getAll("health_goals");
-    if (rawGoals.length > 0) {
-      const goalNames = rawGoals.map(key => healthGoalsMap[key] || key);
-      text += `Hälsomål: ${goalNames.join(', ')}\n`;
+    if (interestHealthGoal) {
+      const rawGoals = data.getAll("health_goals");
+      const goalNames = rawGoals.map(key => healthGoalsMap[key as string] || key);
+      text += `<b>Hälsomål:</b> ${esc(goalNames.join(', ') || '–')}\n`;
     }
 
     // Specific Service
-    const rawSubjects = data.getAll("subject");
-    if (rawSubjects.length > 0) {
-      const subjectNames = rawSubjects.map(key => subjectMap[key as string] || key);
-      text += `Ärende/Tjänst: ${subjectNames.join(', ')}\n`;
-    }
-    
-    const location = data.get("location");
-    if (location) text += `Ort: ${location}\n`;
-    
-    const useFriskvardsbidrag = data.get("use_friskvardsbidrag");
-    if (useFriskvardsbidrag) {
-        text += `Vill använda friskvårdsbidrag: Ja\n`;
-        const friskvardsAmount = data.get("friskvards_amount");
-        if (friskvardsAmount) text += `Friskvårdsbelopp: ${friskvardsAmount} kr\n`;
-    }
-    
-    const courseType = data.get("course_type");
-    if (courseType) text += `Kurs/Behandling typ: ${courseType}\n`;
+    if (interestService) {
+      const rawSubjects = data.getAll("subject");
+      if (rawSubjects.length > 0) {
+        const subjectNames = rawSubjects.map(key => subjectMap[key as string] || key);
+        text += `<b>Tjänst/Ärende:</b> ${esc(subjectNames.join(', '))}\n`;
+      }
 
-    const behandlingType = data.get("behandling_type");
-    if (behandlingType) text += `Behandling typ: ${behandlingType}\n`;
-    
-    const specificRequest = data.get("specific_request");
-    if (specificRequest) text += `Specifik förfrågan: ${specificRequest}\n`;
-    
-    const giftcardType = data.get("giftcard_type");
-    if (giftcardType) {
-        text += `Presentkort typ: ${giftcardType}\n`;
+      const courseType = data.get("course_type") as string | null;
+      if (courseType) text += `<b>Kurstyp:</b> ${esc(courseTypeMap[courseType] || courseType)}\n`;
+
+      const behandlingType = data.get("behandling_type") as string | null;
+      if (behandlingType) text += `<b>Behandlingstyp:</b> ${esc(behandlingTypeMap[behandlingType] || behandlingType)}\n`;
+
+      const specificRequest = data.get("specific_request");
+      if (specificRequest) text += `<b>Specifik förfrågan:</b> ${esc(specificRequest)}\n`;
+
+      const giftcardType = data.get("giftcard_type") as string | null;
+      if (giftcardType) {
+        text += `<b>Presentkort typ:</b> ${esc(giftcardTypeMap[giftcardType] || giftcardType)}\n`;
         const amount = data.get("amount");
-        if (amount) text += `Belopp: ${amount} kr\n`;
+        if (amount) text += `<b>Presentkortsbelopp:</b> ${esc(amount)} kr\n`;
         const recipient = data.get("recipient_name");
-        if (recipient) text += `Mottagare: ${recipient}\n`;
+        if (recipient) text += `<b>Mottagare:</b> ${esc(recipient)}\n`;
+      }
+
+      const otherRequest = data.get("other_request");
+      if (otherRequest) text += `<b>Övrigt ärende:</b> ${esc(otherRequest)}\n`;
     }
-    
-    const otherRequest = data.get("other_request");
-    if (otherRequest) text += `Övrigt: ${otherRequest}\n`;
-    
+
+    text += `\n━━━━━━━━━━━━━━━━━━\n`;
+    text += `🗓 <b>Tidspreferenser</b>\n`;
+
     const specificDate = data.get("specific_date");
-    if (specificDate) text += `Specifikt Datum: ${specificDate}\n`;
-    
     const specificTime = data.get("specific_time");
-    if (specificTime) text += `Specifik Tid: ${specificTime}\n`;
-    
     const preferredDays = data.get("preferred_days");
-    if (preferredDays) text += `Föredragna dagar: ${preferredDays}\n`;
-    
     const preferredTimeRanges = data.get("preferred_time_ranges");
-    if (preferredTimeRanges) text += `Föredragen tid på dygnet: ${preferredTimeRanges}\n`;
-    
     const preferredTravelPeriods = data.get("preferred_travel_periods");
-    if (preferredTravelPeriods) text += `Hälsoresa period: ${preferredTravelPeriods}\n`;
-    
     const customTravelPeriod = data.get("custom_travel_period");
-    if (customTravelPeriod) text += `Hälsoresa datum: ${customTravelPeriod}\n`;
+
+    if (specificDate) text += `<b>Datum:</b> ${esc(specificDate)}\n`;
+    if (specificTime) text += `<b>Tid:</b> ${esc(specificTime)}\n`;
+    if (preferredDays) text += `<b>Föredragna dagar:</b> ${esc(preferredDays)}\n`;
+    if (preferredTimeRanges) text += `<b>Tid på dygnet:</b> ${esc(preferredTimeRanges)}\n`;
+    if (preferredTravelPeriods) text += `<b>Reseperiod:</b> ${esc(preferredTravelPeriods)}\n`;
+    if (customTravelPeriod) text += `<b>Önskad resedatum:</b> ${esc(customTravelPeriod)}\n`;
+
+    if (!specificDate && !specificTime && !preferredDays && !preferredTimeRanges && !preferredTravelPeriods) {
+      text += `<i>Inga tidspreferenser angivna</i>\n`;
+    }
 
     const message = data.get("message");
-    if (message) text += `\nMeddelande:\n${message}`;
+    if (message) {
+      text += `\n━━━━━━━━━━━━━━━━━━\n`;
+      text += `💬 <b>Meddelande</b>\n${esc(message)}`;
+    }
 
-    // Telegram limit is 4096. Truncate total payload to 4000 chars.
+    // Telegram HTML mode limit is 4096. Truncate to 4000 to be safe.
     if (text.length > 4000) {
       text = text.substring(0, 4000) + '... [Klippt]';
     }
@@ -190,10 +231,10 @@ if (Astro.request.method === "POST") {
        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({ chat_id: chatId, text: text })
+         body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' })
        });
        if (response.ok) {
-         formStatus = 'success';
+         return Astro.redirect('/kontakt?skickat=1', 302);
        } else {
          formStatus = 'error';
          console.error("Telegram API Error:", await response.text());
@@ -203,12 +244,8 @@ if (Astro.request.method === "POST") {
       formStatus = 'error';
     }
   } catch (e) {
-    if (e instanceof Error && e.message === "SILENT_HONEYPOT") {
-      // Do nothing, silent fail
-    } else {
-      console.error("Form processing error:", e);
-      formStatus = 'error';
-    }
+    console.error("Form processing error:", e);
+    formStatus = 'error';
   }
 }
 ---
@@ -321,7 +358,7 @@ if (Astro.request.method === "POST") {
                             )}
                             <!-- NOTERA TILL UTVECKLARE: Här kan du klistra in din Fluent Forms shortcode typ [fluentform id="1"].
                             Nedan är en välbyggd mockup på hur formuläret ska se ut enligt instruktionerna. -->
-                            <form action="" method="POST" class="space-y-5"
+                            <form action="/kontakt" method="POST" class="space-y-5"
                                 @submit="if (!validateForm()) $event.preventDefault()"
                                 x-data="{ 
                                     hasSymptom: false,
@@ -332,7 +369,9 @@ if (Astro.request.method === "POST") {
                                     healthGoals: [],
                                     validationError: '',
                                     subjects: [], 
-                                    subSubject: '', 
+                                    courseType: '',
+                                    behandlingType: '',
+                                    giftcardType: '',
                                     location: '', 
                                     recipient: 'Okänd', 
                                     amount: '',
@@ -431,7 +470,7 @@ if (Astro.request.method === "POST") {
                                                 this.subjects = [urlSubj];
                                             }
                                         }
-                                        if (params.has('sub')) this.subSubject = params.get('sub');
+                                        if (params.has('sub')) this.courseType = params.get('sub');
                                         if (params.has('location')) this.location = params.get('location');
                                         let urlDate = params.has('date') ? params.get('date') : null;
                                         let urlTime = params.has('time') ? params.get('time') : null;
@@ -439,7 +478,9 @@ if (Astro.request.method === "POST") {
                                         this.$watch('hasService', value => {
                                             if (!value) {
                                                 this.subjects = [];
-                                                this.subSubject = '';
+                                                this.courseType = '';
+                                                this.behandlingType = '';
+                                                this.giftcardType = '';
                                             }
                                         });
                                         this.$watch('hasSymptom', value => {
@@ -465,9 +506,10 @@ if (Astro.request.method === "POST") {
                                                 urlDate = null;
                                                 urlTime = null;
                                             }
-                                            // Optional: Reset subSubject if primary subjects change dramatically, 
-                                            // but allowing it to stay is fine for multiple selection.
-                                            // this.subSubject = '';
+                                            // Reset sub-type selects when primary subject list changes
+                                            if (!value.includes('taichi') && !value.includes('qigong')) this.courseType = '';
+                                            if (!value.includes('behandling')) this.behandlingType = '';
+                                            if (!value.includes('presentkort')) this.giftcardType = '';
                                             this.selectedDays = [];
                                             this.selectedTimes = [];
                                             this.selectedTravelPeriods = [];
@@ -478,7 +520,7 @@ if (Astro.request.method === "POST") {
                                         });
 
                                         const applyPrefill = () => {
-                                            if (this.subSubject === 'helgkurs') {
+                                            if (this.courseType === 'helgkurs') {
                                                 if (urlDate || urlTime) {
                                                     this.specificDate = urlDate || '';
                                                     this.specificTime = urlTime || '';
@@ -517,7 +559,7 @@ if (Astro.request.method === "POST") {
                                             }
                                         };
 
-                                        this.$watch('subSubject', value => {
+                                        this.$watch('courseType', value => {
                                             if (params.has('sub') && value !== '' && value !== params.get('sub')) {
                                                 urlDate = null;
                                                 urlTime = null;
@@ -536,7 +578,7 @@ if (Astro.request.method === "POST") {
                                             }
                                         });
 
-                                        if (this.subSubject === 'helgkurs') {
+                                        if (this.courseType === 'helgkurs') {
                                             setTimeout(applyPrefill, 100);
                                         } else if (urlDate || urlTime) {
                                             this.specificDate = urlDate || '';
@@ -662,7 +704,7 @@ if (Astro.request.method === "POST") {
                                     @keydown.enter.prevent="hasSymptom = !hasSymptom"
                                     :class="hasSymptom ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky shadow-sm' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
                                     class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                    <input type="checkbox" name="interest_symptom" :checked="hasSymptom" class="sr-only">
+                                    <input type="checkbox" name="interest_symptom" value="true" x-model="hasSymptom" class="sr-only">
                                     <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
                                         <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -827,7 +869,7 @@ if (Astro.request.method === "POST") {
                                     @keydown.enter.prevent="hasHealthGoal = !hasHealthGoal"
                                     :class="hasHealthGoal ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky shadow-sm' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
                                     class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                    <input type="checkbox" name="interest_health_goal" :checked="hasHealthGoal" class="sr-only">
+                                    <input type="checkbox" name="interest_health_goal" value="true" x-model="hasHealthGoal" class="sr-only">
                                     <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
                                         <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -888,7 +930,7 @@ if (Astro.request.method === "POST") {
                                     @keydown.enter.prevent="hasService = !hasService"
                                     :class="hasService ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky shadow-sm' : 'border-neutral-200 bg-white hover:bg-neutral-50'"
                                     class="flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 relative cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                    <input type="checkbox" name="interest_service" :checked="hasService" class="sr-only">
+                                    <input type="checkbox" name="interest_service" value="true" x-model="hasService" class="sr-only">
                                     <div class="w-8 h-8 rounded-full bg-brand-accent/20 flex items-center justify-center mb-2.5 text-brand-earth-dark">
                                         <svg class="w-5 h-5 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -938,7 +980,7 @@ if (Astro.request.method === "POST") {
                             <label for="course_type" class="block text-sm font-medium text-neutral-700 mb-1">Typ av kurs
                                 <span class="text-red-500">*</span></label>
                             <select id="course_type" name="course_type"
-                                :required="subjects.includes('taichi') || subjects.includes('qigong')" x-model="subSubject"
+                                :required="subjects.includes('taichi') || subjects.includes('qigong')" x-model="courseType"
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
                                 <option value="">-- Välj typ av kurs --</option>
                                 <option value="helgkurs">Helgkurs</option>
@@ -949,7 +991,7 @@ if (Astro.request.method === "POST") {
                         </div>
 
                         <!-- Specifik förfrågan (Text area) -->
-                        <div x-show="(subjects.includes('taichi') || subjects.includes('qigong')) && subSubject === 'specifik_forfragan'"
+                        <div x-show="(subjects.includes('taichi') || subjects.includes('qigong')) && courseType === 'specifik_forfragan'"
                             x-cloak class="mt-4" x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="opacity-0 -translate-y-2"
                             x-transition:enter-end="opacity-100 translate-y-0">
@@ -957,7 +999,7 @@ if (Astro.request.method === "POST") {
                                 class="block text-sm font-medium text-neutral-700 mb-1">Beskriv din förfrågan kort <span
                                     class="text-red-500">*</span></label>
                             <input type="text" id="specific_request" name="specific_request"
-                                :required="(subjects.includes('taichi') || subjects.includes('qigong')) && subSubject === 'specifik_forfragan'"
+                                :required="(subjects.includes('taichi') || subjects.includes('qigong')) && courseType === 'specifik_forfragan'"
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
                         </div>
 
@@ -969,7 +1011,7 @@ if (Astro.request.method === "POST") {
                             <label for="behandling_type" class="block text-sm font-medium text-neutral-700 mb-1">Typ av behandling
                                 <span class="text-red-500">*</span></label>
                             <select id="behandling_type" name="behandling_type"
-                                :required="subjects.includes('behandling')" x-model="subSubject"
+                                :required="subjects.includes('behandling')" x-model="behandlingType"
                                 class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
                                 <option value="">-- Välj typ av behandling --</option>
                                 <option value="terapeutisk">Terapeutisk behandling (TuiNa eller Akupunktur)</option>
@@ -977,7 +1019,7 @@ if (Astro.request.method === "POST") {
                             </select>
 
                             <!-- Helper for Terapeutisk -->
-                            <div x-show="subSubject === 'terapeutisk'" x-cloak
+                            <div x-show="behandlingType === 'terapeutisk'" x-cloak
                                 class="mt-3 bg-brand-sky-light/20 p-4 rounded-md border border-brand-sky/30"
                                 x-transition>
                                 <p class="text-sm text-brand-earth-dark font-medium flex items-start">
@@ -1000,7 +1042,7 @@ if (Astro.request.method === "POST") {
                                 <label for="giftcard_type" class="block text-sm font-medium text-neutral-700 mb-1">Vad för
                                     typ av presentkort? <span class="text-red-500">*</span></label>
                                 <select id="giftcard_type" name="giftcard_type" :required="subjects.includes('presentkort')"
-                                    x-model="subSubject"
+                                    x-model="giftcardType"
                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
                                     <option value="">-- Välj typ --</option>
                                     <option value="valfritt_belopp">Valfritt belopp</option>
@@ -1010,10 +1052,10 @@ if (Astro.request.method === "POST") {
                                 </select>
                             </div>
 
-                            <div x-show="subSubject === 'valfritt_belopp'" x-cloak x-transition
+                            <div x-show="giftcardType === 'valfritt_belopp'" x-cloak x-transition
                                 class="bg-brand-sky-light/10 p-4 rounded-lg border border-brand-sky/20">
                                 <label for="amount" class="block text-sm font-medium text-neutral-700 mb-1">Önskat belopp (kr) <span class="text-red-500">*</span></label>
-                                <input type="number" id="amount" name="amount" x-model="amount" :required="subjects.includes('presentkort') && subSubject === 'valfritt_belopp'"
+                                <input type="number" id="amount" name="amount" x-model="amount" :required="subjects.includes('presentkort') && giftcardType === 'valfritt_belopp'"
                                     class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"
                                     placeholder="T.ex. 500" min="1">
                                 <p class="text-xs text-neutral-500 mt-2">Fyll i det belopp du vill ladda presentkortet med.</p>

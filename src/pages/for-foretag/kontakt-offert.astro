@@ -9,15 +9,14 @@ import Icon from '../../components/Icon.astro';
 import heroImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
 import { siteConfig } from '../../data/site.ts';
 
-let formStatus = '';
+let formStatus = Astro.url.searchParams.get('skickat') === '1' ? 'success' : '';
 
 if (Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
     
     if (data.get("website")) {
-      formStatus = 'success';
-      throw new Error("SILENT_HONEYPOT");
+      return Astro.redirect('/for-foretag/kontakt-offert?skickat=1', 302);
     }
 
     // Get env vars with fallback for Cloudflare runtime
@@ -28,55 +27,96 @@ if (Astro.request.method === "POST") {
     if (botToken) {
       botToken = botToken.trim().replace(/^['"]|['"]$/g, '').replace(/^bot/i, '');
     }
-    
-    let text = `💼 Ny Offertförfrågan (Företag)!\n`;
-    text += `Företag: ${data.get("companyName") || "-"}\n`;
-    text += `Kontaktperson: ${data.get("contactPerson") || "-"}\n`;
-    text += `E-post: ${data.get("email") || "-"}\n`;
-    text += `Telefon: ${data.get("phone") || "-"}\n\n`;
-    
+
+    // Helper to escape HTML special chars for Telegram HTML parse mode
+    const esc = (s: unknown) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    // Timestamp
+    const now = new Date();
+    const timestamp = now.toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm', weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+    // Clinic slug → display name
+    const clinicMap: Record<string, string> = {
+      'gnesta': 'Gnesta',
+      'nykoping': 'Nyköping',
+      'oxelosund': 'Oxelösund',
+    };
+
+    let text = `💼 <b>Ny Offertförfrågan (Företag)</b>  <i>${esc(timestamp)}</i>\n`;
+    text += `━━━━━━━━━━━━━━━━━━\n`;
+    text += `🏢 <b>Kontaktuppgifter</b>\n`;
+    text += `<b>Företag:</b> ${esc(data.get("companyName") || "–")}\n`;
+    text += `<b>Kontaktperson:</b> ${esc(data.get("contactPerson") || "–")}\n`;
+    text += `<b>E-post:</b> ${esc(data.get("email") || "–")}\n`;
+    text += `<b>Telefon:</b> ${esc(data.get("phone") || "–")}\n`;
+
+    text += `\n━━━━━━━━━━━━━━━━━━\n`;
+    text += `🎯 <b>Önskade Tjänster</b>\n`;
+
     const services = data.getAll("services[]") as string[];
     if (services.length > 0) {
-      text += `Tjänster:\n`;
       const groups = [
         { parent: "Friskvård på Arbetsplatsen", subs: ["Medicinsk Qigong & Tai Chi", "Behandlingar på Plats"] },
         { parent: "Event & Aktivitet", subs: ["Workshop: Introduktion till Stresshantering", "Uppvisning & Prova-på"] },
         { parent: "Samarbeten", subs: ["Samarbete: Boka Kurser", "Samarbete: Boka Behandlingar", "Samarbete: Boka Instruktörsutbildning"] },
         { parent: "Specialförfrågan", subs: [] }
       ];
-      
+
       groups.forEach(group => {
         const hasParent = services.includes(group.parent);
         const selectedSubs = group.subs.filter(s => services.includes(s));
-        
         if (hasParent || selectedSubs.length > 0) {
-          text += `• ${group.parent}\n`;
-          selectedSubs.forEach(sub => text += `  - ${sub}\n`);
+          text += `▸ <b>${esc(group.parent)}</b>\n`;
+          selectedSubs.forEach(sub => text += `  – ${esc(sub)}\n`);
         }
       });
-    }
-    
-    const specialRequest = data.get("specialRequest");
-    if (specialRequest && services.includes("Specialförfrågan")) text += `\nSpecialförfrågan Detaljer:\n${specialRequest}\n`;
-    
-    text += `Deltagare: ${data.get("participants") || "-"}\n`;
-    text += `Period: ${data.get("period") || "-"}\n`;
-    text += `Omfattning: ${data.get("sessions") || "-"}\n`;
-    text += `Budget: ${data.get("budget") || "-"}\n\n`;
-    
-    const locationType = data.get("locationType");
-    text += `Plats: ${locationType === 'hos_er' ? 'Hos Företaget' : 'Hos Medidraken'}\n`;
-    
-    if (locationType === 'hos_er') {
-        text += `Adress: ${data.get("address") || "-"}\n`;
     } else {
-        text += `Mottagning: ${data.get("clinic") || "-"}\n`;
+      text += `<i>Inga tjänster valda</i>\n`;
+    }
+
+    const specialRequest = data.get("specialRequest");
+    if (specialRequest && services.includes("Specialförfrågan")) {
+      text += `<b>Specialförfrågan detaljer:</b> ${esc(specialRequest)}\n`;
+    }
+
+    text += `\n━━━━━━━━━━━━━━━━━━\n`;
+    text += `📋 <b>Detaljer & Genomförande</b>\n`;
+
+    const participants = data.get("participants");
+    const period = data.get("period");
+    const sessions = data.get("sessions");
+    const budget = data.get("budget");
+
+    if (participants) text += `<b>Deltagare:</b> ${esc(participants)}\n`;
+    if (period) text += `<b>Önskad period:</b> ${esc(period)}\n`;
+    if (sessions) text += `<b>Omfattning:</b> ${esc(sessions)}\n`;
+    if (budget) text += `<b>Budget:</b> ${esc(budget)}\n`;
+
+    if (!participants && !period && !sessions && !budget) {
+      text += `<i>Inga detaljer angivna</i>\n`;
+    }
+
+    text += `\n━━━━━━━━━━━━━━━━━━\n`;
+    text += `📍 <b>Plats för Genomförande</b>\n`;
+
+    const locationType = data.get("locationType");
+    if (locationType === 'hos_er') {
+      text += `<b>Plats:</b> Hos företaget\n`;
+      const address = data.get("address");
+      if (address) text += `<b>Adress:</b> ${esc(address)}\n`;
+    } else {
+      text += `<b>Plats:</b> Hos Medidraken\n`;
+      const clinic = data.get("clinic") as string | null;
+      if (clinic) text += `<b>Mottagning:</b> ${esc(clinicMap[clinic] || clinic)}\n`;
     }
 
     const message = data.get("message");
-    if (message) text += `\nMeddelande:\n${message}`;
+    if (message) {
+      text += `\n━━━━━━━━━━━━━━━━━━\n`;
+      text += `💬 <b>Meddelande</b>\n${esc(message)}`;
+    }
 
-    // Telegram limit is 4096. Truncate total payload to 4000 chars.
+    // Telegram HTML mode limit is 4096. Truncate to 4000 to be safe.
     if (text.length > 4000) {
       text = text.substring(0, 4000) + '... [Klippt]';
     }
@@ -85,10 +125,10 @@ if (Astro.request.method === "POST") {
        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({ chat_id: chatId, text: text })
+         body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' })
        });
        if (response.ok) {
-         formStatus = 'success';
+         return Astro.redirect('/for-foretag/kontakt-offert?skickat=1', 302);
        } else {
          formStatus = 'error';
          console.error("Telegram API Error:", await response.text());
@@ -98,12 +138,8 @@ if (Astro.request.method === "POST") {
       formStatus = 'error';
     }
   } catch (e) {
-    if (e instanceof Error && e.message === "SILENT_HONEYPOT") {
-      // Do nothing, silent fail
-    } else {
-      console.error("Form processing error:", e);
-      formStatus = 'error';
-    }
+    console.error("Form processing error:", e);
+    formStatus = 'error';
   }
 }
 ---
@@ -156,7 +192,7 @@ if (Astro.request.method === "POST") {
                                 Något gick fel när förfrågan skulle skickas. Vänligen försök igen eller kontakta oss via telefon eller e-post.
                             </div>
                         )}
-                <form action="" method="POST" class="space-y-8"
+                <form action="/for-foretag/kontakt-offert" method="POST" class="space-y-8"
                     x-data="{ 
                         locationType: 'hos_er',
                         companyName: '',
