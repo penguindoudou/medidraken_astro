@@ -12,8 +12,10 @@ import magnus_rooth_profileImage from '../../../assets/images/magnus_rooth_profi
 import { siteConfig } from '../../../data/site.ts';
 import { coursesTaiChi } from '../../../data/courses.ts';
 
-// Filtrera framtida kurser eller de som pågår
-const activeCourses = coursesTaiChi.filter(course => new Date(course.lastDate) >= new Date(new Date().setHours(0,0,0,0)));
+// Filtrera framtida kurser eller de som pågår, och som är av typen Helgkurs
+const activeCourses = coursesTaiChi
+  .filter(course => new Date(course.lastDate) >= new Date(new Date().setHours(0,0,0,0)))
+  .filter(course => course.format?.toLowerCase() === 'helgkurs');
 
 ---
 

@@ -1,4 +1,54 @@
 {
-  "qigong": [],
-  "taichi": []
+  "qigong": [
+    {
+      "title": "Medicinsk Qigong för nybörjare",
+      "format": "Helgkurs",
+      "location": "Nyköping",
+      "date": "5-6 September",
+      "times": "09:00 - 17:00",
+      "lastDate": "2026-09-06"
+    },
+    {
+      "title": "Medicinsk Qigong",
+      "format": "Veckokurs",
+      "location": "Nyköping",
+      "date": "Onsdagar fr. 19 Aug",
+      "times": "18:00 - 19:00",
+      "lastDate": "2026-10"
+    }
+  ],
+  "taichi": [
+    {
+      "title": "Tai Chi för nybörjare",
+      "format": "Helgkurs",
+      "location": "Nyköping",
+      "date": "29-30 Augusti",
+      "times": "09:00 - 17:00",
+      "lastDate": "2026-08-30"
+    },
+    {
+      "title": "Tai Chi för nybörjare",
+      "format": "Veckokurs",
+      "location": "Nyköping",
+      "date": "Måndagar fr. 17 Aug",
+      "times": "18:00 - 19:00",
+      "lastDate": "2026-09-08"
+    },
+    {
+      "title": "Tai Chi 24-form",
+      "format": "Veckokurs",
+      "location": "Nyköping",
+      "date": "Onsdagar fr. 19 Aug",
+      "times": "19:00 - 20:00",
+      "lastDate": "2026-09-08"
+    },
+    {
+      "title": "Tai Chi 24-form",
+      "format": "Veckokurs",
+      "location": "Nyköping",
+      "date": "Onsdagar fr. 19 Aug",
+      "times": "19:00 - 20:00",
+      "lastDate": "2026-09-08"
+    }
+  ]
 }

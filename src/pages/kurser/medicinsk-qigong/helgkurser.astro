@@ -13,9 +13,10 @@ import maria_morris_profileImage from '../../../assets/images/maria_morris_profi
 import magnus_rooth_profileImage from '../../../assets/images/magnus_rooth_profile.jpg';
 import qigong_johannes_instructing_groupImage from '../../../assets/images/qigong_johannes_instructing_group.jpg';
 
-// Filtrera framtida kurser eller de som pågår
-const activeCourses = coursesQigong.filter(course => new Date(course.lastDate) >= new Date(new
-Date().setHours(0,0,0,0)));
+// Filtrera framtida kurser eller de som pågår, och som är av typen Helgkurs
+const activeCourses = coursesQigong
+  .filter(course => new Date(course.lastDate) >= new Date(new Date().setHours(0,0,0,0)))
+  .filter(course => course.format?.toLowerCase() === 'helgkurs');
 
 ---
 
