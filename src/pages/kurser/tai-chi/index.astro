@@ -446,6 +446,9 @@ const activeCourses = coursesTaiChi.filter(course => new Date(course.lastDate) >
                             <p class="text-gray-900 whitespace-no-wrap">{course.location}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            {course.format?.toLowerCase() === 'helgkurs' && (
+                                <span class="inline-block bg-brand-earth-lightest text-brand-earth-dark text-xs px-2 py-0.5 rounded font-bold mb-1">Lördag–Söndag</span>
+                            )}
                             <p class="text-gray-900 whitespace-no-wrap">{course.date}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
