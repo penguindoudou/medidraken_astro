@@ -146,13 +146,13 @@ export const primaryMenu = {
           "link": "/kurser/tai-chi/",
           "children": [
             {
-              "title": "Veckokurser Tai Chi",
-              "link": "/kurser/tai-chi/veckokurser/",
+              "title": "Helgkurser Tai Chi",
+              "link": "/kurser/tai-chi/helgkurser/",
               "children": []
             },
             {
-              "title": "Helgkurser Tai Chi",
-              "link": "/kurser/tai-chi/helgkurser/",
+              "title": "Veckokurser Tai Chi",
+              "link": "/kurser/tai-chi/veckokurser/",
               "children": []
             },
             {
@@ -170,6 +170,11 @@ export const primaryMenu = {
             {
               "title": "Helgkurser Qigong",
               "link": "/kurser/medicinsk-qigong/helgkurser/",
+              "children": []
+            },
+            {
+              "title": "Veckokurser Qigong",
+              "link": "/kurser/medicinsk-qigong/veckokurser/",
               "children": []
             },
             {
