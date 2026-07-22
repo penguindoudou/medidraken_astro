@@ -2,10 +2,18 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import CourseScheduleTable from '../../components/CourseScheduleTable.astro';
 
 import taichiTraningImage from '../../assets/images/taichi_in_a_circle_instructor_johannes_teaching_several_white_crane_spreading_its_wings_grass_sunny_weather.jpg';
 import qigongTrainingImage from '../../assets/images/qigong_johannes_instructing_group.jpg';
 import instruktorBg from '../../assets/images/hero_instruktor6.png';
+
+import { coursesQigong, coursesTaiChi } from '../../data/courses.ts';
+
+const today = new Date(new Date().setHours(0, 0, 0, 0));
+const activeQigong = coursesQigong.filter(c => new Date(c.lastDate) >= today);
+const activeTaiChi = coursesTaiChi.filter(c => new Date(c.lastDate) >= today);
+const hasAny = activeQigong.length > 0 || activeTaiChi.length > 0;
 ---
 
 <BaseLayout title="Våra Kurser - Tai Chi, Medicinsk Qigong & Instruktörskurs"
@@ -22,7 +30,9 @@ import instruktorBg from '../../assets/images/hero_instruktor6.png';
             <a href="/kurser/tai-chi/" class="absolute inset-0 z-10" aria-label="Gå till Tai Chi startsida"></a>
 
             <div class="relative z-20 pointer-events-none flex flex-col items-center">
-                <h2 class="text-5xl md:text-6xl lg:text-7xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg">Tai Chi</h2>
+                <div class="flex items-center justify-center h-[9rem] md:h-[10rem] lg:h-[12rem]">
+                    <h2 class="text-5xl md:text-6xl lg:text-7xl font-heading text-brand-accent group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg">Tai Chi</h2>
+                </div>
                 <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Hitta styrka, balans & inre lugn genom mjuka rörelser.</p>
                 
                 <div class="pointer-events-auto flex flex-col gap-3 mt-2 w-full max-w-xs">
@@ -34,6 +44,9 @@ import instruktorBg from '../../assets/images/hero_instruktor6.png';
                     </a>
                     <a href="/kurser/tai-chi/privatundervisning/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform text-center">
                         Privatundervisning
+                    </a>
+                    <a href="#schema" class="text-white/80 hover:text-white text-base underline underline-offset-4 transition-colors mt-1">
+                        Se alla kursdatum &darr;
                     </a>
                 </div>
             </div>
@@ -49,7 +62,9 @@ import instruktorBg from '../../assets/images/hero_instruktor6.png';
             <a href="/kurser/medicinsk-qigong/" class="absolute inset-0 z-10" aria-label="Gå till Medicinsk Qigong startsida"></a>
 
             <div class="relative z-20 pointer-events-none flex flex-col items-center">
-                <h2 class="text-4xl md:text-5xl lg:text-7xl font-heading text-brand-accent mb-4 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight">Medicinsk<br/>Qigong</h2>
+                <div class="flex items-center justify-center h-[9rem] md:h-[10rem] lg:h-[12rem]">
+                    <h2 class="text-4xl md:text-5xl lg:text-7xl font-heading text-brand-accent group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg leading-tight text-center">Medicinsk<br/>Qigong</h2>
+                </div>
                 <p class="text-lg md:text-xl text-white/95 mb-8 max-w-sm drop-shadow-md">Återfå energi, minska stress & stärk din hälsa inifrån.</p>
                 
                 <div class="pointer-events-auto flex flex-col gap-3 mt-2 w-full max-w-xs">
@@ -62,10 +77,108 @@ import instruktorBg from '../../assets/images/hero_instruktor6.png';
                     <a href="/kurser/medicinsk-qigong/privatundervisning/" class="btn btn-primary-on-dark px-8 py-3 shadow-lg hover:-translate-y-1 transition-transform text-center">
                         Privatundervisning
                     </a>
+                    <a href="#schema" class="text-white/80 hover:text-white text-base underline underline-offset-4 transition-colors mt-1">
+                        Se alla kursdatum &darr;
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- ======================================= -->
+    <!-- Sektion: Kommande Kurser (Schema)       -->
+    <!-- ======================================= -->
+    <section id="schema" class="border-t-2 border-brand-earth-dark/40 bg-brand-earth-lightest/60 py-16 md:py-20">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-10">
+                <h2 class="font-heading text-3xl md:text-4xl text-brand-earth mb-3">Kommande Kurser</h2>
+                <p class="text-lg text-neutral-600 max-w-xl mx-auto">Alla aktuella kursstart – Tai Chi och Medicinsk Qigong. Klicka "Boka" för att anmäla intresse.</p>
+            </div>
+
+            {hasAny ? (
+                <div x-data="{ tab: 'alla' }">
+
+                    <div class="flex flex-wrap justify-center gap-2 mb-8" role="tablist">
+                        <button
+                            @click="tab = 'alla'"
+                            :class="tab === 'alla' ? 'bg-brand-earth text-white shadow-md' : 'bg-white text-brand-earth border border-brand-earth/40 hover:bg-brand-earth/10'"
+                            class="px-5 py-2 rounded-full text-base font-semibold transition-all duration-200 cursor-pointer"
+                            role="tab"
+                            id="tab-alla"
+                            :aria-selected="tab === 'alla'"
+                        >Alla kurser</button>
+                        {activeTaiChi.length > 0 && (
+                        <button
+                            @click="tab = 'taichi'"
+                            :class="tab === 'taichi' ? 'bg-brand-earth text-white shadow-md' : 'bg-white text-brand-earth border border-brand-earth/40 hover:bg-brand-earth/10'"
+                            class="px-5 py-2 rounded-full text-base font-semibold transition-all duration-200 cursor-pointer"
+                            role="tab"
+                            id="tab-taichi"
+                            :aria-selected="tab === 'taichi'"
+                        >Tai Chi</button>
+                        )}
+                        {activeQigong.length > 0 && (
+                        <button
+                            @click="tab = 'qigong'"
+                            :class="tab === 'qigong' ? 'bg-brand-earth text-white shadow-md' : 'bg-white text-brand-earth border border-brand-earth/40 hover:bg-brand-earth/10'"
+                            class="px-5 py-2 rounded-full text-base font-semibold transition-all duration-200 cursor-pointer"
+                            role="tab"
+                            id="tab-qigong"
+                            :aria-selected="tab === 'qigong'"
+                        >Medicinsk Qigong</button>
+                        )}
+                    </div>
+
+                    <!-- Tai Chi panel -->
+                    {activeTaiChi.length > 0 && (
+                    <div x-show="tab === 'alla' || tab === 'taichi'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="mb-10">
+                        <div class="max-w-5xl mx-auto">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="h-1 w-8 rounded-full bg-brand-accent inline-block"></span>
+                                <h3 class="font-heading text-2xl text-brand-earth">Tai Chi</h3>
+                            </div>
+                        </div>
+                        <CourseScheduleTable courses={activeTaiChi} subject="taichi" showFormatHeader={true} />
+                    </div>
+                    )}
+
+                    <!-- Qigong panel -->
+                    {activeQigong.length > 0 && (
+                    <div x-show="tab === 'alla' || tab === 'qigong'" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="mb-4">
+                        <div class="max-w-5xl mx-auto">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="h-1 w-8 rounded-full bg-brand-sky inline-block"></span>
+                                <h3 class="font-heading text-2xl text-brand-earth">Medicinsk Qigong</h3>
+                            </div>
+                        </div>
+                        <CourseScheduleTable courses={activeQigong} subject="qigong" showFormatHeader={true} />
+                    </div>
+                    )}
+
+                </div>
+            ) : (
+                <div class="max-w-2xl mx-auto text-center border-2 border-dashed border-neutral-300 rounded-2xl p-10 bg-white/60">
+                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-earth/10 mx-auto mb-5">
+                        <svg class="h-8 w-8 text-brand-earth" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-heading text-2xl text-brand-earth mb-3">Inga kurser just nu</h3>
+                    <p class="text-neutral-600 mb-6">Nya kursstart planeras löpande. Anmäl ditt intresse så kontaktar vi dig när nästa omgång läggs in.</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a href="/kontakt/?subject=taichi#tidsbokning" class="btn btn-primary-on-dark px-7 py-3 shadow">Anmäl intresse – Tai Chi</a>
+                        <a href="/kontakt/?subject=qigong#tidsbokning" class="btn btn-primary-on-dark px-7 py-3 shadow">Anmäl intresse – Qigong</a>
+                    </div>
+                </div>
+            )}
+
+            <!-- Footer CTA row -->
+            <div class="mt-10 pt-8 border-t border-brand-earth-dark/15 flex flex-col sm:flex-row justify-center items-center gap-4 text-base text-neutral-600">
+                <span>Ser du inte din ort eller önskad tid?</span>
+                <a href="/kontakt/#tidsbokning" class="text-brand-sky font-semibold underline underline-offset-4 hover:text-brand-accent transition-colors">Kontakta oss – vi hjälper dig &rarr;</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Hela Bredd Sektion: Instruktörsutbildning -->
     <div class="relative w-full flex flex-col justify-center items-center text-center p-6 md:p-8 group min-h-[40vh] md:min-h-[45vh] overflow-hidden border-t-2 border-brand-earth-dark/40">
