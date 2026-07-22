@@ -12,15 +12,15 @@ import magnus_rooth_profileImage from '../../../assets/images/magnus_rooth_profi
 import { siteConfig } from '../../../data/site.ts';
 import { coursesTaiChi } from '../../../data/courses.ts';
 
-// Filtrera framtida kurser eller de som pågår, och som är av typen Helgkurs
+// Filtrera framtida kurser eller de som pågår, och som är av typen Veckokurs
 const activeCourses = coursesTaiChi
   .filter(course => new Date(course.lastDate) >= new Date(new Date().setHours(0,0,0,0)))
-  .filter(course => course.format?.toLowerCase() === 'helgkurs');
+  .filter(course => course.format?.toLowerCase() === 'veckokurs' || course.format?.toLowerCase() === 'terminskurs');
 
 ---
 
-<BaseLayout title="Helgkurser i Tai Chi"
-  description="Följ med på våra stärkande helgkurser i Tai Chi i Nyköping och Gnesta. Lär dig grunderna eller fördjupa din teknik tillsammans med oss.">
+<BaseLayout title="Veckokurser i Tai Chi"
+  description="Följ med på våra stärkande veckokurser i Tai Chi i Nyköping och Gnesta. Lär dig grunderna i lugn och ro under en hel termin tillsammans med oss.">
 <!-- ======================================= -->
 <!-- Sektion 1: Hero                         -->
 <!-- ======================================= -->
@@ -28,83 +28,76 @@ const activeCourses = coursesTaiChi
     <div class="hero-background">
         <!-- Bild: Tai Chi natur/fokus -->
         <Image src={taichi_hero6Image}
-            alt="Helgkurs i Tai Chi - Djupgående intensivkurs" class="hero-bg-image" />
+            alt="Veckokurs i Tai Chi - Regelbunden träning för hälsa" class="hero-bg-image" />
     </div>
 
     <div class="hero-content">
-        <h1 class="hero-title text-brand-accent text-balance">Helgkurs i Tai Chi</h1>
+        <h1 class="hero-title text-brand-accent text-balance">Veckokurser i Tai Chi</h1>
 
         <div class="hero-text bg-brand-earth-dark/40 p-4 md:p-6 rounded-lg backdrop-blur-sm border border-white/10">
-            <h2 class="hero-subtitle font-semibold">Intensiv fördjupning för Balans & Välbefinnande</h2>
+            <h2 class="hero-subtitle font-semibold">Regelbunden träning för Balans & Välbefinnande</h2>
 
             <p class="hero-text mt-2">
-                Våra helgkurser är det snabbaste sättet att få en solid grund i Tai Chi. Under två intensiva och givande
-                dagar får du möjlighet att fördjupa dig i rörelserna, bygga starkt muskelminne och lämna helgen med en
-                komplett form – en verktygslåda du kan använda för ta hand om din hälsa på egen hand livet ut.
+                Våra veckokurser ger dig möjlighet att bygga upp din hälsa och Tai Chi-teknik steg för steg under en termin. Genom regelbunden träning en gång i veckan skapar du en hållbar rutin för stresshantering, balans och välmående i din vardag.
             </p>
         </div>
 
         <div class="mt-6 md:mt-10">
             <a href="#kursstarter" class="btn btn-primary-on-dark">
-                Se kommande helgkurser & anmäl intresse
+                Se aktuella veckokurser & anmäl intresse
             </a>
         </div>
     </div>
 </section>
 
 <!-- ======================================= -->
-<!-- Sektion 2: Fördelarna med en Intensiv Helgkurs -->
+<!-- Sektion 2: Fördelarna med en Veckokurs -->
 <!-- ======================================= -->
 <section class="section-standard bg-white">
     <div class="container-base">
         <div class="text-center mb-12 max-w-3xl mx-auto">
-            <h2 class="text-brand-earth">Varför välja en Helgkurs?</h2>
+            <h2 class="text-brand-earth">Varför välja en Veckokurs?</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            <!-- Feature Box 1: Hel Hälsorutin -->
-            <div class="content-box flex flex-col items-center text-center">
-                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-accent/20 mb-4">
-                    <Icon name="taichi_qigong_flow_min" class="h-22 w-22 text-brand-accent-dark" />
-                </div>
-
-                <h3 class="text-xl font-bold text-neutral-900 mb-3">Hel Hälsorutin på en helg</h3>
-                <p class="text-neutral-700">
-                    Istället för att lära dig en rörelse i taget under en hel termin får du en komplett kurs på bara två
-                    dagar. För dig som är ny är detta det snabbaste sättet att lära sig en komplett Tai Chi form.
-                </p>
-            </div>
-
-            <!-- Feature Box 2: Oavbruten Fördjupning -->
-            <div class="content-box flex flex-col items-center text-center">
-                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-accent/20 mb-4">
-                    <!-- Ikon: Fokus/Djupdykning (Magnifying Glass with Plus) -->
-                    <svg class="h-15 w-15 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 7v6m-3-3h6">
-                        </path>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold text-neutral-900 mb-3">Oavbruten Fördjupning</h3>
-                <p class="text-neutral-700">
-                    När vi tränar flera timmar i sträck balanseras nervsystemet på djupet. Du lämnar vardagens
-                    distraktioner bakom dig och landar i en djup närvaro och mental återhämtning som är svår att
-                    uppnå under korta kvällspass.
-                </p>
-            </div>
-
-            <!-- Feature Box 3: Enkelt att planera -->
+            <!-- Feature Box 1: Hållbar Hälsorutin -->
             <div class="content-box flex flex-col items-center text-center">
                 <div class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-accent/20 mb-4">
                     <Icon name="calendar" class="h-15 w-15 text-brand-accent-dark" stroke-width="1"/>
                 </div>
 
-                <h3 class="text-xl font-bold text-neutral-900 mb-3">Enkelt att planera</h3>
+                <h3 class="text-xl font-bold text-neutral-900 mb-3">Hållbar Hälsorutin</h3>
                 <p class="text-neutral-700">
-                    Perfekt för dig med en välfylld kalender, oförutsägbar vardag eller för dig som bor en bit bort. En
-                    helgkurs kräver bara en helg för att etablera ett verktyg som kan förbättra din hälsa livet ut.
+                    Träna regelbundet en gång i veckan och bygg upp en hälsorutin i vardagen som stödjer kroppens balans och välbefinnande.
+                </p>
+            </div>
+
+            <!-- Feature Box 2: Stegvis Utveckling -->
+            <div class="content-box flex flex-col items-center text-center">
+                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-accent/20 mb-4">
+                    <Icon name="taichi_qigong_flow_min" class="h-22 w-22 text-brand-accent-dark" />
+                </div>
+                <h3 class="text-xl font-bold text-neutral-900 mb-3">Tid för Integration</h3>
+                <p class="text-neutral-700">
+                    Du får gott om tid mellan varje tillfälle att praktisera och låta kroppsminnet befästa de nya rörelserna.
+                </p>
+            </div>
+
+            <!-- Feature Box 3: Social Gemenskap -->
+            <div class="content-box flex flex-col items-center text-center">
+                <div class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-accent/20 mb-4">
+                    <!-- Ikon: People/Group -->
+                    <svg class="h-12 w-12 text-brand-accent-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                        </path>
+                    </svg>
+                </div>
+
+                <h3 class="text-xl font-bold text-neutral-900 mb-3">Grundande Gemenskap</h3>
+                <p class="text-neutral-700">
+                    Träffa likasinnade varje vecka och bli en del av en stödjande och harmonisk träningsgemenskap.
                 </p>
             </div>
 
@@ -118,17 +111,15 @@ const activeCourses = coursesTaiChi
 <section class="section-standard bg-brand-earth-lightest">
     <div class="container-base">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-brand-earth text-center mb-10">Hur en Helgkurs Går Till</h2>
+            <h2 class="text-brand-earth text-center mb-10">Hur en Veckokurs Går Till</h2>
 
-            <div class="bg-white rounded-xl p-8 md:p-10 shadow-sm border border-neutral-200">
+            <div class="bg-brand-accent/10 rounded-xl p-8 md:p-10 shadow-sm border border-neutral-200">
 
                 <!-- Section 1: Upplägget: I praktiken -->
                 <div class="mb-12">
-                    <h3 class="font-bold text-brand-earth-dark text-2xl md:text-3xl mb-8 text-center tracking-wide">
-                        Upplägget: I praktiken</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-                        <!-- Stage 1: Rakt på sak -->
+                        <!-- Stage 1: Uppvärmning -->
                         <div
                             class="bg-gradient-to-br from-brand-earth/5 to-brand-accent/5 rounded-xl p-6 border-2 border-brand-earth/20 shadow-sm">
                             <div class="flex flex-col items-center text-center h-full">
@@ -138,13 +129,12 @@ const activeCourses = coursesTaiChi
                                 </div>
                                 <h4 class="font-bold text-brand-earth-dark text-lg mb-3">Rakt på sak</h4>
                                 <p class="text-neutral-700 text-sm leading-relaxed">
-                                    Efter förberedande övningar för att mjuka upp kroppen går vi direkt på formens
-                                    rörelser inom första timmen.
+                                    Efter förberedande övningar för att mjuka upp kroppen går vi direkt på formens rörelser.
                                 </p>
                             </div>
                         </div>
 
-                        <!-- Stage 2: Helheten & Flödet -->
+                        <!-- Stage 2: Veckans Fokus -->
                         <div
                             class="bg-gradient-to-br from-brand-earth/5 to-brand-accent/5 rounded-xl p-6 border-2 border-brand-earth/20 shadow-sm">
                             <div class="flex flex-col items-center text-center h-full">
@@ -152,73 +142,24 @@ const activeCourses = coursesTaiChi
                                     class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent text-white mb-4 shadow-md">
                                     <Icon name="taichi_yinyang_gongbu" class="h-10 w-10" />
                                 </div>
-                                <h4 class="font-bold text-brand-earth-dark text-lg mb-3">Helheten & Flödet</h4>
+                                <h4 class="font-bold text-brand-earth-dark text-lg mb-3">Progression</h4>
                                 <p class="text-neutral-700 text-sm leading-relaxed">
-                                    Vi knyter ihop rörelserna till en komplett form och fokuserar på att förfina
-                                    detaljerna.
+                                    Vi repeterar tidigare röresler och introducerar nya. Dessa knyts ihop till en enhetlig from som vi förlänger vecka för vecka.
                                 </p>
                             </div>
                         </div>
 
-                        <!-- Stage 3: Integration & Pauser -->
+                        <!-- Stage 3: Integration & Avslut -->
                         <div
                             class="bg-gradient-to-br from-brand-earth/5 to-brand-accent/5 rounded-xl p-6 border-2 border-brand-earth/20 shadow-sm">
                             <div class="flex flex-col items-center text-center h-full">
                                 <div
                                     class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-accent text-white mb-4 shadow-md">
-                                    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <!-- Bell Icon -->
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
-                                        </path>
-                                    </svg>
+                                    <Icon name="shield_health" class="h-8 w-8" />
                                 </div>
-                                <h4 class="font-bold text-brand-earth-dark text-lg mb-3">Integration & Pauser</h4>
+                                <h4 class="font-bold text-brand-earth-dark text-lg mb-3">Långsiktig Hälsa</h4>
                                 <p class="text-neutral-700 text-sm leading-relaxed">
-                                    Vi varvar träning med regelbundna pauser så att både kropp och sinne hinner
-                                    absorbera rörelserna.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Section 2: Vår Pedagogik: Från rörelse till muskelminne -->
-                <div class="mb-10">
-                    <h3 class="font-bold text-brand-earth-dark text-2xl md:text-3xl mb-8 text-center tracking-wide">
-                        Vår Pedagogik: Från rörelse till muskelminne</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                        <!-- Pedagogik 1: Kroppsminne -->
-                        <div
-                            class="bg-gradient-to-br from-brand-accent/5 to-brand-earth/5 rounded-xl p-8 border-2 border-brand-accent/20 shadow-sm">
-                            <div class="flex flex-col items-center text-center h-full">
-                                <div
-                                    class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-accent/20 mb-6">
-                                    <Icon name="taichi_qigong_flow_min" class="h-22 w-22 text-brand-accent-dark" />
-                                </div>
-                                <h4 class="font-bold text-brand-earth-dark text-xl mb-4">Kroppsminne</h4>
-                                <p class="text-neutral-700 text-base leading-relaxed">
-                                    Vi bryter ner komplexa rörelser till enkla, greppbara steg. Genom täta repetitioner
-                                    "kodar" vi in tekniken i kroppen så att den sitter kvar efter helgen.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Pedagogik 2: Långsiktig Hälsa -->
-                        <div
-                            class="bg-gradient-to-br from-brand-accent/5 to-brand-earth/5 rounded-xl p-8 border-2 border-brand-accent/20 shadow-sm">
-                            <div class="flex flex-col items-center text-center h-full">
-                                 <div
-                                    class="flex items-center justify-center h-20 w-20 rounded-full bg-brand-accent/20 mb-6">
-                                    <Icon name="shield_health" class="h-12 w-12 text-brand-accent-dark" />
-                                </div>
-                                <h4 class="font-bold text-brand-earth-dark text-xl mb-4">Långsiktig Hälsa</h4>
-                                <p class="text-neutral-700 text-base leading-relaxed">
-                                    Vi lär inte bara ut rörelser; vi ger dig en metod för att förbättra din hälsa på
-                                    sikt. Du lämnar helgen med en komplett sekvens, redo att användas när och var du
-                                    vill.
+                                    Du lär dig en metod för att förbättra din hälsa på sikt. Du lämnar kursen med en komplett sekvens, redo att användas när och var du vill.
                                 </p>
                             </div>
                         </div>
@@ -228,26 +169,13 @@ const activeCourses = coursesTaiChi
 
                 <!-- Practical Info & Alternative -->
                 <div class="space-y-6 pt-6 border-t border-neutral-200">
-                    <div class="bg-brand-sky/5 rounded-xl p-6 border border-brand-sky/20 flex items-start gap-4">
-                        <div class="text-brand-sky mt-1 shrink-0">
-                            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-neutral-900 mb-1">Praktisk info om lunch</h4>
-                            <p class="text-neutral-700 text-sm md:text-base">Lunch ingår ej, men vi brukar uppmuntra
-                                till ett gemensamt knytkalas för de som önskar!</p>
-                        </div>
-                    </div>
 
                     <div class="text-center">
                         <p class="text-neutral-700 italic">
-                            Föredrar du veckovisa lektioner eller ett mer anpassat upplägg?
+                            Föredrar du ett mer intensivt eller anpassat upplägg?
                             <br class="hidden md:block">
-                            Utforska våra <a href="/kurser/tai-chi/veckokurser/"
-                                class="text-brand-sky font-semibold underline hover:text-brand-accent transition-colors">veckokurser</a> eller boka <a href="/kurser/tai-chi/privatundervisning/"
+                            Utforska våra <a href="/kurser/tai-chi/helgkurser/"
+                                class="text-brand-sky font-semibold underline hover:text-brand-accent transition-colors">helgkurser</a> eller boka <a href="/kurser/tai-chi/privatundervisning/"
                                 class="text-brand-sky font-semibold underline hover:text-brand-accent transition-colors">privatlektioner</a>.
                         </p>
                     </div>
@@ -281,7 +209,7 @@ const activeCourses = coursesTaiChi
                 <h2 class="text-brand-earth mb-6">Lär Dig Tai Chi, Steg för Steg</h2>
                 <p class="mb-6">
                     Du behöver ingen tidigare erfarenhet eller vara i "god form" för att börja. Under ledning av våra
-                    skickliga instruktörer guidas du tryggt genom varje moment.
+                    skickliga instruktörer guidas du tryggt genom varje moment, vecka för vecka.
                 </p>
                 <ul class="space-y-4 mb-8">
                     <li class="flex items-start">
@@ -304,7 +232,7 @@ const activeCourses = coursesTaiChi
                         </div>
                         <div>
                             <strong class="text-brand-earth-dark block font-semibold text-lg">En Tydlig Progression</strong>
-                            <span class="text-neutral-700">Vi börjar från grunden och bygger metodiskt på med nya rörelser.</span>
+                            <span class="text-neutral-700">Vi börjar från grunden och bygger metodiskt på med nya rörelser varje vecka.</span>
                         </div>
                     </li>
                     <li class="flex items-start">
@@ -323,7 +251,7 @@ const activeCourses = coursesTaiChi
                 <div class="bg-white/50 p-6 rounded-lg border-l-4 border-brand-earth mb-6">
                     <p class="italic text-neutral-800">
                         "Vi ser din hälsoresa som ett samspel. Vår roll är inte bara att instruera, utan att skapa en
-                        trygg atmosfär där du kan använda Tai Chi som ditt personliga verktyg för balans."
+                        trygg atmosfär där du kan använda Tai Chi som ditt personliga verktyg för hälsa och balans."
                     </p>
                 </div>
 
@@ -352,7 +280,7 @@ const activeCourses = coursesTaiChi
 <!-- ======================================= -->
 <section class="section-standard bg-brand-earth-lightest/30" id="kursstarter">
     <div class="container-base">
-        <h2 class="text-brand-earth text-center mb-10">Kommande Helgkurser i Tai Chi</h2>
+        <h2 class="text-brand-earth text-center mb-10">Kommande Veckokurser i Tai Chi</h2>
 
         
         {activeCourses.length > 0 ? (
@@ -391,7 +319,7 @@ const activeCourses = coursesTaiChi
                             <p class="text-gray-900 whitespace-no-wrap">{course.times}</p>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                            <a href={`/kontakt/?subject=taichi&sub=helgkurs&date=${encodeURIComponent(course.date)}&time=${encodeURIComponent(course.times)}#tidsbokning`} class="text-brand-sky hover:text-brand-accent-dark font-bold">Boka
+                            <a href={`/kontakt/?subject=taichi&sub=veckokurs&date=${encodeURIComponent(course.date)}&time=${encodeURIComponent(course.times)}#tidsbokning`} class="text-brand-sky hover:text-brand-accent-dark font-bold">Boka
                                 &rarr;</a>
                         </td>
                     </tr>
@@ -403,8 +331,7 @@ const activeCourses = coursesTaiChi
         <div class="max-w-4xl mx-auto border-2 border-dashed border-neutral-300 rounded-xl p-8 md:p-12 bg-neutral-50">
             <h3 class="font-heading text-2xl text-brand-earth mb-4 text-center">Så här kommer du igång!</h3>
             <p class="text-neutral-700 mb-10 text-center max-w-2xl mx-auto">
-                Just nu har vi inga schemalagda helgkurser, men det finns flera sätt att få en djupgående start i Tai
-                Chi.
+                Just nu har vi inga schemalagda veckokurser, men det finns flera sätt att komma igång med Tai Chi redan nu.
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 min-[890px]:gap-8">
@@ -425,12 +352,12 @@ const activeCourses = coursesTaiChi
                     </div>
                     <h4
                         class="font-bold text-brand-earth-dark text-xl md:text-base min-[890px]:text-xl mb-3 hyphens-auto">
-                        Intresseanmälan för nästa kurs</h4>
+                        Intresseanmälan för nästa termin</h4>
                     <p class="text-neutral-700 mb-6">
-                        Var först med att få info om nästa planerade helgkurs. Genom att anmäla intresse hjälper du oss
+                        Var först med att få info om nästa planerade terminsstart. Genom att anmäla intresse hjälper du oss
                         planera.
                     </p>
-                    <a href="/kontakt/?subject=taichi&sub=helgkurs#tidsbokning" class="btn-tertiary font-semibold">Anmäl intresse &rarr;</a>
+                    <a href="/kontakt/?subject=taichi&sub=veckokurs#tidsbokning" class="btn-tertiary font-semibold">Anmäl intresse &rarr;</a>
                 </div>
 
                 <!-- Väg 2: Privatundervisning -->
@@ -452,7 +379,7 @@ const activeCourses = coursesTaiChi
                         class="font-bold text-brand-earth-dark text-xl md:text-base min-[890px]:text-xl mb-3 hyphens-auto">
                         Privatundervisning</h4>
                     <p class="text-neutral-700 mb-6">
-                        Få 100% odelad uppmärksamhet och undervisning anpassad för dig.
+                        Få 100% odelad uppmärksamhet och undervisning anpassad för din vardag.
                     </p>
                     <a href="/kurser/tai-chi/privatundervisning/" class="btn-tertiary font-semibold">Läs mer &rarr;</a>
                 </div>
@@ -471,12 +398,11 @@ const activeCourses = coursesTaiChi
                     </div>
                     <h4
                         class="font-bold text-brand-earth-dark text-xl md:text-base min-[890px]:text-xl mb-3 hyphens-auto">
-                        Egen Grupp</h4>
+                        Helgkurser</h4>
                     <p class="text-neutral-700 mb-6">
-                        Perfekt för arbetsplatsen eller kompisgänget. Vi skapar ett upplägg som passar er kalender och
-                        Era önskemål.
+                        Lär dig grunderna snabbt över en helg. Perfekt för dig med svårt att hinna till veckopass.
                     </p>
-                    <a href="/upplevelser/workshops-gruppaktiviteter/" class="btn-tertiary font-semibold">Läs mer
+                    <a href="/kurser/tai-chi/helgkurser/" class="btn-tertiary font-semibold">Läs mer
                         &rarr;</a>
                 </div>
 
@@ -494,15 +420,14 @@ const activeCourses = coursesTaiChi
 
         <!-- Huvud CTA -->
         <div class="max-w-3xl mx-auto mb-16">
-            <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Redo för en djupdykning i Tai Chi?</h2>
+            <h2 class="text-brand-earth-dark mb-6 text-3xl md:text-5xl">Redo att börja din hälsoresa?</h2>
             <p class="text-brand-earth-dark text-lg md:text-xl leading-relaxed mb-10">
-                Nya helgkurser planeras löpande. Det enklaste sättet att få all information du behöver är att anmäla ditt
-                intresse. Då kontaktar vi dig personligen med information om kommande starter och upplägg.
+                Nya terminsstarter planeras löpande. Om det inte finns några tillgängliga kursstarter som passar dig just nu, rekommenderar vi dig att anmäla ditt intresse för en plats på våra veckokurser. Då kontaktar vi dig personligen när vi lägger in nya starter och tider.
                 <br /><span class="text-brand-earth-dark font-semibold">Din anmälan är helt kostnadsfri och inte
                     bindande.</span>
             </p>
 
-            <a href="/kontakt/?subject=taichi&sub=helgkurs#tidsbokning"
+            <a href="/kontakt/?subject=taichi&sub=veckokurs#tidsbokning"
                 class="btn btn-primary-on-dark shadow-lg shadow-black/10 px-10 py-5 text-xl mb-8">
                 Anmäl intresse & få mer information
             </a>
@@ -585,7 +510,7 @@ const activeCourses = coursesTaiChi
 <!-- ======================================= -->
 <section class="section-standard bg-white">
     <div class="container-base max-w-3xl">
-        <h2 class="text-brand-earth text-center mb-12">Frågor och Svar om Helgkurserna</h2>
+        <h2 class="text-brand-earth text-center mb-12">Frågor och Svar om Veckokurserna</h2>
 
         <div class="space-y-4" x-data="{ active: null }">
 
@@ -593,8 +518,7 @@ const activeCourses = coursesTaiChi
             <div class="border border-neutral-200 rounded-lg overflow-hidden">
                 <button @click="active === 1 ? active = null : active = 1"
                     class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
-                    <span class="font-bold text-brand-earth text-left">Jag är total nybörjare, är det inte för intensivt
-                        för mig?</span>
+                    <span class="font-bold text-brand-earth text-left">Jag har aldrig tränat Tai Chi, passar nybörjarkursen mig?</span>
                     <span class="ml-4 text-brand-sky transform transition-transform"
                         :class="active === 1 ? 'rotate-180' : ''">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -604,9 +528,7 @@ const activeCourses = coursesTaiChi
                 </button>
                 <div x-show="active === 1" x-collapse x-cloak
                     class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
-                    Absolut inte. Kursen är utformad för att passa nybörjare. Vår effektiva pedagogik fokuserar på att
-                    bygga upp kunskapen steg för steg i en lugn och trygg takt. Intensiteten ligger i att du lär dig
-                    mycket på kort tid, inte i att tempot är stressigt.
+                    Absolut! Nybörjarkurserna är helt anpassade för dig som saknar tidigare erfarenhet. Vår pedagogik fokuserar på att bygga upp kunskapen steg för steg i en lugn och trygg takt.
                 </div>
             </div>
 
@@ -614,7 +536,7 @@ const activeCourses = coursesTaiChi
             <div class="border border-neutral-200 rounded-lg overflow-hidden">
                 <button @click="active === 2 ? active = null : active = 2"
                     class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
-                    <span class="font-bold text-brand-earth text-left">Vad behöver jag ta med mig?</span>
+                    <span class="font-bold text-brand-earth text-left">Vad behöver jag ha på mig?</span>
                     <span class="ml-4 text-brand-sky transform transition-transform"
                         :class="active === 2 ? 'rotate-180' : ''">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -624,14 +546,7 @@ const activeCourses = coursesTaiChi
                 </button>
                 <div x-show="active === 2" x-collapse x-cloak
                     class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
-                    <ul class="list-disc list-inside space-y-2">
-                        <li>Bekväma kläder som du kan röra dig fritt i.</li>
-                        <li>En vattenflaska.</li>
-                        <li>Egen lunch om du inte vill köpa lunch vid närliggande restaurang och eventuella mellanmål.
-                        </li>
-                        <li>Rena inneskor med platt sula (för inomhusträning) eller bekväma utomhusskor (för
-                            utomhusträning).</li>
-                    </ul>
+                    Bekväma, löst sittande kläder som du kan röra dig fritt i. Vi rekommenderar också rena inneskor med platt sula, även om det går bra att träna i strumplästen om du föredrar det.
                 </div>
             </div>
 
@@ -639,7 +554,7 @@ const activeCourses = coursesTaiChi
             <div class="border border-neutral-200 rounded-lg overflow-hidden">
                 <button @click="active === 3 ? active = null : active = 3"
                     class="w-full flex justify-between items-center p-5 bg-neutral-50 hover:bg-neutral-100 transition-colors focus:outline-none focus:bg-brand-accent/30">
-                    <span class="font-bold text-brand-earth text-left">Kommer jag att komma ihåg allt efteråt?</span>
+                    <span class="font-bold text-brand-earth text-left">Vad händer om jag missar ett kurstillfälle?</span>
                     <span class="ml-4 text-brand-sky transform transition-transform"
                         :class="active === 3 ? 'rotate-180' : ''">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -649,9 +564,7 @@ const activeCourses = coursesTaiChi
                 </button>
                 <div x-show="active === 3" x-collapse x-cloak
                     class="p-5 bg-white text-neutral-700 leading-relaxed border-t border-neutral-100">
-                    Målet är att du ska få en stark grund och förståelse för hela formen. Du kommer absolut att kunna
-                    träna på egen hand efteråt. Som med allt nytt är repetition nyckeln för att befästa kunskapen i
-                    muskelminnet.
+                    Vi repeterar regelbundet vad vi gjort föregående vecka, så det är oftast inga problem att hänga med även om du missat en gång. Det kan finnas möjlighet att ta igen missade pass på andra tider - prata med din instruktör för att hitta en lösning.
                 </div>
             </div>
 

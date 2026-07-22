@@ -5,15 +5,15 @@
       "format": "Helgkurs",
       "location": "Nyköping",
       "date": "5-6 September",
-      "times": "09:00 - 17:00",
-      "lastDate": "2026-09-06"
+      "times": "09:00-17:00",
+      "lastDate": "2026-09-07"
     },
     {
-      "title": "Medicinsk Qigong",
+      "title": "Medicinsk Qigong för nybörjare",
       "format": "Veckokurs",
       "location": "Nyköping",
       "date": "Onsdagar fr. 19 Aug",
-      "times": "18:00 - 19:00",
+      "times": "18:00",
       "lastDate": "2026-10"
     }
   ],
@@ -23,32 +23,32 @@
       "format": "Helgkurs",
       "location": "Nyköping",
       "date": "29-30 Augusti",
-      "times": "09:00 - 17:00",
-      "lastDate": "2026-08-30"
+      "times": "09:00-17:00",
+      "lastDate": "2026-08-31"
     },
     {
       "title": "Tai Chi för nybörjare",
       "format": "Veckokurs",
       "location": "Nyköping",
       "date": "Måndagar fr. 17 Aug",
-      "times": "18:00 - 19:00",
-      "lastDate": "2026-09-08"
+      "times": "18:00",
+      "lastDate": "2026-10-27"
     },
     {
-      "title": "Tai Chi 24-form",
+      "title": "Tai Chi fortstättning",
+      "format": "Veckokurs",
+      "location": "Nyköping",
+      "date": "Måndagar fr. 17 Aug",
+      "times": "19:00",
+      "lastDate": "2026-10-27"
+    },
+    {
+      "title": "Tai Chi för nybörjare",
       "format": "Veckokurs",
       "location": "Nyköping",
       "date": "Onsdagar fr. 19 Aug",
-      "times": "19:00 - 20:00",
-      "lastDate": "2026-09-08"
-    },
-    {
-      "title": "Tai Chi 24-form",
-      "format": "Veckokurs",
-      "location": "Nyköping",
-      "date": "Onsdagar fr. 19 Aug",
-      "times": "19:00 - 20:00",
-      "lastDate": "2026-09-08"
+      "times": "19:00",
+      "lastDate": "2026-10-29"
     }
   ]
 }

@@ -145,7 +145,11 @@ export const primaryMenu = {
           "title": "Tai Chi",
           "link": "/kurser/tai-chi/",
           "children": [
-
+            {
+              "title": "Veckokurser Tai Chi",
+              "link": "/kurser/tai-chi/veckokurser/",
+              "children": []
+            },
             {
               "title": "Helgkurser Tai Chi",
               "link": "/kurser/tai-chi/helgkurser/",
