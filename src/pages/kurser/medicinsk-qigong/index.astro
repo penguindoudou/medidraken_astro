@@ -10,6 +10,7 @@ import maria_morris_profileImage from '../../../assets/images/maria_morris_profi
 import magnus_rooth_profileImage from '../../../assets/images/magnus_rooth_profile.jpg';
 import qigong_johannes_instructing_groupImage from '../../../assets/images/qigong_johannes_instructing_group.jpg';
 import { coursesQigong } from '../../../data/courses.ts';
+import CourseScheduleTable from '../../../components/CourseScheduleTable.astro';
 
 // Filtrera framtida kurser eller de som pågår
 const activeCourses = coursesQigong.filter(course => new Date(course.lastDate) >= new Date(new Date().setHours(0,0,0,0)));
@@ -429,58 +430,7 @@ const activeCourses = coursesQigong.filter(course => new Date(course.lastDate) >
 
 
             {activeCourses.length > 0 ? (
-            <div class="overflow-x-auto shadow-md rounded-lg max-w-5xl mx-auto border border-neutral-200">
-                <table class="min-w-full leading-normal">
-                    <thead>
-                        <tr>
-                            <th
-                                class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest text-left text-xs font-semibold text-brand-earth uppercase tracking-wider">
-                                Kursform</th>
-                            <th
-                                class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest text-left text-xs font-semibold text-brand-earth uppercase tracking-wider">
-                                Ort</th>
-                            <th
-                                class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest text-left text-xs font-semibold text-brand-earth uppercase tracking-wider">
-                                Datum</th>
-                            <th
-                                class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest text-left text-xs font-semibold text-brand-earth uppercase tracking-wider">
-                                Tider</th>
-                            <th class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {activeCourses.map(course => (
-                        <tr>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                {course.format && <span class="inline-block bg-brand-earth-lightest text-brand-earth-dark text-xs px-2 py-1 rounded font-bold mb-1">{course.format}</span>}
-                                <p class="text-gray-900 whitespace-no-wrap font-semibold">{course.title}</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p class="text-gray-900 whitespace-no-wrap">{course.location}</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                {course.format?.toLowerCase() === 'helgkurs' && (
-                                    <span class="inline-block bg-brand-earth-lightest text-brand-earth-dark text-xs px-2 py-0.5 rounded font-bold mb-1">Lördag–Söndag</span>
-                                )}
-                                <p class="text-gray-900 whitespace-no-wrap">{course.date}</p>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <span
-                                    class="relative inline-block px-3 py-1 font-semibold text-brand-earth-dark leading-tight">
-                                    <span aria-hidden
-                                        class="absolute inset-0 bg-brand-accent/30 opacity-50 rounded-full"></span>
-                                    <span class="relative">{course.times}</span>
-                                </span>
-                            </td>
-                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
-                                <a href={`/kontakt/?subject=qigong&sub=helgkurs&date=${encodeURIComponent(course.date)}&time=${encodeURIComponent(course.times)}#tidsbokning`} class="text-brand-sky hover:text-brand-accent-dark font-bold">Boka
-                                    &rarr;</a>
-                            </td>
-                        </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            <CourseScheduleTable courses={activeCourses} subject="qigong" showFormatHeader={true} />
             ) : (
             <div
                 class="max-w-4xl mx-auto border-2 border-dashed border-neutral-300 rounded-xl p-8 md:p-12 bg-neutral-50">

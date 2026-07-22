@@ -1,0 +1,156 @@
+---
+import type { Course } from '../data/courses.ts';
+
+interface Props {
+  courses: Course[];
+  subject: 'qigong' | 'taichi';
+  defaultSub?: 'helgkurs' | 'veckokurs';
+  showFormatHeader?: boolean;
+}
+
+const { courses, subject, defaultSub = 'helgkurs', showFormatHeader = false } = Astro.props;
+
+function getSubParam(course: Course): string {
+  if (course.format) {
+    const fmt = course.format.toLowerCase();
+    if (fmt.includes('helg')) return 'helgkurs';
+    if (fmt.includes('vecko') || fmt.includes('termin')) return 'veckokurs';
+  }
+  return defaultSub;
+}
+
+function checkIsHelgkurs(course: Course): boolean {
+  if (course.format) {
+    return course.format.toLowerCase().includes('helg');
+  }
+  return defaultSub === 'helgkurs';
+}
+---
+
+<div class="max-w-5xl mx-auto">
+  <!-- Mobile Card View (< md) -->
+  <div class="space-y-4 md:hidden">
+    {courses.map(course => {
+      const sub = getSubParam(course);
+      const isHelgkurs = checkIsHelgkurs(course);
+      const bookUrl = `/kontakt/?subject=${subject}&sub=${sub}&date=${encodeURIComponent(course.date)}&time=${encodeURIComponent(course.times)}#tidsbokning`;
+
+      return (
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-neutral-200 flex flex-col gap-3.5">
+          <div class="flex flex-col gap-1.5">
+            <div class="flex items-center gap-2 flex-wrap">
+              {course.format && (
+                <span class="inline-block bg-brand-earth-lightest text-brand-earth-dark text-xs px-2.5 py-0.5 rounded font-bold">
+                  {course.format}
+                </span>
+              )}
+              {isHelgkurs && (
+                <span class="inline-block bg-brand-earth-lightest text-brand-earth-dark text-xs px-2.5 py-0.5 rounded font-bold">
+                  Lördag–Söndag
+                </span>
+              )}
+            </div>
+            <h3 class="text-base font-bold text-neutral-900 leading-snug">{course.title}</h3>
+          </div>
+
+          <div class="grid grid-cols-1 gap-2.5 text-sm text-neutral-700 pt-3 border-t border-neutral-100">
+            <div class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-brand-earth shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+              <span><strong class="text-neutral-900 font-semibold">Ort:</strong> {course.location}</span>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-brand-earth shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <strong class="text-neutral-900 font-semibold">Datum:</strong> {course.date}
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-brand-earth shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span><strong class="text-neutral-900 font-semibold">Tider:</strong> {course.times}</span>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a href={bookUrl} class="block w-full text-center bg-brand-sky hover:bg-brand-accent-dark text-white font-bold py-2.5 px-4 rounded-lg transition-colors shadow-sm text-sm">
+              Boka kurs &rarr;
+            </a>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+
+  <!-- Desktop Table View (>= md) -->
+  <div class="hidden md:block overflow-x-auto shadow-md rounded-lg border border-neutral-200">
+    <table class="min-w-full leading-normal">
+      <thead>
+        <tr>
+          <th class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest text-left text-xs font-semibold text-brand-earth uppercase tracking-wider">
+            {showFormatHeader ? 'Kursform' : 'Kursnamn / Nivå'}
+          </th>
+          <th class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest text-left text-xs font-semibold text-brand-earth uppercase tracking-wider">
+            Ort
+          </th>
+          <th class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest text-left text-xs font-semibold text-brand-earth uppercase tracking-wider">
+            Datum
+          </th>
+          <th class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest text-left text-xs font-semibold text-brand-earth uppercase tracking-wider">
+            Tider
+          </th>
+          <th class="px-5 py-3 border-b-2 border-brand-earth bg-brand-earth-lightest"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {courses.map(course => {
+          const sub = getSubParam(course);
+          const isHelgkurs = checkIsHelgkurs(course);
+          const bookUrl = `/kontakt/?subject=${subject}&sub=${sub}&date=${encodeURIComponent(course.date)}&time=${encodeURIComponent(course.times)}#tidsbokning`;
+
+          return (
+            <tr>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                {course.format && (
+                  <span class="inline-block bg-brand-earth-lightest text-brand-earth-dark text-xs px-2 py-1 rounded font-bold mb-1">
+                    {course.format}
+                  </span>
+                )}
+                <p class="text-gray-900 whitespace-no-wrap font-semibold">{course.title}</p>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">{course.location}</p>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                {isHelgkurs && (
+                  <span class="inline-block bg-brand-earth-lightest text-brand-earth-dark text-xs px-2 py-0.5 rounded font-bold mb-1">
+                    Lördag–Söndag
+                  </span>
+                )}
+                <p class="text-gray-900 whitespace-no-wrap">{course.date}</p>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <span class="relative inline-block px-3 py-1 font-semibold text-brand-earth-dark leading-tight">
+                  <span aria-hidden class="absolute inset-0 bg-brand-accent/30 opacity-50 rounded-full"></span>
+                  <span class="relative">{course.times}</span>
+                </span>
+              </td>
+              <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
+                <a href={bookUrl} class="text-brand-sky hover:text-brand-accent-dark font-bold">
+                  Boka &rarr;
+                </a>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</div>
