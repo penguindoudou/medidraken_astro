@@ -109,7 +109,8 @@ if (Astro.request.method === "POST") {
     // Course type slug → display name
     const courseTypeMap: Record<string, string> = {
       'helgkurs': 'Helgkurs',
-      'privatkurs': 'Privatkurs',
+      'veckokurs': 'Veckokurs',
+      'privatkurs': 'Privatundervisning',
       'specifik_forfragan': 'Specifik förfrågan',
       'vet_ej': 'Vet ej / Behöver rådgivning',
     };
@@ -175,6 +176,18 @@ if (Astro.request.method === "POST") {
 
       const courseType = data.get("course_type") as string | null;
       if (courseType) text += `<b>Kurstyp:</b> ${esc(courseTypeMap[courseType] || courseType)}\n`;
+
+      const taichiCourseTypes = data.getAll("taichi_course_types") as string[];
+      if (taichiCourseTypes.length > 0) {
+        const names = taichiCourseTypes.map(k => courseTypeMap[k] || k);
+        text += `<b>Tai Chi – Kurstyp:</b> ${esc(names.join(', '))}\n`;
+      }
+
+      const qigongCourseTypes = data.getAll("qigong_course_types") as string[];
+      if (qigongCourseTypes.length > 0) {
+        const names = qigongCourseTypes.map(k => courseTypeMap[k] || k);
+        text += `<b>Qigong – Kurstyp:</b> ${esc(names.join(', '))}\n`;
+      }
 
       const behandlingType = data.get("behandling_type") as string | null;
       if (behandlingType) text += `<b>Behandlingstyp:</b> ${esc(behandlingTypeMap[behandlingType] || behandlingType)}\n`;
@@ -369,7 +382,8 @@ if (Astro.request.method === "POST") {
                                     healthGoals: [],
                                     validationError: '',
                                     subjects: [], 
-                                    courseType: '',
+                                    taichiCourseTypes: [],
+                                    qigongCourseTypes: [],
                                     behandlingType: '',
                                     giftcardType: '',
                                     location: '', 
@@ -470,7 +484,14 @@ if (Astro.request.method === "POST") {
                                                 this.subjects = [urlSubj];
                                             }
                                         }
-                                        if (params.has('sub')) this.courseType = params.get('sub');
+                                        if (params.has('sub')) {
+                                            const sub = params.get('sub');
+                                            if (params.has('subject') && params.get('subject') === 'taichi') {
+                                                this.taichiCourseTypes = [sub];
+                                            } else if (params.has('subject') && params.get('subject') === 'qigong') {
+                                                this.qigongCourseTypes = [sub];
+                                            }
+                                        }
                                         if (params.has('location')) this.location = params.get('location');
                                         let urlDate = params.has('date') ? params.get('date') : null;
                                         let urlTime = params.has('time') ? params.get('time') : null;
@@ -478,7 +499,8 @@ if (Astro.request.method === "POST") {
                                         this.$watch('hasService', value => {
                                             if (!value) {
                                                 this.subjects = [];
-                                                this.courseType = '';
+                                                this.taichiCourseTypes = [];
+                                                this.qigongCourseTypes = [];
                                                 this.behandlingType = '';
                                                 this.giftcardType = '';
                                             }
@@ -507,7 +529,8 @@ if (Astro.request.method === "POST") {
                                                 urlTime = null;
                                             }
                                             // Reset sub-type selects when primary subject list changes
-                                            if (!value.includes('taichi') && !value.includes('qigong')) this.courseType = '';
+                                            if (!value.includes('taichi')) this.taichiCourseTypes = [];
+                                            if (!value.includes('qigong')) this.qigongCourseTypes = [];
                                             if (!value.includes('behandling')) this.behandlingType = '';
                                             if (!value.includes('presentkort')) this.giftcardType = '';
                                             this.selectedDays = [];
@@ -520,7 +543,9 @@ if (Astro.request.method === "POST") {
                                         });
 
                                         const applyPrefill = () => {
-                                            if (this.courseType === 'helgkurs') {
+                                            const hasHelgkursTaichi = this.taichiCourseTypes.includes('helgkurs');
+                                            const hasHelgkursQigong = this.qigongCourseTypes.includes('helgkurs');
+                                            if (hasHelgkursTaichi || hasHelgkursQigong) {
                                                 if (urlDate || urlTime) {
                                                     this.specificDate = urlDate || '';
                                                     this.specificTime = urlTime || '';
@@ -530,11 +555,9 @@ if (Astro.request.method === "POST") {
                                                 } else {
                                                     let course = null;
                                                     try {
-                                                        const elId = this.subjects.includes('taichi') ? 'nextTaiChiData' : (this.subjects.includes('qigong') ? 'nextQigongData' : null);
-                                                        if (elId) {
-                                                            const el = document.getElementById(elId);
-                                                            if (el && el.textContent) course = JSON.parse(el.textContent);
-                                                        }
+                                                        const elId = hasHelgkursTaichi ? 'nextTaiChiData' : 'nextQigongData';
+                                                        const el = document.getElementById(elId);
+                                                        if (el && el.textContent) course = JSON.parse(el.textContent);
                                                     } catch (e) {
                                                         console.warn('Could not parse course data', e);
                                                     }
@@ -559,8 +582,16 @@ if (Astro.request.method === "POST") {
                                             }
                                         };
 
-                                        this.$watch('courseType', value => {
-                                            if (params.has('sub') && value !== '' && value !== params.get('sub')) {
+                                        this.$watch('taichiCourseTypes', value => {
+                                            if (params.has('sub') && !value.includes(params.get('sub'))) {
+                                                urlDate = null;
+                                                urlTime = null;
+                                            }
+                                            applyPrefill();
+                                        });
+
+                                        this.$watch('qigongCourseTypes', value => {
+                                            if (params.has('sub') && !value.includes(params.get('sub'))) {
                                                 urlDate = null;
                                                 urlTime = null;
                                             }
@@ -578,7 +609,7 @@ if (Astro.request.method === "POST") {
                                             }
                                         });
 
-                                        if (this.courseType === 'helgkurs') {
+                                        if (this.taichiCourseTypes.includes('helgkurs') || this.qigongCourseTypes.includes('helgkurs')) {
                                             setTimeout(applyPrefill, 100);
                                         } else if (urlDate || urlTime) {
                                             this.specificDate = urlDate || '';
@@ -951,9 +982,64 @@ if (Astro.request.method === "POST") {
                             x-transition:enter-end="opacity-100 translate-y-0">
                             <label class="block text-sm font-bold text-brand-earth-dark mb-1">Ditt Ärende <span class="text-red-500">*</span></label>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 items-stretch">
+                                <!-- Tai Chi with inline course-type expansion -->
+                                <div class="flex flex-col rounded-xl border transition-all"
+                                     :class="subjects.includes('taichi') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-neutral-50/50 hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 p-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="subject" value="taichi" x-model="subjects"
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        <span class="text-sm text-neutral-700 font-medium">Tai Chi</span>
+                                    </label>
+                                    <!-- Inline course-type checkboxes for Tai Chi -->
+                                    <div x-show="subjects.includes('taichi')" x-cloak x-transition
+                                         class="px-3 pb-3 pt-1 border-t border-brand-sky/20 space-y-2">
+                                        <p class="text-[11px] font-semibold text-brand-sky-dark uppercase tracking-wider mb-2">Välj kurstyp(er)</p>
+                                        <template x-for="opt in [
+                                            {val: 'helgkurs', label: 'Helgkurs'},
+                                            {val: 'veckokurs', label: 'Veckokurs'},
+                                            {val: 'privatkurs', label: 'Privatundervisning'},
+                                            {val: 'vet_ej', label: 'Vet ej / Behöver rådgivning'}
+                                        ]" :key="opt.val">
+                                            <label class="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg cursor-pointer select-none transition-all"
+                                                   :class="taichiCourseTypes.includes(opt.val) ? 'bg-brand-sky/10' : 'hover:bg-brand-sky/5'">
+                                                <input type="checkbox" name="taichi_course_types" :value="opt.val" x-model="taichiCourseTypes"
+                                                    class="w-4 h-4 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                                <span class="text-xs text-neutral-700 font-medium" x-text="opt.label"></span>
+                                            </label>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <!-- Qigong with inline course-type expansion -->
+                                <div class="flex flex-col rounded-xl border transition-all"
+                                     :class="subjects.includes('qigong') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-neutral-50/50 hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 p-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="subject" value="qigong" x-model="subjects"
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        <span class="text-sm text-neutral-700 font-medium">Medicinsk Qigong</span>
+                                    </label>
+                                    <!-- Inline course-type checkboxes for Qigong -->
+                                    <div x-show="subjects.includes('qigong')" x-cloak x-transition
+                                         class="px-3 pb-3 pt-1 border-t border-brand-sky/20 space-y-2">
+                                        <p class="text-[11px] font-semibold text-brand-sky-dark uppercase tracking-wider mb-2">Välj kurstyp(er)</p>
+                                        <template x-for="opt in [
+                                            {val: 'helgkurs', label: 'Helgkurs'},
+                                            {val: 'veckokurs', label: 'Veckokurs'},
+                                            {val: 'privatkurs', label: 'Privatundervisning'},
+                                            {val: 'vet_ej', label: 'Vet ej / Behöver rådgivning'}
+                                        ]" :key="opt.val">
+                                            <label class="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg cursor-pointer select-none transition-all"
+                                                   :class="qigongCourseTypes.includes(opt.val) ? 'bg-brand-sky/10' : 'hover:bg-brand-sky/5'">
+                                                <input type="checkbox" name="qigong_course_types" :value="opt.val" x-model="qigongCourseTypes"
+                                                    class="w-4 h-4 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                                <span class="text-xs text-neutral-700 font-medium" x-text="opt.label"></span>
+                                            </label>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <!-- Remaining subjects as simple checkboxes -->
                                 <template x-for="opt in [
-                                    {val: 'taichi', label: 'Tai Chi'},
-                                    {val: 'qigong', label: 'Medicinsk Qigong'},
                                     {val: 'instruktorskurs', label: 'Instruktörskurs'},
                                     {val: 'behandling', label: 'Behandling'},
                                     {val: 'halsoresa', label: 'Hälsoresa till Kina'},
@@ -970,37 +1056,6 @@ if (Astro.request.method === "POST") {
                                     </label>
                                 </template>
                             </div>
-                        </div>
-
-                        <!-- Sub-Category: Tai Chi & Qigong -->
-                        <div x-show="subjects.includes('taichi') || subjects.includes('qigong')" x-cloak class="mt-4"
-                            x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-0 -translate-y-2"
-                            x-transition:enter-end="opacity-100 translate-y-0">
-                            <label for="course_type" class="block text-sm font-medium text-neutral-700 mb-1">Typ av kurs
-                                <span class="text-red-500">*</span></label>
-                            <select id="course_type" name="course_type"
-                                :required="subjects.includes('taichi') || subjects.includes('qigong')" x-model="courseType"
-                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
-                                <option value="">-- Välj typ av kurs --</option>
-                                <option value="helgkurs">Helgkurs</option>
-                                <option value="privatkurs">Privatkurs</option>
-                                <option value="specifik_forfragan">Specifik förfrågan</option>
-                                <option value="vet_ej">Vet ej / Behöver rådgivning</option>
-                            </select>
-                        </div>
-
-                        <!-- Specifik förfrågan (Text area) -->
-                        <div x-show="(subjects.includes('taichi') || subjects.includes('qigong')) && courseType === 'specifik_forfragan'"
-                            x-cloak class="mt-4" x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-0 -translate-y-2"
-                            x-transition:enter-end="opacity-100 translate-y-0">
-                            <label for="specific_request"
-                                class="block text-sm font-medium text-neutral-700 mb-1">Beskriv din förfrågan kort <span
-                                    class="text-red-500">*</span></label>
-                            <input type="text" id="specific_request" name="specific_request"
-                                :required="(subjects.includes('taichi') || subjects.includes('qigong')) && courseType === 'specifik_forfragan'"
-                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
                         </div>
 
                         <!-- Sub-Category: Behandling -->
