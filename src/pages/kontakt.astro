@@ -136,8 +136,11 @@ if (Astro.request.method === "POST") {
     text += `<b>E-post:</b> ${esc(data.get("email") || "–")}\n`;
     text += `<b>Telefon:</b> ${esc(data.get("phone") || "–")}\n`;
 
-    const location = data.get("location") as string | null;
-    if (location) text += `<b>Ort:</b> ${esc(locationMap[location] || location)}\n`;
+    const locations = data.getAll("location") as string[];
+    if (locations.length > 0) {
+      const locationNames = locations.map(l => locationMap[l] || l);
+      text += `<b>Ort:</b> ${esc(locationNames.join(', '))}\n`;
+    }
 
     const useFriskvardsbidrag = data.get("use_friskvardsbidrag");
     if (useFriskvardsbidrag) {
@@ -174,9 +177,6 @@ if (Astro.request.method === "POST") {
         text += `<b>Tjänst/Ärende:</b> ${esc(subjectNames.join(', '))}\n`;
       }
 
-      const courseType = data.get("course_type") as string | null;
-      if (courseType) text += `<b>Kurstyp:</b> ${esc(courseTypeMap[courseType] || courseType)}\n`;
-
       const taichiCourseTypes = data.getAll("taichi_course_types") as string[];
       if (taichiCourseTypes.length > 0) {
         const names = taichiCourseTypes.map(k => courseTypeMap[k] || k);
@@ -189,11 +189,11 @@ if (Astro.request.method === "POST") {
         text += `<b>Qigong – Kurstyp:</b> ${esc(names.join(', '))}\n`;
       }
 
-      const behandlingType = data.get("behandling_type") as string | null;
-      if (behandlingType) text += `<b>Behandlingstyp:</b> ${esc(behandlingTypeMap[behandlingType] || behandlingType)}\n`;
-
-      const specificRequest = data.get("specific_request");
-      if (specificRequest) text += `<b>Specifik förfrågan:</b> ${esc(specificRequest)}\n`;
+      const behandlingType = data.getAll("behandling_type") as string[];
+      if (behandlingType.length > 0) {
+        const names = behandlingType.map(k => behandlingTypeMap[k] || k);
+        text += `<b>Behandlingstyp:</b> ${esc(names.join(', '))}\n`;
+      }
 
       const giftcardType = data.get("giftcard_type") as string | null;
       if (giftcardType) {
@@ -384,9 +384,9 @@ if (Astro.request.method === "POST") {
                                     subjects: [], 
                                     taichiCourseTypes: [],
                                     qigongCourseTypes: [],
-                                    behandlingType: '',
+                                    behandlingType: [],
                                     giftcardType: '',
-                                    location: '', 
+                                    locations: [], 
                                     recipient: 'Okänd', 
                                     amount: '',
                                     useFriskvardsbidrag: false,
@@ -492,7 +492,7 @@ if (Astro.request.method === "POST") {
                                                 this.qigongCourseTypes = [sub];
                                             }
                                         }
-                                        if (params.has('location')) this.location = params.get('location');
+                                        if (params.has('location')) this.locations = [params.get('location')];
                                         let urlDate = params.has('date') ? params.get('date') : null;
                                         let urlTime = params.has('time') ? params.get('time') : null;
 
@@ -501,7 +501,7 @@ if (Astro.request.method === "POST") {
                                                 this.subjects = [];
                                                 this.taichiCourseTypes = [];
                                                 this.qigongCourseTypes = [];
-                                                this.behandlingType = '';
+                                                this.behandlingType = [];
                                                 this.giftcardType = '';
                                             }
                                         });
@@ -531,7 +531,7 @@ if (Astro.request.method === "POST") {
                                             // Reset sub-type selects when primary subject list changes
                                             if (!value.includes('taichi')) this.taichiCourseTypes = [];
                                             if (!value.includes('qigong')) this.qigongCourseTypes = [];
-                                            if (!value.includes('behandling')) this.behandlingType = '';
+                                            if (!value.includes('behandling')) this.behandlingType = [];
                                             if (!value.includes('presentkort')) this.giftcardType = '';
                                             this.selectedDays = [];
                                             this.selectedTimes = [];
@@ -651,18 +651,26 @@ if (Astro.request.method === "POST") {
 
                         <!-- Önskad Ort (Valfritt) -->
                         <div>
-                            <label for="location" class="block text-sm font-medium text-neutral-700 mb-1">Önskad
-                                ort (valfri)</label>
-                            <select id="location" name="location" x-model="location"
-                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
-                                <option value="">-- Välj ort --</option>
-                                <option value="gnesta">Gnesta</option>
-                                <option value="nykoping">Nyköping</option>
-                                <option value="oxelosund">Oxelösund</option>
-                            </select>
+                            <label class="block text-sm font-medium text-neutral-700 mb-2">Önskad ort <span class="text-xs font-normal text-neutral-500 ml-1">(valfri, välj en eller flera)</span></label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <template x-for="loc in [
+                                    {val: 'gnesta',    label: 'Gnesta'},
+                                    {val: 'nykoping',  label: 'Nyköping'},
+                                    {val: 'oxelosund', label: 'Oxelösund'}
+                                ]" :key="loc.val">
+                                    <label class="flex items-center justify-center gap-2 p-3 rounded-xl border cursor-pointer select-none transition-all"
+                                           :class="locations.includes(loc.val) ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-neutral-50/50 hover:bg-neutral-50'">
+                                        <input type="checkbox" name="location" :value="loc.val" x-model="locations" class="sr-only">
+                                        <span class="text-sm font-medium" :class="locations.includes(loc.val) ? 'text-brand-sky-dark' : 'text-neutral-700'" x-text="loc.label"></span>
+                                        <template x-if="locations.includes(loc.val)">
+                                            <svg class="w-4 h-4 shrink-0 text-brand-sky-dark" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                        </template>
+                                    </label>
+                                </template>
+                            </div>
 
                             <!-- Dynamisk adressvisning -->
-                            <div x-show="location === 'gnesta'" x-cloak
+                            <div x-show="locations.includes('gnesta')" x-cloak
                                 class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
                                 x-transition>
                                 <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none"
@@ -675,7 +683,7 @@ if (Astro.request.method === "POST") {
                                 </svg>
                                 <span><strong>Gnesta:</strong> {siteConfig.addresses.gnesta.full}</span>
                             </div>
-                            <div x-show="location === 'nykoping'" x-cloak
+                            <div x-show="locations.includes('nykoping')" x-cloak
                                 class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
                                 x-transition>
                                 <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none"
@@ -688,7 +696,7 @@ if (Astro.request.method === "POST") {
                                 </svg>
                                 <span><strong>Nyköping:</strong> {siteConfig.addresses.nykoping.full}</span>
                             </div>
-                            <div x-show="location === 'oxelosund'" x-cloak
+                            <div x-show="locations.includes('oxelosund')" x-cloak
                                 class="mt-2 text-sm text-neutral-600 flex items-start bg-brand-earth-lightest/50 p-2.5 rounded border border-brand-earth-light/20"
                                 x-transition>
                                 <svg class="w-4 h-4 mr-2 mt-0.5 shrink-0 text-brand-sky-dark" fill="none"
@@ -1041,12 +1049,8 @@ if (Astro.request.method === "POST") {
                                 <!-- Remaining subjects as simple checkboxes -->
                                 <template x-for="opt in [
                                     {val: 'instruktorskurs', label: 'Instruktörskurs'},
-                                    {val: 'behandling', label: 'Behandling'},
-                                    {val: 'halsoresa', label: 'Hälsoresa till Kina'},
                                     {val: 'workshop', label: 'Workshops & Gruppaktiviteter'},
-                                    {val: 'halsodag', label: 'Skräddarsydda Hälsodagar'},
-                                    {val: 'presentkort', label: 'Presentkort'},
-                                    {val: 'ovrigt', label: 'Övrigt'}
+                                    {val: 'halsodag', label: 'Skräddarsydda Hälsodagar'}
                                 ]" :key="opt.val">
                                     <label class="flex items-start space-x-3 p-3 bg-neutral-50/50 border border-neutral-200 rounded-xl cursor-pointer hover:bg-neutral-50 select-none h-full transition-all"
                                            :class="subjects.includes(opt.val) ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : ''">
@@ -1055,87 +1059,151 @@ if (Astro.request.method === "POST") {
                                         <span class="text-sm text-neutral-700 font-medium" x-text="opt.label"></span>
                                     </label>
                                 </template>
+
+                                <!-- Hälsoresa with inline travel period expansion -->
+                                <div class="flex flex-col rounded-xl border transition-all"
+                                     :class="subjects.includes('halsoresa') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-neutral-50/50 hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 p-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="subject" value="halsoresa" x-model="subjects"
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        <span class="text-sm text-neutral-700 font-medium">Hälsoresa till Kina</span>
+                                    </label>
+                                    <!-- Inline travel period preferences -->
+                                    <div x-show="subjects.includes('halsoresa')" x-cloak x-transition
+                                         class="px-3 pb-3 pt-1 border-t border-brand-sky/20 space-y-3">
+                                        <p class="text-[11px] font-semibold text-brand-sky-dark uppercase tracking-wider mb-2">Reseperiod (valfritt)</p>
+                                        <!-- Info note -->
+                                        <p class="text-xs text-brand-earth-dark flex items-start bg-brand-sky-light/10 p-2.5 rounded-md border border-brand-sky/20">
+                                            <svg class="w-4 h-4 mr-2 shrink-0 text-brand-sky-dark mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                            <span>Hälsoresorna planeras i samråd med dig och kan anpassas efter dina önskemål. Det är helt naturligt om du inte vet när du vill resa ännu.</span>
+                                        </p>
+                                        <!-- Period options -->
+                                        <template x-for="period in ['Vår (Maj-Juni)', 'Höst (Oktober-November)', 'Annat datum / Månad', 'Vet ej / Behöver rådgivning']">
+                                            <label class="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg cursor-pointer select-none transition-all"
+                                                   :class="selectedTravelPeriods.includes(period) ? 'bg-brand-sky/10' : 'hover:bg-brand-sky/5'">
+                                                <input type="checkbox" :value="period" x-model="selectedTravelPeriods" class="w-4 h-4 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                                <span class="text-xs text-neutral-700 font-medium" x-text="period"></span>
+                                            </label>
+                                        </template>
+                                        <!-- Custom date input -->
+                                        <div x-show="selectedTravelPeriods.includes('Annat datum / Månad')" x-cloak x-transition
+                                             class="mt-1 bg-brand-accent/5 p-3 rounded-lg border border-brand-accent/20">
+                                            <label for="custom_travel_period_inline" class="block text-xs font-medium text-brand-earth-dark mb-1">Ange önskat datum eller period</label>
+                                            <input type="text" id="custom_travel_period_inline" name="custom_travel_period" x-model="customTravelPeriod" :required="selectedTravelPeriods.includes('Annat datum / Månad')"
+                                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-2.5 border bg-white text-sm"
+                                                placeholder="T.ex. September 2027 eller Våren 2028">
+                                        </div>
+                                        <input type="hidden" name="preferred_travel_periods" :value="selectedTravelPeriods.join(', ')">
+                                    </div>
+                                </div>
+
+                                <!-- Övrigt with inline text expansion -->
+                                <div class="flex flex-col rounded-xl border transition-all"
+                                     :class="subjects.includes('ovrigt') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-neutral-50/50 hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 p-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="subject" value="ovrigt" x-model="subjects"
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        <span class="text-sm text-neutral-700 font-medium">Övrigt</span>
+                                    </label>
+                                    <!-- Inline övrigt text field -->
+                                    <div x-show="subjects.includes('ovrigt')" x-cloak x-transition
+                                         class="px-3 pb-3 pt-1 border-t border-brand-sky/20 space-y-2">
+                                        <label for="other_request" class="block text-xs font-semibold text-brand-sky-dark uppercase tracking-wider mb-2">Vad gäller ditt ärende? <span class="text-red-500">*</span></label>
+                                        <textarea id="other_request" name="other_request" :required="subjects.includes('ovrigt')"
+                                            rows="2"
+                                            @input="$el.style.height = 'auto'; $el.style.height = $el.scrollHeight + 'px'"
+                                            class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-2.5 border bg-white text-sm resize-none overflow-hidden"
+                                            placeholder="Beskriv kort vad det gäller"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Behandling with inline expansion -->
+                                <div class="flex flex-col rounded-xl border transition-all"
+                                     :class="subjects.includes('behandling') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-neutral-50/50 hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 p-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="subject" value="behandling" x-model="subjects"
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        <span class="text-sm text-neutral-700 font-medium">Behandling</span>
+                                    </label>
+                                    <!-- Inline behandling type select -->
+                                    <div x-show="subjects.includes('behandling')" x-cloak x-transition
+                                         class="px-3 pb-3 pt-1 border-t border-brand-sky/20 space-y-3">
+                                        <p class="text-[11px] font-semibold text-brand-sky-dark uppercase tracking-wider mb-2">Välj behandlingstyp</p>
+                                        <template x-for="opt in [
+                                            {val: 'terapeutisk', label: 'Terapeutisk (TuiNa eller Akupunktur)'},
+                                            {val: 'oljemassage', label: 'Oljemassage'}
+                                        ]" :key="opt.val">
+                                            <label class="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg cursor-pointer select-none transition-all"
+                                                   :class="behandlingType.includes(opt.val) ? 'bg-brand-sky/10' : 'hover:bg-brand-sky/5'">
+                                                <input type="checkbox" name="behandling_type" :value="opt.val" x-model="behandlingType"
+                                                    class="w-4 h-4 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky">
+                                                <span class="text-xs text-neutral-700 font-medium" x-text="opt.label"></span>
+                                            </label>
+                                        </template>
+                                        <!-- Helper for Terapeutisk -->
+                                        <div x-show="behandlingType.includes('terapeutisk')" x-cloak x-transition
+                                            class="mt-1 bg-brand-sky-light/20 p-3 rounded-md border border-brand-sky/30">
+                                            <p class="text-xs text-brand-earth-dark font-medium flex items-start">
+                                                <svg class="w-4 h-4 mr-2 shrink-0 text-brand-sky-dark mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                <span>Vid terapeutisk behandling baseras valet av behandlingsmetoden på ditt nuvarande tillstånd och terapeutens professionella bedömning i samråd med dig.</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Presentkort with inline expansion -->
+                                <div class="flex flex-col rounded-xl border transition-all"
+                                     :class="subjects.includes('presentkort') ? 'border-brand-sky bg-brand-sky-light/10 ring-1 ring-brand-sky' : 'border-neutral-200 bg-neutral-50/50 hover:bg-neutral-50'">
+                                    <label class="flex items-start space-x-3 p-3 cursor-pointer select-none">
+                                        <input type="checkbox" name="subject" value="presentkort" x-model="subjects"
+                                            class="w-5 h-5 shrink-0 text-brand-sky border-neutral-300 rounded focus:ring-brand-sky mt-0.5">
+                                        <span class="text-sm text-neutral-700 font-medium">Presentkort</span>
+                                    </label>
+                                    <!-- Inline presentkort fields -->
+                                    <div x-show="subjects.includes('presentkort')" x-cloak x-transition
+                                         class="px-3 pb-3 pt-1 border-t border-brand-sky/20 space-y-3">
+                                        <p class="text-[11px] font-semibold text-brand-sky-dark uppercase tracking-wider mb-2">Välj kurstyp(er)</p>
+                                        <template x-for="opt in [
+                                            {val: 'valfritt_belopp', label: 'Valfritt belopp'},
+                                            {val: 'specifik_behandling', label: 'Specifik Behandling'},
+                                            {val: 'specifik_kurs', label: 'Specifik Kurs'},
+                                            {val: 'vet_ej', label: 'Vet ej / Behöver rådgivning'}
+                                        ]" :key="opt.val">
+                                            <label class="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg cursor-pointer select-none transition-all"
+                                                   :class="giftcardType === opt.val ? 'bg-brand-sky/10' : 'hover:bg-brand-sky/5'">
+                                                <input type="radio" name="giftcard_type" :value="opt.val" x-model="giftcardType"
+                                                    :required="subjects.includes('presentkort')"
+                                                    class="w-4 h-4 shrink-0 text-brand-sky border-neutral-300 focus:ring-brand-sky">
+                                                <span class="text-xs text-neutral-700 font-medium" x-text="opt.label"></span>
+                                            </label>
+                                        </template>
+                                        <!-- Amount field for valfritt_belopp -->
+                                        <div x-show="giftcardType === 'valfritt_belopp'" x-cloak x-transition
+                                            class="mt-1 bg-brand-sky-light/10 p-3 rounded-lg border border-brand-sky/20">
+                                            <label for="amount" class="block text-xs font-medium text-neutral-700 mb-1">Önskat belopp (kr) <span class="text-red-500">*</span></label>
+                                            <input type="number" id="amount" name="amount" x-model="amount"
+                                                :required="subjects.includes('presentkort') && giftcardType === 'valfritt_belopp'"
+                                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-2.5 border bg-white text-sm"
+                                                placeholder="T.ex. 500" min="1">
+                                        </div>
+                                        <!-- Recipient name -->
+                                        <div class="mt-1 bg-brand-accent/5 p-3 rounded-lg border border-brand-accent/20">
+                                            <label for="recipient_name" class="block text-xs font-medium text-neutral-700 mb-1">Mottagarens namn <span class="text-red-500">*</span></label>
+                                            <input type="text" id="recipient_name" name="recipient_name" x-model="recipient"
+                                                :required="subjects.includes('presentkort')"
+                                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-2.5 border bg-white text-sm">
+                                            <p class="text-[11px] text-neutral-500 mt-1.5 leading-tight">Låt det stå <span class="font-semibold text-brand-earth">"Okänd"</span> om du inte vet namnet än.</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Sub-Category: Behandling -->
-                        <div x-show="subjects.includes('behandling')" x-cloak class="mt-4"
-                            x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-0 -translate-y-2"
-                            x-transition:enter-end="opacity-100 translate-y-0">
-                            <label for="behandling_type" class="block text-sm font-medium text-neutral-700 mb-1">Typ av behandling
-                                <span class="text-red-500">*</span></label>
-                            <select id="behandling_type" name="behandling_type"
-                                :required="subjects.includes('behandling')" x-model="behandlingType"
-                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
-                                <option value="">-- Välj typ av behandling --</option>
-                                <option value="terapeutisk">Terapeutisk behandling (TuiNa eller Akupunktur)</option>
-                                <option value="oljemassage">Oljemassage</option>
-                            </select>
 
-                            <!-- Helper for Terapeutisk -->
-                            <div x-show="behandlingType === 'terapeutisk'" x-cloak
-                                class="mt-3 bg-brand-sky-light/20 p-4 rounded-md border border-brand-sky/30"
-                                x-transition>
-                                <p class="text-sm text-brand-earth-dark font-medium flex items-start">
-                                    <svg class="w-5 h-5 mr-3 shrink-0 text-brand-sky-dark" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <span>Vid terapeutisk behandling baseras valet av behandlingsmetoden på ditt nuvarande tillstånd och terapeutens professionella bedömning i samråd med dig för att ge dig den bästa möjliga hjälpen.</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Sub-Category: Presentkort -->
-                        <div x-show="subjects.includes('presentkort')" x-cloak class="mt-4 space-y-4"
-                            x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-0 -translate-y-2"
-                            x-transition:enter-end="opacity-100 translate-y-0">
-                            <div>
-                                <label for="giftcard_type" class="block text-sm font-medium text-neutral-700 mb-1">Vad för
-                                    typ av presentkort? <span class="text-red-500">*</span></label>
-                                <select id="giftcard_type" name="giftcard_type" :required="subjects.includes('presentkort')"
-                                    x-model="giftcardType"
-                                    class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50 bg-white">
-                                    <option value="">-- Välj typ --</option>
-                                    <option value="valfritt_belopp">Valfritt belopp</option>
-                                    <option value="specifik_behandling">Specifik Behandling</option>
-                                    <option value="specifik_kurs">Specifik Kurs</option>
-                                    <option value="vet_ej">Vet ej / Behöver rådgivning</option>
-                                </select>
-                            </div>
-
-                            <div x-show="giftcardType === 'valfritt_belopp'" x-cloak x-transition
-                                class="bg-brand-sky-light/10 p-4 rounded-lg border border-brand-sky/20">
-                                <label for="amount" class="block text-sm font-medium text-neutral-700 mb-1">Önskat belopp (kr) <span class="text-red-500">*</span></label>
-                                <input type="number" id="amount" name="amount" x-model="amount" :required="subjects.includes('presentkort') && giftcardType === 'valfritt_belopp'"
-                                    class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50"
-                                    placeholder="T.ex. 500" min="1">
-                                <p class="text-xs text-neutral-500 mt-2">Fyll i det belopp du vill ladda presentkortet med.</p>
-                            </div>
-
-                            <div class="bg-brand-accent/5 p-4 rounded-lg border border-brand-accent/20">
-                                <label for="recipient_name" class="block text-sm font-medium text-neutral-700 mb-1">Mottagarens namn <span class="text-red-500">*</span></label>
-                                <input type="text" id="recipient_name" name="recipient_name" x-model="recipient" :required="subjects.includes('presentkort')"
-                                    class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
-                                <p class="text-xs text-neutral-500 mt-2">Ange namn på mottagaren. Låt det stå <span class="font-semibold text-brand-earth">"Okänd"</span> om du inte vet namnet än.</p>
-                            </div>
-                        </div>
-
-                        <!-- Friskvårdsbidrag sub-category element removed -->
-
-                        <!-- Övrigt Text Input -->
-                        <div x-show="subjects.includes('ovrigt')" x-cloak class="mt-4"
-                            x-transition:enter="transition ease-out duration-300"
-                            x-transition:enter-start="opacity-0 -translate-y-2"
-                            x-transition:enter-end="opacity-100 translate-y-0">
-                            <label for="other_request" class="block text-sm font-medium text-neutral-700 mb-1">Vad
-                                gäller ditt ärende? <span class="text-red-500">*</span></label>
-                            <input type="text" id="other_request" name="other_request" :required="subjects.includes('ovrigt')"
-                                class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-neutral-50/50">
-                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1221,52 +1289,6 @@ if (Astro.request.method === "POST") {
                                     </template>
                                 </div>
                                 <input type="hidden" name="preferred_time_ranges" :value="selectedTimes.join(', ')">
-                            </div>
-                        </div>
-
-                        <!-- Resepreferenser (Hälsoresa) -->
-                        <div x-show="subjects.includes('halsoresa')" x-cloak class="mt-8 space-y-6 border-t border-brand-earth-light/20 pt-8" x-transition>
-                            <h4 class="text-xl font-bold text-brand-earth-dark flex items-center">
-                                <Icon name="calendar" class="w-6 h-6 mr-3 text-brand-accent-dark" />
-                                Reseperiod <span class="text-sm font-normal text-neutral-500 ml-2">(valfritt)</span>
-                            </h4>
-
-                            <div x-show="subjects.includes('halsoresa')" x-cloak
-                                class="mt-4 bg-brand-sky-light/10 p-4 rounded-lg border border-brand-sky/20 transition-all duration-300"
-                                x-transition>
-                                <p class="text-sm text-brand-earth-dark font-medium flex items-start">
-                                    <svg class="w-5 h-5 mr-3 shrink-0 text-brand-sky-dark" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <span>Hälsoresorna planeras i samråd med dig som deltagare och kan anpassas efter dina önskemål. I detta tidiga skede kanske du har många frågor och inte vet när du vill resa, vilket är helt naturligt.</span>
-                                </p>
-                            </div>
-
-                            <div class="space-y-3 mt-4">
-                                <label class="block text-sm font-medium text-neutral-700">Vilken tid på året passar dig bäst? <span class="text-xs font-normal text-neutral-500 ml-1">(Välj en eller flera)</span></label>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                    <template x-for="period in ['Vår (Maj-Juni)', 'Höst (Oktober-November)', 'Annat datum / Månad', 'Vet ej / Behöver rådgivning']">
-                                        <label class="relative flex items-center p-3 rounded-lg border cursor-pointer transition-all duration-200 hover:bg-neutral-50"
-                                            :class="selectedTravelPeriods.includes(period) ? 'bg-brand-sky-light/10 border-brand-sky ring-1 ring-brand-sky' : 'bg-white border-neutral-200'">
-                                            <input type="checkbox" :value="period" x-model="selectedTravelPeriods" class="sr-only">
-                                            <span class="text-sm font-medium" :class="selectedTravelPeriods.includes(period) ? 'text-brand-sky-dark' : 'text-neutral-700'" x-text="period"></span>
-                                            <template x-if="selectedTravelPeriods.includes(period)">
-                                                <svg class="w-4 h-4 ml-auto text-brand-sky-dark" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                            </template>
-                                        </label>
-                                    </template>
-                                </div>
-
-                                <div x-show="selectedTravelPeriods.includes('Annat datum / Månad')" x-cloak class="mt-3 p-4 bg-brand-accent/5 rounded-lg border border-brand-accent/20" x-transition>
-                                    <label for="custom_travel_period" class="block text-sm font-medium text-brand-earth-dark mb-1">Ange önskat datum eller period (valfritt)</label>
-                                    <input type="text" id="custom_travel_period" name="custom_travel_period" x-model="customTravelPeriod" :required="selectedTravelPeriods.includes('Annat datum / Månad')"
-                                        class="w-full border-neutral-300 rounded-md shadow-sm focus:border-brand-sky focus:ring focus:ring-brand-sky/20 transition-all p-3 border bg-white"
-                                        placeholder="T.ex. September 2027 eller Våren 2028">
-                                </div>
-
-                                <input type="hidden" name="preferred_travel_periods" :value="selectedTravelPeriods.join(', ')">
                             </div>
                         </div>
 
