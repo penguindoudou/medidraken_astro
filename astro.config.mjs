@@ -18,6 +18,11 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ['astro/compiler-runtime']
     },
+    ssr: {
+      optimizeDeps: {
+        exclude: ['astro/compiler-runtime']
+      }
+    },
     server: {
       watch: {
         ignored: ['**/legacy_wp_site/**']
