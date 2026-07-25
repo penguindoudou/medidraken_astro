@@ -126,7 +126,7 @@ const organizationSchema = {
     {
       "@type": "ContactPoint",
       "telephone": siteConfig.phones.johannes.clean,
-      "contactType": "sales",
+      "contactType": "reservations",
       "areaServed": "SE",
       "availableLanguage": "Swedish",
       "contactOption": "TollFree"
@@ -180,6 +180,28 @@ const organizationSchema = {
   ]
 };
 
+// Both contacts present on every location — Linnéa for bookings, Johannes for courses/corporate/other.
+const locationContactPoints = [
+  {
+    "@type": "ContactPoint",
+    "telephone": siteConfig.phones.linnea.clean,
+    "contactType": "customer service",
+    "name": siteConfig.phones.linnea.name,
+    "description": siteConfig.phones.linnea.role,
+    "areaServed": "SE",
+    "availableLanguage": "Swedish"
+  },
+  {
+    "@type": "ContactPoint",
+    "telephone": siteConfig.phones.johannes.clean,
+    "contactType": "reservations",
+    "name": siteConfig.phones.johannes.name,
+    "description": siteConfig.phones.johannes.role,
+    "areaServed": "SE",
+    "availableLanguage": "Swedish"
+  }
+];
+
 const localBusinessSchema = [
   websiteSchema,
   organizationSchema,
@@ -191,7 +213,8 @@ const localBusinessSchema = [
     "description": `Akupunktur, Tui Na-massage, Tai Chi och medicinsk Qigong i Nyköping. Medidraken erbjuder TCM-behandlingar på Östra Storgatan 2, 611 34 Nyköping. Företagsbehandlingar på plats möjliga.`,
     "image": ogImageURL.toString(),
     "url": siteConfig.url,
-    "telephone": siteConfig.phone.clean,
+    "telephone": siteConfig.phones.linnea.clean,
+    "contactPoint": locationContactPoints,
     "email": siteConfig.email,
     "priceRange": "$$",
     "medicalSpecialty": ["Acupuncture", "Physical Medicine", "Preventive Medicine"],
@@ -229,7 +252,8 @@ const localBusinessSchema = [
     "description": `Akupunktur, Tui Na-massage, Tai Chi och medicinsk Qigong i Gnesta. Medidraken erbjuder TCM-behandlingar på Dalgatan 20, 646 32 Gnesta. Företagsbehandlingar på plats möjliga.`,
     "image": ogImageURL.toString(),
     "url": siteConfig.url,
-    "telephone": siteConfig.phone.clean,
+    "telephone": siteConfig.phones.linnea.clean,
+    "contactPoint": locationContactPoints,
     "email": siteConfig.email,
     "priceRange": "$$",
     "medicalSpecialty": ["Acupuncture", "Physical Medicine", "Preventive Medicine"],
@@ -267,7 +291,8 @@ const localBusinessSchema = [
     "description": `Akupunktur, Tui Na-massage, Tai Chi och medicinsk Qigong i Oxelösund. Medidraken erbjuder TCM-behandlingar på Föreningsgatan 30, 613 31 Oxelösund. Företagsbehandlingar på plats möjliga.`,
     "image": ogImageURL.toString(),
     "url": siteConfig.url,
-    "telephone": siteConfig.phone.clean,
+    "telephone": siteConfig.phones.linnea.clean,
+    "contactPoint": locationContactPoints,
     "email": siteConfig.email,
     "priceRange": "$$",
     "medicalSpecialty": ["Acupuncture", "Physical Medicine", "Preventive Medicine"],
