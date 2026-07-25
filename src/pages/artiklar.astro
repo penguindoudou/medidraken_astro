@@ -1,12 +1,126 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+export const prerender = true;
+
+const allArticles = await getCollection('artiklar', ({ data }) => {
+
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+const sortedArticles = allArticles.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const allTags = Array.from(
+  new Set(sortedArticles.flatMap((article) => article.data.tags || []))
+).sort();
 ---
-<BaseLayout title="Artiklar" description="Läs våra artiklar om traditionell kinesisk medicin (TCM), akupunktur, Qigong, stresshantering och hur du uppnår naturlig balans i vardagen.">
-    <main class="container-base section-standard">
-        <h1 class="text-brand-earth">Artiklar</h1>
-        <p class="mt-4">Innehåll under uppbyggnad...</p>
-        <a href="/" class="mt-8 text-brand-earth hover:text-brand-earth/80 flex items-center gap-2">
-            ← Tillbaka till startsidan
-        </a>
-    </main>
+
+<BaseLayout 
+  title="Artiklar & Kunskap om TCM, Akupunktur & Qigong | Medidraken"
+  description="Läs våra artiklar om Traditionell Kinesisk Medicin (TCM), akupunktur, Qigong, Tui Na-massage och naturlig smärtlindring i Nyköping."
+>
+  <main class="bg-brand-earth-lightest min-h-screen py-12 md:py-16">
+    <div class="container-base">
+      <!-- Header -->
+      <div class="max-w-3xl">
+        <span class="text-sm font-semibold tracking-wider uppercase text-brand-earth-dark/70">Kunskapsbank</span>
+        <h1 class="text-brand-earth text-3xl md:text-5xl font-bold mt-2">Artiklar & Guider</h1>
+        <p class="text-lg text-gray-700 mt-4 leading-relaxed">
+          Utforska insikter om Traditionell Kinesisk Medicin (TCM), akupunktur, medicinsk Qigong, Tui Na-massage och helhetshälsa. Lär dig hur uråldriga klokskaper möter modern vardag för mindre smärta och mer energi.
+        </p>
+      </div>
+
+      <!-- Tag Filters -->
+      {allTags.length > 0 && (
+        <div class="mt-8 flex flex-wrap gap-2 items-center">
+          <span class="text-sm font-medium text-gray-600 mr-2">Ämnen:</span>
+          {allTags.map((tag) => (
+            <span class="px-3 py-1 bg-white border border-brand-earth/20 rounded-full text-xs font-medium text-brand-earth shadow-xs hover:bg-brand-earth hover:text-white transition-colors duration-200 cursor-pointer">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
+
+      <!-- Articles Grid -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedArticles.map((article) => (
+          <article class="bg-white rounded-2xl shadow-sm border border-brand-earth/10 hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group">
+            {article.data.heroImage && (
+              <div class="aspect-video w-full overflow-hidden bg-gray-100">
+                <img 
+                  src={article.data.heroImage} 
+                  alt={article.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                />
+              </div>
+            )}
+            
+            <div class="p-6 md:p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+                  <time datetime={article.data.pubDate.toISOString()}>
+                    {article.data.pubDate.toLocaleDateString('sv-SE', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </time>
+                  <span>•</span>
+                  <span>{article.data.author}</span>
+                </div>
+
+                <h2 class="text-xl font-bold text-gray-900 group-hover:text-brand-earth transition-colors duration-200 line-clamp-2">
+                  <a href={`/artiklar/${article.id}/`}>
+                    {article.data.title}
+                  </a>
+                </h2>
+
+                <p class="text-gray-600 mt-3 text-sm leading-relaxed line-clamp-3">
+                  {article.data.description}
+                </p>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                <div class="flex flex-wrap gap-1">
+                  {article.data.tags?.slice(0, 2).map((tag) => (
+                    <span class="text-xs px-2 py-0.5 bg-brand-earth-lightest text-brand-earth rounded font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a 
+                  href={`/artiklar/${article.id}/`} 
+                  class="inline-flex items-center text-sm font-semibold text-brand-earth group-hover:text-brand-earth-dark gap-1"
+                >
+                  Läs artikel 
+                  <span class="transition-transform group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Bottom Call to Action -->
+      <section class="mt-16 bg-brand-earth text-white rounded-3xl p-8 md:p-12 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold">Vill du veta hur TCM kan hjälpa just dig?</h2>
+        <p class="mt-3 text-brand-earth-lightest max-w-2xl mx-auto">
+          Kontakta Medidraken i Nyköping för konsultation eller boka behandling inom akupunktur, Tui Na-massage och Qigong.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-4">
+          <a href="/kontakt" class="btn bg-white text-brand-earth hover:bg-gray-100 font-semibold px-6 py-3 rounded-full">
+            Kontakta oss
+          </a>
+          <a href="/symtom" class="btn bg-brand-earth-dark text-white hover:bg-brand-earth-dark/80 font-semibold px-6 py-3 rounded-full border border-white/20">
+            Se våra symtomguider
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
 </BaseLayout>

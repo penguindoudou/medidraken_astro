@@ -1,0 +1,145 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../data/site.ts';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+
+  const articles = await getCollection('artiklar');
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content, headings } = await render(article);
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteConfig.url).href;
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": article.data.title,
+  "description": article.data.description,
+  "author": {
+    "@type": "Organization",
+    "name": article.data.author || "Medidraken",
+    "url": siteConfig.url
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Medidraken",
+    "url": siteConfig.url,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteConfig.url}/assets/images/logo.png`
+    }
+  },
+  "datePublished": article.data.pubDate.toISOString(),
+  "dateModified": (article.data.updatedDate || article.data.pubDate).toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL
+  },
+  "keywords": article.data.focusKeywords?.join(", ") || article.data.tags?.join(", ")
+};
+---
+
+<BaseLayout 
+  title={`${article.data.title} | Medidraken Artiklar`}
+  description={article.data.description}
+>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemaData)} />
+
+  <article class="bg-brand-earth-lightest min-h-screen py-10 md:py-16">
+    <div class="container-base max-w-4xl">
+      <!-- Breadcrumbs -->
+      <nav class="text-sm text-gray-500 mb-6 flex items-center gap-2">
+        <a href="/" class="hover:text-brand-earth transition-colors">Hem</a>
+        <span>/</span>
+        <a href="/artiklar" class="hover:text-brand-earth transition-colors">Artiklar</a>
+        <span>/</span>
+        <span class="text-gray-800 font-medium truncate max-w-xs md:max-w-sm">{article.data.title}</span>
+      </nav>
+
+      <!-- Article Header -->
+      <header class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-brand-earth/10">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {article.data.tags?.map((tag) => (
+            <span class="px-3 py-1 bg-brand-earth-lightest text-brand-earth text-xs font-semibold rounded-full">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+          {article.data.title}
+        </h1>
+
+        <p class="text-lg text-gray-600 mt-4 leading-relaxed font-normal">
+          {article.data.description}
+        </p>
+
+        <div class="mt-6 pt-6 border-t border-gray-100 flex items-center justify-between text-sm text-gray-500">
+          <div class="flex items-center gap-3">
+            <span class="font-semibold text-gray-700">{article.data.author}</span>
+            <span>•</span>
+            <time datetime={article.data.pubDate.toISOString()}>
+              {article.data.pubDate.toLocaleDateString('sv-SE', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+          </div>
+        </div>
+      </header>
+
+      {article.data.heroImage && (
+        <div class="mt-8 rounded-3xl overflow-hidden shadow-md">
+          <img src={article.data.heroImage} alt={article.data.title} class="w-full h-auto object-cover" />
+        </div>
+      )}
+
+      <!-- Table of contents if headings exist -->
+      {headings.length > 0 && (
+        <nav class="mt-8 bg-white/80 backdrop-blur rounded-2xl p-6 border border-brand-earth/10 shadow-xs">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-brand-earth mb-3">Innehållsförteckning</h2>
+          <ul class="space-y-2 text-sm text-gray-700">
+            {headings.filter(h => h.depth <= 3).map((heading) => (
+              <li class={`ml-${(heading.depth - 2) * 4}`}>
+                <a href={`#${heading.slug}`} class="hover:text-brand-earth hover:underline transition-colors">
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+
+      <!-- Article Body -->
+      <div class="mt-10 bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-brand-earth/10 prose prose-lg max-w-none text-gray-800 leading-relaxed">
+        <Content />
+      </div>
+
+      <!-- Related Action Banner -->
+      <section class="mt-12 bg-brand-earth text-white rounded-3xl p-8 md:p-10 text-center">
+        <h2 class="text-2xl font-bold">Behöver du personlig rådgivning eller behandling?</h2>
+        <p class="mt-2 text-brand-earth-lightest text-sm md:text-base max-w-xl mx-auto">
+          Vi erbjuder akupunktur, Tui Na-massage, medicinsk Qigong och Tai Chi i Nyköping. Kontakta oss för att boka din tid.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-4">
+          <a href="/kontakt" class="btn bg-white text-brand-earth hover:bg-gray-100 font-semibold px-6 py-3 rounded-full text-sm">
+            Boka tid / Kontakta oss
+          </a>
+          <a href="/artiklar" class="btn bg-brand-earth-dark text-white hover:bg-brand-earth-dark/80 font-semibold px-6 py-3 rounded-full text-sm border border-white/20">
+            ← Fler artiklar
+          </a>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

@@ -260,10 +260,16 @@ export const primaryMenu = {
       ]
     },
     {
+      "title": "Artiklar",
+      "link": "/artiklar/",
+      "children": []
+    },
+    {
       "title": "Om Oss",
       "link": "/om-oss/",
       "children": []
     },
+
     {
       "title": "Kontakta Oss",
       "link": "/kontakt/",
