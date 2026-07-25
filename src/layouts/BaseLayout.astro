@@ -34,6 +34,48 @@ const openingHoursSpec = [
   }
 ];
 
+// All services require booking — split into personal and corporate actions.
+const bookingAction = [
+  {
+    "@type": "ReserveAction",
+    "name": "Boka tid hos Medidraken",
+    "description": "Alla personliga tjänster sker på bokad tid — kurser, privatbehandlingar, privat träning, workshops, hälsoresor, skräddarsydda hälsodagar och övriga önskemål.",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${siteConfig.url}/kontakt`,
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform",
+        "http://schema.org/IOSPlatform",
+        "http://schema.org/AndroidPlatform"
+      ]
+    },
+    "result": {
+      "@type": "Reservation",
+      "name": "Bokad tid hos Medidraken"
+    }
+  },
+  {
+    "@type": "ReserveAction",
+    "name": "Företagsförfrågan & offert",
+    "description": "Företag kan boka TCM-behandlingar på arbetsplatsen, skräddarsydda hälsodagar och andra företagsupplevelser. Kontakta oss för offert.",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${siteConfig.url}/for-foretag/kontakt-offert/`,
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform",
+        "http://schema.org/IOSPlatform",
+        "http://schema.org/AndroidPlatform"
+      ]
+    },
+    "result": {
+      "@type": "Reservation",
+      "name": "Offertförfrågan för företag"
+    }
+  }
+];
+
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -172,6 +214,7 @@ const localBusinessSchema = [
       { "@type": "City", "name": "Oxelösund" }
     ],
     "openingHoursSpecification": openingHoursSpec,
+    "potentialAction": bookingAction,
     "parentOrganization": { "@id": `${siteConfig.url}/#organization` },
     "sameAs": [
       siteConfig.addresses.nykoping.mapUrl,
@@ -209,6 +252,7 @@ const localBusinessSchema = [
       { "@type": "City", "name": "Oxelösund" }
     ],
     "openingHoursSpecification": openingHoursSpec,
+    "potentialAction": bookingAction,
     "parentOrganization": { "@id": `${siteConfig.url}/#organization` },
     "sameAs": [
       siteConfig.addresses.gnesta.mapUrl,
@@ -246,6 +290,7 @@ const localBusinessSchema = [
       { "@type": "City", "name": "Oxelösund" }
     ],
     "openingHoursSpecification": openingHoursSpec,
+    "potentialAction": bookingAction,
     "parentOrganization": { "@id": `${siteConfig.url}/#organization` },
     "sameAs": [
       siteConfig.addresses.oxelosund.mapUrl,
