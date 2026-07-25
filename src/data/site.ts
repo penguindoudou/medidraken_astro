@@ -2,6 +2,9 @@ const domain = 'medidraken.com';
 
 export const siteConfig = {
   name: 'Medidraken',
+  legalName: 'Din Hälsa-Medidraken',
+  alternateName: 'Medidraken Hälsans Mottagning',
+  orgNumber: '680108-XXXX',
   domain,
   url: `https://www.${domain}`,
   phone: {
