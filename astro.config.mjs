@@ -16,11 +16,11 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      exclude: ['astro/compiler-runtime']
+      exclude: ['astro/compiler-runtime', 'mrmime']
     },
     ssr: {
       optimizeDeps: {
-        exclude: ['astro/compiler-runtime']
+        exclude: ['astro/compiler-runtime', 'mrmime']
       }
     },
     server: {
