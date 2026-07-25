@@ -117,7 +117,7 @@ if (Astro.request.method === "POST") {
 
     // Behandling type slug → display name
     const behandlingTypeMap: Record<string, string> = {
-      'terapeutisk': 'Terapeutisk (TuiNa eller Akupunktur)',
+      'terapeutisk': 'Medicinsk Kinesisk Massage eller Akupunktur',
       'oljemassage': 'Oljemassage',
     };
 
@@ -1132,7 +1132,7 @@ if (Astro.request.method === "POST") {
                                          class="px-3 pb-3 pt-1 border-t border-brand-sky/20 space-y-3">
                                         <p class="text-[11px] font-semibold text-brand-sky-dark uppercase tracking-wider mb-2">Välj behandlingstyp</p>
                                         <template x-for="opt in [
-                                            {val: 'terapeutisk', label: 'Terapeutisk (TuiNa eller Akupunktur)'},
+                                            {val: 'terapeutisk', label: 'Medicinsk Kinesisk Massage eller Akupunktur'},
                                             {val: 'oljemassage', label: 'Oljemassage'}
                                         ]" :key="opt.val">
                                             <label class="flex items-center space-x-2.5 py-1.5 px-2 rounded-lg cursor-pointer select-none transition-all"
@@ -1149,7 +1149,7 @@ if (Astro.request.method === "POST") {
                                                 <svg class="w-4 h-4 mr-2 shrink-0 text-brand-sky-dark mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                                 </svg>
-                                                <span>Vid terapeutisk behandling baseras valet av behandlingsmetoden på ditt nuvarande tillstånd och terapeutens professionella bedömning i samråd med dig.</span>
+                                                <span>Vid medicinsk behandling baseras valet av behandlingsmetoden på ditt nuvarande tillstånd och terapeutens professionella bedömning i samråd med dig.</span>
                                             </p>
                                         </div>
                                     </div>
