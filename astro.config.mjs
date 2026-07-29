@@ -10,6 +10,10 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   output: 'server', // Changed from 'static'
   adapter: cloudflare(),
+  redirects: {
+    '/behandling/tuina-massage': '/behandling/medicinsk-kinesisk-massage',
+    '/behandling/tuina-massage/': '/behandling/medicinsk-kinesisk-massage/',
+  },
   devToolbar: {
     enabled: false
   },
