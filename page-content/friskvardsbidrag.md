@@ -21,7 +21,7 @@
     -   Skräddarsydda Hälsodagar (kontakta oss för upplägg)
 -
 -   **\[Punktlista - Behandlingar\]**
-    -   TuiNa-Massage & Oljemassage
+    -   Medicinsk Kinesisk Massage (TuiNa) & Oljemassage
     -   Akupunktur (som friskvård för att förebygga och motverka stress och lindra spänningar)
 -
 -   **\[Notering\]:**

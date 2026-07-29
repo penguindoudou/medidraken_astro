@@ -2,12 +2,12 @@ const fs = require('fs');
 const path = require('path');
 
 const descriptions = {
-  "src/pages/index.astro": "Välkommen till Medidraken. Vi erbjuder akupunktur, TuiNa-massage, medicinsk Qigong och Tai Chi i Nyköping, Gnesta och Oxelösund för din hälsa och vitalitet.",
+  "src/pages/index.astro": "Välkommen till Medidraken. Vi erbjuder akupunktur, Medicinsk Kinesisk Massage (TuiNa), medicinsk Qigong och Tai Chi i Nyköping, Gnesta och Oxelösund för din hälsa och vitalitet.",
   "src/pages/artiklar.astro": "Läs våra artiklar om traditionell kinesisk medicin (TCM), akupunktur, Qigong, stresshantering och hur du uppnår naturlig balans i vardagen.",
-  "src/pages/behandling/index.astro": "Minska smärta and stress med akupunktur, TuiNa-massage och oljemassage hos Medidraken i Nyköping och Gnesta. Boka din behandling idag.",
+  "src/pages/behandling/index.astro": "Minska smärta and stress med akupunktur, Medicinsk Kinesisk Massage (TuiNa) och oljemassage hos Medidraken i Nyköping och Gnesta. Boka din behandling idag.",
   "src/pages/behandling/akupunktur.astro": "Professionell akupunktur i Nyköping & Gnesta. Vi hjälper dig mot smärta, stress, sömnbesvär och obalanser med traditionell kinesisk medicin (TCM).",
   "src/pages/behandling/oljemassage.astro": "Avkopplande och balanserande kinesisk oljemassage i Nyköping & Gnesta. Minska stress, mjuka upp musklerna och fyll på med ny energi.",
-  "src/pages/behandling/tuina-massage.astro": "Kinesisk TuiNa-massage i Nyköping & Gnesta. Effektiv medicinsk massage mot ryggont, nackspärr, ledvärk och stela muskler.",
+  "src/pages/behandling/medicinsk-kinesisk-massage.astro": "Medicinsk Kinesisk Massage (TuiNa) i Nyköping & Gnesta. Effektiv medicinsk massage mot ryggont, nackspärr, ledvärk och stela muskler.",
   "src/pages/for-foretag/index.astro": "Investera i personalens hälsa. Vi erbjuder Qigong, Tai Chi, och TCM-behandling för företag i Nyköping. Förebygg stress och sjukskrivningar.",
   "src/pages/for-foretag/halsa-pa-arbetsplatsen.astro": "Hälsofrämjande insatser direkt på er arbetsplats i Nyköping och Gnesta. Medicinsk Qigong, Tai Chi och behandling anpassat för era medarbetare.",
   "src/pages/for-foretag/foretagsevent-aktiviteter.astro": "Boka en unik och stärkande aktivitet till er kick-off eller företagsevent i Nyköping. Prova på Qigong och Tai Chi med erfaren instruktör.",
@@ -30,14 +30,14 @@ const descriptions = {
   "src/pages/na-dina-halsomal/minska-stress-hitta-inre-lugn.astro": "Hitta tillbaka till lugnet och förebygg utmattning. Vi erbjuder effektiva verktyg, behandlingar och kurser för stresshantering i Nyköping & Gnesta.",
   "src/pages/na-dina-halsomal/starka-motstandskraften.astro": "Stärk din inre motståndskraft och håll dig friskare. Upptäck hur akupunktur, massage och Qigong stöder ditt immunförsvar i Nyköping & Gnesta.",
   "src/pages/om-oss.astro": "Möt teamet bakom Medidraken. Vi har över 30 års erfarenhet av Traditionell Kinesisk Medicin, akupunktur, Qigong och Tai Chi.",
-  "src/pages/presentkort.astro": "Ge bort hälsa och välmående. Köp presentkort på akupunktur, TuiNa-massage, Qigong eller Tai Chi hos Medidraken i Nyköping & Gnesta.",
+  "src/pages/presentkort.astro": "Ge bort hälsa och välmående. Köp presentkort på akupunktur, Medicinsk Kinesisk Massage (TuiNa), Qigong eller Tai Chi hos Medidraken i Nyköping & Gnesta.",
   "src/pages/symtom/index.astro": "Sök behandling för dina besvär. Vi hjälper dig med ryggvärk, nack- och axelsmärta, stress, huvudvärk, sömnproblem och ledvärk i Nyköping & Gnesta.",
   "src/pages/symtom/huvudvark/index.astro": "Lider du av spänningshuvudvärk, migrän eller balansproblem? Upptäck effektiva behandlingar hos Medidraken i Nyköping & Gnesta.",
   "src/pages/symtom/ledvark-idrottsskador/index.astro": "Behandling vid ledvärk, artros, tennisarmbåge och idrottsskador i Nyköping & Gnesta. Förbättra rörlighet med akupunktur och massage.",
   "src/pages/symtom/ledvark-idrottsskador/ont-i-hofter-hoftbesvar.astro": "Har du ont i höften eller dras med höftartros? Vi erbjuder anpassade behandlingar med akupunktur och massage för minskad smärta i Nyköping & Gnesta.",
   "src/pages/symtom/ledvark-idrottsskador/ont-i-knan-knabesvar.astro": "Sök hjälp för knäsmärta, stela knän eller artrosbesvär i Nyköping & Gnesta. Behandlingar som stöder läkning och rörlighet.",
   "src/pages/symtom/ledvark-idrottsskador/tennisarmbage-musarm.astro": "Bli av med smärta från tennisarmbåge, musarm eller stela handleder. Effektiv akupunktur och medicinsk massage i Nyköping & Gnesta.",
-  "src/pages/symtom/nacke-axlar-skuldror/index.astro": "Ont i nacke, axlar eller skuldror? Vi erbjuder professionell akupunktur och TuiNa-massage i Nyköping & Gnesta för att lösa upp spänningar.",
+  "src/pages/symtom/nacke-axlar-skuldror/index.astro": "Ont i nacke, axlar eller skuldror? Vi erbjuder professionell akupunktur och Medicinsk Kinesisk Massage i Nyköping & Gnesta för att lösa upp spänningar.",
   "src/pages/symtom/nacke-axlar-skuldror/nacksparr-stel-nacke.astro": "Akut hjälp vid nackspärr och stel nacke i Nyköping & Gnesta. Vi löser upp spända muskler och förbättrar rörligheten.",
   "src/pages/symtom/nacke-axlar-skuldror/ont-i-axlar-skuldror.astro": "Lindra smärta och stelhet i axlar och skuldror. Vi anpassar akupunktur och massage för att öka cirkulationen i Nyköping & Gnesta.",
   "src/pages/symtom/rygg-landrygg/index.astro": "Behandling vid ryggont, ländryggsbesvär och ischias i Nyköping & Gnesta. Vi hjälper dig att minska smärta och förbättra din rörlighet.",
@@ -62,9 +62,9 @@ for (const [relPath, description] of Object.entries(descriptions)) {
   }
 
   let content = fs.readFileSync(fullPath, 'utf8');
-  
+
   const baseLayoutRegex = /<BaseLayout([\s\S]*?)>/;
-  
+
   if (baseLayoutRegex.test(content)) {
     const updated = content.replace(baseLayoutRegex, (match, p1) => {
       const descPropRegex = /description\s*=\s*(?:"[^"]*"|'[^']*'|{[^}]*})/;
@@ -75,7 +75,7 @@ for (const [relPath, description] of Object.entries(descriptions)) {
         return `<BaseLayout${trimmedAttributes} description="${description}">`;
       }
     });
-    
+
     fs.writeFileSync(fullPath, updated, 'utf8');
     console.log(`Updated: ${relPath}`);
   } else {

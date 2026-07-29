@@ -8,7 +8,7 @@ Dessa användarvillkor ("Villkoren") gäller för användning av webbplatsen www
 
 **2\. Tjänster**
 
-Medidraken erbjuder tjänster inom Traditionell Kinesisk Medicin (TCM), inklusive behandlingar (såsom Akupunktur, TuiNa-massage m.fl.), kurser i Tai Chi och Qigong (veckokurser, helgkurser, privatundervisning, instruktörsutbildning), samt anpassade lösningar för företag och grupper (föreläsningar, workshops, behandlingar på plats m.m.), hälsoresor och presentkort ("Tjänsterna").
+Medidraken erbjuder tjänster inom Traditionell Kinesisk Medicin (TCM), inklusive behandlingar (såsom Akupunktur, Medicinsk Kinesisk Massage (TuiNa) m.fl.), kurser i Tai Chi och Qigong (veckokurser, helgkurser, privatundervisning, instruktörsutbildning), samt anpassade lösningar för företag och grupper (föreläsningar, workshops, behandlingar på plats m.m.), hälsoresor och presentkort ("Tjänsterna").
 
 Informationen om Tjänsterna på Webbplatsen är avsedd som generell information. För detaljerad information om innehåll, upplägg, aktuella datum, priser och bokning, vänligen kontakta oss via de kontaktvägar som anges på Webbplatsen. Alla tjänster sker efter tidsbokning och överenskommelse.
 

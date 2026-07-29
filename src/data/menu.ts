@@ -201,8 +201,8 @@ export const primaryMenu = {
           "children": []
         },
         {
-          "title": "TuiNa-Massage",
-          "link": "/behandling/tuina-massage/",
+          "title": "Medicinsk Kinesisk Massage (TuiNa)",
+          "link": "/behandling/medicinsk-kinesisk-massage/",
           "children": []
         },
         {
@@ -258,11 +258,6 @@ export const primaryMenu = {
           "children": []
         }
       ]
-    },
-    {
-      "title": "Artiklar",
-      "link": "/artiklar/",
-      "children": []
     },
     {
       "title": "Om Oss",

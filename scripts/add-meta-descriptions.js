@@ -13,7 +13,7 @@ const ROOT = resolve(import.meta.dirname, '../src/pages');
 const pages = [
   {
     file: 'index.astro',
-    description: 'Välkommen till Medidraken. Vi erbjuder akupunktur, TuiNa-massage, medicinsk Qigong och Tai Chi i Nyköping, Gnesta och Oxelösund för din hälsa och vitalitet.',
+    description: 'Välkommen till Medidraken. Vi erbjuder akupunktur, Medicinsk Kinesisk Massage, Medicinsk Qigong och Tai Chi i Nyköping, Gnesta och Oxelösund för din hälsa och vitalitet.',
   },
   {
     file: 'artiklar.astro',
@@ -21,7 +21,7 @@ const pages = [
   },
   {
     file: 'behandling/index.astro',
-    description: 'Minska smärta and stress med akupunktur, TuiNa-massage och oljemassage hos Medidraken i Nyköping och Gnesta. Boka din behandling idag.',
+    description: 'Minska smärta and stress med akupunktur, Medicinsk Kinesisk Massage och oljemassage hos Medidraken i Nyköping och Gnesta. Boka din behandling idag.',
   },
   {
     file: 'behandling/akupunktur.astro',
@@ -32,8 +32,8 @@ const pages = [
     description: 'Avkopplande och balanserande kinesisk oljemassage i Nyköping & Gnesta. Minska stress, mjuka upp musklerna och fyll på med ny energi.',
   },
   {
-    file: 'behandling/tuina-massage.astro',
-    description: 'Kinesisk TuiNa-massage i Nyköping & Gnesta. Effektiv medicinsk massage mot ryggont, nackspärr, ledvärk och stela muskler.',
+    file: 'behandling/medicinsk-kinesisk-massage.astro',
+    description: 'Medicinsk Kinesisk Massage (TuiNa) i Nyköping & Gnesta. Effektiv medicinsk massage mot ryggont, nackspärr, ledvärk och stela muskler.',
   },
   {
     file: 'for-foretag/index.astro',
@@ -125,7 +125,7 @@ const pages = [
   },
   {
     file: 'presentkort.astro',
-    description: 'Ge bort hälsa och välmående. Köp presentkort på akupunktur, TuiNa-massage, Qigong eller Tai Chi hos Medidraken i Nyköping & Gnesta.',
+    description: 'Ge bort hälsa och välmående. Köp presentkort på akupunktur, Medicinsk Kinesisk Massage, Qigong eller Tai Chi hos Medidraken i Nyköping & Gnesta.',
   },
   {
     file: 'symtom/index.astro',
@@ -153,7 +153,7 @@ const pages = [
   },
   {
     file: 'symtom/nacke-axlar-skuldror/index.astro',
-    description: 'Ont i nacke, axlar eller skuldror? Vi erbjuder professionell akupunktur och TuiNa-massage i Nyköping & Gnesta för att lösa upp spänningar.',
+    description: 'Ont i nacke, axlar eller skuldror? Vi erbjuder professionell akupunktur och Medicinsk Kinesisk Massage i Nyköping & Gnesta för att lösa upp spänningar.',
   },
   {
     file: 'symtom/nacke-axlar-skuldror/nacksparr-stel-nacke.astro',
