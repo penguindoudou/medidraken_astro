@@ -10,8 +10,14 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   output: 'server', // Changed from 'static'
   adapter: cloudflare(),
+  trailingSlash: 'always',
   redirects: {
     '/behandling/tuina-massage/': '/behandling/medicinsk-kinesisk-massage/',
+    // Ghost pages from old site — redirect to canonical equivalents
+    '/taiji.html':    '/kurser/tai-chi/',
+    '/taiji':         '/kurser/tai-chi/',
+    '/johannes.html': '/om-oss/',
+    '/fest.html':     '/for-foretag/foretagsevent-aktiviteter/',
   },
   devToolbar: {
     enabled: false
