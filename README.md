@@ -1,6 +1,6 @@
 # Medidraken: Traditional Chinese Medicine & Wellness Center
 
-Source code for the **Medidraken** website — a Swedish TCM and wellness practice specializing in TuiNa, Acupuncture, Medical Qigong, and Tai Chi.
+Source code for the **Medidraken** website — a Swedish TCM and wellness practice specializing in Medical Chinese Massage (TuiNa), Acupuncture, Medical Qigong, and Tai Chi.
 
 > [!NOTE]
 > Shared publicly as part of a professional portfolio.
@@ -27,7 +27,7 @@ Full-featured digital hub for Traditional Chinese Medicine (TCM) in Swedish, wit
 - 404 page
 
 ### Treatments
-- TuiNa Massage
+- Medical Chinese Massage
 - Oil Massage
 - Acupuncture
 
