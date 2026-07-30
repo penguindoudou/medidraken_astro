@@ -99,4 +99,4 @@
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | `stresshantering nyköping` | Medium (on-page rewrite) | High — local commercial, 39 total impressions | ✅ Done (2026-07-30) |
 | 2 | `stresshuvudvärk` | Medium (meta fix + new article) | High — 56 impressions across cluster | 🔲 Next |
-| 3 | `mental fokus` | Low (meta only) | Medium — pos 7, just needs CTR fix | 🔲 Next |
+| 3 | `mental fokus` | Low (meta only) | Medium — pos 7, just needs CTR fix | ✅ Done (2026-07-30) |
