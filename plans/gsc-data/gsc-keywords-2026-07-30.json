@@ -1,13 +1,23 @@
 [
   {
     "keys": [
+      "massage nyköping",
+      "http://medidraken.com/"
+    ],
+    "clicks": 2,
+    "impressions": 13,
+    "ctr": 0.15384615384615385,
+    "position": 3.230769230769231
+  },
+  {
+    "keys": [
       "massage oxelösund",
       "http://medidraken.com/"
     ],
     "clicks": 2,
-    "impressions": 35,
-    "ctr": 0.05714285714285714,
-    "position": 2.1714285714285717
+    "impressions": 44,
+    "ctr": 0.045454545454545456,
+    "position": 2.3181818181818183
   },
   {
     "keys": [
@@ -15,9 +25,9 @@
       "http://medidraken.com/"
     ],
     "clicks": 1,
-    "impressions": 1,
-    "ctr": 1,
-    "position": 4
+    "impressions": 2,
+    "ctr": 0.5,
+    "position": 2.5
   },
   {
     "keys": [
@@ -55,9 +65,9 @@
       "https://www.medidraken.com/kurser/tai-chi"
     ],
     "clicks": 1,
-    "impressions": 2,
-    "ctr": 0.5,
-    "position": 4
+    "impressions": 3,
+    "ctr": 0.3333333333333333,
+    "position": 3
   },
   {
     "keys": [
@@ -95,9 +105,9 @@
       "https://www.medidraken.com/symtom/huvudvark/migran/"
     ],
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 76
+    "position": 83
   },
   {
     "keys": [
@@ -211,13 +221,23 @@
   },
   {
     "keys": [
+      "akupunktur mot tennisarmbåge",
+      "https://www.medidraken.com/symtom/ledvark-idrottsskador/tennisarmbage-musarm/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 16
+  },
+  {
+    "keys": [
       "akupunktur mot utbrändhet",
       "https://www.medidraken.com/symtom/utbrandhet-trotthet/"
     ],
     "clicks": 0,
-    "impressions": 15,
+    "impressions": 18,
     "ctr": 0,
-    "position": 18.466666666666665
+    "position": 18.555555555555557
   },
   {
     "keys": [
@@ -245,9 +265,9 @@
       "https://www.medidraken.com/"
     ],
     "clicks": 0,
-    "impressions": 8,
+    "impressions": 11,
     "ctr": 0,
-    "position": 11.5
+    "position": 10.818181818181818
   },
   {
     "keys": [
@@ -255,7 +275,7 @@
       "https://www.medidraken.com/behandling/akupunktur/"
     ],
     "clicks": 0,
-    "impressions": 6,
+    "impressions": 7,
     "ctr": 0,
     "position": 9
   },
@@ -268,6 +288,16 @@
     "impressions": 1,
     "ctr": 0,
     "position": 34
+  },
+  {
+    "keys": [
+      "akupunktur stress",
+      "https://www.medidraken.com/behandling/akupunktur/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 44
   },
   {
     "keys": [
@@ -285,9 +315,9 @@
       "https://www.medidraken.com/"
     ],
     "clicks": 0,
-    "impressions": 10,
+    "impressions": 14,
     "ctr": 0,
-    "position": 73.3
+    "position": 72.78571428571429
   },
   {
     "keys": [
@@ -298,6 +328,16 @@
     "impressions": 1,
     "ctr": 0,
     "position": 35
+  },
+  {
+    "keys": [
+      "alternativmedicin",
+      "http://medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 8
   },
   {
     "keys": [
@@ -401,6 +441,16 @@
   },
   {
     "keys": [
+      "handledsvärk",
+      "https://www.medidraken.com/symtom/ledvark-idrottsskador/tennisarmbage-musarm/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 17
+  },
+  {
+    "keys": [
       "höftbesvär",
       "https://medidraken.com/symtom/ledvark-idrottsskador/ont-i-hofter-hoftbesvar/"
     ],
@@ -415,9 +465,9 @@
       "https://www.medidraken.com/symtom/ledvark-idrottsskador/ont-i-hofter-hoftbesvar"
     ],
     "clicks": 0,
-    "impressions": 11,
+    "impressions": 15,
     "ctr": 0,
-    "position": 13.636363636363637
+    "position": 13.733333333333333
   },
   {
     "keys": [
@@ -425,9 +475,9 @@
       "https://www.medidraken.com/kurser/instruktorsutbildning/"
     ],
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 4,
     "ctr": 0,
-    "position": 29
+    "position": 22.75
   },
   {
     "keys": [
@@ -465,9 +515,9 @@
       "https://medidraken.com/for-foretag/foretagsevent-aktiviteter/"
     ],
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 4,
     "ctr": 0,
-    "position": 9.333333333333334
+    "position": 9.25
   },
   {
     "keys": [
@@ -491,13 +541,23 @@
   },
   {
     "keys": [
+      "martial arts near me",
+      "http://medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 1
+  },
+  {
+    "keys": [
       "massage",
       "http://medidraken.com/"
     ],
     "clicks": 0,
-    "impressions": 4,
+    "impressions": 8,
     "ctr": 0,
-    "position": 3.25
+    "position": 2.125
   },
   {
     "keys": [
@@ -515,7 +575,7 @@
       "https://www.medidraken.com/symtom/huvudvark/spanningshuvudvark-stresshuvudvark/"
     ],
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 5,
     "ctr": 0,
     "position": 30
   },
@@ -523,6 +583,36 @@
     "keys": [
       "massage gnesta",
       "http://www.medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 2
+  },
+  {
+    "keys": [
+      "massage i nyköping",
+      "http://medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 2
+  },
+  {
+    "keys": [
+      "massage i nyköping",
+      "https://www.medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 2
+  },
+  {
+    "keys": [
+      "massage i nyköping",
+      "https://www.medidraken.com/kontakt/"
     ],
     "clicks": 0,
     "impressions": 1,
@@ -555,19 +645,9 @@
       "https://www.medidraken.com/symtom/huvudvark/spanningshuvudvark-stresshuvudvark/"
     ],
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 3,
     "ctr": 0,
-    "position": 30
-  },
-  {
-    "keys": [
-      "massage nyköping",
-      "http://medidraken.com/"
-    ],
-    "clicks": 0,
-    "impressions": 7,
-    "ctr": 0,
-    "position": 3.7142857142857144
+    "position": 29.333333333333332
   },
   {
     "keys": [
@@ -625,9 +705,9 @@
       "https://www.medidraken.com/symtom/huvudvark/spanningshuvudvark-stresshuvudvark/"
     ],
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 4,
     "ctr": 0,
-    "position": 29.5
+    "position": 29.75
   },
   {
     "keys": [
@@ -641,11 +721,21 @@
   },
   {
     "keys": [
+      "medicin",
+      "http://medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 5
+  },
+  {
+    "keys": [
       "medicinsk qigong",
       "https://medidraken.com/kurser/medicinsk-qigong/"
     ],
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
     "position": 12
   },
@@ -655,9 +745,9 @@
       "https://www.medidraken.com/na-dina-halsomal/stark-fokus-mental-styrka/"
     ],
     "clicks": 0,
-    "impressions": 8,
+    "impressions": 12,
     "ctr": 0,
-    "position": 7.25
+    "position": 7.166666666666667
   },
   {
     "keys": [
@@ -725,9 +815,19 @@
       "https://www.medidraken.com/symtom/huvudvark/migran/"
     ],
     "clicks": 0,
-    "impressions": 5,
+    "impressions": 6,
     "ctr": 0,
-    "position": 25.2
+    "position": 24.666666666666668
+  },
+  {
+    "keys": [
+      "mottagning",
+      "http://medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 4
   },
   {
     "keys": [
@@ -851,6 +951,16 @@
   },
   {
     "keys": [
+      "qigong helgkurs",
+      "https://www.medidraken.com/kurser/medicinsk-qigong/helgkurser/"
+    ],
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 10.666666666666666
+  },
+  {
+    "keys": [
       "qijong",
       "https://www.medidraken.com/kurser/medicinsk-qigong"
     ],
@@ -965,9 +1075,9 @@
       "https://www.medidraken.com/na-dina-halsomal/minska-stress-hitta-inre-lugn"
     ],
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 4,
     "ctr": 0,
-    "position": 17
+    "position": 18.5
   },
   {
     "keys": [
@@ -985,9 +1095,9 @@
       "https://www.medidraken.com/symtom/utbrandhet-trotthet/"
     ],
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 4,
     "ctr": 0,
-    "position": 60
+    "position": 50.25
   },
   {
     "keys": [
@@ -1005,9 +1115,9 @@
       "https://www.medidraken.com/na-dina-halsomal/minska-stress-hitta-inre-lugn"
     ],
     "clicks": 0,
-    "impressions": 18,
+    "impressions": 23,
     "ctr": 0,
-    "position": 13.777777777777779
+    "position": 13.826086956521738
   },
   {
     "keys": [
@@ -1035,9 +1145,9 @@
       "https://www.medidraken.com/symtom/utbrandhet-trotthet/"
     ],
     "clicks": 0,
-    "impressions": 7,
+    "impressions": 10,
     "ctr": 0,
-    "position": 77.57142857142857
+    "position": 77.9
   },
   {
     "keys": [
@@ -1055,9 +1165,19 @@
       "https://www.medidraken.com/symtom/huvudvark/spanningshuvudvark-stresshuvudvark/"
     ],
     "clicks": 0,
-    "impressions": 7,
+    "impressions": 13,
     "ctr": 0,
-    "position": 9.571428571428571
+    "position": 9.461538461538462
+  },
+  {
+    "keys": [
+      "tai chi",
+      "http://medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 2,
+    "ctr": 0,
+    "position": 7
   },
   {
     "keys": [
@@ -1065,9 +1185,9 @@
       "http://www.medidraken.com/"
     ],
     "clicks": 0,
-    "impressions": 22,
+    "impressions": 30,
     "ctr": 0,
-    "position": 6.954545454545454
+    "position": 6.566666666666666
   },
   {
     "keys": [
@@ -1131,6 +1251,26 @@
   },
   {
     "keys": [
+      "tai chi kurs",
+      "http://www.medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 3,
+    "ctr": 0,
+    "position": 5
+  },
+  {
+    "keys": [
+      "tai chi near me",
+      "http://medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 1
+  },
+  {
+    "keys": [
       "tai chi near me",
       "http://www.medidraken.com/taiji.html"
     ],
@@ -1138,6 +1278,26 @@
     "impressions": 1,
     "ctr": 0,
     "position": 5
+  },
+  {
+    "keys": [
+      "tai chi near me",
+      "https://www.medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 3
+  },
+  {
+    "keys": [
+      "tai chi nyköping",
+      "http://medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 3
   },
   {
     "keys": [
@@ -1205,9 +1365,9 @@
       "https://www.medidraken.com/"
     ],
     "clicks": 0,
-    "impressions": 1,
+    "impressions": 2,
     "ctr": 0,
-    "position": 1
+    "position": 3.5
   },
   {
     "keys": [
@@ -1261,6 +1421,26 @@
   },
   {
     "keys": [
+      "tai chi nyköping",
+      "https://www.medidraken.com/upplevelser/workshops-gruppaktiviteter/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 12
+  },
+  {
+    "keys": [
+      "tai chi stolträning",
+      "http://www.medidraken.com/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 5
+  },
+  {
+    "keys": [
       "tai chi värmland",
       "http://www.medidraken.com/taiji.html"
     ],
@@ -1305,14 +1485,14 @@
       "http://www.medidraken.com/"
     ],
     "clicks": 0,
-    "impressions": 2,
+    "impressions": 3,
     "ctr": 0,
-    "position": 7
+    "position": 5.666666666666667
   },
   {
     "keys": [
       "tuina",
-      "https://www.medidraken.com/behandling/medicinsk-kinesisk-massage/"
+      "https://www.medidraken.com/behandling/tuina-massage/"
     ],
     "clicks": 0,
     "impressions": 1,
@@ -1322,12 +1502,22 @@
   {
     "keys": [
       "tuina massage",
-      "https://www.medidraken.com/behandling/medicinsk-kinesisk-massage/"
+      "https://www.medidraken.com/behandling/tuina-massage/"
     ],
     "clicks": 0,
-    "impressions": 3,
+    "impressions": 5,
     "ctr": 0,
-    "position": 3.6666666666666665
+    "position": 5.8
+  },
+  {
+    "keys": [
+      "utmattning",
+      "https://www.medidraken.com/symtom/utbrandhet-trotthet/"
+    ],
+    "clicks": 0,
+    "impressions": 1,
+    "ctr": 0,
+    "position": 9
   },
   {
     "keys": [
