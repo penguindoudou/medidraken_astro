@@ -6,7 +6,10 @@
     "dev": "node scripts/fetch-courses.js && astro dev",
     "build": "rm -rf dist && node scripts/fetch-courses.js && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "gsc:audit": "node scripts/gsc/audit-canonicalization.js",
+    "gsc:cleanup": "node scripts/gsc/submit-canonical-cleanup.js",
+    "gsc:cleanup:dry": "node scripts/gsc/submit-canonical-cleanup.js --dry-run"
   },
   "overrides": {
     "vite": "^8.1.3"

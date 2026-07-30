@@ -26,3 +26,6 @@ pnpm-debug.log*
 # previous wp site reference material
 legacy_wp_site/
 .wrangler/
+
+# GSC run artifacts (audit + cleanup reports)
+plans/gsc-data/
