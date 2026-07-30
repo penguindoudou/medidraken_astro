@@ -14,7 +14,7 @@
    - Config: [src/content.config.ts](file:///home/wisel/ubuntu_projects/medidraken/src/content.config.ts) (`artiklar` schema with Zod validation).
    - Index Page: [src/pages/artiklar.astro](file:///home/wisel/ubuntu_projects/medidraken/src/pages/artiklar.astro) (prerendered, tag filtering, grid view, CTAs).
    - Detail Page: [src/pages/artiklar/[slug].astro](file:///home/wisel/ubuntu_projects/medidraken/src/pages/artiklar/[slug].astro) (prerendered, `BlogPosting` JSON-LD schema, TOC, breadcrumbs).
-   - Navigation: "Artiklar" added to `primaryMenu` & `footerMenu` in [src/data/menu.ts](file:///home/wisel/ubuntu_projects/medidraken/src/data/menu.ts).
+   - Navigation: `footerMenu` in [src/data/menu.ts](file:///home/wisel/ubuntu_projects/medidraken/src/data/menu.ts).
 
 2. **Automation Scripts**:
    - GSC Query Fetcher: [scripts/gsc/fetch-gsc-queries.js](file:///home/wisel/ubuntu_projects/medidraken/scripts/gsc/fetch-gsc-queries.js) (supports Service Account JSON or OAuth2).
