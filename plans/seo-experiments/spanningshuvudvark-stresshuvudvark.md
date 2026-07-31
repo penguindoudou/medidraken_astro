@@ -95,7 +95,7 @@ One commit on 2026-07-30:
 2. **`<meta description>`**: Rewrote to open with symptom recognition + cleaner treatment CTA
    - Before: `Få hjälp med din spänningshuvudvärk. Vi arbetar med Medicinsk Kinesisk Massage (TuiNa) & Akupunktur för att lösa upp spänningar i nacke och käkar samt reducera stress.`
    - After (v1, 2026-07-30): `Lider du av stresshuvudvärk eller ett tryckande band runt huvudet? Vi arbetar med Medicinsk Massage för att lösa upp spänningarna som orsakar din huvudvärk.`
-   - After (v2, 2026-07-31): `Lider du av återkommande stresshuvudvärk? Vi arbetar med Medicinsk Massage för att lösa upp spänningarna som orsakar din huvudvärk.`
+   - After (v2, 2026-07-31, commit `b75ffac`): `Lider du av återkommande stresshuvudvärk? Vi arbetar med Medicinsk Massage för att lösa upp spänningarna som orsakar din huvudvärk.`
    - Rationale for v2: "återkommande" speaks directly to the chronic sufferer (the core audience). Dropped "ett tryckande band runt huvudet" to go broader first — the band description is accurate but may filter out people who experience the same condition differently. Saved as candidate for a later experiment if broad version underperforms.
 
 No changes to H1, H2, body copy, FAQs, or page structure — metadata only.
