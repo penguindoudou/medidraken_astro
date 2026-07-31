@@ -77,6 +77,15 @@ No other elements were changed (H1, H2, body copy, FAQ are all identical to base
   - Before: `Stärk Fokus & Mental Styrka`
   - After: `Mental Fokus & Inre Styrka`
 
+#### Commit `cd5248f` — Copy cleanup (2026-07-31)
+- **Hero copy**: Replaced AI calque with plain Swedish
+  - Before: `Våra metoder stödjer dig att rensa hjärndimma, bygga upp mental uthållighet och ger verktyg för ett starkt och ihärdigt fokus.`
+  - After: `Våra metoder hjälper dig tänka klarare, bygga upp mental uthållighet och hålla fokuset längre.`
+- **Akupunktur method card**: Same fix
+  - Before: `Effektivt för att skingra hjärndimma och ge hjärnan bästa möjliga förutsättningar.`
+  - After: `Hjälper dig tänka klarare och ger hjärnan bästa möjliga förutsättningar.`
+- FAQ question `Kan akupunktur och Medicinsk Kinesisk Massage (TuiNa) hjälpa mot hjärndimma och mental trötthet?` left unchanged — mirrors a term visitors may search for.
+
 ---
 
 ### Notes
