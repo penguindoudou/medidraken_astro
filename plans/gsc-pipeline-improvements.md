@@ -19,7 +19,7 @@ Identified improvements to make the Google Search Console analysis process faste
 
 ## 2. Opportunity classification in `analyze-gsc-data.js`
 
-**Status:** ⬜ Todo
+**Status:** ✅ Done
 
 **Problem:** The analyzer sorts by impressions but doesn't tell us *what to do*. All queries look the same.
 
