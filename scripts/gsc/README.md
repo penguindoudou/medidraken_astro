@@ -16,7 +16,12 @@ npm run gsc:analyze
 # 3. Compare with the previous snapshot to see what moved
 npm run gsc:compare
 
-# 4. After fixing a page, tell Google to re-crawl it
+# 4. Generate a content draft targeting the best quick-win keyword
+npm run gsc:draft
+# or target a specific keyword:
+npm run gsc:draft -- --keyword "massage nyköping"
+
+# 5. After fixing a page, tell Google to re-crawl it
 npm run gsc:request-index -- /symtom/huvudvark/ /behandling/akupunktur/
 
 # 5. Audit for canonicalization issues (.html ghosts, http:// variants)
@@ -135,12 +140,22 @@ Rate limits respected: ~8 req/s, well within the 2 000/day (Inspection) and 200/
 
 ---
 
-### `generate-article-draft.js`
+### `generate-article-draft.js` — `npm run gsc:draft`
 
-Generates a Markdown article draft in `src/content/artiklar/` from a title and description, pre-filled with a Swedish TCM content structure.
+Generates a Markdown article draft in `src/content/artiklar/` pre-filled with real GSC data. Auto-selects the highest-priority quick win from the latest snapshot, or targets a specific keyword.
 
 ```bash
-node scripts/gsc/generate-article-draft.js "Akupunktur mot migrän i Nyköping" "Läs om hur akupunktur kan lindra migrän."
+# Auto-select the highest-priority quick win from the latest snapshot
+npm run gsc:draft
+
+# Target a specific keyword
+npm run gsc:draft -- --keyword "massage nyköping"
+
+# Use a specific snapshot file
+node scripts/gsc/generate-article-draft.js --snapshot plans/gsc-data/gsc-keywords-2026-07-31.json
+
+# Combine flags
+node scripts/gsc/generate-article-draft.js --snapshot plans/gsc-data/foo.json --keyword "akupunktur"
 ```
 
 ---
