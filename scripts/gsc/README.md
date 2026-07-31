@@ -147,6 +147,8 @@ node scripts/gsc/generate-article-draft.js "Akupunktur mot migrän i Nyköping" 
 
 ## Auth setup
 
+> **Auth is already configured and working.** Service account key is set up and verified against the live GSC property.
+
 All scripts share the same auth resolution order. Add one of these to your `.env`:
 
 | Option | Variables |

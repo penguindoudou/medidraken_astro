@@ -35,7 +35,7 @@ Identified improvements to make the Google Search Console analysis process faste
 
 ## 3. `gsc:request-index` — Manual indexing nudge
 
-**Status:** ⬜ Todo
+**Status:** ✅ Done
 
 **Problem:** No easy way to tell Google "I just updated this page, please re-crawl it" outside of the canonicalization cleanup script.
 
@@ -53,7 +53,7 @@ npm run gsc:request-index -- /symtom/huvudvark/ /behandling/akupunktur/
 
 ## 4. Wire fetch + analyze into a single command
 
-**Status:** ⬜ Todo
+**Status:** ✅ Done
 
 **Problem:** `fetch-gsc-queries.js` and `analyze-gsc-data.js` aren't connected — you have to run them separately, and `gsc:fetch` isn't even in package.json.
 
@@ -67,7 +67,7 @@ npm run gsc:request-index -- /symtom/huvudvark/ /behandling/akupunktur/
 
 ## 5. Connect `generate-article-draft.js` to GSC data
 
-**Status:** ⬜ Todo
+**Status:** ✅ Done
 
 **Problem:** Article drafts are generated from a generic template. They could instead be pre-filled with the actual opportunity keyword, its stats (impressions, position, CTR), and a suggested angle based on the tier classification from improvement #2.
 
@@ -75,3 +75,30 @@ npm run gsc:request-index -- /symtom/huvudvark/ /behandling/akupunktur/
 
 **File:** `scripts/gsc/generate-article-draft.js` (modify existing)
 **Depends on:** Improvement #2 (tier classification)
+
+---
+
+## 6. `gsc:track` — Per-opportunity feedback loop
+
+**Status:** ⬜ Todo
+
+**Problem:** `gsc:compare` diffs raw snapshots but has no concept of which queries were actively worked on. No way to answer "did P1 from last week's report actually improve after I rewrote that title tag?"
+
+**What to build:** A mechanism to tag worked-on queries, then filter the snapshot diff to those specifically.
+
+- A plain text or JSON file (e.g. `plans/gsc-tracked.json`) where you log worked-on queries with a date and note
+- `compare-snapshots.js` (or a new script) reads that file and highlights tracked queries in the diff — position delta, CTR delta, clicks delta
+- Output separates "tracked" from "everything else" so signal isn't buried in noise
+
+**File:** `scripts/gsc/track-queries.js` (new) or extend `compare-snapshots.js`
+**npm script:** `gsc:track`
+**Depends on:** Improvement #1 (`gsc:compare`)
+
+**Usage:**
+```bash
+# Mark a query as worked on
+npm run gsc:track -- --add "massage oxelösund" --note "rewrote title tag 2026-07-31"
+
+# Compare snapshots, highlight tracked queries
+npm run gsc:track -- --compare snapshot-A.json snapshot-B.json
+```
