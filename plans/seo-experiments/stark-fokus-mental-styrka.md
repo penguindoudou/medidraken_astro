@@ -72,6 +72,11 @@ Förbättra din koncentration, minska mental trötthet och bygg en stark inre gr
 
 No other elements were changed (H1, H2, body copy, FAQ are all identical to baseline).
 
+#### Commit `60c0c3d` — H1 alignment (2026-07-31)
+- **H1**: Aligned with title tag to reduce post-click bounce from expectation mismatch
+  - Before: `Stärk Fokus & Mental Styrka`
+  - After: `Mental Fokus & Inre Styrka`
+
 ---
 
 ### Notes
