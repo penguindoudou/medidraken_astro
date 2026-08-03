@@ -124,7 +124,7 @@ function classifyQuery(avgPosition, actualCtr, impressions) {
 // ---------------------------------------------------------------------------
 
 const dataDir = path.resolve(process.cwd(), 'plans/gsc-data');
-const files = fs.readdirSync(dataDir).filter(f => f.endsWith('.json')).sort();
+const files = fs.readdirSync(dataDir).filter(f => f.startsWith('gsc-keywords-') && f.endsWith('.json')).sort();
 
 if (files.length === 0) {
   console.error('No GSC JSON files found in plans/gsc-data/');

@@ -9,50 +9,53 @@ Google Search Console tooling for Medidraken. Fetch performance data, analyze ke
 ### Regular cadence (weekly)
 
 ```bash
-# 1. Fetch a fresh snapshot
+# 1. Fetch a fresh snapshot + immediately check for anomalies + print analysis
+npm run gsc:run
+# (equivalent to: npm run gsc:fetch && npm run gsc:alert && npm run gsc:analyze)
+
+# Or run steps individually if you want to pause between them:
 npm run gsc:fetch
-
-# 2. Immediately check for anomalies — drops, disappearances, new cannibalization
 npm run gsc:alert
+npm run gsc:analyze
 
-# 3. See what moved since last time (overall)
+# 2. See what moved since last time (overall)
 npm run gsc:compare
 
-# 4. Check how your tracked experiments are doing (focused view)
+# 3. Check how your tracked experiments are doing (focused view)
 npm run gsc:track -- --compare --tracked-only
 
-# 5. Decide what to actually work on this session
+# 4. Decide what to actually work on this session
 npm run gsc:action-plan
 # or show the top 5 opportunities at once:
 npm run gsc:action-plan -- --top 5
 # or target a specific keyword:
 npm run gsc:action-plan -- --keyword "massage nyköping"
 
-# 6. If the action is "new article", generate a pre-filled draft
+# 5. If the action is "new article", generate a pre-filled draft
 npm run gsc:draft -- --keyword "massage nyköping"
 ```
 
-> **Before acting on any recommendation from `gsc:action-plan`:** GSC lags up to 2 weeks
-> behind live changes. Check `plans/work-log.md` (updated via `npm run gsc:log`) or manually verify
-> the page wasn't recently updated before treating an opportunity as open.
+> **Work-log check:** `gsc:action-plan` automatically reads `plans/work-log.md` and warns you if the
+> ranking page has a pending measure-after date, or if the log itself is stale. The log is kept
+> current by a `post-push` git hook that runs `npm run gsc:log` automatically on every `git push`.
 
 ### After making a change to a page
 
 ```bash
-# 7. Tag the query so future compares show vs-baseline delta
+# 6. Tag the query so future compares show vs-baseline delta
 npm run gsc:track -- --add "massage nyköping" --page "/behandling/massage/" --note "rewrote title"
 
-# 8. Nudge Google to re-crawl the updated page
+# 7. Nudge Google to re-crawl the updated page
 npm run gsc:request-index -- /behandling/massage/
 ```
 
 ### Occasional — canonicalization cleanup
 
 ```bash
-# 9. Find .html ghosts and http:// variants Google has indexed
+# 8. Find .html ghosts and http:// variants Google has indexed
 npm run gsc:audit
 
-# 10. Submit fixes to the Indexing API (dry run first)
+# 9. Submit fixes to the Indexing API (dry run first)
 npm run gsc:cleanup:dry
 npm run gsc:cleanup
 ```
@@ -83,6 +86,24 @@ npm run gsc:analyze
 # Analyze a specific file:
 node scripts/gsc/analyze-gsc-data.js plans/gsc-data/gsc-keywords-2026-07-01.json
 ```
+
+---
+
+### `gsc:run` — fetch + alert + analyze in one shot
+
+Convenience shortcut that chains the three most common weekly steps in sequence:
+
+```bash
+npm run gsc:run
+```
+
+Equivalent to:
+
+```bash
+npm run gsc:fetch && npm run gsc:alert && npm run gsc:analyze
+```
+
+Use this at the top of a session when you want the full picture in one command. If any step fails the chain stops — fix the error and re-run from that step manually.
 
 ---
 
@@ -270,6 +291,16 @@ npm run gsc:action-plan -- --snapshot plans/gsc-data/gsc-keywords-2026-07-31.jso
 
 Each output includes: tier tag, position, CTR vs expected, opportunity score, ranking URL, source file path, and numbered instructions for the recommended action.
 
+**Work-log integration:** Before printing any recommendation, the script automatically cross-references `plans/work-log.md`. If the ranking page has a future `measure after` date (i.e. you've already pushed a change and are still in the GSC lag window), the output shows a warning so you don't act on stale signal.
+
+**Stale-log reminder:** The script also checks how recently `work-log.md` was updated:
+
+| Age of last entry | Output |
+|---|---|
+| ≤ 3 days | Silent — no message |
+| 4–13 days | `ℹ  Work-log last updated N days ago — run npm run gsc:log if you've pushed content changes since then` |
+| ≥ 14 days, or file missing/empty | `⚠️  Work-log is N days old — stale-data checks may be unreliable. Run: npm run gsc:log` |
+
 > ⚠️ **Stale data:** GSC lags up to 2 weeks behind live changes. Before acting, verify the target page hasn't been recently updated. Run `npm run gsc:log` to check `plans/work-log.md`.
 
 ---
@@ -298,6 +329,14 @@ npm run gsc:log -- --dry-run            # print what would be added, no write
 ```
 
 Run this at the start of any GSC session so you know which pages are too fresh to measure.
+
+**File filtering:** `.astro` files are logged from anywhere in `src/`. `.md`/`.mdx` files are only logged if they live under `src/` — root-level files like `README.md` or `CHANGELOG.md` have no GSC relevance and are skipped. Paths under `plans/`, `scripts/`, `src/layouts/`, `src/components/`, and `src/styles/` are also skipped.
+
+**Multi-file commits:** Single-file commits are logged as a flat line. Multi-file commits list the commit subject as a header with each changed file indented below, so related changes stay grouped rather than generating noisy duplicate entries.
+
+**`measure after` date:** The measure-after date is calculated from today (the push/deploy date), not from the commit date. This matters if commits were batched and pushed days after they were written — the 14-day GSC measurement window starts when Google can actually see the changes, not when git recorded the commit.
+
+**Auto-run on push:** A `post-push` git hook (`.git/hooks/post-push`) runs `npm run gsc:log` automatically on every `git push`. You don't need to run it manually unless you want to update the log mid-session before pushing.
 
 ---
 
