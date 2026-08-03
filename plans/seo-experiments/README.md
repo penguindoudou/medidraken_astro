@@ -32,10 +32,21 @@ git checkout <baseline-commit> -- src/pages/path/to/page.astro
 
 ## Measuring Results
 
-Pull a fresh GSC export from `scripts/gsc/fetch-gsc-queries.js` and compare:
-- Target query impressions & position
-- CTR
-- Total page clicks
+Each experiment's target query is registered in [`plans/gsc-tracked.json`](../gsc-tracked.json),
+which links the query to its baseline metrics and this experiment file.
+
+To measure all tracked queries against their baselines:
+
+```bash
+# Fetch a fresh snapshot first
+npm run gsc:fetch
+
+# Then compare — tracked queries appear first with vs-baseline delta
+npm run gsc:track -- --compare
+
+# Or show only tracked queries, no noise
+npm run gsc:track -- --compare --tracked-only
+```
 
 Minimum wait before measuring: **28 days** (GSC data lag + ranking stabilization).
 Ideally measure at 28 days and again at 56 days.

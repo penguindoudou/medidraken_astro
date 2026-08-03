@@ -1,0 +1,50 @@
+{
+  "_comment": "Tracked GSC queries — queries we have actively worked on. Used by compare-snapshots.js to surface signal from noise. Edit manually or via: npm run gsc:track -- --add",
+  "tracked": [
+    {
+      "query": "stresshantering nyköping",
+      "page": "/na-dina-halsomal/minska-stress-hitta-inre-lugn/",
+      "experiment": "plans/seo-experiments/minska-stress-hitta-inre-lugn.md",
+      "action": "On-page rewrite — H1 and meta title updated to surface local keyword",
+      "date": "2026-07-30",
+      "baseline": {
+        "snapshot": "plans/gsc-data/gsc-keywords-2026-07-30.json",
+        "impressions": 28,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 14.0
+      },
+      "measureAfter": "2026-08-27"
+    },
+    {
+      "query": "stresshuvudvärk",
+      "page": "/symtom/huvudvark/spanningshuvudvark-stresshuvudvark/",
+      "experiment": "plans/seo-experiments/spanningshuvudvark-stresshuvudvark.md",
+      "action": "CTR fix — title and meta description rewritten to lead with query term and add local signal",
+      "date": "2026-07-30",
+      "baseline": {
+        "snapshot": "plans/gsc-data/gsc-keywords-2026-07-30.json",
+        "impressions": 18,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 9.0
+      },
+      "measureAfter": "2026-08-27"
+    },
+    {
+      "query": "mental fokus",
+      "page": "/na-dina-halsomal/stark-fokus-mental-styrka/",
+      "experiment": "plans/seo-experiments/stark-fokus-mental-styrka.md",
+      "action": "CTR fix — title rewritten to open with 'Mental Fokus', meta description reframed around prospect pain",
+      "date": "2026-07-30",
+      "baseline": {
+        "snapshot": "plans/gsc-data/gsc-keywords-2026-07-30.json",
+        "impressions": 12,
+        "clicks": 0,
+        "ctr": 0,
+        "position": 7.2
+      },
+      "measureAfter": "2026-08-27"
+    }
+  ]
+}
