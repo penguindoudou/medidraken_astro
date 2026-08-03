@@ -26,6 +26,22 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+// ─── Load tracked queries ─────────────────────────────────────────────────────
+
+const TRACKED_FILE = path.resolve(process.cwd(), 'plans/gsc-tracked.json');
+
+function loadTrackedQueries() {
+  if (!fs.existsSync(TRACKED_FILE)) return new Set();
+  try {
+    const data = JSON.parse(fs.readFileSync(TRACKED_FILE, 'utf8'));
+    return new Set((data.tracked ?? []).map(t => t.query));
+  } catch (_) {
+    return new Set();
+  }
+}
+
+const trackedQueries = loadTrackedQueries();
+
 // ─── CLI args ────────────────────────────────────────────────────────────────
 
 const args = process.argv.slice(2).filter(a => !a.startsWith('--'));
@@ -222,9 +238,14 @@ function printSection(title, rows, renderRow) {
   console.log();
 }
 
+// Tag tracked queries with a marker
+function trackedTag(query) {
+  return trackedQueries.has(query) ? ' 🎯' : '';
+}
+
 printSection(`📈 Improved (${improved.length})`, improved, (r) => {
   console.log(
-    `  ${posArrow(r.posDelta)} ${pad(r.query, Q)}` +
+    `  ${posArrow(r.posDelta)} ${pad(r.query + trackedTag(r.query), Q + 2)}` +
     `  pos ${padL(fmt(r.beforePos), 6)} → ${padL(fmt(r.afterPos), 6)}` +
     `  (${fmt(r.posDelta, 1)})` +
     `  imp ${padL(r.afterImp, 4)} (${impDelta(r.beforeImp, r.afterImp)})` +
@@ -234,7 +255,7 @@ printSection(`📈 Improved (${improved.length})`, improved, (r) => {
 
 printSection(`📉 Dropped (${dropped.length})`, dropped, (r) => {
   console.log(
-    `  ${posArrow(r.posDelta)} ${pad(r.query, Q)}` +
+    `  ${posArrow(r.posDelta)} ${pad(r.query + trackedTag(r.query), Q + 2)}` +
     `  pos ${padL(fmt(r.beforePos), 6)} → ${padL(fmt(r.afterPos), 6)}` +
     `  (${fmt(r.posDelta, 1)})` +
     `  imp ${padL(r.afterImp, 4)} (${impDelta(r.beforeImp, r.afterImp)})` +
@@ -244,7 +265,7 @@ printSection(`📉 Dropped (${dropped.length})`, dropped, (r) => {
 
 printSection(`🆕 New queries (${appeared.length})`, appeared, (r) => {
   console.log(
-    `  ${pad(r.query, Q)}` +
+    `  ${pad(r.query + trackedTag(r.query), Q + 2)}` +
     `  pos ${padL(fmt(r.position), 6)}` +
     `  imp ${padL(r.impressions, 4)}` +
     `  clicks ${padL(r.clicks, 3)}` +
@@ -254,7 +275,7 @@ printSection(`🆕 New queries (${appeared.length})`, appeared, (r) => {
 
 printSection(`👻 Disappeared (${disappeared.length})`, disappeared, (r) => {
   console.log(
-    `  ${pad(r.query, Q)}` +
+    `  ${pad(r.query + trackedTag(r.query), Q + 2)}` +
     `  was pos ${padL(fmt(r.position), 6)}` +
     `  imp ${padL(r.impressions, 4)}` +
     `  clicks ${padL(r.clicks, 3)}`
@@ -295,5 +316,11 @@ console.log(
   `\n  Filters active: min-pos-delta=${MIN_POS_DELTA}  min-imp=${MIN_IMP}  top=${TOP_N}`
 );
 console.log(
-  `  To adjust: --min-pos-delta=3 --min-imp=5 --top=50\n`
+  `  To adjust: --min-pos-delta=3 --min-imp=5 --top=50`
 );
+if (trackedQueries.size > 0) {
+  console.log(
+    `\n  🎯 ${trackedQueries.size} tracked ${trackedQueries.size === 1 ? 'query' : 'queries'} marked above. For a focused view: npm run gsc:track -- --compare`
+  );
+}
+console.log();

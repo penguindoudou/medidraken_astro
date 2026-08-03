@@ -155,7 +155,7 @@ async function main() {
   console.log(`\nLoading audit report: ${path.basename(reportFile)}`);
   const report = JSON.parse(fs.readFileSync(reportFile, 'utf8'));
 
-  const allIssues = [...report.htmlGhosts, ...report.httpVariants];
+  const allIssues = [...(report.htmlGhosts ?? []), ...(report.httpVariants ?? []), ...(report.nonWwwVariants ?? [])];
   if (allIssues.length === 0) {
     console.log('✅  No issues in report — nothing to do.');
     return;
@@ -164,13 +164,15 @@ async function main() {
   console.log(
     `Found ${allIssues.length} issue(s): ` +
       `${report.summary.htmlGhosts} .html ghost(s), ` +
-      `${report.summary.httpVariants} http:// variant(s)`
+      `${report.summary.httpVariants} http:// variant(s), ` +
+      `${report.summary.nonWwwVariants ?? 0} non-www variant(s)`
   );
 
   if (DRY_RUN) {
     console.log('\n── DRY RUN — no requests will be sent ──────────────────────');
     for (const e of allIssues) {
-      console.log(`\n  Bad URL  : ${e.badUrl}`);
+      const kind = e.isHtmlGhost ? '.html ghost' : e.isNonWww ? 'non-www' : 'http://';
+      console.log(`\n  Bad URL  : ${e.badUrl}  [${kind}]`);
       console.log(`  Canonical: ${e.canonical}`);
     }
     console.log('\nRemove --dry-run to execute.\n');

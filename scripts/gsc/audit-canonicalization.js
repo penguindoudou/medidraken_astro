@@ -75,14 +75,18 @@ async function getAuthClient(scopes) {
 
 /**
  * Given a "ghost" URL, return what the canonical version should be.
- *   http://example.com/page.html → https://example.com/page/
- *   https://example.com/page.html → https://example.com/page/
- *   http://example.com/page/     → https://example.com/page/
+ *   http://example.com/page.html  → https://www.example.com/page/
+ *   https://example.com/page.html → https://www.example.com/page/
+ *   http://example.com/page/      → https://www.example.com/page/
+ *   https://example.com/page/     → https://www.example.com/page/  (non-www → www)
  */
 function toCanonical(url) {
   let u = url
-    .replace(/^http:\/\//, 'https://')  // upgrade to https
-    .replace(/\.html$/, '/');           // strip .html, add slash
+    .replace(/^http:\/\//, 'https://')   // upgrade to https
+    .replace(/\.html$/, '/');            // strip .html, add slash
+
+  // ensure www. prefix
+  u = u.replace(/^https:\/\/(?!www\.)/, 'https://www.');
 
   // ensure trailing slash (but don't double it)
   if (!u.endsWith('/')) u += '/';
@@ -91,7 +95,11 @@ function toCanonical(url) {
 }
 
 function isBadUrl(url) {
-  return url.endsWith('.html') || url.startsWith('http://');
+  return (
+    url.endsWith('.html') ||
+    url.startsWith('http://') ||
+    (url.startsWith('https://') && !url.startsWith('https://www.'))
+  );
 }
 
 // ─── Main ────────────────────────────────────────────────────────────────────
@@ -146,8 +154,9 @@ async function main() {
 
   // ── Classify ──────────────────────────────────────────────────────────────
 
-  const htmlGhosts = [];
-  const httpVariants = [];
+  const htmlGhosts    = [];
+  const httpVariants  = [];
+  const nonWwwVariants = [];
 
   for (const url of allUrls) {
     if (!isBadUrl(url)) continue;
@@ -155,14 +164,17 @@ async function main() {
     const entry = {
       badUrl: url,
       canonical: toCanonical(url),
-      isHtmlGhost: url.endsWith('.html'),
-      isHttpVariant: url.startsWith('http://'),
+      isHtmlGhost:    url.endsWith('.html'),
+      isHttpVariant:  url.startsWith('http://'),
+      isNonWww:       url.startsWith('https://') && !url.startsWith('https://www.'),
     };
 
     if (url.endsWith('.html')) {
       htmlGhosts.push(entry);
-    } else {
+    } else if (url.startsWith('http://')) {
       httpVariants.push(entry);
+    } else {
+      nonWwwVariants.push(entry);
     }
   }
 
@@ -174,12 +186,14 @@ async function main() {
     period: { startDate, endDate, daysBack: DAYS_BACK },
     totalUrlsSeen: allUrls.size,
     summary: {
-      htmlGhosts: htmlGhosts.length,
-      httpVariants: httpVariants.length,
-      total: htmlGhosts.length + httpVariants.length,
+      htmlGhosts:      htmlGhosts.length,
+      httpVariants:    httpVariants.length,
+      nonWwwVariants:  nonWwwVariants.length,
+      total: htmlGhosts.length + httpVariants.length + nonWwwVariants.length,
     },
     htmlGhosts,
     httpVariants,
+    nonWwwVariants,
   };
 
   const outputDir = path.resolve(process.cwd(), 'plans/gsc-data');
@@ -194,7 +208,7 @@ async function main() {
 
   console.log('\n── Canonicalization Audit ──────────────────────────────────');
 
-  if (htmlGhosts.length === 0 && httpVariants.length === 0) {
+  if (htmlGhosts.length === 0 && httpVariants.length === 0 && nonWwwVariants.length === 0) {
     console.log('✅  No canonicalization issues found in GSC data.');
   } else {
     if (htmlGhosts.length > 0) {
@@ -213,10 +227,18 @@ async function main() {
       }
     }
 
+    if (nonWwwVariants.length > 0) {
+      console.log(`\n⚠  non-www HTTPS variants (${nonWwwVariants.length}):`);
+      for (const e of nonWwwVariants) {
+        console.log(`   ${e.badUrl}`);
+        console.log(`   → canonical: ${e.canonical}`);
+      }
+    }
+
     console.log('\n────────────────────────────────────────────────────────────');
     console.log(
       `Total issues: ${report.summary.total}  ` +
-        `(${htmlGhosts.length} .html · ${httpVariants.length} http://)`
+        `(${htmlGhosts.length} .html · ${httpVariants.length} http:// · ${nonWwwVariants.length} non-www)`
     );
     console.log(
       `\nNext step: node scripts/gsc/submit-canonical-cleanup.js ${path.basename(outputFile)}`
