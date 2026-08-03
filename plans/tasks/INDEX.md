@@ -49,6 +49,7 @@ Each file in this directory is a task brief. Open the relevant file at the start
 | `fetch-gsc-queries.js` | `npm run gsc:fetch` |
 | `analyze-gsc-data.js` | `npm run gsc:analyze` |
 | `alert.js` | `npm run gsc:alert` |
+| *(fetch + alert + analyze)* | `npm run gsc:run` |
 | `compare-snapshots.js` | `npm run gsc:compare` |
 | `track-queries.js` | `npm run gsc:track` |
 | `request-index.js` | `npm run gsc:request-index` |
@@ -56,5 +57,7 @@ Each file in this directory is a task brief. Open the relevant file at the start
 | `audit-canonicalization.js` | `npm run gsc:audit` |
 | `submit-canonical-cleanup.js` | `npm run gsc:cleanup` |
 | `action-plan.js` | `npm run gsc:action-plan` |
+| `audit-schema.js` | `npm run gsc:schema` |
+| `update-work-log.js` | `npm run gsc:log` |
 
 All scripts live in `scripts/gsc/`. Auth is configured via `.env` (service account key). Data saved to `plans/gsc-data/`.
