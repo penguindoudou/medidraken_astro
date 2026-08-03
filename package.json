@@ -12,10 +12,15 @@
     "gsc:cleanup:dry": "node scripts/gsc/submit-canonical-cleanup.js --dry-run",
     "gsc:fetch": "node scripts/gsc/fetch-gsc-queries.js",
     "gsc:analyze": "node scripts/gsc/analyze-gsc-data.js",
-    "gsc:run": "npm run gsc:fetch && npm run gsc:analyze",
+    "gsc:alert": "node scripts/gsc/alert.js",
+    "gsc:run": "npm run gsc:fetch && npm run gsc:alert && npm run gsc:analyze",
     "gsc:compare": "node scripts/gsc/compare-snapshots.js",
     "gsc:request-index": "node scripts/gsc/request-index.js",
-    "gsc:draft": "node scripts/gsc/generate-article-draft.js"
+    "gsc:draft": "node scripts/gsc/generate-article-draft.js",
+    "gsc:track": "node scripts/gsc/track-queries.js",
+    "gsc:action-plan": "node scripts/gsc/action-plan.js",
+    "gsc:schema": "node scripts/gsc/audit-schema.js",
+    "gsc:log": "node scripts/gsc/update-work-log.js"
   },
   "overrides": {
     "vite": "^8.1.3"
