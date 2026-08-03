@@ -17,6 +17,7 @@ export default defineConfig({
     '/taiji.html':    '/kurser/tai-chi/',
     '/taiji':         '/kurser/tai-chi/',
     '/johannes.html': '/om-oss/',
+    '/kurser.html':   '/kurser/',
     '/fest.html':     '/for-foretag/foretagsevent-aktiviteter/',
   },
   devToolbar: {
