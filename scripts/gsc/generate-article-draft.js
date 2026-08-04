@@ -22,70 +22,11 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-
-// ---------------------------------------------------------------------------
-// Classification logic (mirrors analyze-gsc-data.js)
-// ---------------------------------------------------------------------------
-
-const EXPECTED_CTR = {
-  1: 0.284, 2: 0.152, 3: 0.103, 4: 0.073, 5: 0.056,
-  6: 0.044, 7: 0.035, 8: 0.029, 9: 0.024, 10: 0.020,
-  11: 0.016, 12: 0.014, 13: 0.012, 14: 0.011, 15: 0.010,
-  16: 0.009, 17: 0.008, 18: 0.007, 19: 0.007, 20: 0.006,
-};
-const TAIL_CTR      = 0.004;
-const NOISE_THRESHOLD = 5;
-const CTR_TOLERANCE   = 0.20;
-
-function expectedCtr(position) {
-  return EXPECTED_CTR[Math.round(position)] ?? TAIL_CTR;
-}
-
-function ctrGap(actualCtr, position) {
-  const expected = expectedCtr(position);
-  return expected === 0 ? 0 : (actualCtr - expected) / expected;
-}
-
-function opportunityScore(impressions, actualCtr, position) {
-  const gap = expectedCtr(position) - actualCtr;
-  return gap > 0 ? Math.round(impressions * gap) : 0;
-}
-
-function classifyQuery(avgPosition, actualCtr, impressions) {
-  if (impressions < NOISE_THRESHOLD) {
-    return { tag: '⚫ Noise', description: 'Too few impressions to act on' };
-  }
-
-  const gap             = ctrGap(actualCtr, avgPosition);
-  const underperforming = gap < -CTR_TOLERANCE;
-  const overperforming  = gap >  CTR_TOLERANCE;
-
-  if (actualCtr < 0.005 && impressions >= 20) {
-    return { tag: '🔴 Snippet', description: 'Impressions with near-zero CTR — title/description broken' };
-  }
-
-  if (avgPosition <= 3) {
-    if (underperforming) {
-      return { tag: '🟡 Push CTR', description: 'Top position but CTR below expected — rich result or snippet mismatch' };
-    }
-    return { tag: '🔵 Protect', description: 'Strong position and healthy CTR — monitor for drops' };
-  }
-
-  if (avgPosition <= 20) {
-    if (underperforming) {
-      return { tag: '🟢 Quick win', description: 'Good position, low CTR — improve title/meta description' };
-    }
-    if (overperforming) {
-      return { tag: '🌟 Gem', description: 'CTR above expected for this position — push ranking higher' };
-    }
-    return { tag: '🟠 Push rank', description: 'Normal CTR but ranking can improve — strengthen content' };
-  }
-
-  if (overperforming) {
-    return { tag: '🌟 Gem', description: 'Surprising CTR for deep position — big upside with content investment' };
-  }
-  return { tag: '🟡 Content', description: 'Deep position — needs content depth and authority to climb' };
-}
+import {
+  EXPECTED_CTR, TAIL_CTR, NOISE_THRESHOLD, CTR_TOLERANCE,
+  expectedCtr, ctrGap, opportunityScore, classifyQuery,
+  TIER_PRIORITY,
+} from './lib/classify.js';
 
 // ---------------------------------------------------------------------------
 // Angle suggestions per tier
@@ -102,18 +43,6 @@ const ANGLE_BY_TAG = {
   '🟡 Content':    'Sidan är djupt rankad och behöver grundläggande innehållslyftet: djupare täckning av ämnet, fler relevanta sektioner och bättre intern länkstruktur.',
   '⚫ Noise':       'För lite data för att agera. Bevaka om sidan samlar fler intryck kommande månader.',
 };
-
-// Priority order for auto-selection (pick first matching tier)
-const TIER_PRIORITY = [
-  '🟢 Quick win',
-  '🌟 Gem',
-  '🟡 Push CTR',
-  '🔴 Snippet',
-  '🟠 Push rank',
-  '🟡 Content',
-  '🔵 Protect',
-  '⚫ Noise',
-];
 
 // ---------------------------------------------------------------------------
 // Helpers

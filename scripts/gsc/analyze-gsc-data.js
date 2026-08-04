@@ -1,44 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
-
-// ---------------------------------------------------------------------------
-// Expected CTR by position (industry benchmark averages for organic results).
-// Source: aggregated studies (Sistrix, Backlinko, AWR). Used as baseline until
-// we accumulate enough site-specific data to replace this table.
-// Positions beyond 20 get a flat tail — they rarely drive meaningful CTR.
-// ---------------------------------------------------------------------------
-const EXPECTED_CTR = {
-  1:  0.284,
-  2:  0.152,
-  3:  0.103,
-  4:  0.073,
-  5:  0.056,
-  6:  0.044,
-  7:  0.035,
-  8:  0.029,
-  9:  0.024,
-  10: 0.020,
-  11: 0.016,
-  12: 0.014,
-  13: 0.012,
-  14: 0.011,
-  15: 0.010,
-  16: 0.009,
-  17: 0.008,
-  18: 0.007,
-  19: 0.007,
-  20: 0.006,
-};
-
-const TAIL_CTR = 0.004; // positions 21+
-
-// Minimum impressions to be worth classifying (below this = noise)
-const NOISE_THRESHOLD = 5;
-
-// CTR tolerance band: if actual CTR is within this fraction of expected,
-// we consider it "on track" rather than flagging it.
-// e.g. 0.20 means ±20% of expected CTR is considered normal.
-const CTR_TOLERANCE = 0.20;
+import {
+  EXPECTED_CTR, TAIL_CTR, NOISE_THRESHOLD, CTR_TOLERANCE,
+  expectedCtr, ctrGap, opportunityScore, classifyQuery,
+} from './lib/classify.js';
 
 // ---------------------------------------------------------------------------
 
@@ -46,79 +11,6 @@ function normalizeUrl(url) {
   return url
     .replace(/^https?:\/\/(www\.)?/, '')
     .replace(/\/$/, '');
-}
-
-function expectedCtr(position) {
-  const rounded = Math.round(position);
-  return EXPECTED_CTR[rounded] ?? TAIL_CTR;
-}
-
-// CTR gap: how far actual CTR deviates from expected, as a fraction.
-// Positive = over-performing, negative = under-performing.
-function ctrGap(actualCtr, position) {
-  const expected = expectedCtr(position);
-  if (expected === 0) return 0;
-  return (actualCtr - expected) / expected;
-}
-
-// Opportunity score: estimated additional clicks if CTR improved to expected.
-// For under-performers: impressions × (expectedCtr - actualCtr).
-// For winners: 0 — they're already doing well.
-function opportunityScore(impressions, actualCtr, position) {
-  const expected = expectedCtr(position);
-  const gap = expected - actualCtr;
-  return gap > 0 ? Math.round(impressions * gap) : 0;
-}
-
-// ---------------------------------------------------------------------------
-// Action tag classification.
-// Two inputs drive every tag: position band + CTR behaviour vs expected.
-// ---------------------------------------------------------------------------
-function classifyQuery(avgPosition, actualCtr, impressions) {
-  if (impressions < NOISE_THRESHOLD) {
-    return { tag: '⚫ Noise', description: 'Too few impressions to act on' };
-  }
-
-  const expected = expectedCtr(avgPosition);
-  const gap = ctrGap(actualCtr, avgPosition);
-  const underperforming = gap < -CTR_TOLERANCE;
-  const overperforming  = gap >  CTR_TOLERANCE;
-  const onTrack         = !underperforming && !overperforming;
-
-  // Zero (or near-zero) clicks with real impressions — snippet is broken
-  // regardless of position.
-  if (actualCtr < 0.005 && impressions >= 20) {
-    return { tag: '🔴 Snippet', description: 'Impressions with near-zero CTR — title/description broken' };
-  }
-
-  if (avgPosition <= 3) {
-    if (underperforming) {
-      // Ranking well but clicks are stolen or snippet is off
-      return { tag: '🟡 Push CTR', description: 'Top position but CTR below expected — rich result or snippet mismatch' };
-    }
-    // On track or over-performing at top → protect
-    return { tag: '🔵 Protect', description: 'Strong position and healthy CTR — monitor for drops' };
-  }
-
-  if (avgPosition <= 20) {
-    if (underperforming) {
-      // Middle of first page but clicks are low → title/meta fix
-      return { tag: '🟢 Quick win', description: 'Good position, low CTR — improve title/meta description' };
-    }
-    if (overperforming) {
-      // Punching above weight — worth pushing to top 3
-      return { tag: '🌟 Gem', description: 'CTR above expected for this position — push ranking higher' };
-    }
-    // Normal CTR for position — needs ranking improvement
-    return { tag: '🟠 Push rank', description: 'Normal CTR but ranking can improve — strengthen content' };
-  }
-
-  // Position 21+
-  if (overperforming) {
-    // Strong clicks despite deep position → high-potential, needs content work
-    return { tag: '🌟 Gem', description: 'Surprising CTR for deep position — big upside with content investment' };
-  }
-  return { tag: '🟡 Content', description: 'Deep position — needs content depth and authority to climb' };
 }
 
 // ---------------------------------------------------------------------------
