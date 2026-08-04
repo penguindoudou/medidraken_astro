@@ -8,7 +8,9 @@
  * Checks:
  *   1. Tracked query position drop     (threshold: >3 positions)
  *   2. General query position drop     (threshold: >5 positions, ≥5 impressions)
- *   3. Site-wide CTR drop              (threshold: >10% WoW, ≥500 impressions floor)
+ *   3. Site-wide CTR drop              (threshold: >10% WoW, ≥500 impressions floor,
+ *                                        computed on shared queries only to avoid
+ *                                        false positives from newly indexed pages)
  *   4. Page disappeared from index     (was ranking, now zero impressions in GSC)
  *   5. New cannibalization detected    (query now maps to 2+ URLs vs before)
  *
@@ -347,11 +349,15 @@ for (const query of Object.keys(before)) {
 alertGeneralDrop.sort((a, b) => b.delta - a.delta); // biggest drop first
 
 // ─── Check 3: Site-wide CTR drop (>10% relative, ≥500 impressions floor) ─────
+// Use only queries present in BOTH snapshots (intersection) so that newly
+// indexed pages don't dilute the aggregate CTR and trigger false positives.
 
-const totalBeforeImp    = Object.values(before).reduce((s, r) => s + r.impressions, 0);
-const totalAfterImp     = Object.values(after).reduce((s, r) => s + r.impressions, 0);
-const totalBeforeClicks = Object.values(before).reduce((s, r) => s + r.clicks, 0);
-const totalAfterClicks  = Object.values(after).reduce((s, r) => s + r.clicks, 0);
+const sharedQueries = Object.keys(before).filter(q => q in after);
+
+const totalBeforeImp    = sharedQueries.reduce((s, q) => s + before[q].impressions, 0);
+const totalAfterImp     = sharedQueries.reduce((s, q) => s + after[q].impressions,  0);
+const totalBeforeClicks = sharedQueries.reduce((s, q) => s + before[q].clicks,      0);
+const totalAfterClicks  = sharedQueries.reduce((s, q) => s + after[q].clicks,       0);
 
 const ctrBefore = totalBeforeImp > 0 ? totalBeforeClicks / totalBeforeImp : 0;
 const ctrAfter  = totalAfterImp  > 0 ? totalAfterClicks  / totalAfterImp  : 0;
@@ -366,11 +372,12 @@ if (
     alertCtr.push({
       ctrBefore,
       ctrAfter,
-      ctrDropPct:   ctrDrop * 100,
-      beforeImp:    totalBeforeImp,
-      afterImp:     totalAfterImp,
-      beforeClicks: totalBeforeClicks,
-      afterClicks:  totalAfterClicks,
+      ctrDropPct:    ctrDrop * 100,
+      beforeImp:     totalBeforeImp,
+      afterImp:      totalAfterImp,
+      beforeClicks:  totalBeforeClicks,
+      afterClicks:   totalAfterClicks,
+      sharedCount:   sharedQueries.length,
     });
   }
 }
@@ -489,7 +496,7 @@ if (alertGeneralDrop.length > 0) {
 if (alertCtr.length > 0) {
   totalAlerts += 1;
   const r = alertCtr[0];
-  console.log(`⚠  Site-wide CTR drop`);
+  console.log(`⚠  Site-wide CTR drop (shared queries only — ${r.sharedCount} quer${r.sharedCount === 1 ? 'y' : 'ies'} in both snapshots)`);
   console.log('─'.repeat(70));
   console.log(
     `  CTR     : ${(r.ctrBefore * 100).toFixed(2)}% → ${(r.ctrAfter * 100).toFixed(2)}%` +
