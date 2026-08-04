@@ -9,10 +9,11 @@
  * commit hash stored in a comment on each date-group header).
  *
  * Usage:
- *   npm run gsc:log                  # last 30 commits
- *   npm run gsc:log -- --since 2026-07-01   # commits since a date
- *   npm run gsc:log -- --n 50              # last N commits
- *   npm run gsc:log -- --dry-run           # print what would be added, no write
+ *   npm run gsc:log                              # last 30 commits (14-day measure window)
+ *   npm run gsc:log -- --since 2026-07-01        # commits since a date
+ *   npm run gsc:log -- --n 50                    # last N commits
+ *   npm run gsc:log -- --dry-run                 # print what would be added, no write
+ *   npm run gsc:log -- --measure-days 7          # use 7-day window instead of default 14
  */
 
 import fs            from 'node:fs';
@@ -37,9 +38,6 @@ const SKIP_PREFIXES = [
   'src/styles/',
 ];
 
-/** Days to add to the commit date for the "measure after" date. */
-const MEASURE_DAYS  = 14;
-
 // ─── CLI args ──────────────────────────────────────────────────────────────────
 
 const rawArgs = process.argv.slice(2);
@@ -53,6 +51,14 @@ function hasFlag(name) { return rawArgs.includes(`--${name}`); }
 const DRY_RUN = hasFlag('dry-run');
 const SINCE   = getFlag('since');        // e.g. "2026-07-01"
 const N       = parseInt(getFlag('n') ?? '30', 10);
+
+/** Days to add to the push date for the "measure after" date. Override with --measure-days. */
+const MEASURE_DAYS  = parseInt(getFlag('measure-days') ?? '14', 10);
+
+if (isNaN(MEASURE_DAYS) || MEASURE_DAYS < 1 || MEASURE_DAYS > 90) {
+  console.error('--measure-days must be a number between 1 and 90');
+  process.exit(1);
+}
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
