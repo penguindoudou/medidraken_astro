@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "gsc:audit": "node scripts/gsc/audit-canonicalization.js",
+    "gsc:audit:verify": "node scripts/gsc/audit-canonicalization.js --verify",
     "gsc:cleanup": "node scripts/gsc/submit-canonical-cleanup.js",
     "gsc:cleanup:dry": "node scripts/gsc/submit-canonical-cleanup.js --dry-run",
     "gsc:redirects": "node scripts/gsc/review-redirects.js",
@@ -23,7 +24,11 @@
     "gsc:track": "node scripts/gsc/track-queries.js",
     "gsc:action-plan": "node scripts/gsc/action-plan.js",
     "gsc:schema": "node scripts/gsc/audit-schema.js",
-    "gsc:log": "node scripts/gsc/update-work-log.js"
+    "gsc:log": "node scripts/gsc/update-work-log.js",
+    "gsc:prune": "node scripts/gsc/prune-snapshots.js",
+    "gsc:prune:run": "node scripts/gsc/prune-snapshots.js --confirm",
+    "gsc:test:redirects": "node scripts/gsc/tests/test-redirects-map.js",
+    "gsc:test:alert": "node scripts/gsc/tests/test-alert-ctr.mjs"
   },
   "overrides": {
     "vite": "^8.1.3"

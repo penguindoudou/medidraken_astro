@@ -55,6 +55,9 @@ npm run gsc:request-index -- /behandling/massage/
 # 8. Find .html ghosts and http:// variants Google has indexed
 npm run gsc:audit
 
+# 8a. Same, but also HTTP-verify all non-www and http:// canonical targets
+npm run gsc:audit:verify
+
 # 9. Submit fixes to the Indexing API (dry run first)
 npm run gsc:cleanup:dry
 npm run gsc:cleanup
@@ -202,18 +205,41 @@ Paths are resolved against `SITE_BASE_URL` (defaults to `https://medidraken.com`
 
 ### `audit-canonicalization.js` — `npm run gsc:audit`
 
-Fetches all URLs Google has seen and flags two types of canonicalization problems:
+Fetches all URLs Google has seen and flags three types of canonicalization problems:
 - `.html` ghost pages (e.g. `/kontakt.html` instead of `/kontakt/`)
 - `http://` variants that should be `https://`
+- non-www HTTPS variants (`https://medidraken.com/…` instead of `https://www.medidraken.com/…`)
+
+Entries are classified into two trust tiers:
+- **`known_redirect`** — path has an explicit entry in `astro.config.mjs` redirects → fully trusted, no action needed
+- **`mechanical_guess` / `needsReview: true`** — canonical was inferred automatically
+
+The `needsReview` flag means different things depending on the category:
+
+| Category | What needsReview means | Fix |
+|---|---|---|
+| `.html` ghost | Slug may have changed between old site and Astro — the target could be wrong | Add an explicit redirect entry in `astro.config.mjs`, then re-run |
+| `http://` variant | Target not yet confirmed live | Run `--verify` to auto-clear if the target returns 200 |
+| non-www HTTPS | Target not yet confirmed live | Run `--verify` to auto-clear if the target returns 200 |
+
+`http://` and non-www variants do **not** need redirect entries in `astro.config.mjs` — Cloudflare handles protocol and www-prefix enforcement at the edge. `--verify` just confirms the target page actually exists.
 
 Saves a report to `plans/gsc-data/canon-audit-YYYY-MM-DD.json`.
 
 ```bash
+# Fast run — classify only, no network requests to the live site
 npm run gsc:audit
+
+# With live verification — HEAD-checks all http:// and non-www canonical targets
+# Clears needsReview automatically for any that return HTTP 200
+npm run gsc:audit:verify
 
 # Look back further than the default 90 days:
 node scripts/gsc/audit-canonicalization.js --days 180
+node scripts/gsc/audit-canonicalization.js --verify --days 180
 ```
+
+After `--verify`, entries confirmed live show `✅ [verified live — HTTP 200]` in the output. Any that time out or return non-200 stay flagged so you can investigate.
 
 ---
 
@@ -326,6 +352,7 @@ npm run gsc:log                         # last 30 commits
 npm run gsc:log -- --since 2026-07-01   # commits since a date
 npm run gsc:log -- --n 50               # last N commits
 npm run gsc:log -- --dry-run            # print what would be added, no write
+npm run gsc:log -- --measure-days 7     # use 7-day window instead of default 14
 ```
 
 Run this at the start of any GSC session so you know which pages are too fresh to measure.
@@ -337,6 +364,49 @@ Run this at the start of any GSC session so you know which pages are too fresh t
 **`measure after` date:** The measure-after date is calculated from today (the push/deploy date), not from the commit date. This matters if commits were batched and pushed days after they were written — the 14-day GSC measurement window starts when Google can actually see the changes, not when git recorded the commit.
 
 **Auto-run on push:** A `post-push` git hook (`.git/hooks/post-push`) runs `npm run gsc:log` automatically on every `git push`. You don't need to run it manually unless you want to update the log mid-session before pushing.
+
+---
+
+### `review-redirects.js` — `npm run gsc:redirects` / `gsc:redirects:broken`
+
+Interactive terminal review of every redirect defined in `astro.config.mjs`. For each old → new pair it:
+1. Checks that the target URL is live (HTTP 200)
+2. Prints the mapping with its live status
+3. Lets you press Enter to keep it, or type a replacement target path
+
+At the end, any changes you typed are written back to `astro.config.mjs`.
+
+```bash
+# Review all redirects — live-check every target
+npm run gsc:redirects
+
+# Review only broken targets (non-200 or timeout)
+npm run gsc:redirects:broken
+```
+
+Use this when you suspect a redirect is pointing at a dead or moved page, or after a content restructure where target paths may have changed.
+
+---
+
+### `redirects-ui.js` — `npm run gsc:redirects:ui`
+
+Browser-based UI for reviewing and editing redirects in `astro.config.mjs`. Starts a local web server at `http://localhost:4399`.
+
+Features:
+- **Live status checks** — HEAD-checks every redirect target on page load; broken targets are highlighted in red
+- **Inline editing** — edit any target path directly in the table; unsaved changes are highlighted in amber
+- **Per-row re-check** — re-verify a single target after editing (↺ button)
+- **Re-check all** — re-verify every target in one click
+- **Save** — writes all pending edits back to `astro.config.mjs` in one shot
+- **Broken-only filter** — toggle to hide passing redirects and focus on problems
+
+```bash
+npm run gsc:redirects:ui
+# → open http://localhost:4399
+# Ctrl+C to stop
+```
+
+Prefer this over the terminal script (`gsc:redirects`) when you have many redirects to audit at once — the table view makes it easier to scan the full set, and you can save all changes in one write rather than one at a time.
 
 ---
 
@@ -364,7 +434,7 @@ All scripts share the same auth resolution order. Add one of these to your `.env
 | Pattern | Created by |
 |---|---|
 | `gsc-keywords-YYYY-MM-DD.json` | `fetch-gsc-queries.js` |
-| `canon-audit-YYYY-MM-DD.json` | `audit-canonicalization.js` |
+| `canon-audit-YYYY-MM-DD.json` | `audit-canonicalization.js` — includes `verified: true` and per-entry `verification` object when run with `--verify` |
 | `canon-cleanup-YYYY-MM-DD.json` | `submit-canonical-cleanup.js` |
 | `schema-audit-YYYY-MM-DD.json` | `audit-schema.js` |
 | `plans/work-log.md` | `update-work-log.js` — human-readable content change log |

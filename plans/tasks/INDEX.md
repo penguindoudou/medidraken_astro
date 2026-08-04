@@ -1,6 +1,6 @@
 # Task Queue — Medidraken SEO Pipeline
 
-> **Start here:** Next up is [task 4a — wire work-log into action-plan](task-04a-work-log-action-plan.md). Or run `npm run gsc:action-plan` to find today's top opportunity.
+> **Start here:** Next up is [task 10 — dedup classify lib](task-10-dedup-classify-lib.md) (highest-risk: three files currently diverge). Or run `npm run gsc:action-plan` to find today's top opportunity.
 
 Each file in this directory is a task brief. Open the relevant file at the start of a session.
 
@@ -29,6 +29,14 @@ Each file in this directory is a task brief. Open the relevant file at the start
 | 7 | [task-07-city-pages.md](task-07-city-pages.md) | ⬜ Todo | City pages for Gnesta + Oxelösund — separate indexed pages per location |
 | 8 | [task-08-city-component.md](task-08-city-component.md) | ⬜ Todo | City-aware component — localStorage city preference surfaced in CTA/address blocks |
 | 9 | [task-09-ctr-benchmark.md](task-09-ctr-benchmark.md) | ⬜ Todo | CTR benchmark calibration — replace hardcoded industry averages with site-specific data |
+| 10 | [task-10-dedup-classify-lib.md](task-10-dedup-classify-lib.md) | ✅ Done | Dedup classify lib — wire `analyze-gsc-data.js` and `generate-article-draft.js` to `lib/classify.js` |
+| 11 | [task-11-fetch-row-limit.md](task-11-fetch-row-limit.md) | ✅ Done | Increase fetch row limit 500 → 25000 — stop silently missing long-tail queries |
+| 12 | [task-12-fetch-no-overwrite.md](task-12-fetch-no-overwrite.md) | ✅ Done | Prevent same-day fetch overwrite — add timestamp suffix instead of silently clobbering |
+| 13 | [task-13-alert-ctr-intersection.md](task-13-alert-ctr-intersection.md) | ✅ Done | Fix CTR drop alert — compute on snapshot intersection, not full aggregate |
+| 14 | [task-14-redirects-map-test.md](task-14-redirects-map-test.md) | ✅ Done | Add test for `redirects-map.js` — catch silent parse breakage after config changes |
+| 15 | [task-15-mdx-source-mapper.md](task-15-mdx-source-mapper.md) | ✅ Done | Add `.mdx` support to `mapUrlToSourceFile` — fix missing source file in action plans |
+| 16 | [task-16-measure-days-flag.md](task-16-measure-days-flag.md) | ✅ Done | Add `--measure-days` flag to `gsc:log` — override the hard-coded 14-day window |
+| 17 | [task-17-gsc-prune.md](task-17-gsc-prune.md) | ✅ Done | Add `gsc:prune` script — clean up old snapshots, keep monthly checkpoints |
 
 ---
 
@@ -41,6 +49,17 @@ Each file in this directory is a task brief. Open the relevant file at the start
 6 expands the content surface once the existing pipeline runs cleanly.
 7–8 are city expansion — deferred until GSC shows which pages have enough traction to justify localization.
 9 is a future calibration — data accumulates passively, revisit at ~3 months of weekly snapshots.
+
+**Tasks 10–17 are code-quality and data-integrity improvements surfaced by a toolchain review.**
+
+- **10** is the highest-risk: three scripts carry divergent copies of the classification logic. Do this first — any tier or CTR threshold change you make after this only needs to be done once.
+- **11** is trivial but high-impact: you're currently missing long-tail data on every fetch.
+- **12** prevents silent data loss when the fetch chain is re-run.
+- **13** fixes a known false-positive in the alert that produces noise on snapshots with new pages.
+- **14** is a safety net — catches config changes that silently break redirect classification.
+- **15** is a 4-line fix that prevents confusing "source file not found" output in action plans.
+- **16** gives operational flexibility to the measure window.
+- **17** is housekeeping — do it once the pipeline is stable and snapshots are accumulating.
 
 ### Existing scripts (already working)
 
