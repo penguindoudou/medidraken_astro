@@ -168,12 +168,41 @@ async function main() {
       `${report.summary.nonWwwVariants ?? 0} non-www variant(s)`
   );
 
-  if (DRY_RUN) {
-    console.log('\n── DRY RUN — no requests will be sent ──────────────────────');
-    for (const e of allIssues) {
+  // ── Skip entries that need manual review ─────────────────────────────────
+  const needsReview = allIssues.filter((e) => e.needsReview);
+  const actionable  = allIssues.filter((e) => !e.needsReview);
+
+  if (needsReview.length > 0) {
+    console.log(
+      `\n🚨  Skipping ${needsReview.length} entry(s) with needsReview=true` +
+      ' (mechanical guesses — canonical target is uncertain):'
+    );
+    for (const e of needsReview) {
       const kind = e.isHtmlGhost ? '.html ghost' : e.isNonWww ? 'non-www' : 'http://';
       console.log(`\n  Bad URL  : ${e.badUrl}  [${kind}]`);
-      console.log(`  Canonical: ${e.canonical}`);
+      console.log(`  Guessed  : ${e.canonical}  ← NOT submitted`);
+      console.log(`  Fix      : Add an explicit entry in astro.config.mjs redirects, then re-run gsc:audit`);
+    }
+    console.log();
+  }
+
+  if (actionable.length === 0) {
+    console.log('ℹ  No actionable entries remaining after skipping unreviewed guesses.');
+    console.log('   Resolve the needsReview entries above, then re-run.\n');
+    return;
+  }
+
+  console.log(`Proceeding with ${actionable.length} confirmed redirect(s).\n`);
+
+  if (DRY_RUN) {
+    console.log('\n── DRY RUN — no requests will be sent ──────────────────────');
+    if (needsReview.length > 0) {
+      console.log(`(${needsReview.length} needsReview entry(s) already listed above — excluded here)`);
+    }
+    for (const e of actionable) {
+      const kind = e.isHtmlGhost ? '.html ghost' : e.isNonWww ? 'non-www' : 'http://';
+      console.log(`\n  Bad URL  : ${e.badUrl}  [${kind}]`);
+      console.log(`  Canonical: ${e.canonical}  [${e.canonicalSource ?? 'known_redirect'}]`);
     }
     console.log('\nRemove --dry-run to execute.\n');
     return;
@@ -210,7 +239,7 @@ async function main() {
 
   const results = [];
 
-  for (const entry of allIssues) {
+  for (const entry of actionable) {
     const { badUrl, canonical } = entry;
     console.log(`\nProcessing: ${badUrl}`);
 
@@ -270,6 +299,7 @@ async function main() {
     executedAt: new Date().toISOString(),
     sourceReport: path.basename(reportFile),
     dryRun: false,
+    skippedNeedsReview: needsReview.length,
     results,
   };
   fs.writeFileSync(outputFile, JSON.stringify(output, null, 2));
@@ -281,9 +311,10 @@ async function main() {
   const errors    = results.filter((r) => ['ERROR', 'FAILED'].includes(r.indexingStatus)).length;
 
   console.log('\n── Cleanup Summary ─────────────────────────────────────────');
-  console.log(`  Submitted : ${submitted}`);
-  console.log(`  Skipped   : ${skipped}  (already canonical in Google)`);
-  console.log(`  Errors    : ${errors}`);
+  console.log(`  Submitted        : ${submitted}`);
+  console.log(`  Skipped (already canonical): ${skipped}`);
+  console.log(`  Skipped (needsReview / unconfirmed): ${needsReview.length}`);
+  console.log(`  Errors           : ${errors}`);
   console.log(`\nFull results saved → ${outputFile}`);
 
   if (submitted > 0) {

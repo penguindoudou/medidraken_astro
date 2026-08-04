@@ -13,12 +13,43 @@ export default defineConfig({
   trailingSlash: 'always',
   redirects: {
     '/behandling/tuina-massage/': '/behandling/medicinsk-kinesisk-massage/',
+
     // Ghost pages from old site — redirect to canonical equivalents
     '/taiji.html':    '/kurser/tai-chi/',
     '/taiji':         '/kurser/tai-chi/',
     '/johannes.html': '/om-oss/',
     '/kurser.html':   '/kurser/',
     '/fest.html':     '/for-foretag/foretagsevent-aktiviteter/',
+
+    // Renamed pages (old slug → new slug)
+    '/behandlingar.html': '/behandling/',
+    '/behandlingar':      '/behandling/',
+
+    // Hälsoresor moved under upplevelser
+    '/halsoresor':        '/upplevelser/halsoresor/',
+    '/halsoresor.html':   '/upplevelser/halsoresor/',
+
+    // Old index2 test/staging page → home
+    '/index2':            '/',
+    '/index2.html':       '/',
+
+    // Pages that no longer exist → closest relevant destination
+    '/ansikte':           '/',          // ansiktsbehandling discontinued → home
+    '/ansikte.html':      '/',
+    '/zon':               '/',          // zonterapi discontinued → home
+    '/zon.html':          '/',
+    '/privat':            '/kurser/',   // no general privatundervisning page → courses index
+    '/privat.html':       '/kurser/',
+
+    // Old top-level WP slugs that moved or were restructured
+    '/qigong':            '/kurser/medicinsk-qigong/',   // top-level qigong → course page
+    '/qigong.html':       '/kurser/medicinsk-qigong/',
+    '/akupunktur':        '/behandling/akupunktur/',     // top-level → treatment page
+    '/akupunktur.html':   '/behandling/akupunktur/',
+    '/helg':              '/kurser/',                    // generic helgkurs → courses index (both tai-chi & qigong have helgkurser)
+    '/helg.html':         '/kurser/',
+    '/forelasningar':     '/for-foretag/',                    // lectures discontinued → corporate services
+    '/forelasningar.html':'/for-foretag/',
   },
   devToolbar: {
     enabled: false
