@@ -31,6 +31,82 @@ function checkUrl(url) {
   });
 }
 
+// ── Load pending entries from latest canon-audit-*.json ──────────────────────
+
+function loadPendingEntries() {
+  const dataDir = path.resolve(process.cwd(), 'plans/gsc-data');
+  if (!fs.existsSync(dataDir)) return [];
+
+  // Find the most recent canon-audit file
+  const files = fs.readdirSync(dataDir)
+    .filter(f => f.startsWith('canon-audit-') && f.endsWith('.json'))
+    .sort()
+    .reverse();
+
+  if (files.length === 0) return [];
+
+  let report;
+  try {
+    report = JSON.parse(fs.readFileSync(path.join(dataDir, files[0]), 'utf8'));
+  } catch {
+    return [];
+  }
+
+  // Only .html ghosts with needsReview=true — these are the ones that need
+  // an explicit redirect entry. http:// and non-www variants are handled by
+  // Cloudflare and never need an astro.config.mjs entry.
+  const pending = (report.htmlGhosts || []).filter(e => e.needsReview);
+
+  return pending.map(e => {
+    // Extract just the path from the bad URL for use as the redirect key
+    let fromPath;
+    try {
+      fromPath = new URL(e.badUrl).pathname;
+    } catch {
+      fromPath = e.badUrl.replace(/^https?:\/\/[^/]+/, '') || '/';
+    }
+    // Strip www prefix duplicates — the redirect key is just the path
+    return {
+      fromPath,
+      badUrl: e.badUrl,
+      suggestedTarget: e.canonical,
+      source: files[0],
+    };
+  });
+}
+
+// ── Add a new entry to astro.config.mjs redirects block ──────────────────────
+
+function addEntry(from, to) {
+  let config = fs.readFileSync(CONFIG_PATH, 'utf8');
+
+  // Normalise: ensure target starts with / or is a full URL
+  const target = to.startsWith('http') ? to : (to.startsWith('/') ? to : '/' + to);
+
+  // Find the closing brace of the redirects block and insert before it
+  // Matches the pattern:   redirects: { ... }
+  const redirectsBlockRe = /(redirects\s*:\s*\{[^}]*)(})/s;
+  const match = redirectsBlockRe.exec(config);
+  if (!match) {
+    throw new Error('Could not locate redirects block in astro.config.mjs');
+  }
+
+  // Check if the from path already exists
+  const escapedFrom = from.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  if (new RegExp(`['"]${escapedFrom}['"]`).test(match[1])) {
+    throw new Error(`Entry for '${from}' already exists`);
+  }
+
+  const newLine = `\n    '${from}':      '${target}',`;
+  // Ensure the closing brace sits on its own line
+  const insertAt = match.index + match[1].length;
+  const before   = config.slice(0, insertAt);
+  const after    = config.slice(insertAt); // starts with '}'
+  const updated  = before + newLine + (before.endsWith('\n') ? '' : '\n  ') + after;
+
+  fs.writeFileSync(CONFIG_PATH, updated);
+}
+
 // ── Write changes back to astro.config.mjs ────────────────────────────────────
 
 function applyChanges(changes) {
@@ -67,7 +143,21 @@ function readBody(req) {
 
 // ── HTML ──────────────────────────────────────────────────────────────────────
 
-function buildPage(rows) {
+function buildPage(rows, pending = []) {
+  const pendingRowsHtml = pending.length === 0
+    ? `<tr><td colspan="5" style="padding:10px 12px;color:#4ade80;font-size:13px;">✅ No pending entries — all .html ghosts are mapped.</td></tr>`
+    : pending.map((p) => `
+    <tr class="pending-row" data-from="${esc(p.fromPath)}" data-bad-url="${esc(p.badUrl)}">
+      <td class="from"><code>${esc(p.fromPath)}</code></td>
+      <td class="arrow">→</td>
+      <td class="to">
+        <input type="text" class="pending-target" value="${esc(p.suggestedTarget)}" spellcheck="false" placeholder="https://www.medidraken.com/…" />
+      </td>
+      <td class="status"><span class="badge-pending">⚠ needs redirect</span></td>
+      <td class="actions">
+        <button class="btn-add" title="Add to astro.config.mjs">Add</button>
+      </td>
+    </tr>`).join('\n');
   const rowsHtml = rows.map((r) => {
     const statusClass = r.ok ? 'ok' : 'broken';
     const statusLabel = r.ok ? `✅ ${r.status}` : `❌ ${r.status}`;
@@ -195,6 +285,58 @@ function buildPage(rows) {
     #summary { font-size: 13px; color: #64748b; }
     #summary .count-broken { color: #f87171; font-weight: 600; }
     #summary .count-ok     { color: #4ade80; font-weight: 600; }
+
+    /* ── Pending section ── */
+    .pending-section {
+      margin-bottom: 36px;
+    }
+    .pending-section h2 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #f59e0b;
+      margin-bottom: 10px;
+    }
+    .pending-section .none {
+      color: #4ade80;
+      font-size: 13px;
+      padding: 8px 0;
+    }
+    tbody tr.pending-row { background: #1a1500; }
+    tbody tr.pending-row:hover { background: #201a00; }
+    tbody tr.pending-row td.from code { color: #fbbf24; }
+    .badge-pending {
+      display: inline-block;
+      background: #78350f;
+      color: #fcd34d;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .btn-add {
+      background: #16a34a;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .btn-add:hover { opacity: .85; }
+    .btn-add:disabled { opacity: .4; cursor: default; }
+
+    .existing-section h2 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #475569;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -210,6 +352,26 @@ function buildPage(rows) {
     </div>
   </div>
 
+  <div class="pending-section">
+    <h2>⚠ Pending — .html ghosts needing a redirect entry</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Old path (from)</th>
+          <th></th>
+          <th>Target (to) — edit if the mechanical guess is wrong</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="pending-tbody">
+        ${pendingRowsHtml}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="existing-section">
+    <h2>Existing redirects</h2>
   <table>
     <thead>
       <tr>
@@ -224,6 +386,7 @@ function buildPage(rows) {
       ${rowsHtml}
     </tbody>
   </table>
+  </div>
 
   <div id="toast"></div>
 
@@ -373,6 +536,51 @@ function buildPage(rows) {
       el.innerHTML = parts.join(' · ') || 'all clear';
     }
 
+    // ── Pending section: Add button ───────────────────────────────────────
+    const pendingTbody = document.getElementById('pending-tbody');
+
+    pendingTbody.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.btn-add');
+      if (!btn) return;
+
+      const tr     = btn.closest('tr');
+      const from   = tr.dataset.from;
+      const input  = tr.querySelector('.pending-target');
+      const to     = input.value.trim();
+
+      if (!to) { showToast('Target cannot be empty.', true); return; }
+
+      btn.disabled    = true;
+      btn.textContent = 'Adding…';
+
+      try {
+        const res  = await fetch('/api/add', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ from, to }),
+        });
+        const data = await res.json();
+
+        if (data.ok) {
+          // Replace the row with a success indicator, then fade it out
+          tr.querySelector('.status').innerHTML = '<span class="badge-ok">✅ added</span>';
+          tr.querySelector('td.actions').innerHTML = '';
+          input.disabled = true;
+          setTimeout(() => tr.remove(), 1800);
+          showToast(\`Added '\${from}' → '\${to}' to astro.config.mjs\`);
+          updateSummary();
+        } else {
+          showToast('Add failed: ' + (data.error ?? 'unknown error'), true);
+          btn.disabled    = false;
+          btn.textContent = 'Add';
+        }
+      } catch (err) {
+        showToast('Add failed: ' + err.message, true);
+        btn.disabled    = false;
+        btn.textContent = 'Add';
+      }
+    });
+
     updateSummary();
   </script>
 </body>
@@ -421,10 +629,25 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // ── API: add a new redirect entry ──
+  if (req.method === 'POST' && req.url === '/api/add') {
+    const body = JSON.parse(await readBody(req));
+    try {
+      addEntry(body.from, body.to);
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: true }));
+    } catch (e) {
+      res.writeHead(400, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ ok: false, error: e.message }));
+    }
+    return;
+  }
+
   // ── Main page ──
   if (req.method === 'GET' && req.url === '/') {
-    const rows = await buildRows();
-    const html = buildPage(rows);
+    const rows    = await buildRows();
+    const pending = loadPendingEntries();
+    const html    = buildPage(rows, pending);
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(html);
     return;

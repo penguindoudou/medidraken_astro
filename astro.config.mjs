@@ -50,6 +50,12 @@ export default defineConfig({
     '/helg.html':         '/kurser/',
     '/forelasningar':     '/for-foretag/',                    // lectures discontinued → corporate services
     '/forelasningar.html':'/for-foretag/',
+
+    // Remaining .html ghosts without a mapping
+    '/kontakt.html':      '/kontakt/',
+    '/404.html':          '/',          // 404 page has no canonical slug → home
+  
+  
   },
   devToolbar: {
     enabled: false

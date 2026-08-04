@@ -399,17 +399,23 @@ async function main() {
     };
 
     if (htmlGhosts.length > 0) {
-      console.log(`\n⚠  .html ghost pages (${htmlGhosts.length}):`);
+      const anyPending = htmlGhosts.some((e) => e.needsReview);
+      const icon = anyPending ? '⚠ ' : '✅';
+      console.log(`\n${icon}  .html ghost pages (${htmlGhosts.length}):`);
       for (const e of htmlGhosts) console.log(fmt(e));
     }
 
     if (httpVariants.length > 0) {
-      console.log(`\n⚠  http:// variants (${httpVariants.length}):`);
+      const anyPending = httpVariants.some((e) => e.needsReview);
+      const icon = anyPending ? '⚠ ' : '✅';
+      console.log(`\n${icon}  http:// variants (${httpVariants.length}):`);
       for (const e of httpVariants) console.log(fmt(e));
     }
 
     if (nonWwwVariants.length > 0) {
-      console.log(`\n⚠  non-www HTTPS variants (${nonWwwVariants.length}):`);
+      const anyPending = nonWwwVariants.some((e) => e.needsReview);
+      const icon = anyPending ? '⚠ ' : '✅';
+      console.log(`\n${icon}  non-www HTTPS variants (${nonWwwVariants.length}):`);
       for (const e of nonWwwVariants) console.log(fmt(e));
     }
 

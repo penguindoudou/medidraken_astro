@@ -406,6 +406,7 @@ Use this when you suspect a redirect is pointing at a dead or moved page, or aft
 Browser-based UI for reviewing and editing redirects in `astro.config.mjs`. Starts a local web server at `http://localhost:4399`.
 
 Features:
+- **Pending section** — reads the latest `canon-audit-*.json` and shows any `.html` ghosts with `needsReview=true` at the top; each row has an editable target field and an **Add** button that writes the entry directly into `astro.config.mjs`
 - **Live status checks** — HEAD-checks every redirect target on page load; broken targets are highlighted in red
 - **Inline editing** — edit any target path directly in the table; unsaved changes are highlighted in amber
 - **Per-row re-check** — re-verify a single target after editing (↺ button)
