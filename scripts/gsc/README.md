@@ -63,6 +63,19 @@ npm run gsc:cleanup:dry
 npm run gsc:cleanup
 ```
 
+### Occasional — snapshot housekeeping
+
+```bash
+# Preview what would be pruned (dry run — default):
+npm run gsc:prune
+
+# Actually delete old snapshots:
+npm run gsc:prune:run
+
+# Keep only the N most recent (default: 12):
+node scripts/gsc/prune-snapshots.js --keep 8 --confirm
+```
+
 > Data is saved to `plans/gsc-data/` as dated JSON files so snapshots accumulate over time. Tracked experiments live in `plans/gsc-tracked.json`.
 
 ---
@@ -410,6 +423,43 @@ Prefer this over the terminal script (`gsc:redirects`) when you have many redire
 
 ---
 
+### `prune-snapshots.js` — `npm run gsc:prune`
+
+Cleans up old `gsc-keywords-*.json` snapshots from `plans/gsc-data/` to prevent unbounded growth.
+
+**Keep set** — the N most recent snapshots (default: 12) plus any file dated the 1st of a month (monthly checkpoints). Everything else is deleted.
+
+Dry-run by default — nothing is deleted unless you pass `--confirm`.
+
+```bash
+# Preview what would be pruned (safe — no deletes)
+npm run gsc:prune
+
+# Actually delete old snapshots
+npm run gsc:prune:run
+
+# Keep only the 8 most recent instead of the default 12
+node scripts/gsc/prune-snapshots.js --keep 8 --confirm
+```
+
+Run this once the pipeline has been stable for a few months and `plans/gsc-data/` starts getting cluttered. Don't run it until you have at least a couple of months of snapshots — `compare-snapshots.js` needs a "before" to diff against.
+
+---
+
+### Tests — `npm run gsc:test:*`
+
+Unit tests for shared library code. Run these after changing `lib/classify.js`, `lib/redirects-map.js`, or the alert logic.
+
+```bash
+npm run gsc:test:redirects   # tests/test-redirects-map.js — redirect parsing
+npm run gsc:test:alert       # tests/test-alert-ctr.mjs   — CTR intersection logic
+node scripts/gsc/test-action-plan.js  # classifyQuery + routeAction routing coverage
+```
+
+`test-action-plan.js` has no npm alias — run it directly. It verifies every position/CTR/impressions combination routes to the correct tier and action type.
+
+---
+
 ## Auth setup
 
 > **Auth is already configured and working.** Service account key is set up and verified against the live GSC property.
@@ -433,7 +483,8 @@ All scripts share the same auth resolution order. Add one of these to your `.env
 
 | Pattern | Created by |
 |---|---|
-| `gsc-keywords-YYYY-MM-DD.json` | `fetch-gsc-queries.js` |
+| `gsc-keywords-YYYY-MM-DD.json` | `fetch-gsc-queries.js` — first fetch of the day |
+| `gsc-keywords-YYYY-MM-DD-HHmmss.json` | `fetch-gsc-queries.js` — same-day re-fetch (timestamp suffix avoids overwrite) |
 | `canon-audit-YYYY-MM-DD.json` | `audit-canonicalization.js` — includes `verified: true` and per-entry `verification` object when run with `--verify` |
 | `canon-cleanup-YYYY-MM-DD.json` | `submit-canonical-cleanup.js` |
 | `schema-audit-YYYY-MM-DD.json` | `audit-schema.js` |
