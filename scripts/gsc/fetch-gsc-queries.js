@@ -69,19 +69,39 @@ export async function fetchSearchConsoleData(daysBack = 30) {
         startDate,
         endDate,
         dimensions: ['query', 'page'],
-        rowLimit: 500,
+        rowLimit: 25000,
       },
     });
 
     const rows = res.data.rows || [];
     console.log(`Retrieved ${rows.length} search query/page combinations.`);
 
+    if (rows.length === 25000) {
+      console.warn(
+        '⚠️  Response hit the 25,000-row limit — some queries may be missing. ' +
+        'Consider narrowing the date range or adding a second dimension filter.'
+      );
+    }
+
     const outputDir = path.resolve(process.cwd(), 'plans/gsc-data');
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
 
-    const outputFile = path.join(outputDir, `gsc-keywords-${endDate}.json`);
+    let outputFile = path.join(outputDir, `gsc-keywords-${endDate}.json`);
+
+    if (fs.existsSync(outputFile)) {
+      // e.g. gsc-keywords-2026-08-04-103022.json
+      const now = new Date();
+      const ts = now.toISOString().slice(11, 19).replace(/:/g, '');
+      const altFile = path.join(outputDir, `gsc-keywords-${endDate}-${ts}.json`);
+      console.warn(
+        `⚠️  Same-day snapshot already exists at ${path.basename(outputFile)}.\n` +
+        `   Saving to ${path.basename(altFile)} instead to avoid overwriting.`
+      );
+      outputFile = altFile;
+    }
+
     fs.writeFileSync(outputFile, JSON.stringify(rows, null, 2));
     console.log(`Saved GSC data to ${outputFile}`);
 
