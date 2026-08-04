@@ -81,7 +81,9 @@ function mapUrlToSourceFile(rankingUrl) {
   const stripped = urlPath.replace(/^\//, '');
   const candidates = [
     path.join(pagesRoot, stripped + '.astro'),
+    path.join(pagesRoot, stripped + '.mdx'),
     path.join(pagesRoot, stripped, 'index.astro'),
+    path.join(pagesRoot, stripped, 'index.mdx'),
   ];
 
   for (const candidate of candidates) {
@@ -97,6 +99,10 @@ function mapUrlToSourceFile(rankingUrl) {
     const mdPath = path.resolve(process.cwd(), 'src/content/artiklar', slug + '.md');
     if (fs.existsSync(mdPath)) {
       return path.relative(process.cwd(), mdPath);
+    }
+    const mdxPath = path.resolve(process.cwd(), 'src/content/artiklar', slug + '.mdx');
+    if (fs.existsSync(mdxPath)) {
+      return path.relative(process.cwd(), mdxPath);
     }
   }
 

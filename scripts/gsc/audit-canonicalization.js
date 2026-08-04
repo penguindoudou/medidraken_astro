@@ -12,7 +12,18 @@
  *
  * Usage:
  *   node scripts/gsc/audit-canonicalization.js
- *   node scripts/gsc/audit-canonicalization.js --days 90   # look back further
+ *   node scripts/gsc/audit-canonicalization.js --days 90    # look back further
+ *   node scripts/gsc/audit-canonicalization.js --verify     # HTTP-check canonical URLs
+ *   node scripts/gsc/audit-canonicalization.js --verify --days 90
+ *
+ * --verify behaviour:
+ *   For http:// and non-www HTTPS variants the canonical is always a trivial
+ *   transform (same path, protocol upgrade + www prefix). These do NOT need
+ *   an entry in astro.config.mjs redirects — Cloudflare handles them. But we
+ *   still want to confirm the target page exists. --verify sends a HEAD
+ *   request to each canonical URL; if it returns 200, needsReview is cleared
+ *   and canonicalSource is set to 'verified_live'. Non-200 / timeouts are
+ *   left as needsReview=true so you can investigate.
  *
  * Auth: reuses the same env-var pattern as fetch-gsc-queries.js
  *   GSC_SERVICE_ACCOUNT_PATH  or
@@ -28,11 +39,64 @@ import { loadRedirectsMap } from './lib/redirects-map.js';
 
 dotenv.config();
 
+// ─── HTTP verification ────────────────────────────────────────────────────────
+
+/**
+ * Verify that a canonical URL actually exists on the live site.
+ *
+ * Strategy: HEAD request, follow redirects, check final status === 200.
+ * Times out after 8 s per URL; errors are treated as unverified (not failed).
+ *
+ * Returns: { verified: boolean, status: number|null, finalUrl: string|null, error: string|null }
+ */
+async function verifyUrl(url) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch(url, {
+      method: 'HEAD',
+      redirect: 'follow',
+      signal: controller.signal,
+      headers: { 'User-Agent': 'medidraken-canon-audit/1.0' },
+    });
+    clearTimeout(timer);
+    return {
+      verified: res.status === 200,
+      status: res.status,
+      finalUrl: res.url || null,
+      error: null,
+    };
+  } catch (err) {
+    clearTimeout(timer);
+    return { verified: false, status: null, finalUrl: null, error: err.message };
+  }
+}
+
+/**
+ * Returns true for entries where the canonical is a trivial transform
+ * of the bad URL (protocol upgrade and/or www prefix only — the path is
+ * unchanged). For these, the mechanical guess is always correct;
+ * verification is about confirming the target page exists, not about
+ * guessing the right slug.
+ */
+function isTrivialTransform(entry) {
+  // http:// variants and non-www HTTPS variants — slug did not change
+  return entry.isHttpVariant || entry.isNonWww;
+}
+
 const SITE_URL = process.env.GSC_SITE_URL || 'sc-domain:medidraken.com';
 const DAYS_BACK = (() => {
   const idx = process.argv.indexOf('--days');
   return idx !== -1 ? Number(process.argv[idx + 1]) || 90 : 90;
 })();
+
+/**
+ * --verify  Run live HTTP checks on all trivial-transform entries
+ *           (http:// and non-www HTTPS) to confirm the target URL exists.
+ *           Clears needsReview when status 200 is confirmed.
+ *           Safe to omit when running offline / in CI without outbound access.
+ */
+const VERIFY = process.argv.includes('--verify');
 
 // ─── Auth (mirrors fetch-gsc-queries.js) ────────────────────────────────────
 
@@ -225,6 +289,56 @@ async function main() {
     }
   }
 
+  // ── Live HTTP verification (opt-in via --verify) ──────────────────────────
+  //
+  // For http:// and non-www variants the canonical is a trivial transform
+  // (same path, just protocol upgrade + www prefix). These don't need a
+  // redirect entry in astro.config.mjs — they're handled by Cloudflare.
+  // What we actually want to verify is: does the target URL exist (200)?
+  // If yes, clear needsReview automatically.
+
+  let verifiedCount = 0;
+  let verifyFailCount = 0;
+
+  if (VERIFY) {
+    const toVerify = [...httpVariants, ...nonWwwVariants].filter(
+      (e) => e.needsReview && isTrivialTransform(e)
+    );
+
+    if (toVerify.length > 0) {
+      console.log(`\nVerifying ${toVerify.length} trivial-transform canonical URLs…`);
+
+      // Run in batches of 8 to avoid hammering the server
+      const BATCH = 8;
+      for (let i = 0; i < toVerify.length; i += BATCH) {
+        const batch = toVerify.slice(i, i + BATCH);
+        const results = await Promise.all(batch.map((e) => verifyUrl(e.canonical)));
+
+        for (let j = 0; j < batch.length; j++) {
+          const entry  = batch[j];
+          const result = results[j];
+
+          entry.verification = result;
+
+          if (result.verified) {
+            // Target page exists → no manual action needed
+            entry.needsReview    = false;
+            entry.canonicalSource = 'verified_live';
+            verifiedCount++;
+            process.stdout.write('✓');
+          } else {
+            verifyFailCount++;
+            process.stdout.write('✗');
+          }
+        }
+      }
+      console.log(); // newline after progress dots
+      console.log(
+        `  Live check: ${verifiedCount} confirmed ✓  ${verifyFailCount} unconfirmed ✗`
+      );
+    }
+  }
+
   // ── Report ────────────────────────────────────────────────────────────────
 
   const needsReviewCount =
@@ -236,12 +350,14 @@ async function main() {
     period: { startDate, endDate, daysBack: DAYS_BACK },
     totalUrlsSeen: allUrls.size,
     knownRedirectsLoaded: knownCount,
+    verified: VERIFY,
     summary: {
       htmlGhosts:      htmlGhosts.length,
       httpVariants:    httpVariants.length,
       nonWwwVariants:  nonWwwVariants.length,
       total: htmlGhosts.length + httpVariants.length + nonWwwVariants.length,
       needsReview:     needsReviewCount,
+      ...(VERIFY && { verifiedLive: verifiedCount, verifyFailed: verifyFailCount }),
     },
     htmlGhosts,
     httpVariants,
@@ -265,10 +381,21 @@ async function main() {
   } else {
     /** Format one entry line with confidence label */
     const fmt = (e) => {
-      const label = e.needsReview
-        ? '⚠  [MECHANICAL GUESS — add to astro.config.mjs redirects]'
-        : '✅ [known redirect]';
-      return `   ${e.badUrl}\n   → ${e.canonical}  ${label}`;
+      let label;
+      if (e.canonicalSource === 'verified_live') {
+        label = `✅ [verified live — HTTP ${e.verification?.status}]`;
+      } else if (e.canonicalSource === 'known_redirect') {
+        label = '✅ [known redirect]';
+      } else if (e.needsReview) {
+        label = '⚠  [MECHANICAL GUESS — add to astro.config.mjs redirects]';
+      } else {
+        label = '⚠  [unverified — run with --verify to check]';
+      }
+      let line = `   ${e.badUrl}\n   → ${e.canonical}  ${label}`;
+      if (e.verification && !e.verification.verified) {
+        line += `\n   ✗ verify failed: ${e.verification.error || `HTTP ${e.verification.status}`}`;
+      }
+      return line;
     };
 
     if (htmlGhosts.length > 0) {
@@ -294,14 +421,41 @@ async function main() {
 
     if (needsReviewCount > 0) {
       console.log(
-        `\n🚨  ${needsReviewCount} entry(s) marked needsReview=true (mechanical guesses).` +
-        '\n    Add explicit entries for these in astro.config.mjs redirects, then re-run the audit.' +
-        '\n    submit-canonical-cleanup.js will SKIP these entries until they are resolved.'
+        `\n🚨  ${needsReviewCount} entry(s) still marked needsReview=true.`
       );
+      const htmlNeedsReview = htmlGhosts.filter((e) => e.needsReview);
+      if (htmlNeedsReview.length > 0) {
+        console.log(
+          `    • ${htmlNeedsReview.length} .html ghost(s) need explicit redirect entries in astro.config.mjs`
+        );
+      }
+      const trivialUnverified = [...httpVariants, ...nonWwwVariants].filter((e) => e.needsReview);
+      if (trivialUnverified.length > 0 && !VERIFY) {
+        console.log(
+          `    • ${trivialUnverified.length} http/non-www variant(s) not yet verified — re-run with --verify to auto-confirm`
+        );
+      } else if (trivialUnverified.length > 0 && VERIFY) {
+        console.log(
+          `    • ${trivialUnverified.length} http/non-www variant(s) could not be confirmed (target returned non-200 or timed out)`
+        );
+      }
+      if (htmlNeedsReview.length > 0) {
+        console.log(
+          '\n    submit-canonical-cleanup.js will SKIP needsReview=true entries until resolved.'
+        );
+      }
+    } else {
+      console.log('\n✅  All entries resolved — no manual action required.');
     }
 
     console.log(
       `\nNext step: node scripts/gsc/submit-canonical-cleanup.js ${path.basename(outputFile)}`
+    );
+  }
+
+  if (!VERIFY) {
+    console.log(
+      '\n💡  Tip: re-run with --verify to HTTP-check all http:// and non-www canonicals automatically.'
     );
   }
 
