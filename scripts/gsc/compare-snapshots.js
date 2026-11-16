@@ -15,6 +15,10 @@
  *   node scripts/gsc/compare-snapshots.js --min-pos-delta 3
  *   node scripts/gsc/compare-snapshots.js --min-imp 5
  *
+ * Disappeared threshold flags (avoid noise from low-volume queries):
+ *   --min-ghost-imp=N      min impressions in "before" to flag as disappeared (default: 10)
+ *   --min-ghost-clicks=N   OR: flag if it had ≥N clicks regardless of impressions (default: 1)
+ *
  * Output sections:
  *   📈 Improved    — position moved up (lower number)
  *   📉 Dropped     — position moved down (higher number)
@@ -58,6 +62,14 @@ const flags = Object.fromEntries(
 const MIN_POS_DELTA = flags['min-pos-delta'] ?? 1;   // only show moves ≥ this many positions
 const MIN_IMP      = flags['min-imp']       ?? 0;    // only show queries with ≥ this impressions (in "after")
 const TOP_N        = flags['top']           ?? 30;   // max rows per section
+
+// ─── Disappeared / dropped thresholds ────────────────────────────────────────
+// Low-volume queries (<10 impressions in a 30-day window) disappear all the
+// time due to natural variance, GSC data lag, and sparse search demand — not
+// because rankings actually dropped. We only flag a query as "disappeared"
+// when it had enough impressions to be statistically meaningful.
+const MIN_GHOST_IMP    = flags['min-ghost-imp']    ?? 10;  // min impressions in "before" to flag as disappeared
+const MIN_GHOST_CLICKS = flags['min-ghost-clicks'] ?? 1;   // OR if it had real clicks, always flag it
 
 // ─── Load snapshots ───────────────────────────────────────────────────────────
 
@@ -187,7 +199,13 @@ for (const query of allQueries) {
     continue;
   }
   if (b && !a) {
-    disappeared.push({ query, ...b });
+    // Only flag as disappeared if it had meaningful volume in the before window.
+    // A query with <10 impressions can vanish from any 30-day window due to
+    // sparse search demand or GSC data lag — that's noise, not a ranking drop.
+    const isSignificant = b.impressions >= MIN_GHOST_IMP || b.clicks >= MIN_GHOST_CLICKS;
+    if (isSignificant) {
+      disappeared.push({ query, ...b, likelyCause: b.impressions < 20 ? 'low-volume' : 'investigate' });
+    }
     continue;
   }
 
@@ -274,11 +292,15 @@ printSection(`🆕 New queries (${appeared.length})`, appeared, (r) => {
 });
 
 printSection(`👻 Disappeared (${disappeared.length})`, disappeared, (r) => {
+  const causeNote = r.likelyCause === 'low-volume'
+    ? '  ⚠ low-volume (may be noise)'
+    : '  ← investigate';
   console.log(
     `  ${pad(r.query + trackedTag(r.query), Q + 2)}` +
     `  was pos ${padL(fmt(r.position), 6)}` +
     `  imp ${padL(r.impressions, 4)}` +
-    `  clicks ${padL(r.clicks, 3)}`
+    `  clicks ${padL(r.clicks, 3)}` +
+    causeNote
   );
 });
 
@@ -313,10 +335,10 @@ console.log(
   `  (+${appeared.length} new, -${disappeared.length} gone)`
 );
 console.log(
-  `\n  Filters active: min-pos-delta=${MIN_POS_DELTA}  min-imp=${MIN_IMP}  top=${TOP_N}`
+  `\n  Filters active: min-pos-delta=${MIN_POS_DELTA}  min-imp=${MIN_IMP}  min-ghost-imp=${MIN_GHOST_IMP}  min-ghost-clicks=${MIN_GHOST_CLICKS}  top=${TOP_N}`
 );
 console.log(
-  `  To adjust: --min-pos-delta=3 --min-imp=5 --top=50`
+  `  To adjust: --min-pos-delta=3 --min-imp=5 --min-ghost-imp=20 --min-ghost-clicks=2 --top=50`
 );
 if (trackedQueries.size > 0) {
   console.log(

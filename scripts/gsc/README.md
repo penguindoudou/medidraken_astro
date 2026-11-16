@@ -154,16 +154,22 @@ npm run gsc:compare
 node scripts/gsc/compare-snapshots.js plans/gsc-data/gsc-keywords-2026-07-01.json plans/gsc-data/gsc-keywords-2026-07-30.json
 
 # Filter flags:
-npm run gsc:compare -- --min-pos-delta=3   # only show moves of ≥ 3 positions
-npm run gsc:compare -- --min-imp=5         # hide queries with < 5 impressions
-npm run gsc:compare -- --top=50            # show up to 50 rows per section
+npm run gsc:compare -- --min-pos-delta=3        # only show moves of ≥ 3 positions
+npm run gsc:compare -- --min-imp=5              # hide queries with < 5 impressions
+npm run gsc:compare -- --top=50                 # show up to 50 rows per section
+
+# 👻 Disappeared threshold flags:
+npm run gsc:compare -- --min-ghost-imp=20       # min impressions in "before" to flag as disappeared (default: 10)
+npm run gsc:compare -- --min-ghost-clicks=0     # only flag if it also had clicks (default: 1)
 ```
 
 Output sections:
 - 📈 **Improved** — queries that moved up, sorted by biggest gain
 - 📉 **Dropped** — queries that fell, sorted by biggest loss
 - 🆕 **New** — queries that appeared since the previous snapshot
-- 👻 **Disappeared** — queries that were present before but are now gone
+- 👻 **Disappeared** — queries present before but gone now; filtered by significance to suppress noise
+  - `← investigate` — high-volume (≥10 imp or ≥1 click in before-window); warrants action
+  - `⚠ low-volume (may be noise)` — below threshold; likely vanished due to sparse demand or GSC lag, not a ranking drop
 - 📊 **Summary** — total impressions, clicks, and CTR delta
 
 Queries registered in `plans/gsc-tracked.json` are annotated with 🎯 wherever they appear.
